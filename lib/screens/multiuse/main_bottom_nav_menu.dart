@@ -1,14 +1,14 @@
-import 'package:dogmeet_app/components/post_floating_action_button.dart';
-import 'package:dogmeet_app/screens/meet_up_feed_page.dart';
-import 'package:dogmeet_app/screens/forums_feed_page.dart';
-import 'package:dogmeet_app/screens/market_main_page.dart';
-import 'package:dogmeet_app/screens/notifications_feed_page.dart';
+import 'package:dogmeet_app/components/buttons/post_floating_action_button.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/meetup/meet_up_feed_page.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/forum/forums_feed_page.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_main_page.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/notification/notifications_feed_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
-import 'account_profile_page.dart';
+import '../profile/account_profile_page.dart';
 
 //This file stays the same throughout all 5 pages of the bottom navigation
 //the only thing that changes is the body of the scaffold which is set to _currentSelectedScreenIndex and switches

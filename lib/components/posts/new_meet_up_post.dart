@@ -1,6 +1,6 @@
-import 'package:dogmeet_app/components/constants.dart';
+import 'package:dogmeet_app/components/ui/constants.dart';
 import 'package:flutter/material.dart';
-import 'text_styles.dart';
+import '../ui/text_styles.dart';
 
 class NewMeetUpPost extends StatelessWidget {
   NewMeetUpPost({
@@ -46,8 +46,7 @@ class NewMeetUpPost extends StatelessWidget {
                             maxRadius: 18,
                           ),
                         ),
-                        gibsonSemiBoldText('rosyandmaze', 0, 0, 5, 0, 12,
-                            Colors.black, TextAlign.center),
+                        gibsonSemiBoldText('rosyandmaze', 0, 0, 5, 0, 12, Colors.black, TextAlign.center),
                       ],
                     ),
                   ),
@@ -80,19 +79,16 @@ class NewMeetUpPost extends StatelessWidget {
                     )),
                 child: Row(
                   children: <Widget>[
-                    gibsonSemiBoldText('Location', 0, 0, 0, 0, 12, Colors.black,
-                        TextAlign.center),
+                    gibsonSemiBoldText('Location', 0, 0, 0, 0, 12, Colors.black, TextAlign.center),
                     Spacer(
                       flex: 3,
                     ),
-                    gibsonSemiBoldText(
-                        'Time', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),
+                    gibsonSemiBoldText('Time', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),
                     Spacer(flex: 2),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        gibsonSemiBoldText('# People Attending', 0, 0, 0, 0, 10,
-                            Colors.black45, TextAlign.center),
+                        gibsonSemiBoldText('# People Attending', 0, 0, 0, 0, 10, Colors.black45, TextAlign.center),
                         Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Row(

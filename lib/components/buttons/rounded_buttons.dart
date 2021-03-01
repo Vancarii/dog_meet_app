@@ -1,8 +1,7 @@
-import 'package:dogmeet_app/components/text_styles.dart';
+import 'package:dogmeet_app/components/ui/text_styles.dart';
 import 'package:flutter/material.dart';
 
-Row profileTypeRoundedButton(
-    String label, String nextPage, BuildContext context) {
+Row profileTypeRoundedButton(String label, String nextPage, BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
@@ -40,8 +39,7 @@ Row profileTypeRoundedButton(
   );
 }
 
-Column marketStoreProfileRoundedButton(
-    String image, String nextPage, BuildContext context) {
+Column marketStoreProfileRoundedButton(String image, String nextPage, BuildContext context) {
   return Column(
     children: <Widget>[
       Padding(
@@ -59,8 +57,7 @@ Column marketStoreProfileRoundedButton(
           ),
         ),
       ),
-      gibsonSemiBoldText(
-          'Store Name', 5, 0, 0, 0, 12, Colors.black, TextAlign.center),
+      gibsonSemiBoldText('Store Name', 5, 0, 0, 0, 12, Colors.black, TextAlign.center),
     ],
   );
 }

@@ -1,6 +1,6 @@
-import 'package:dogmeet_app/components/text_styles.dart';
-import 'package:dogmeet_app/components/market_body.dart';
-import 'package:dogmeet_app/screens/search_screen.dart';
+import 'package:dogmeet_app/components/ui/text_styles.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_body.dart';
+import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,8 +24,7 @@ class _MarketMainPageState extends State<MarketMainPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText(
-            'Market', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: gibsonSemiBoldText('Market', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
         actions: <Widget>[
           IconButton(
             icon: Icon(

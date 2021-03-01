@@ -1,6 +1,6 @@
-import 'package:dogmeet_app/screens/forums_feed_page.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/forum/forums_feed_page.dart';
 import 'package:flutter/material.dart';
-import 'text_styles.dart';
+import 'package:dogmeet_app/components/ui/text_styles.dart';
 
 bool boolShowAllChips = false;
 String moreOrLessText = 'SHOW MORE';
@@ -23,8 +23,7 @@ class _ShowMoreLessButtonState extends State<ShowMoreLessButton> {
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            gibsonSemiBoldText('$moreOrLessText', 0, 0, 0, 0, 12, Colors.black,
-                TextAlign.center),
+            gibsonSemiBoldText('$moreOrLessText', 0, 0, 0, 0, 12, Colors.black, TextAlign.center),
             Icon(
               moreOrLessIcon,
             ),

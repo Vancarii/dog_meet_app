@@ -2,8 +2,8 @@ import 'package:dogmeet_app/screens/login/create_pupfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
-import '../../components/text_styles.dart';
-import 'package:dogmeet_app/components/rounded_buttons.dart';
+import '../../components/ui/text_styles.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/buttons/rounded_buttons.dart';
 
 import 'create_profile.dart';
 
@@ -21,24 +21,17 @@ class _NewUserScreenState extends State<NewUserScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Hero(
-              tag: 'app_title',
-              child: gibsonSemiBoldText(
-                  'DOGGOD', 10, 0, 0, 0, 15, Colors.black, TextAlign.center)),
-          gibsonSemiBoldText(
-              'Sign Up', 60, 0, 0, 0, 35, Colors.black, TextAlign.center),
-          gibsonSemiBoldText('Do you have a pup?', 70, 0, 0, 0, 25,
-              Colors.black, TextAlign.center),
+          Hero(tag: 'app_title', child: gibsonSemiBoldText('DOGGOD', 10, 0, 0, 0, 15, Colors.black, TextAlign.center)),
+          gibsonSemiBoldText('Sign Up', 60, 0, 0, 0, 35, Colors.black, TextAlign.center),
+          gibsonSemiBoldText('Do you have a pup?', 70, 0, 0, 0, 25, Colors.black, TextAlign.center),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              profileTypeRoundedButton(
-                  'Yes! \n Create a Pupfile', CreatePupfile.id, context),
+              profileTypeRoundedButton('Yes! \n Create a Pupfile', CreatePupfile.id, context),
               SizedBox(
                 width: 60,
               ),
-              profileTypeRoundedButton(
-                  'No, \n Create a Profile', CreateProfile.id, context),
+              profileTypeRoundedButton('No, \n Create a Profile', CreateProfile.id, context),
             ],
           ),
 /*          SizedBox(
@@ -67,10 +60,8 @@ class _NewUserScreenState extends State<NewUserScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    gibsonSemiBoldText('Already have an account?', 20, 0, 0, 0,
-                        12, Colors.grey[700], TextAlign.center),
-                    gibsonSemiBoldText('Log In', 0, 30, 0, 0, 12,
-                        Colors.blue[600], TextAlign.center),
+                    gibsonSemiBoldText('Already have an account?', 20, 0, 0, 0, 12, Colors.grey[700], TextAlign.center),
+                    gibsonSemiBoldText('Log In', 0, 30, 0, 0, 12, Colors.blue[600], TextAlign.center),
                   ],
                 ),
               ),

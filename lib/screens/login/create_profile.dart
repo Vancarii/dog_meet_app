@@ -1,6 +1,6 @@
-import 'package:dogmeet_app/components/already_have_an_account_prompt.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/ui/already_have_an_account_prompt.dart';
 import 'package:flutter/material.dart';
-import '../../components/text_styles.dart';
+import '../../components/ui/text_styles.dart';
 
 class CreateProfile extends StatefulWidget {
   static const String id = 'create_profile';
@@ -29,10 +29,8 @@ class _CreatePupfileState extends State<CreateProfile> {
                     size: 35,
                   ),
                 ),
-                gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15, Colors.black,
-                    TextAlign.center),
-                gibsonSemiBoldText(
-                    'Next', 10, 0, 0, 0, 15, Colors.black, TextAlign.center),
+                gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15, Colors.black, TextAlign.center),
+                gibsonSemiBoldText('Next', 10, 0, 0, 0, 15, Colors.black, TextAlign.center),
               ],
             ),
             AlreadyHaveAnAccountPrompt(),

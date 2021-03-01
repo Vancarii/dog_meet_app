@@ -1,6 +1,6 @@
-import 'package:dogmeet_app/components/constants.dart';
-import 'package:dogmeet_app/components/text_styles.dart';
-import 'package:dogmeet_app/screens/search_screen.dart';
+import 'package:dogmeet_app/components/ui/constants.dart';
+import 'package:dogmeet_app/components/ui/text_styles.dart';
+import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -44,50 +44,47 @@ class _NotificationsPageState extends State<NotificationsPage> {
           gibsonSemiBoldText('Recent', 0, 10, 10, 0, 20, Colors.black, TextAlign.start),
           InkWell(
             onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 2.0),
-              child: Container(
-                padding: EdgeInsets.all(6),
-                decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
-                child: Row(
-                  children: [
-                    CircleAvatar(),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12, Colors.black, TextAlign.start),
-                          gibsonSemiBoldText('messaged you about your listing', 2, 0, 0, 0, 10, Colors.black38, TextAlign.start),
-                        ],
-                      ),
+            child: Container(
+              padding: EdgeInsets.all(6),
+              decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.black12, width: 0.5))),
+              child: Row(
+                children: [
+                  CircleAvatar(),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12, Colors.black, TextAlign.start),
+                        gibsonSemiBoldText('messaged you about your listing', 2, 0, 0, 0, 10, Colors.black38, TextAlign.start),
+                      ],
                     ),
-                    Spacer(),
-                    gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10, Colors.black38, TextAlign.center),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(5),
-                                )),
-                            child: gibsonSemiBoldText('Reply', 0, 0, 0, 0, 12, Colors.black, TextAlign.center)),
-                      ),
+                  ),
+                  Spacer(),
+                  gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10, Colors.black38, TextAlign.center),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(5),
+                              )),
+                          child: gibsonSemiBoldText('Reply', 0, 0, 0, 0, 12, Colors.black, TextAlign.center)),
                     ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      child: Image.asset(
-                        'assets/images/trainingtab2.jpg',
-                        fit: BoxFit.fitHeight,
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Container(
+                    width: 40,
+                    height: 40,
+                    child: Image.asset(
+                      'assets/images/trainingtab2.jpg',
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -98,7 +95,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Container(
                 padding: EdgeInsets.all(6),
-                decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
+                //decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
                 child: Row(
                   children: [
                     CircleAvatar(),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'text_styles.dart';
+import '../ui/text_styles.dart';
 
 bool boolChipSelected = false;
 
@@ -24,8 +24,7 @@ class _ForumsPageFilterChipState extends State<ForumsPageFilterChip> {
         pressElevation: 0,
         elevation: 10,
         backgroundColor: Colors.white,
-        label: gibsonSemiBoldText(
-            widget.topicText, 0, 0, 0, 0, 12, Colors.black, TextAlign.center),
+        label: gibsonSemiBoldText(widget.topicText, 0, 0, 0, 0, 12, Colors.black, TextAlign.center),
         onSelected: (bool value) {
           setState(() {
             print(value);

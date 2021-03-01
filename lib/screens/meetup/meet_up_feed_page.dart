@@ -1,7 +1,7 @@
-import 'package:dogmeet_app/components/text_styles.dart';
-import 'package:dogmeet_app/components/new_meet_up_post.dart';
-import 'package:dogmeet_app/components/to_the_top_button.dart';
-import 'package:dogmeet_app/screens/search_screen.dart';
+import 'package:dogmeet_app/components/ui/text_styles.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/posts/new_meet_up_post.dart';
+import 'package:dogmeet_app/components/buttons/to_the_top_button.dart';
+import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

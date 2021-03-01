@@ -1,9 +1,9 @@
-import 'package:dogmeet_app/screens/market_all_page.dart';
-import 'package:dogmeet_app/screens/market_new_page.dart';
-import 'package:dogmeet_app/screens/market_used_page.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_all_page.dart';
+import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_new_page.dart';
+import 'package:dogmeet_app/screens/market/market_used_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'text_styles.dart';
+import '../../components/ui/text_styles.dart';
 
 //This is where the tab bar
 //tabBarColors handles what to do when each tab is selected

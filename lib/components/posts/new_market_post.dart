@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'constants.dart';
-import 'text_styles.dart';
+import '../ui/constants.dart';
+import '../ui/text_styles.dart';
 
 class NewMarketPost extends StatefulWidget {
   final Color borderColour;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'text_styles.dart';
+import '../ui/text_styles.dart';
 
 class AlreadyHaveAnAccountPrompt extends StatelessWidget {
   @override
@@ -16,10 +16,8 @@ class AlreadyHaveAnAccountPrompt extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              gibsonSemiBoldText('Already have an account?', 20, 0, 0, 0, 12,
-                  Colors.grey[700], TextAlign.center),
-              gibsonSemiBoldText('Log In', 0, 30, 0, 0, 12, Colors.blue[600],
-                  TextAlign.center),
+              gibsonSemiBoldText('Already have an account?', 20, 0, 0, 0, 12, Colors.grey[700], TextAlign.center),
+              gibsonSemiBoldText('Log In', 0, 30, 0, 0, 12, Colors.blue[600], TextAlign.center),
             ],
           ),
         ),
