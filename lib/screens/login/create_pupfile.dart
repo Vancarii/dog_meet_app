@@ -1,4 +1,4 @@
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/ui/already_have_an_account_prompt.dart';
+import 'package:dogmeet_app/components/ui/already_have_an_account_prompt.dart';
 import 'package:dogmeet_app/components/ui/create_account_textfield.dart';
 import 'package:dogmeet_app/screens/login/pupfile_add_bio.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,10 @@ class _CreatePupfileState extends State<CreatePupfile> {
                     size: 35,
                   ),
                 ),
-                Hero(tag: 'app_title', child: gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15, Colors.black, TextAlign.center)),
+                Hero(
+                    tag: 'app_title',
+                    child: gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15,
+                        Colors.black, TextAlign.center)),
 
                 //------------------------------------------------- NEXT BUTTON and CREATE PUPFILE TITLE ------------------------------------------------------------
 
@@ -47,10 +50,12 @@ class _CreatePupfileState extends State<CreatePupfile> {
                     onTap: () {
                       Navigator.pushNamed(context, PupfileAddBio.id);
                     },
-                    child: gibsonSemiBoldText('Next', 10, 0, 0, 0, 15, Colors.black, TextAlign.center)),
+                    child: gibsonSemiBoldText('Next', 10, 0, 0, 0, 15,
+                        Colors.black, TextAlign.center)),
               ],
             ),
-            gibsonSemiBoldText('Create a Pupfile', 20, 20, 0, 0, 33, Colors.black, TextAlign.center),
+            gibsonSemiBoldText('Create a Pupfile', 20, 20, 0, 0, 33,
+                Colors.black, TextAlign.center),
 
             //------------------------------------------------------------ SIGN UP FORM  ------------------------------------------------------------
 
@@ -68,7 +73,8 @@ class _CreatePupfileState extends State<CreatePupfile> {
                       shape: CircleBorder(),
                       elevation: 10,
                       child: //https://medium.com/fabcoding/adding-an-image-picker-in-a-flutter-app-pick-images-using-camera-and-gallery-photos-7f016365d856
-                          gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12, Colors.grey, TextAlign.center),
+                          gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12,
+                              Colors.grey, TextAlign.center),
                     ),
                   ),
                   SizedBox(height: 20),

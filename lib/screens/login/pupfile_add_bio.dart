@@ -1,4 +1,4 @@
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/ui/already_have_an_account_prompt.dart';
+import 'package:dogmeet_app/components/ui/already_have_an_account_prompt.dart';
 import 'package:flutter/material.dart';
 import 'package:dogmeet_app/components/ui/text_styles.dart';
 import 'create_pupfile.dart';
@@ -31,7 +31,8 @@ class _PupfileAddBioState extends State<PupfileAddBio> {
                     size: 35,
                   ),
                 ),
-                gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15, Colors.black, TextAlign.center),
+                gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15, Colors.black,
+                    TextAlign.center),
 
                 //------------------------------------------------------------ NEXT BUTTON ------------------------------------------------------------
 
@@ -40,10 +41,12 @@ class _PupfileAddBioState extends State<PupfileAddBio> {
                     onTap: () {
                       //Navigator.pushNamed(context, );
                     },
-                    child: gibsonSemiBoldText('Next', 10, 0, 0, 0, 15, Colors.black, TextAlign.center)),
+                    child: gibsonSemiBoldText('Next', 10, 0, 0, 0, 15,
+                        Colors.black, TextAlign.center)),
               ],
             ),
-            gibsonSemiBoldText('Add a Bio', 20, 20, 0, 0, 33, Colors.black, TextAlign.center),
+            gibsonSemiBoldText(
+                'Add a Bio', 20, 20, 0, 0, 33, Colors.black, TextAlign.center),
 
             //------------------------------------------------------------ SHOW PROFILE PICTURE and USERNAME ------------------------------------------------------------
 
@@ -54,11 +57,19 @@ class _PupfileAddBioState extends State<PupfileAddBio> {
                   Container(
                     width: 70,
                     height: 70,
-                    decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle, boxShadow: [
-                      BoxShadow(blurRadius: 2, color: Colors.grey[400], spreadRadius: 1, offset: Offset(-1, 2)),
-                    ]),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 2,
+                              color: Colors.grey[400],
+                              spreadRadius: 1,
+                              offset: Offset(-1, 2)),
+                        ]),
                     child: CircleAvatar(
-                      child: gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12, Colors.grey, TextAlign.center),
+                      child: gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12,
+                          Colors.grey, TextAlign.center),
                       backgroundColor: Colors.white,
                     ),
                   ),
@@ -67,9 +78,12 @@ class _PupfileAddBioState extends State<PupfileAddBio> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        gibsonSemiBoldText('Username', 10, 5, 0, 0, 12, Colors.black, TextAlign.center),
-                        gibsonSemiBoldText('Your Name', 5, 5, 0, 0, 12, Colors.black, TextAlign.center),
-                        gibsonSemiBoldText("Your Pupper's Name", 5, 10, 0, 0, 12, Colors.black, TextAlign.center),
+                        gibsonSemiBoldText('Username', 10, 5, 0, 0, 12,
+                            Colors.black, TextAlign.center),
+                        gibsonSemiBoldText('Your Name', 5, 5, 0, 0, 12,
+                            Colors.black, TextAlign.center),
+                        gibsonSemiBoldText("Your Pupper's Name", 5, 10, 0, 0,
+                            12, Colors.black, TextAlign.center),
                       ],
                     ),
                   ),

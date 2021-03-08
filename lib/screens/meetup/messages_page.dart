@@ -1,4 +1,4 @@
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/buttons/message_button.dart';
+import 'package:dogmeet_app/components/buttons/message_button.dart';
 import 'package:dogmeet_app/components/ui/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +24,13 @@ class _MessagesPageState extends State<MessagesPage> {
   void initState() {
     scrollController = ScrollController();
     scrollController.addListener(() {
-      if (scrollController.offset >= scrollController.position.maxScrollExtent && !scrollController.position.outOfRange) {
+      if (scrollController.offset >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange) {
         panelController.expand();
-      } else if (scrollController.offset <= scrollController.position.minScrollExtent && !scrollController.position.outOfRange) {
+      } else if (scrollController.offset <=
+              scrollController.position.minScrollExtent &&
+          !scrollController.position.outOfRange) {
         panelController.anchor();
       } else {}
     });
@@ -48,8 +52,11 @@ class _MessagesPageState extends State<MessagesPage> {
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            leading: IconButton(icon: Icon(FontAwesomeIcons.arrowLeft), onPressed: widget.onBackPressed),
-            title: gibsonSemiBoldText('Messages', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+            leading: IconButton(
+                icon: Icon(FontAwesomeIcons.arrowLeft),
+                onPressed: widget.onBackPressed),
+            title: gibsonSemiBoldText(
+                'Messages', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
             actions: [
               IconButton(
                   icon: Icon(FontAwesomeIcons.plusSquare),
@@ -72,7 +79,12 @@ class _MessagesPageState extends State<MessagesPage> {
             margin: EdgeInsets.symmetric(horizontal: 15.0),
             decoration: ShapeDecoration(
               color: Colors.white,
-              shadows: [BoxShadow(blurRadius: 5.0, spreadRadius: 2.0, color: const Color(0x11000000))],
+              shadows: [
+                BoxShadow(
+                    blurRadius: 5.0,
+                    spreadRadius: 2.0,
+                    color: const Color(0x11000000))
+              ],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.0),
@@ -121,7 +133,8 @@ class _MessagesPageState extends State<MessagesPage> {
           onTap: () {
             if (SlidingUpPanelStatus.anchored == panelController.status) {
               panelController.collapse();
-            } else if (SlidingUpPanelStatus.expanded == panelController.status) {
+            } else if (SlidingUpPanelStatus.expanded ==
+                panelController.status) {
               panelController.collapse();
             }
           },

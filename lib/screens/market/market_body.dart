@@ -1,5 +1,5 @@
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_all_page.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_new_page.dart';
+import 'package:dogmeet_app/screens/market/market_all_page.dart';
+import 'package:dogmeet_app/screens/market/market_new_page.dart';
 import 'package:dogmeet_app/screens/market/market_used_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,6 +50,23 @@ class _MarketBodyState extends State<MarketBody> {
     });
   }
 
+  RawMaterialButton marketBodyFilterButton(
+      Color fillColor, String text, tabBarCategories page) {
+    return RawMaterialButton(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30))),
+      fillColor: fillColor,
+      elevation: 0,
+      onPressed: () {
+        setState(() {
+          tabBarColors(page);
+        });
+      },
+      child: gibsonSemiBoldText(
+          text, 0, 0, 0, 0, 15, Colors.black, TextAlign.center),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -62,39 +79,9 @@ class _MarketBodyState extends State<MarketBody> {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          RawMaterialButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
-            fillColor: allColor,
-            elevation: 0,
-            onPressed: () {
-              setState(() {
-                tabBarColors(tabBarCategories.All);
-              });
-            },
-            child: gibsonSemiBoldText('All', 0, 0, 0, 0, 15, Colors.black, TextAlign.center),
-          ),
-          RawMaterialButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
-            fillColor: newColor,
-            elevation: 0,
-            onPressed: () {
-              setState(() {
-                tabBarColors(tabBarCategories.New);
-              });
-            },
-            child: gibsonSemiBoldText('New', 0, 0, 0, 0, 15, Colors.black, TextAlign.center),
-          ),
-          RawMaterialButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
-            fillColor: usedColor,
-            elevation: 0,
-            onPressed: () {
-              setState(() {
-                tabBarColors(tabBarCategories.Used);
-              });
-            },
-            child: gibsonSemiBoldText('Used', 0, 0, 0, 0, 15, Colors.black, TextAlign.center),
-          ),
+          marketBodyFilterButton(allColor, 'All', tabBarCategories.All),
+          marketBodyFilterButton(newColor, 'New', tabBarCategories.New),
+          marketBodyFilterButton(usedColor, 'Used', tabBarCategories.Used),
         ],
       ),
       marketPageBody,

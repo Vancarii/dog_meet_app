@@ -1,8 +1,8 @@
+import 'package:dogmeet_app/components/buttons/market_store_rounded_button.dart';
 import 'package:dogmeet_app/components/ui/constants.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/posts/new_market_post.dart';
+import 'package:dogmeet_app/components/posts/new_market_post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/buttons/rounded_buttons.dart';
 import 'package:flutter/rendering.dart';
 
 class MarketAllPage extends StatelessWidget {
@@ -22,18 +22,40 @@ class MarketAllPage extends StatelessWidget {
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
+              MarketStoreRoundedButton(
+                storeImage: 'assets/images/boneandbiscuit.png',
+                storeName: 'Bone And Biscuit',
+              ),
+              MarketStoreRoundedButton(
+                storeImage: 'assets/images/trainingtab2.jpg',
+                storeName: 'Store Name',
+              ),
+              MarketStoreRoundedButton(
+                storeImage: 'assets/images/trainingtab2.jpg',
+                storeName: 'Store Name',
+              ),
+              MarketStoreRoundedButton(
+                storeImage: 'assets/images/trainingtab2.jpg',
+                storeName: 'Store Name',
+              ),
+              MarketStoreRoundedButton(
+                storeImage: 'assets/images/trainingtab2.jpg',
+                storeName: 'Store Name',
+              ),
+              MarketStoreRoundedButton(
+                storeImage: 'assets/images/trainingtab2.jpg',
+                storeName: 'Store Name',
+              ),
             ],
           ),
         ),
         Wrap(
           children: [
-            NewMarketPost(kColourWhite(), 'assets/images/trainingtab2.jpg', '14.99', 'Waterproof Training Tabs - All Colors'),
+            NewMarketPost(
+                kColourWhite(),
+                'assets/images/trainingtab2.jpg',
+                '\$14.99',
+                'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
             //NewMarketPost(kPrimaryColour(), 'assets/images/trainingtab2.jpg', '14.99', 'Waterproof Training Tabs - All Colors'),
           ],
         ),

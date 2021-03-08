@@ -2,7 +2,7 @@ import 'package:dogmeet_app/components/ui/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart' as ionIcons;
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/forum/forums_feed_page.dart';
+import 'package:dogmeet_app/screens/forum/forums_feed_page.dart';
 
 class NewForumsPost extends StatefulWidget {
   @override
@@ -47,18 +47,21 @@ class _NewForumsPostState extends State<NewForumsPost> {
                                 maxRadius: 18,
                               ),
                             ),
-                            gibsonSemiBoldText('rosyandmaze', 0, 0, 5, 0, 12, Colors.black, TextAlign.center),
+                            gibsonSemiBoldText('rosyandmaze', 0, 0, 5, 0, 12,
+                                Colors.black, TextAlign.center),
                           ],
                         ),
                       ),
                       Spacer(),
-                      gibsonSemiBoldText('# Hours ago', 0, 0, 0, 5, 10, Colors.black45, TextAlign.center),
+                      gibsonSemiBoldText('# Hours ago', 0, 0, 0, 5, 10,
+                          Colors.black45, TextAlign.center),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: RawChip(
                           elevation: 2,
                           backgroundColor: Color(0xfffc816a),
-                          label: gibsonSemiBoldText('Topic', 0, 0, 0, 0, 12, Colors.black, TextAlign.center),
+                          label: gibsonSemiBoldText('Topic', 0, 0, 0, 0, 12,
+                              Colors.black, TextAlign.center),
                           onSelected: (bool value) {
                             setState(() {});
                           },
@@ -71,15 +74,22 @@ class _NewForumsPostState extends State<NewForumsPost> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
                     child: RichText(
-                      text: TextSpan(text: 'Hello bitches'.toUpperCase(), style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold, fontFamily: 'Gibson Semi Bold'), children: <TextSpan>[
-                        TextSpan(
-                          text: ' WahGwan'.toUpperCase(),
+                      text: TextSpan(
+                          text: 'Hello bitches'.toUpperCase(),
                           style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.orange,
-                          ),
-                        ),
-                      ]),
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Gibson Semi Bold'),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: ' WahGwan'.toUpperCase(),
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.orange,
+                              ),
+                            ),
+                          ]),
                     ),
                   ),
                   Padding(
@@ -176,8 +186,10 @@ class _NewForumsPostState extends State<NewForumsPost> {
                       ),
                     ],
                   ),
-                  gibsonSemiBoldText('69 others threw the ball', 0, 5, 10, 5, 12, Colors.black, TextAlign.center),
-                  gibsonSemiBoldText('View all 20 barks', 0, 10, 10, 5, 12, Colors.black, TextAlign.center),
+                  gibsonSemiBoldText('69 others threw the ball', 0, 5, 10, 5,
+                      12, Colors.black, TextAlign.center),
+                  gibsonSemiBoldText('View all 20 barks', 0, 10, 10, 5, 12,
+                      Colors.black, TextAlign.center),
                 ],
               ),
             ),

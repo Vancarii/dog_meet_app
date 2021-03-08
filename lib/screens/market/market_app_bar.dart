@@ -1,5 +1,5 @@
 import 'package:dogmeet_app/components/ui/text_styles.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_body.dart';
+import 'package:dogmeet_app/screens/market/market_body.dart';
 import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,21 +10,22 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //the body is linked through the MarketTabBar and the OnPressed of the tabs
 //GO TO MARKETTABBAR TO SEE CODE FOR THE BODY OF THE MARKET PLACE PAGE
 
-class MarketMainPage extends StatefulWidget {
+class MarketAppBar extends StatefulWidget {
   static const String id = 'marketplace_feed_page';
 
   @override
-  _MarketMainPageState createState() => _MarketMainPageState();
+  _MarketAppBarState createState() => _MarketAppBarState();
 }
 
-class _MarketMainPageState extends State<MarketMainPage> {
+class _MarketAppBarState extends State<MarketAppBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText('Market', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: gibsonSemiBoldText(
+            'Market', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
         actions: <Widget>[
           IconButton(
             icon: Icon(

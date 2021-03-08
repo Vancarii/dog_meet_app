@@ -16,19 +16,22 @@ class _NotificationsPageState extends State<NotificationsPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText('Notifications', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: gibsonSemiBoldText(
+            'Notifications', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          gibsonSemiBoldText('Reminders', 0, 10, 10, 0, 20, Colors.black, TextAlign.start),
+          gibsonSemiBoldText(
+              'Reminders', 0, 10, 10, 0, 20, Colors.black, TextAlign.start),
           InkWell(
             onTap: () {},
             child: Padding(
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Container(
                 padding: EdgeInsets.all(6),
-                decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black12, width: 1)),
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Wrap(
@@ -41,12 +44,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
             ),
           ),
 
-          gibsonSemiBoldText('Recent', 0, 10, 10, 0, 20, Colors.black, TextAlign.start),
+          gibsonSemiBoldText(
+              'Recent', 0, 10, 10, 0, 20, Colors.black, TextAlign.start),
           InkWell(
             onTap: () {},
             child: Container(
               padding: EdgeInsets.all(6),
-              decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.black12, width: 0.5))),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(color: Colors.black12, width: 0.5))),
               child: Row(
                 children: [
                   CircleAvatar(),
@@ -55,13 +61,16 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12, Colors.black, TextAlign.start),
-                        gibsonSemiBoldText('messaged you about your listing', 2, 0, 0, 0, 10, Colors.black38, TextAlign.start),
+                        gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12,
+                            Colors.black, TextAlign.start),
+                        gibsonSemiBoldText('messaged you about your listing', 2,
+                            0, 0, 0, 10, Colors.black38, TextAlign.start),
                       ],
                     ),
                   ),
                   Spacer(),
-                  gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10, Colors.black38, TextAlign.center),
+                  gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10,
+                      Colors.black38, TextAlign.center),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: InkWell(
@@ -73,7 +82,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5),
                               )),
-                          child: gibsonSemiBoldText('Reply', 0, 0, 0, 0, 12, Colors.black, TextAlign.center)),
+                          child: gibsonSemiBoldText('Reply', 0, 0, 0, 0, 12,
+                              Colors.black, TextAlign.center)),
                     ),
                   ),
                   Container(
@@ -94,6 +104,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Container(
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(color: Colors.black12, width: 0.5))),
                 padding: EdgeInsets.all(6),
                 //decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
                 child: Row(
@@ -104,13 +117,16 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12, Colors.black, TextAlign.start),
-                          gibsonSemiBoldText('started following you', 2, 0, 0, 0, 10, Colors.black38, TextAlign.start),
+                          gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12,
+                              Colors.black, TextAlign.start),
+                          gibsonSemiBoldText('started following you', 2, 0, 0,
+                              0, 10, Colors.black38, TextAlign.start),
                         ],
                       ),
                     ),
                     Spacer(),
-                    gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10, Colors.black38, TextAlign.center),
+                    gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10,
+                        Colors.black38, TextAlign.center),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: InkWell(
@@ -122,7 +138,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(5),
                                 )),
-                            child: gibsonSemiBoldText('Follow Back', 0, 0, 0, 0, 12, Colors.black, TextAlign.center)),
+                            child: gibsonSemiBoldText('Follow Back', 0, 0, 0, 0,
+                                12, Colors.black, TextAlign.center)),
                       ),
                     ),
                   ],

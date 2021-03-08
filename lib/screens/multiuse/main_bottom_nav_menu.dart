@@ -1,8 +1,7 @@
-import 'package:dogmeet_app/components/buttons/post_floating_action_button.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/meetup/meet_up_feed_page.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/forum/forums_feed_page.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_main_page.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/notification/notifications_feed_page.dart';
+import 'package:dogmeet_app/screens/meetup/meet_up_feed_page.dart';
+import 'package:dogmeet_app/screens/forum/forums_feed_page.dart';
+import 'package:dogmeet_app/screens/market/market_app_bar.dart';
+import 'package:dogmeet_app/screens/notification/notifications_feed_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
@@ -29,7 +28,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
 
   final _pageOptions = [
     ForumsFeedPage(),
-    MarketMainPage(),
+    MarketAppBar(),
     MeetUpPageView(),
     NotificationsPage(),
     AccountProfilePage(),
@@ -37,12 +36,21 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent, systemNavigationBarColor: Colors.transparent));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent));
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       extendBody: true,
-      floatingActionButton: postFloatingActionButton(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.post_add),
+        onPressed: () {
+          setState(() {
+            //TODO: GO TO PAGE THAT POSTS TO EITHER OF THE 3 PAGES
+          });
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
         backgroundColor: Color(0xfffc816a),
@@ -62,7 +70,8 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
           });
         },
       ),
-      body: IndexedStack(children: _pageOptions, index: _currentSelectedScreenIndex),
+      body: IndexedStack(
+          children: _pageOptions, index: _currentSelectedScreenIndex),
     );
   }
 }

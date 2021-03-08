@@ -21,7 +21,6 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  lottie: ^0.6.0
   flutter:
     sdk: flutter
 
@@ -36,9 +35,10 @@ dependencies:
   flappy_search_bar: ^1.7.2
   flutter_icons: ^1.1.0
   ionicons: ^0.1.1
-  flutter_speed_dial_material_design: ^2.0.0
   flutter_sliding_up_panel: ^1.1.0+1
-
+  flutter_page_indicator: ^0.0.3
+  animations: ^2.0.0
+  lottie: ^1.0.0
 
 dev_dependencies:
   flutter_test:

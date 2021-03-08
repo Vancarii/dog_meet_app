@@ -1,6 +1,7 @@
+import 'package:dogmeet_app/components/buttons/market_store_rounded_button.dart';
 import 'package:dogmeet_app/components/ui/constants.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/posts/new_market_post.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/buttons/rounded_buttons.dart';
+import 'package:dogmeet_app/components/posts/new_market_post.dart';
+import 'package:dogmeet_app/components/buttons/rounded_buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,18 +22,19 @@ class MarketNewPage extends StatelessWidget {
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
-              marketStoreProfileRoundedButton('image', 'null', context),
+              MarketStoreRoundedButton(),
+              MarketStoreRoundedButton(),
+              MarketStoreRoundedButton(),
+              MarketStoreRoundedButton(),
+              MarketStoreRoundedButton(),
+              MarketStoreRoundedButton(),
             ],
           ),
         ),
         Wrap(
           children: [
-            NewMarketPost(kPrimaryColour(), 'assets/images/trainingtab2.jpg', '14.99', 'Waterproof Training Tabs - All Colors'),
+            NewMarketPost(kPrimaryColour(), 'assets/images/trainingtab2.jpg',
+                '14.99', 'Waterproof Training Tabs - All Colors'),
           ],
         ),
       ],

@@ -1,11 +1,12 @@
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/meetup/meet_up_feed_page.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/forum/forums_feed_page.dart';
+import 'package:dogmeet_app/screens/market/market_product_details_page.dart';
+import 'package:dogmeet_app/screens/meetup/meet_up_feed_page.dart';
+import 'package:dogmeet_app/screens/forum/forums_feed_page.dart';
 import 'package:dogmeet_app/screens/login/pupfile_add_bio.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/multiuse/main_bottom_nav_menu.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/screens/market/market_main_page.dart';
+import 'package:dogmeet_app/screens/multiuse/main_bottom_nav_menu.dart';
+import 'screens/market/market_app_bar.dart';
 import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'screens/login/new_user_screen.dart';
+import 'package:dogmeet_app/screens/login/new_user_screen.dart';
 import 'screens/login/create_pupfile.dart';
 import 'screens/login/create_profile.dart';
 
@@ -30,7 +31,8 @@ class DogMeetApp extends StatelessWidget {
         SearchBarScreen.id: (context) => SearchBarScreen(),
         ForumsFeedPage.id: (context) => ForumsFeedPage(),
         MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
-        MarketMainPage.id: (context) => MarketMainPage(),
+        MarketAppBar.id: (context) => MarketAppBar(),
+        MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
       },
     );
   }

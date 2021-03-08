@@ -1,12 +1,12 @@
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/ui/forums_page_filter_chip.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/buttons/forums_show_moreless_button.dart';
+import 'package:dogmeet_app/components/ui/forums_page_filter_chip.dart';
+import 'package:dogmeet_app/components/buttons/forums_show_moreless_button.dart';
 import 'package:dogmeet_app/components/ui/text_styles.dart';
 import 'package:dogmeet_app/components/buttons/to_the_top_button.dart';
 import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart' as ionIcons;
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/posts/new_forums_post.dart';
+import 'package:dogmeet_app/components/posts/new_forums_post.dart';
 
 String readMoreText = 'READ MORE';
 
@@ -28,7 +28,8 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText('Forum', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: gibsonSemiBoldText(
+            'Forum', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -42,7 +43,8 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
       ),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.only(left: 5.0, top: 5.0, right: 5.0, bottom: 5),
+          padding:
+              const EdgeInsets.only(left: 5.0, top: 5.0, right: 5.0, bottom: 5),
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +52,8 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    gibsonSemiBoldText('Topics', 0, 0, 10, 0, 20, Colors.black, TextAlign.center),
+                    gibsonSemiBoldText('Topics', 0, 0, 10, 0, 20, Colors.black,
+                        TextAlign.center),
                   ],
                 ),
                 Wrap(
@@ -70,7 +73,8 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    gibsonSemiBoldText('Feed', 10, 10, 10, 0, 20, Colors.black, TextAlign.center),
+                    gibsonSemiBoldText('Feed', 10, 10, 10, 0, 20, Colors.black,
+                        TextAlign.center),
                   ],
                 ),
                 NewForumsPost(),

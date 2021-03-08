@@ -1,5 +1,5 @@
 import 'package:dogmeet_app/components/ui/text_styles.dart';
-import 'file:///C:/Users/xnycw/AndroidStudioProjects/dog_meet_app/lib/components/posts/new_meet_up_post.dart';
+import 'package:dogmeet_app/components/posts/new_meet_up_post.dart';
 import 'package:dogmeet_app/components/buttons/to_the_top_button.dart';
 import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -100,8 +100,11 @@ class _MeetUpPageState extends State<MeetUpPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText('DOG MEET UP', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
-        leading: IconButton(icon: Icon(FontAwesomeIcons.solidMap), onPressed: widget.onMapPressed),
+        title: gibsonSemiBoldText(
+            'DOG MEET UP', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        leading: IconButton(
+            icon: Icon(FontAwesomeIcons.solidMap),
+            onPressed: widget.onMapPressed),
         actions: <Widget>[
           IconButton(
               icon: Icon(
@@ -128,13 +131,17 @@ class _MeetUpPageState extends State<MeetUpPage> {
                       },
                       color: Colors.white,
                       elevation: 10,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(30.0))),
                       child: Row(
                         children: <Widget>[
-                          gibsonSemiBoldText('Search', 0, 0, 0, 0, 15, Colors.black45, TextAlign.center),
+                          gibsonSemiBoldText('Search', 0, 0, 0, 0, 15,
+                              Colors.black45, TextAlign.center),
                           Spacer(),
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 2, right: 10),
+                            padding:
+                                const EdgeInsets.only(bottom: 2, right: 10),
                             child: Container(
                               width: 5,
                               child: Icon(
@@ -151,11 +158,13 @@ class _MeetUpPageState extends State<MeetUpPage> {
                 MaterialButton(
                   elevation: 10,
                   color: Color(0xfffc816a),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30.0))),
                   onPressed: () {},
                   child: Row(
                     children: <Widget>[
-                      gibsonSemiBoldText('FILTER', 0, 0, 0, 0, 15, Colors.black, TextAlign.center),
+                      gibsonSemiBoldText('FILTER', 0, 0, 0, 0, 15, Colors.black,
+                          TextAlign.center),
                       Padding(
                         padding: const EdgeInsets.only(left: 5.0),
                         child: Container(
