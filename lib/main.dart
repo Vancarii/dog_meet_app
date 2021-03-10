@@ -1,14 +1,16 @@
-import 'package:dogmeet_app/screens/market/market_product_details_page.dart';
-import 'package:dogmeet_app/screens/meetup/meet_up_feed_page.dart';
-import 'package:dogmeet_app/screens/forum/forums_feed_page.dart';
-import 'package:dogmeet_app/screens/login/pupfile_add_bio.dart';
-import 'package:dogmeet_app/screens/multiuse/main_bottom_nav_menu.dart';
-import 'screens/market/market_app_bar.dart';
-import 'package:dogmeet_app/screens/multiuse/search_screen.dart';
+import 'package:dogmeet_app/src/core/auth/register/create_profile.dart';
+import 'package:dogmeet_app/src/core/auth/register/create_pupfile.dart';
+import 'package:dogmeet_app/src/core/auth/register/new_user_screen.dart';
+import 'package:dogmeet_app/src/core/auth/register/pupfile_add_bio.dart';
+import 'package:dogmeet_app/src/screens/forum/comments/forum_comment_section.dart';
+import 'package:dogmeet_app/src/screens/forum/forums_feed_page.dart';
+import 'package:dogmeet_app/src/screens/global/main_bottom_nav_menu.dart';
+import 'package:dogmeet_app/src/screens/global/search_screen.dart';
+import 'package:dogmeet_app/src/screens/market/body/details/market_product_details_page.dart';
+import 'package:dogmeet_app/src/screens/market/market_app_bar.dart';
+import 'package:dogmeet_app/src/screens/meetup/meet_up_feed_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dogmeet_app/screens/login/new_user_screen.dart';
-import 'screens/login/create_pupfile.dart';
-import 'screens/login/create_profile.dart';
 
 void main() => runApp(DogMeetApp());
 
@@ -33,6 +35,7 @@ class DogMeetApp extends StatelessWidget {
         MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
         MarketAppBar.id: (context) => MarketAppBar(),
         MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
+        ForumCommentSection.id: (context) => ForumCommentSection(),
       },
     );
   }
