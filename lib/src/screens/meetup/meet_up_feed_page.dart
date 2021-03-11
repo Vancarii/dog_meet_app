@@ -1,6 +1,5 @@
 import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
-import 'package:dogmeet_app/src/screens/global/components/to_the_top_button.dart';
-import 'package:dogmeet_app/src/screens/global/search_screen.dart';
+import 'file:///D:/flutter/flutterprojects/dog_meet_app/lib/src/screens/global/search/search_screen.dart';
 import 'package:dogmeet_app/src/screens/meetup/post/new_meet_up_post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,8 @@ import 'messages/messages_page.dart';
 //and you set the params to the onpress for each button
 //making the screen slide either way from the button click OR Swiping left or right
 //You welcome
+
+ScrollController scrollController;
 
 class MeetUpPageView extends StatefulWidget {
   static const String id = 'meet_up_page';
@@ -95,13 +96,11 @@ class _MeetUpPageState extends State<MeetUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      extendBodyBehindAppBar: true,
-      extendBody: true,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
         title: gibsonSemiBoldText(
-            'DOG MEET UP', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+            'Meet', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.solidMap),
             onPressed: widget.onMapPressed),
@@ -115,73 +114,93 @@ class _MeetUpPageState extends State<MeetUpPage> {
               ),
         ],
       ),
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(5.0),
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: MaterialButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, SearchBarScreen.id);
-                      },
-                      color: Colors.white,
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(30.0))),
-                      child: Row(
-                        children: <Widget>[
-                          gibsonSemiBoldText('Search', 0, 0, 0, 0, 15,
-                              Colors.black45, TextAlign.center),
-                          Spacer(),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(bottom: 2, right: 10),
-                            child: Container(
-                              width: 5,
-                              child: Icon(
-                                FontAwesomeIcons.search,
-                                size: 18,
-                              ),
+      body: ListView(
+        padding:
+            const EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0, bottom: 55),
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 5.0),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, SearchBarScreen.id);
+                    },
+                    color: Colors.white,
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                    child: Row(
+                      children: <Widget>[
+                        gibsonSemiBoldText('Search', 0, 0, 0, 0, 15,
+                            Colors.black45, TextAlign.center),
+                        Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 2, right: 10),
+                          child: Container(
+                            width: 5,
+                            child: Icon(
+                              FontAwesomeIcons.search,
+                              size: 18,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                MaterialButton(
-                  elevation: 10,
-                  color: Color(0xfffc816a),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30.0))),
-                  onPressed: () {},
-                  child: Row(
-                    children: <Widget>[
-                      gibsonSemiBoldText('FILTER', 0, 0, 0, 0, 15, Colors.black,
-                          TextAlign.center),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5.0),
-                        child: Container(
-                          width: 5,
-                          child: Icon(FontAwesomeIcons.sort),
-                        ),
+              ),
+              MaterialButton(
+                elevation: 2,
+                color: Color(0xfffc816a),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30.0))),
+                onPressed: () {},
+                child: Row(
+                  children: <Widget>[
+                    gibsonSemiBoldText('FILTER', 0, 0, 0, 0, 15, Colors.black,
+                        TextAlign.center),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: Container(
+                        width: 5,
+                        child: Icon(FontAwesomeIcons.sort),
                       ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-            NewMeetUpPost(),
-            NewMeetUpPost(),
-            toTheTop(),
-          ],
-        ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          NewMeetUpPost(
+            accountImage: 'assets/images/rosy.png',
+            accountName: 'RosyandMaze',
+            location: 'location',
+            numOfPeopleGoing: 3,
+            time: '3:30',
+            amPm: 'am',
+            onMeetUpPostSelected: () {
+              setState(() {
+                //meetUpPanelController.expand();
+              });
+            },
+          ),
+          NewMeetUpPost(
+            accountImage: 'assets/images/rosy.png',
+            accountName: 'RosyandMaze',
+            location: 'location',
+            numOfPeopleGoing: 3,
+            time: '3:30',
+            amPm: 'am',
+            onMeetUpPostSelected: () {
+              setState(() {
+                //meetUpPanelController.expand();
+              });
+            },
+          ),
+        ],
       ),
     );
   }

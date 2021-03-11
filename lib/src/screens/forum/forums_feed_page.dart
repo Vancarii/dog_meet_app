@@ -1,13 +1,11 @@
 import 'package:dogmeet_app/src/screens/forum/post/new_forums_post.dart';
 import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
 import 'package:dogmeet_app/src/screens/global/components/to_the_top_button.dart';
-import 'package:dogmeet_app/src/screens/global/search_screen.dart';
+import 'file:///D:/flutter/flutterprojects/dog_meet_app/lib/src/screens/global/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart' as ionIcons;
-
 import 'components/forums_page_filter_chip.dart';
-import 'components/forums_show_moreless_button.dart';
 
 String readMoreText = 'READ MORE';
 
@@ -26,11 +24,12 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
         title: gibsonSemiBoldText(
-            'Forum', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+            'Forum', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -42,54 +41,81 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: ListView(
-          padding:
-              const EdgeInsets.only(left: 5.0, top: 5.0, right: 5.0, bottom: 5),
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
+      body: ListView(
+        padding: const EdgeInsets.all(5.0),
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  bottom: 10,
+                ),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    gibsonSemiBoldText('Topics', 0, 0, 10, 0, 20, Colors.black,
+                    gibsonSemiBoldText('Topics', 0, 0, 0, 0, 25, Colors.black,
                         TextAlign.center),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  offset: Offset(1, 1),
+                                  blurRadius: 2,
+                                  spreadRadius: 1,
+                                )
+                              ]),
+                          child: Icon(
+                            Icons.keyboard_arrow_right_rounded,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
-                Wrap(
-                  children: <Widget>[
-                    ForumsPageFilterChip(topicText: 'Trick Training'),
-                    ForumsPageFilterChip(topicText: 'Behavior'),
-                    ForumsPageFilterChip(topicText: 'Reactivity'),
-                    ForumsPageFilterChip(topicText: 'Agility'),
-                    ForumsPageFilterChip(topicText: 'Nose work'),
-                    ForumsPageFilterChip(topicText: 'Obedience'),
-                    ForumsPageFilterChip(topicText: 'Positive Training'),
-                    ForumsPageFilterChip(topicText: 'Advanced Obedience'),
-                    ForumsPageFilterChip(topicText: 'Balanced Training'),
-                    ShowMoreLessButton(),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    gibsonSemiBoldText('Feed', 10, 10, 10, 0, 20, Colors.black,
-                        TextAlign.center),
-                  ],
-                ),
-                NewForumsPost(),
-                NewForumsPost(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    toTheTop(),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              Wrap(
+                children: <Widget>[
+                  ForumsPageFilterChip(topicText: 'Trick Training'),
+                  ForumsPageFilterChip(topicText: 'Behavior'),
+                  ForumsPageFilterChip(topicText: 'Reactivity'),
+                  ForumsPageFilterChip(topicText: 'Agility'),
+                  ForumsPageFilterChip(topicText: 'Nose work'),
+                  ForumsPageFilterChip(topicText: 'Obedience'),
+                  ForumsPageFilterChip(topicText: 'Positive Training'),
+                  ForumsPageFilterChip(topicText: 'Advanced Obedience'),
+                  ForumsPageFilterChip(topicText: 'Balanced Training'),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  gibsonSemiBoldText('Feed', 15, 15, 10, 0, 25, Colors.black,
+                      TextAlign.center),
+                ],
+              ),
+              NewForumsPost(),
+              NewForumsPost(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  toTheTop(),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

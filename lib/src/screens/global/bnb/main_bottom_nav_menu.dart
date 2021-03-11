@@ -1,13 +1,14 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:dogmeet_app/src/screens/forum/forums_feed_page.dart';
+import 'package:dogmeet_app/src/screens/global/components/constants.dart';
 import 'package:dogmeet_app/src/screens/market/market_app_bar.dart';
 import 'package:dogmeet_app/src/screens/meetup/meet_up_feed_page.dart';
 import 'package:dogmeet_app/src/screens/notification/notifications_feed_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
-import '../profile/account_profile_page.dart';
+import '../../profile/account_profile_page.dart';
 
 //This file stays the same throughout all 5 pages of the bottom navigation
 //the only thing that changes is the body of the scaffold which is set to _currentSelectedScreenIndex and switches
@@ -44,7 +45,13 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
       extendBodyBehindAppBar: true,
       extendBody: true,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.post_add),
+        splashColor: kPrimaryColour(),
+        elevation: 2,
+        highlightElevation: 0,
+        child: Icon(
+          Icons.post_add,
+          color: Colors.white,
+        ),
         onPressed: () {
           setState(() {
             //TODO: GO TO PAGE THAT POSTS TO EITHER OF THE 3 PAGES
@@ -53,8 +60,12 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
-        backgroundColor: Color(0xfffc816a),
-        activeColor: Colors.white,
+        inactiveColor: Colors.grey,
+        height: 50,
+        backgroundColor: kColourWhite(),
+        activeColor: kPrimaryColour(),
+        splashColor: kPrimaryColour(),
+        notchSmoothness: NotchSmoothness.softEdge,
         icons: <IconData>[
           Icons.forum,
           Icons.store,

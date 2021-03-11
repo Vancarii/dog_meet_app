@@ -19,10 +19,11 @@ class _ForumsPageFilterChipState extends State<ForumsPageFilterChip> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding:
+          const EdgeInsets.only(top: 2.0, bottom: 2.0, left: 5.0, right: 5.0),
       child: FilterChip(
         pressElevation: 0,
-        elevation: 5,
+        elevation: 3,
         backgroundColor: Colors.white,
         label: gibsonSemiBoldText(
             widget.topicText, 0, 0, 0, 0, 12, Colors.black, TextAlign.center),

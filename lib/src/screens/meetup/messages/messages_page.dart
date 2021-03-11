@@ -17,8 +17,8 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   ScrollController scrollController;
 
-  ///The controller of sliding up panel
-  SlidingUpPanelController panelController = SlidingUpPanelController();
+  SlidingUpPanelController newMessagePanelController =
+      SlidingUpPanelController();
 
   @override
   void initState() {
@@ -27,21 +27,14 @@ class _MessagesPageState extends State<MessagesPage> {
       if (scrollController.offset >=
               scrollController.position.maxScrollExtent &&
           !scrollController.position.outOfRange) {
-        panelController.expand();
+        newMessagePanelController.expand();
       } else if (scrollController.offset <=
               scrollController.position.minScrollExtent &&
           !scrollController.position.outOfRange) {
-        panelController.anchor();
+        newMessagePanelController.anchor();
       } else {}
     });
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    panelController.dispose();
   }
 
   @override
@@ -61,7 +54,7 @@ class _MessagesPageState extends State<MessagesPage> {
               IconButton(
                   icon: Icon(FontAwesomeIcons.plusSquare),
                   onPressed: () {
-                    panelController.anchor();
+                    newMessagePanelController.anchor();
                   })
             ],
           ),
@@ -129,13 +122,14 @@ class _MessagesPageState extends State<MessagesPage> {
             ),
           ),
           controlHeight: 50,
-          panelController: panelController,
+          panelController: newMessagePanelController,
           onTap: () {
-            if (SlidingUpPanelStatus.anchored == panelController.status) {
-              panelController.collapse();
+            if (SlidingUpPanelStatus.anchored ==
+                newMessagePanelController.status) {
+              newMessagePanelController.collapse();
             } else if (SlidingUpPanelStatus.expanded ==
-                panelController.status) {
-              panelController.collapse();
+                newMessagePanelController.status) {
+              newMessagePanelController.collapse();
             }
           },
         )
