@@ -17,6 +17,4 @@ Ios Developer: Yecheng Wang
 Android Developer: Yecheng Wang
 
 
-A new Flutter application.
-
 
