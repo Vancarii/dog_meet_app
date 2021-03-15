@@ -1,9 +1,9 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:dogmeet_app/src/screens/forum/forums_feed_page.dart';
-import 'package:dogmeet_app/src/screens/global/components/constants.dart';
-import 'package:dogmeet_app/src/screens/market/market_app_bar.dart';
-import 'package:dogmeet_app/src/screens/meetup/meet_up_feed_page.dart';
-import 'package:dogmeet_app/src/screens/notification/notifications_feed_page.dart';
+import 'package:dog_meet_app/src/screens/forum/forums_feed_page.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
+import 'package:dog_meet_app/src/screens/market/market_app_bar.dart';
+import 'file:///D:/flutter/flutterprojects/dog_meet_app/lib/src/screens/meetup/Pageview/meet_up_pageview.dart';
+import 'package:dog_meet_app/src/screens/notification/notifications_feed_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,14 +38,13 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.transparent));
+        statusBarColor: Colors.transparent, systemNavigationBarColor: Colors.transparent));
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       extendBody: true,
       floatingActionButton: FloatingActionButton(
-        splashColor: kPrimaryColour(),
+        splashColor: AppColors.colorPrimaryOrange,
         elevation: 2,
         highlightElevation: 0,
         child: Icon(
@@ -62,9 +61,9 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
       bottomNavigationBar: AnimatedBottomNavigationBar(
         inactiveColor: Colors.grey,
         height: 50,
-        backgroundColor: kColourWhite(),
-        activeColor: kPrimaryColour(),
-        splashColor: kPrimaryColour(),
+        backgroundColor: AppColors.colorWhite,
+        activeColor: AppColors.colorPrimaryOrange,
+        splashColor: AppColors.colorPrimaryOrange,
         notchSmoothness: NotchSmoothness.softEdge,
         icons: <IconData>[
           Icons.forum,
@@ -81,8 +80,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
           });
         },
       ),
-      body: IndexedStack(
-          children: _pageOptions, index: _currentSelectedScreenIndex),
+      body: IndexedStack(children: _pageOptions, index: _currentSelectedScreenIndex),
     );
   }
 }

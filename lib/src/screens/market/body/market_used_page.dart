@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/constants.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
 import 'package:flutter/material.dart';
 
 import 'components/new_market_post.dart';
@@ -12,7 +12,7 @@ class MarketUsedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        NewMarketPost(kColourWhite(), 'assets/images/trainingtab2.jpg', '14.99',
+        NewMarketPost(AppColors.colorWhite, 'assets/images/trainingtab2.jpg', '14.99',
             'Waterproof Training Tabs - All Colors'),
       ],
     );

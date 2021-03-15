@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/constants.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -52,10 +52,7 @@ class MarketAllPage extends StatelessWidget {
         ),
         Wrap(
           children: [
-            NewMarketPost(
-                kColourWhite(),
-                'assets/images/trainingtab2.jpg',
-                '14.99',
+            NewMarketPost(AppColors.colorWhite, 'assets/images/trainingtab2.jpg', '14.99',
                 'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
             //NewMarketPost(kPrimaryColour(), 'assets/images/trainingtab2.jpg', '14.99', 'Waterproof Training Tabs - All Colors'),
           ],

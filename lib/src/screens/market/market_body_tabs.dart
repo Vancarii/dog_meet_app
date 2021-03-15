@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import 'body/market_all_page.dart';
@@ -20,12 +20,12 @@ Color usedColor;
 
 Widget marketPageBody;
 
-class MarketBody extends StatefulWidget {
+class MarketBodyTabs extends StatefulWidget {
   @override
-  _MarketBodyState createState() => _MarketBodyState();
+  _MarketBodyTabsState createState() => _MarketBodyTabsState();
 }
 
-class _MarketBodyState extends State<MarketBody> {
+class _MarketBodyTabsState extends State<MarketBodyTabs> {
   tabBarColors(selected) {
     setState(() {
       if (selected == tabBarCategories.All) {
@@ -50,11 +50,9 @@ class _MarketBodyState extends State<MarketBody> {
     });
   }
 
-  RawMaterialButton marketBodyFilterButton(
-      Color fillColor, String text, tabBarCategories page) {
+  RawMaterialButton marketBodyFilterButton(Color fillColor, String text, tabBarCategories page) {
     return RawMaterialButton(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
       fillColor: fillColor,
       elevation: 0,
       onPressed: () {
@@ -62,8 +60,18 @@ class _MarketBodyState extends State<MarketBody> {
           tabBarColors(page);
         });
       },
-      child: gibsonSemiBoldText(
-          text, 0, 0, 0, 0, 15, Colors.black, TextAlign.center),
+      child: CustomText(
+        text: text,
+        size: 15,
+        bold: true,
+        alignment: TextAlign.center,
+      ),
+
+      /*Text(
+        text,
+        style: AppTextStyles.h15BlackBold,
+        textAlign: TextAlign.center,
+      ),*/
     );
   }
 

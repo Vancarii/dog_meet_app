@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/market/body/details/product_details/transformer_page_view/index_controller.dart';
+import 'package:dog_meet_app/src/screens/market/body/details/product_details/transformer_page_view/index_controller.dart';
 import '../flutter_swiper.dart';
 
 class SwiperController extends IndexController {

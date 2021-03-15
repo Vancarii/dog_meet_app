@@ -1,5 +1,5 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 
 class NotificationsPage extends StatefulWidget {
   @override
@@ -13,22 +13,40 @@ class _NotificationsPageState extends State<NotificationsPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText(
-            'Notifications', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: CustomText(
+          text: 'Notification',
+          size: 20,
+          bold: true,
+        ),
+
+        /*Text(
+            'Notifications',
+            style: AppTextStyles.h20BlackBold,
+          ),*/
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          gibsonSemiBoldText(
-              'Reminders', 0, 10, 10, 0, 20, Colors.black, TextAlign.start),
+          CustomText(
+            text: 'Reminders',
+            size: 20,
+            bold: true,
+            padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
+          ),
+          /*Padding(
+            padding: const EdgeInsets.only(bottom: 10.0, left: 20.0),
+            child: Text(
+              'Reminders',
+              style: AppTextStyles.h20BlackBold,
+            ),
+          ),*/
           InkWell(
             onTap: () {},
             child: Padding(
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Container(
                 padding: EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black12, width: 1)),
+                decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Wrap(
@@ -40,16 +58,25 @@ class _NotificationsPageState extends State<NotificationsPage> {
               ),
             ),
           ),
-
-          gibsonSemiBoldText(
-              'Recent', 0, 10, 10, 0, 20, Colors.black, TextAlign.start),
+          CustomText(
+            text: 'Recent',
+            size: 20,
+            bold: true,
+            padding: const EdgeInsets.only(bottom: 10.0, left: 10.0),
+          ),
+/*          Padding(
+            padding: const EdgeInsets.only(bottom: 10.0, left: 10.0),
+            child: Text(
+              'Recent',
+              style: AppTextStyles.h20BlackBold,
+            ),
+          ),*/
           InkWell(
             onTap: () {},
             child: Container(
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(color: Colors.black12, width: 0.5))),
+                  border: Border(bottom: BorderSide(color: Colors.black12, width: 0.5))),
               child: Row(
                 children: [
                   CircleAvatar(),
@@ -58,29 +85,66 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12,
-                            Colors.black, TextAlign.start),
-                        gibsonSemiBoldText('messaged you about your listing', 2,
-                            0, 0, 0, 10, Colors.black38, TextAlign.start),
+                        CustomText(
+                          text: 'Rosyandmaze',
+                          size: 12,
+                          bold: true,
+                        ),
+                        /*Text(
+                          'Rosyandmaze',
+                          style: AppTextStyles.h12BlackBold,
+                        ),*/
+                        CustomText(
+                          text: 'messaged you about your listing',
+                          size: 10,
+                          padding: const EdgeInsets.only(top: 2.0),
+                        ),
+                        /*Padding(
+                          padding: const EdgeInsets.only(top: 2.0),
+                          child: Text(
+                            'messaged you about your listing',
+                            style: AppTextStyles.b10GreyReg,
+                          ),
+                        ),*/
                       ],
                     ),
                   ),
                   Spacer(),
-                  gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10,
-                      Colors.black38, TextAlign.center),
+                  CustomText(
+                    text: '2 hours ago',
+                    size: 12,
+                    bold: true,
+                    alignment: TextAlign.center,
+                  ),
+                  /*Text(
+                    '2 hours ago',
+                    style: AppTextStyles.h12GreyBold,
+                    textAlign: TextAlign.center,
+                  ),*/
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: InkWell(
                       onTap: () {},
                       child: Container(
-                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(5),
-                              )),
-                          child: gibsonSemiBoldText('Reply', 0, 0, 0, 0, 12,
-                              Colors.black, TextAlign.center)),
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            )),
+                        child: CustomText(
+                          text: 'Reply',
+                          size: 10,
+                          bold: true,
+                          alignment: TextAlign.center,
+                        ),
+
+                        /*Text(
+                          'Reply',
+                          style: AppTextStyles.h10GreyBold,
+                          textAlign: TextAlign.center,
+                        ),*/
+                      ),
                     ),
                   ),
                   Container(
@@ -102,8 +166,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Container(
                 decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(color: Colors.black12, width: 0.5))),
+                    border: Border(bottom: BorderSide(color: Colors.black12, width: 0.5))),
                 padding: EdgeInsets.all(6),
                 //decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
                 child: Row(
@@ -114,31 +177,59 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          gibsonSemiBoldText('Rosyandmaze', 0, 0, 0, 0, 12,
-                              Colors.black, TextAlign.start),
-                          gibsonSemiBoldText('started following you', 2, 0, 0,
-                              0, 10, Colors.black38, TextAlign.start),
+                          CustomText(
+                            text: 'Rosyandmaze',
+                            size: 12,
+                            bold: true,
+                          ),
+                          /*Text(
+                            'Rosyandmaze',
+                            style: AppTextStyles.h12BlackBold,
+                          ),*/
+                          CustomText(
+                            text: 'started following you',
+                            size: 10,
+                            bold: false,
+                            padding: const EdgeInsets.only(top: 2.0),
+                          ),
+                          /*Padding(
+                            padding: const EdgeInsets.only(top: 2.0),
+                            child: Text(
+                              'started following you',
+                              style: AppTextStyles.b10GreyReg,
+                            ),
+                          ),*/
                         ],
                       ),
                     ),
                     Spacer(),
-                    gibsonSemiBoldText('2 hours ago', 0, 0, 0, 0, 10,
-                        Colors.black38, TextAlign.center),
+                    CustomText(
+                      text: '2 hours ago',
+                      size: 10,
+                      color: Colors.grey,
+                      bold: true,
+                      alignment: TextAlign.center,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: InkWell(
                         onTap: () {},
                         child: Container(
-                            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(5),
-                                )),
-                            child: gibsonSemiBoldText('Follow Back', 0, 0, 0, 0,
-                                12, Colors.black, TextAlign.center)),
+                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(5),
+                              )),
+                          child: CustomText(
+                            text: 'Follow Back',
+                            size: 12,
+                            bold: true,
+                            alignment: TextAlign.center,
+                          ),
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

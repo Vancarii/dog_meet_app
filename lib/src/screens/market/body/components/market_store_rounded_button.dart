@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
-import 'package:dogmeet_app/src/screens/market/body/details/market_store_details_page.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/market/body/details/market_store_details_page.dart';
 import 'package:flutter/material.dart';
 
 class MarketStoreRoundedButton extends StatefulWidget {
@@ -13,8 +13,7 @@ class MarketStoreRoundedButton extends StatefulWidget {
   });
 
   @override
-  _MarketStoreRoundedButtonState createState() =>
-      _MarketStoreRoundedButtonState();
+  _MarketStoreRoundedButtonState createState() => _MarketStoreRoundedButtonState();
 }
 
 class _MarketStoreRoundedButtonState extends State<MarketStoreRoundedButton> {
@@ -23,10 +22,10 @@ class _MarketStoreRoundedButtonState extends State<MarketStoreRoundedButton> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(5, 10, 5, 5),
+          padding: const EdgeInsets.fromLTRB(10, 10, 5, 5),
           child: OpenContainer(
             transitionDuration: Duration(milliseconds: 500),
-            closedElevation: 5,
+            closedElevation: 3,
             closedShape: CircleBorder(),
             openBuilder: (context, action) {
               return MarketStoreDetailsPage(
@@ -48,8 +47,15 @@ class _MarketStoreRoundedButtonState extends State<MarketStoreRoundedButton> {
             },
           ),
         ),
-        gibsonSemiBoldText(
-            widget.storeName, 5, 0, 0, 0, 12, Colors.black, TextAlign.center),
+        CustomText(
+          text: widget.storeName,
+          size: 12,
+          bold: true,
+          alignment: TextAlign.center,
+          padding: const EdgeInsets.only(top: 5),
+        ),
+        /*gibsonSemiBoldText(
+            widget.storeName, 5, 0, 0, 0, 12, Colors.black, TextAlign.center),*/
       ],
     );
   }

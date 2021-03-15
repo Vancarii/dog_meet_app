@@ -1,5 +1,5 @@
-import 'package:dogmeet_app/src/core/auth/components/already_have_an_account_prompt.dart';
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/core/auth/components/already_have_an_account_prompt.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,10 +30,25 @@ class _CreatePupfileState extends State<CreateProfile> {
                     size: 35,
                   ),
                 ),
-                gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15, Colors.black,
+                CustomText(
+                  text: 'DOGGOD',
+                  size: 15,
+                  bold: true,
+                  alignment: TextAlign.center,
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 100),
+                ),
+                CustomText(
+                  text: 'Next',
+                  size: 15,
+                  bold: true,
+                  alignment: TextAlign.center,
+                  padding: EdgeInsets.only(top: 10),
+                ),
+                /*gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15, Colors.black,
                     TextAlign.center),
+
                 gibsonSemiBoldText(
-                    'Next', 10, 0, 0, 0, 15, Colors.black, TextAlign.center),
+                    'Next', 10, 0, 0, 0, 15, Colors.black, TextAlign.center),*/
               ],
             ),
             AlreadyHaveAnAccountPrompt(),

@@ -1,7 +1,7 @@
-import 'package:dogmeet_app/src/core/auth/components/already_have_an_account_prompt.dart';
-import 'package:dogmeet_app/src/core/auth/components/create_account_textfield.dart';
-import 'package:dogmeet_app/src/core/auth/register/pupfile_add_bio.dart';
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/core/auth/components/already_have_an_account_prompt.dart';
+import 'package:dog_meet_app/src/core/auth/components/create_account_textfield.dart';
+import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 bool showTextFieldShadow = true;
@@ -40,22 +40,47 @@ class _CreatePupfileState extends State<CreatePupfile> {
                   ),
                 ),
                 Hero(
-                    tag: 'app_title',
-                    child: gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15,
-                        Colors.black, TextAlign.center)),
+                  tag: 'app_title',
+                  child: CustomText(
+                    text: 'DOGGOD',
+                    size: 15,
+                    bold: true,
+                    alignment: TextAlign.center,
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 100),
+                  ),
+
+                  /*gibsonSemiBoldText('DOGGOD', 10, 10, 100, 100, 15,
+                        Colors.black, TextAlign.center)*/
+                ),
 
                 //------------------------------------------------- NEXT BUTTON and CREATE PUPFILE TITLE ------------------------------------------------------------
 
                 GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, PupfileAddBio.id);
-                    },
-                    child: gibsonSemiBoldText('Next', 10, 0, 0, 0, 15,
-                        Colors.black, TextAlign.center)),
+                  onTap: () {
+                    Navigator.pushNamed(context, PupfileAddBio.id);
+                  },
+                  child: CustomText(
+                    text: 'Next',
+                    size: 15,
+                    bold: true,
+                    alignment: TextAlign.center,
+                    padding: EdgeInsets.only(top: 10),
+                  ),
+
+                  /*gibsonSemiBoldText('Next', 10, 0, 0, 0, 15,
+                        Colors.black, TextAlign.center)*/
+                ),
               ],
             ),
-            gibsonSemiBoldText('Create a Pupfile', 20, 20, 0, 0, 33,
-                Colors.black, TextAlign.center),
+            CustomText(
+              text: 'Create a Pupfile',
+              size: 33,
+              bold: true,
+              alignment: TextAlign.center,
+              padding: EdgeInsets.symmetric(vertical: 20),
+            ),
+            /*gibsonSemiBoldText('Create a Pupfile', 20, 20, 0, 0, 33,
+                Colors.black, TextAlign.center),*/
 
             //------------------------------------------------------------ SIGN UP FORM  ------------------------------------------------------------
 
@@ -73,8 +98,15 @@ class _CreatePupfileState extends State<CreatePupfile> {
                       shape: CircleBorder(),
                       elevation: 10,
                       child: //https://medium.com/fabcoding/adding-an-image-picker-in-a-flutter-app-pick-images-using-camera-and-gallery-photos-7f016365d856
-                          gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12,
-                              Colors.grey, TextAlign.center),
+                          CustomText(
+                        text: 'Add Image',
+                        size: 12,
+                        bold: true,
+                        color: Colors.grey,
+                        alignment: TextAlign.center,
+                      ),
+                      /*gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12,
+                              Colors.grey, TextAlign.center),*/
                     ),
                   ),
                   SizedBox(height: 20),

@@ -1,6 +1,6 @@
-import 'package:dogmeet_app/src/screens/forum/post/new_forums_post.dart';
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
-import 'package:dogmeet_app/src/screens/global/components/to_the_top_button.dart';
+import 'package:dog_meet_app/src/screens/forum/post/new_forums_post.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/to_the_top_button.dart';
 import 'file:///D:/flutter/flutterprojects/dog_meet_app/lib/src/screens/global/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -28,8 +28,15 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText(
-            'Forum', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),
+        title: CustomText(
+          text: 'Forum',
+          size: 18,
+          bold: true,
+          alignment: TextAlign.center,
+        ),
+
+        /*gibsonSemiBoldText(
+            'Forum', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),*/
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -56,8 +63,18 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    gibsonSemiBoldText('Topics', 0, 0, 0, 0, 25, Colors.black,
-                        TextAlign.center),
+                    CustomText(
+                      text: 'Topics',
+                      size: 26,
+                      bold: true,
+                      alignment: TextAlign.center,
+                    ),
+                    /*Text(
+                      'Topics',
+                      style: AppTextStyles.h1Style,
+                    ),*/
+                    /*gibsonSemiBoldText('Topics', 0, 0, 0, 0, 25, Colors.black,
+                        TextAlign.center),*/
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: GestureDetector(
@@ -65,8 +82,7 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
                         child: Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
+                              borderRadius: BorderRadius.all(Radius.circular(30)),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black12,
@@ -101,8 +117,14 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  gibsonSemiBoldText('Feed', 15, 15, 10, 0, 25, Colors.black,
-                      TextAlign.center),
+                  CustomText(
+                    text: 'Feed',
+                    size: 26,
+                    bold: true,
+                    alignment: TextAlign.center,
+                    padding: const EdgeInsets.only(top: 15, bottom: 15, left: 10),
+                  ),
+                  /*gibsonSemiBoldText('Feed', 15, 15, 10, 0, 25, Colors.black, TextAlign.center),*/
                 ],
               ),
               NewForumsPost(),

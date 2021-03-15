@@ -1,5 +1,5 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
-import 'package:dogmeet_app/src/screens/meetup/messages/components/view_message_container.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/meetup/pageview/messages/components/view_message_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
@@ -17,19 +17,16 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   ScrollController scrollController;
 
-  SlidingUpPanelController newMessagePanelController =
-      SlidingUpPanelController();
+  SlidingUpPanelController newMessagePanelController = SlidingUpPanelController();
 
   @override
   void initState() {
     scrollController = ScrollController();
     scrollController.addListener(() {
-      if (scrollController.offset >=
-              scrollController.position.maxScrollExtent &&
+      if (scrollController.offset >= scrollController.position.maxScrollExtent &&
           !scrollController.position.outOfRange) {
         newMessagePanelController.expand();
-      } else if (scrollController.offset <=
-              scrollController.position.minScrollExtent &&
+      } else if (scrollController.offset <= scrollController.position.minScrollExtent &&
           !scrollController.position.outOfRange) {
         newMessagePanelController.anchor();
       } else {}
@@ -45,11 +42,20 @@ class _MessagesPageState extends State<MessagesPage> {
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            leading: IconButton(
-                icon: Icon(FontAwesomeIcons.arrowLeft),
-                onPressed: widget.onBackPressed),
-            title: gibsonSemiBoldText(
-                'Messages', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+            leading:
+                IconButton(icon: Icon(FontAwesomeIcons.arrowLeft), onPressed: widget.onBackPressed),
+            title: CustomText(
+              text: 'Messages',
+              size: 20,
+              bold: true,
+              alignment: TextAlign.center,
+            ),
+
+            /*Text(
+              'Messages',
+              style: AppTextStyles.h20BlackBold,
+              textAlign: TextAlign.center,
+            ),*/
             actions: [
               IconButton(
                   icon: Icon(FontAwesomeIcons.plusSquare),
@@ -73,10 +79,7 @@ class _MessagesPageState extends State<MessagesPage> {
             decoration: ShapeDecoration(
               color: Colors.white,
               shadows: [
-                BoxShadow(
-                    blurRadius: 5.0,
-                    spreadRadius: 2.0,
-                    color: const Color(0x11000000))
+                BoxShadow(blurRadius: 5.0, spreadRadius: 2.0, color: const Color(0x11000000))
               ],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -124,11 +127,9 @@ class _MessagesPageState extends State<MessagesPage> {
           controlHeight: 50,
           panelController: newMessagePanelController,
           onTap: () {
-            if (SlidingUpPanelStatus.anchored ==
-                newMessagePanelController.status) {
+            if (SlidingUpPanelStatus.anchored == newMessagePanelController.status) {
               newMessagePanelController.collapse();
-            } else if (SlidingUpPanelStatus.expanded ==
-                newMessagePanelController.status) {
+            } else if (SlidingUpPanelStatus.expanded == newMessagePanelController.status) {
               newMessagePanelController.collapse();
             }
           },

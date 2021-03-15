@@ -1,5 +1,5 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
-import 'file:///D:/flutter/flutterprojects/dog_meet_app/lib/src/screens/global/search/search_screen.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -25,8 +25,16 @@ class _MarketAppBarState extends State<MarketAppBar> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText(
-            'Market', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),
+        title: CustomText(
+          text: 'Market',
+          size: 18,
+          bold: true,
+        ),
+        /*Text(
+          'Market',
+          style: AppTextStyles.h18BlackBold,
+          textAlign: TextAlign.center,
+        ),*/
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -39,7 +47,7 @@ class _MarketAppBarState extends State<MarketAppBar> {
         ],
       ),
       //----------------------- BODY OF THE MARKET PAGE IS CONNECTED THROUGH MARKETTABBAR -----------------------
-      body: MarketBody(),
+      body: MarketBodyTabs(),
     );
   }
 }

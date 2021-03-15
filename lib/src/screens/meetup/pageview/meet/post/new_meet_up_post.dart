@@ -1,9 +1,9 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class NewMeetUpPost extends StatelessWidget {
   final String accountName;
-  final String accountImage;
+  final String postImage;
   final String location;
   final String time;
   final int numOfPeopleGoing;
@@ -12,7 +12,7 @@ class NewMeetUpPost extends StatelessWidget {
   final VoidCallback onMeetUpPostSelected;
 
   NewMeetUpPost({
-    this.accountImage,
+    this.postImage,
     this.accountName,
     this.location,
     this.numOfPeopleGoing,
@@ -57,8 +57,21 @@ class NewMeetUpPost extends StatelessWidget {
                             maxRadius: 18,
                           ),
                         ),
-                        gibsonSemiBoldText(accountName, 0, 0, 5, 0, 12,
-                            Colors.black, TextAlign.center),
+                        CustomText(
+                          text: accountName,
+                          size: 12,
+                          bold: true,
+                          alignment: TextAlign.center,
+                          padding: const EdgeInsets.only(left: 5.0),
+                        ),
+                        /*Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Text(
+                            accountName,
+                            style: AppTextStyles.h12BlackBold,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -94,7 +107,7 @@ class NewMeetUpPost extends StatelessWidget {
                     child: Image(
                         fit: BoxFit.fitWidth,
                         image: AssetImage(
-                          accountImage,
+                          postImage,
                         )),
                   ),
                   Container(
@@ -107,27 +120,48 @@ class NewMeetUpPost extends StatelessWidget {
                         )),
                     child: Row(
                       children: <Widget>[
-                        gibsonSemiBoldText(location, 0, 0, 0, 0, 12,
-                            Colors.black, TextAlign.center),
+                        CustomText(
+                          text: location,
+                          size: 12,
+                          bold: true,
+                          alignment: TextAlign.center,
+                        ),
+                        /*Text(
+                          location,
+                          style: AppTextStyles.b12BlackReg,
+                          textAlign: TextAlign.center,
+                        ),*/
                         Spacer(
                           flex: 3,
                         ),
-                        gibsonSemiBoldText(time + amPm, 0, 0, 0, 0, 18,
-                            Colors.black, TextAlign.center),
+                        CustomText(
+                          text: time + amPm,
+                          size: 18,
+                          bold: true,
+                          alignment: TextAlign.center,
+                        ),
+                        /*Text(
+                          time + amPm,
+                          style: AppTextStyles.h18BlackBold,
+                          textAlign: TextAlign.center,
+                        ),*/
                         Spacer(flex: 2),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            gibsonSemiBoldText(
-                                numOfPeopleGoing.toString() + ' Attending',
-                                0,
-                                0,
-                                0,
-                                5,
-                                10,
-                                Colors.black45,
-                                TextAlign.center),
+                            CustomText(
+                              text: numOfPeopleGoing.toString() + ' attending',
+                              size: 10,
+                              color: Colors.grey,
+                              bold: true,
+                              alignment: TextAlign.center,
+                            ),
+                            /*Text(
+                              numOfPeopleGoing.toString(),
+                              style: AppTextStyles.b10GreyReg,
+                              textAlign: TextAlign.start,
+                            ),*/
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Row(

@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,8 +21,14 @@ class _NewForumCommentState extends State<NewForumComment> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              gibsonSemiBoldText('Account Name', 0, 2, 0, 0, 12, Colors.black,
-                  TextAlign.start),
+              CustomText(
+                text: 'Account Name',
+                size: 12,
+                alignment: TextAlign.start,
+                padding: const EdgeInsets.only(bottom: 2),
+              ),
+              /*gibsonSemiBoldText('Account Name', 0, 2, 0, 0, 12, Colors.black,
+                  TextAlign.start),*/
               Text(
                 'This is YOUR opinion bitch, wtf is this ass crack. Are you EVEN THINKING WITH YOUR BRAIN?!?! theres not a single thought behind those eyes of yours',
                 style: TextStyle(fontFamily: 'Gibson Regular', fontSize: 12),
@@ -35,7 +41,15 @@ class _NewForumCommentState extends State<NewForumComment> {
                       FontAwesomeIcons.heart,
                       size: 12,
                     ),
-                    gibsonSemiBoldText(
+                    CustomText(
+                      text: '10 Likes',
+                      size: 12,
+                      bold: true,
+                      color: Colors.black38,
+                      alignment: TextAlign.start,
+                      padding: const EdgeInsets.only(left: 5),
+                    ),
+                    /* gibsonSemiBoldText(
                       '10 Likes',
                       0,
                       0,
@@ -44,13 +58,26 @@ class _NewForumCommentState extends State<NewForumComment> {
                       12,
                       Colors.black38,
                       TextAlign.start,
-                    ),
+                    ),*/
                     Spacer(),
-                    Container(
-                      child: gibsonSemiBoldText('Reply', 0, 0, 0, 0, 12,
-                          Colors.black26, TextAlign.end),
+                    CustomText(
+                      text: 'Reply',
+                      size: 12,
+                      bold: true,
+                      color: Colors.black26,
+                      alignment: TextAlign.end,
+                      padding: const EdgeInsets.only(right: 5),
                     ),
-                    gibsonSemiBoldText(
+                    CustomText(
+                      text: '4h',
+                      size: 12,
+                      bold: true,
+                      color: Colors.black26,
+                      alignment: TextAlign.end,
+                    ),
+                    /*gibsonSemiBoldText('Reply', 0, 0, 0, 0, 12,
+                        Colors.black26, TextAlign.end),*/
+                    /*gibsonSemiBoldText(
                       '4h',
                       0,
                       0,
@@ -59,7 +86,7 @@ class _NewForumCommentState extends State<NewForumComment> {
                       12,
                       Colors.black26,
                       TextAlign.end,
-                    ),
+                    ),*/
                   ],
                 ),
               ),

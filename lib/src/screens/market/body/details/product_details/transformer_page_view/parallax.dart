@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/market/body/details/product_details/transformer_page_view/transformer_page_view.dart';
+import 'package:dog_meet_app/src/screens/market/body/details/product_details/transformer_page_view/transformer_page_view.dart';
 import 'package:flutter/widgets.dart';
 
 typedef void PaintCallback(Canvas canvas, Size siz);
@@ -14,8 +14,7 @@ class ColorPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     int index = info.fromIndex;
     _paint.color = colors[index];
-    canvas.drawRect(
-        new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
+    canvas.drawRect(new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
     if (info.done) {
       return;
     }
@@ -38,8 +37,7 @@ class ColorPainter extends CustomPainter {
         alpha = (0xff * opacity).toInt();
 
         _paint.color = new Color((alpha << 24) | color);
-        canvas.drawRect(
-            new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
+        canvas.drawRect(new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
       }
     } else {
       if (index > 0) {
@@ -56,8 +54,7 @@ class ColorPainter extends CustomPainter {
         alpha = (0xff * opacity).toInt();
 
         _paint.color = new Color((alpha << 24) | color);
-        canvas.drawRect(
-            new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
+        canvas.drawRect(new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
       }
     }
   }

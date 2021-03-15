@@ -1,7 +1,7 @@
-import 'package:dogmeet_app/src/screens/forum/components/forums_page_filter_chip.dart';
-import 'package:dogmeet_app/src/screens/global/components/constants.dart';
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
-import 'package:dogmeet_app/src/screens/market/body/components/new_market_post.dart';
+import 'package:dog_meet_app/src/screens/forum/components/forums_page_filter_chip.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/market/body/components/new_market_post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,8 +36,16 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
         ),
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText(
-            widget.storeName, 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: CustomText(
+          text: widget.storeName,
+          size: 20,
+          bold: true,
+        ),
+        /*Text(
+          widget.storeName,
+          style: AppTextStyles.h20BlackBold,
+          textAlign: TextAlign.center,
+        ),*/
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -102,8 +110,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           color: Colors.white,
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: AssetImage(widget.storeImage),
-                              fit: BoxFit.fitHeight),
+                              image: AssetImage(widget.storeImage), fit: BoxFit.fitHeight),
                         ),
                       ),
                     ),
@@ -119,15 +126,21 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                         children: <Widget>[
                           Row(
                             children: <Widget>[
-                              gibsonSemiBoldText(
+                              CustomText(
+                                text: '5.0',
+                                size: 26,
+                                bold: true,
+                                alignment: TextAlign.start,
+                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                              ),
+                              /*Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                child: Text(
                                   '4.9',
-                                  0,
-                                  0,
-                                  5,
-                                  5,
-                                  MediaQuery.of(context).size.width / 26,
-                                  Colors.black,
-                                  TextAlign.start),
+                                  style: AppTextStyles.h26BlackBold,
+                                  textAlign: TextAlign.start,
+                                ),
+                              ),*/
                               Icon(
                                 Icons.star_border,
                                 size: MediaQuery.of(context).size.width / 20,
@@ -151,8 +164,19 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                             ],
                           ),
                           InkWell(
-                            child: gibsonSemiBoldText('Customer Reviews (3)', 5,
-                                5, 5, 5, 12, Colors.blue, TextAlign.start),
+                            child: CustomText(
+                              text: 'Customer Reviews (3)',
+                              size: 12,
+                              color: Colors.blue,
+                              alignment: TextAlign.start,
+                              bold: true,
+                            ),
+
+                            /*Text(
+                              ' Customer Reviews (3)',
+                              style: AppTextStyles.h12BlueBold,
+                              textAlign: TextAlign.start,
+                            ),*/
                           ),
                         ],
                       ),
@@ -162,15 +186,22 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                         children: <Widget>[
                           Row(
                             children: <Widget>[
-                              gibsonSemiBoldText(
-                                  'Location',
-                                  0,
-                                  0,
-                                  5,
-                                  5,
-                                  MediaQuery.of(context).size.width / 26,
-                                  kPrimaryColour(),
-                                  TextAlign.end),
+                              CustomText(
+                                text: 'Location',
+                                size: 26,
+                                bold: true,
+                                color: AppColors.colorPrimaryOrange,
+                                alignment: TextAlign.end,
+                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                              ),
+                              /*Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                child: Text(
+                                  'location',
+                                  style: AppTextStyles.h26OrangeBold,
+                                  textAlign: TextAlign.end,
+                                ),
+                              ),*/
                               Icon(
                                 Icons.location_on_rounded,
                                 size: MediaQuery.of(context).size.width / 20,
@@ -180,10 +211,33 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              gibsonSemiBoldText('OPEN', 0, 0, 5, 5, 15,
-                                  Colors.green, TextAlign.end),
-                              gibsonSemiBoldText('closes 5 pm', 0, 0, 0, 0, 12,
-                                  Colors.black, TextAlign.end),
+                              CustomText(
+                                text: 'Open',
+                                size: 15,
+                                bold: true,
+                                color: Colors.green,
+                                alignment: TextAlign.end,
+                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                              ),
+                              /*Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                                child: Text(
+                                  'Open',
+                                  style: AppTextStyles.h15GreenBold,
+                                  textAlign: TextAlign.end,
+                                ),
+                              ),*/
+                              CustomText(
+                                text: 'closes 5 pm',
+                                size: 12,
+                                bold: true,
+                                alignment: TextAlign.end,
+                              ),
+                              /*Text(
+                                'closes 5 pm',
+                                style: AppTextStyles.h12BlackBold,
+                                textAlign: TextAlign.end,
+                              ),*/
                               Icon(
                                 Icons.arrow_drop_down_rounded,
                               ),
@@ -205,10 +259,23 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: [kBoxShadow()],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: gibsonSemiBoldText('Call', 5, 5, 5, 5, 12,
-                              Colors.black, TextAlign.center),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                          child: CustomText(
+                            text: 'Call',
+                            bold: true,
+                            size: 12,
+                            alignment: TextAlign.center,
+                            padding: const EdgeInsets.all(5.0),
+                          ),
+
+                          /*Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'Call',
+                              style: AppTextStyles.h12BlackBold,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),*/
                         ),
                       ),
                       GestureDetector(
@@ -217,10 +284,22 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: [kBoxShadow()],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: gibsonSemiBoldText('Website', 5, 5, 5, 5, 12,
-                              Colors.black, TextAlign.center),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                          child: CustomText(
+                            text: 'Website',
+                            bold: true,
+                            size: 12,
+                            alignment: TextAlign.center,
+                            padding: const EdgeInsets.all(5.0),
+                          ),
+                          /*Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Text(
+                              'Website',
+                              style: AppTextStyles.h12BlackBold,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),*/
                         ),
                       ),
                       GestureDetector(
@@ -229,10 +308,23 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: [kBoxShadow()],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: gibsonSemiBoldText('Directions', 5, 5, 5, 5,
-                              12, Colors.black, TextAlign.center),
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                          child: CustomText(
+                            text: 'Directions',
+                            bold: true,
+                            size: 12,
+                            alignment: TextAlign.center,
+                            padding: const EdgeInsets.all(5.0),
+                          ),
+
+                          /*Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Text(
+                              'Directions',
+                              style: AppTextStyles.h12BlackBold,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),*/
                         ),
                       )
                     ],
@@ -273,8 +365,8 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                     ],
                   ),
                 ),
-                NewMarketPost(kPrimaryColour(),
-                    'assets/images/trainingtab2.jpg', '15.99', 'Training tabs'),
+                NewMarketPost(AppColors.colorPrimaryOrange, 'assets/images/trainingtab2.jpg',
+                    '15.99', 'Training tabs'),
               ],
             ),
           ],

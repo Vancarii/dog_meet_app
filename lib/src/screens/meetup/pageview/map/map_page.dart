@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,12 +18,19 @@ class _MapPageState extends State<MapPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText(
-            'Map', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: CustomText(
+          text: 'Map',
+          size: 18,
+          bold: true,
+        ),
+
+        /*Text(
+          'Map',
+          style: AppTextStyles.h20BlackBold,
+          textAlign: TextAlign.center,
+        ),*/
         actions: [
-          IconButton(
-              icon: Icon(FontAwesomeIcons.arrowRight),
-              onPressed: widget.onBackPressed)
+          IconButton(icon: Icon(FontAwesomeIcons.arrowRight), onPressed: widget.onBackPressed)
         ],
       ),
       body: SafeArea(

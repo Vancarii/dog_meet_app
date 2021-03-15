@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -76,10 +77,7 @@ class _ProductActionsState extends State<ProductActions> {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                    color: Colors.black12,
-                    offset: Offset(-2, 2),
-                    blurRadius: 5,
-                    spreadRadius: 5)
+                    color: Colors.black12, offset: Offset(-2, 2), blurRadius: 5, spreadRadius: 5)
               ],
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30),
@@ -87,16 +85,24 @@ class _ProductActionsState extends State<ProductActions> {
                   bottomLeft: Radius.circular(30)),
               color: Colors.white,
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 10, top: 5, bottom: 5, right: 10.0),
-              child: Text(
+            child: CustomText(
+              text: 'Hi, is this still available?',
+              size: 15,
+              bold: false,
+              padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5, right: 10.0),
+            ),
+
+            /*Padding(
+                padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5, right: 10.0),
+                child:
+
+                Text(
                 'Hi, is this still available?',
                 style: TextStyle(
                   fontFamily: 'Gibson Regular',
                 ),
               ),
-            ),
+                ),*/
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10.0),

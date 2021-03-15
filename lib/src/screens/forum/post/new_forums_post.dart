@@ -1,5 +1,5 @@
-import 'package:dogmeet_app/src/screens/forum/comments/forum_comment_section.dart';
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/forum/comments/forum_comment_section.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart' as ionIcons;
@@ -48,21 +48,43 @@ class _NewForumsPostState extends State<NewForumsPost> {
                                 maxRadius: 18,
                               ),
                             ),
-                            gibsonSemiBoldText('rosyandmaze', 0, 0, 5, 0, 12,
-                                Colors.black, TextAlign.center),
+                            CustomText(
+                              text: 'Rosyandmaze',
+                              size: 12,
+                              bold: true,
+                              alignment: TextAlign.center,
+                              padding: const EdgeInsets.only(left: 5),
+                            ),
+                            /*gibsonSemiBoldText('rosyandmaze', 0, 0, 5, 0, 12,
+                                Colors.black, TextAlign.center),*/
                           ],
                         ),
                       ),
                       Spacer(),
-                      gibsonSemiBoldText('# Hours ago', 0, 0, 0, 5, 10,
-                          Colors.black45, TextAlign.center),
+                      CustomText(
+                        text: '5 Hours ago',
+                        size: 10,
+                        bold: true,
+                        alignment: TextAlign.center,
+                        color: Colors.black45,
+                        padding: const EdgeInsets.only(right: 5),
+                      ),
+                      /* gibsonSemiBoldText('# Hours ago', 0, 0, 0, 5, 10,
+                          Colors.black45, TextAlign.center),*/
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: RawChip(
                           elevation: 2,
                           backgroundColor: Color(0xfffc816a),
-                          label: gibsonSemiBoldText('Topic', 0, 0, 0, 0, 12,
-                              Colors.black, TextAlign.center),
+                          label: CustomText(
+                            text: 'Topic',
+                            size: 12,
+                            bold: true,
+                            alignment: TextAlign.center,
+                          ),
+
+                          /*gibsonSemiBoldText('Topic', 0, 0, 0, 0, 12,
+                              Colors.black, TextAlign.center),*/
                           onSelected: (bool value) {
                             setState(() {});
                           },
@@ -188,16 +210,33 @@ class _NewForumsPostState extends State<NewForumsPost> {
                       ),
                     ],
                   ),
-                  gibsonSemiBoldText('69 others threw the ball', 0, 5, 10, 5,
-                      12, Colors.black, TextAlign.center),
+                  CustomText(
+                    text: '69 others threw the ball',
+                    size: 12,
+                    bold: true,
+                    color: Colors.grey,
+                    alignment: TextAlign.center,
+                    padding: const EdgeInsets.only(bottom: 5, left: 10, right: 5),
+                  ),
+                  /*gibsonSemiBoldText('69 others threw the ball', 0, 5, 10, 5,
+                      12, Colors.black, TextAlign.center),*/
                   GestureDetector(
                     onTap: () {
                       setState(() {
                         Navigator.pushNamed(context, ForumCommentSection.id);
                       });
                     },
-                    child: gibsonSemiBoldText('View all 20 barks', 0, 10, 10, 5,
-                        12, Colors.black, TextAlign.center),
+                    child: CustomText(
+                      text: 'View all 20 Barks',
+                      size: 12,
+                      bold: true,
+                      color: Colors.grey,
+                      alignment: TextAlign.center,
+                      padding: const EdgeInsets.only(bottom: 10, left: 10, right: 5),
+                    ),
+
+                    /*gibsonSemiBoldText('View all 20 barks', 0, 10, 10, 5,
+                        12, Colors.black, TextAlign.center),*/
                   ),
                 ],
               ),

@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -26,8 +26,15 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
         ),
         elevation: 0,
         centerTitle: true,
-        title: gibsonSemiBoldText(
-            'Comments', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),
+        title: CustomText(
+          text: 'Comments',
+          size: 20,
+          bold: true,
+          alignment: TextAlign.center,
+        ),
+
+        /*gibsonSemiBoldText(
+            'Comments', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),*/
       ),
       body: SafeArea(
         child: Column(

@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class MarketProductTagsChips extends StatefulWidget {
@@ -18,8 +18,15 @@ class _MarketProductTagsChipsState extends State<MarketProductTagsChips> {
     return FilterChip(
       pressElevation: 0,
       backgroundColor: Colors.black12,
-      label: gibsonSemiBoldText(
-          widget.tagWord, 0, 0, 0, 0, 12, Colors.black, TextAlign.center),
+      label: CustomText(
+        text: widget.tagWord,
+        alignment: TextAlign.center,
+        size: 12,
+        bold: true,
+      ),
+
+      /*gibsonSemiBoldText(
+          widget.tagWord, 0, 0, 0, 0, 12, Colors.black, TextAlign.center),*/
       onSelected: (bool value) {
         setState(() {
           print(value);

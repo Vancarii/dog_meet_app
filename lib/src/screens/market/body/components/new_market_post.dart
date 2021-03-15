@@ -1,6 +1,6 @@
-import 'package:dogmeet_app/src/screens/global/components/constants.dart';
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
-import 'package:dogmeet_app/src/screens/market/body/details/market_product_details_page.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/market/body/details/market_product_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
@@ -44,8 +44,7 @@ class _NewMarketPostState extends State<NewMarketPost> {
                   Container(
                     height: 250,
                     child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(6)),
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
                       child: Image.asset(
                         widget.productImage,
                         fit: BoxFit.cover,
@@ -57,19 +56,32 @@ class _NewMarketPostState extends State<NewMarketPost> {
                     padding: const EdgeInsets.all(5.0),
                     child: Wrap(
                       children: <Widget>[
-                        gibsonSemiBoldText(widget.productTitle, 0, 0, 0, 0, 15,
-                            Colors.black, TextAlign.start),
+                        CustomText(
+                          text: widget.productTitle,
+                          size: 15,
+                          bold: true,
+                          alignment: TextAlign.start,
+                        ),
+                        /*gibsonSemiBoldText(widget.productTitle, 0, 0, 0, 0, 15,
+                            Colors.black, TextAlign.start),*/
                       ],
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(right: 5.0, bottom: 2.0, top: 2),
+                    padding: const EdgeInsets.only(right: 5.0, bottom: 2.0, top: 2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        gibsonSemiBoldText('\$' + widget.price, 0, 0, 0, 5, 18,
-                            Color(0xfffc816a), TextAlign.center),
+                        CustomText(
+                          text: '\$' + widget.price,
+                          size: 18,
+                          bold: true,
+                          alignment: TextAlign.center,
+                          color: AppColors.colorPrimaryOrange,
+                          padding: const EdgeInsets.only(right: 5),
+                        )
+                        /*gibsonSemiBoldText('\$' + widget.price, 0, 0, 0, 5, 18,
+                            Color(0xfffc816a), TextAlign.center),*/
                       ],
                     ),
                   ),

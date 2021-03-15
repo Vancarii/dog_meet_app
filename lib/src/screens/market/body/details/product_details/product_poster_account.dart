@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class ProductPosterAccount extends StatelessWidget {
@@ -9,8 +9,21 @@ class ProductPosterAccount extends StatelessWidget {
       child: Row(
         children: <Widget>[
           CircleAvatar(),
-          gibsonSemiBoldText(
-              'Account Name', 0, 0, 5, 0, 15, Colors.black, TextAlign.start),
+          CustomText(
+            text: 'Account Name',
+            size: 15,
+            bold: true,
+            alignment: TextAlign.start,
+            padding: const EdgeInsets.only(left: 5.0),
+          ),
+          /*Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: Text(
+              'Account Name',
+              style: AppTextStyles.h15BlackBold,
+              textAlign: TextAlign.start,
+            ),
+          ),*/
         ],
       ),
     );

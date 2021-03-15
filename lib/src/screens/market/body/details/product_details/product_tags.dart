@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 import 'market_product_tags_chips.dart';
@@ -16,8 +16,17 @@ class _ProductTagsState extends State<ProductTags> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          gibsonSemiBoldText(
-              'Tags', 0, 0, 0, 0, 15, Colors.black, TextAlign.start),
+          CustomText(
+            text: 'Tags',
+            size: 15,
+            bold: true,
+            alignment: TextAlign.start,
+          ),
+          /*Text(
+            'Tags',
+            style: AppTextStyles.h15BlackBold,
+            textAlign: TextAlign.start,
+          ),*/
           Wrap(
             spacing: 5,
             children: [

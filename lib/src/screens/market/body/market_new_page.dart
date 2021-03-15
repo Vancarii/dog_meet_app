@@ -1,4 +1,4 @@
-import 'package:dogmeet_app/src/screens/global/components/constants.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
 import 'package:flutter/material.dart';
 
 import 'components/market_store_rounded_button.dart';
@@ -50,8 +50,8 @@ class MarketNewPage extends StatelessWidget {
         ),
         Wrap(
           children: [
-            NewMarketPost(kPrimaryColour(), 'assets/images/trainingtab2.jpg',
-                '14.99', 'Waterproof Training Tabs - All Colors'),
+            NewMarketPost(AppColors.colorPrimaryOrange, 'assets/images/trainingtab2.jpg', '14.99',
+                'Waterproof Training Tabs - All Colors'),
           ],
         ),
       ],
