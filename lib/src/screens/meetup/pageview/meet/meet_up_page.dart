@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,6 +26,14 @@ class _MeetUpPageState extends State<MeetUpPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+            AppColors.colorPrimaryOrange,
+            AppColors.colorPrimaryYellow,
+          ])),
+        ),
         elevation: 0,
         centerTitle: true,
         title: CustomText(

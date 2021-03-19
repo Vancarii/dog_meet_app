@@ -1,17 +1,17 @@
-import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/market/body/details/market_product_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
 class NewMarketPost extends StatefulWidget {
-  final Color borderColour;
+  final String condition;
   final String productImage;
   final String price;
   final String productTitle;
 
   const NewMarketPost(
-    this.borderColour,
+    this.condition,
     this.productImage,
     this.price,
     this.productTitle,
@@ -34,8 +34,8 @@ class _NewMarketPostState extends State<NewMarketPost> {
             padding: const EdgeInsets.all(5.0),
             child: Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: widget.borderColour, width: 4),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //border: Border.all(color: widget.borderColour, width: 4),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Colors.white,
                   boxShadow: [kBoxShadow()]),
               child: Column(
@@ -44,7 +44,7 @@ class _NewMarketPostState extends State<NewMarketPost> {
                   Container(
                     height: 250,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(6)),
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
                       child: Image.asset(
                         widget.productImage,
                         fit: BoxFit.cover,
@@ -53,35 +53,47 @@ class _NewMarketPostState extends State<NewMarketPost> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.only(top: 5.0, left: 5.0),
                     child: Wrap(
                       children: <Widget>[
                         CustomText(
-                          text: widget.productTitle,
-                          size: 15,
+                          text: widget.condition,
+                          size: 12,
                           bold: true,
-                          alignment: TextAlign.start,
+                          color: AppColors.colorPrimaryOrange,
                         ),
-                        /*gibsonSemiBoldText(widget.productTitle, 0, 0, 0, 0, 15,
-                            Colors.black, TextAlign.start),*/
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 5.0, bottom: 2.0, top: 2),
+                    padding: const EdgeInsets.all(5.0),
+                    child: Wrap(
+                      children: <Widget>[
+                        Text(
+                          widget.productTitle,
+                          style: TextStyle(
+                            fontFamily: 'Gibson',
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0, bottom: 5.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         CustomText(
                           text: '\$' + widget.price,
-                          size: 18,
+                          size: 15,
                           bold: true,
                           alignment: TextAlign.center,
                           color: AppColors.colorPrimaryOrange,
                           padding: const EdgeInsets.only(right: 5),
                         )
-                        /*gibsonSemiBoldText('\$' + widget.price, 0, 0, 0, 5, 18,
-                            Color(0xfffc816a), TextAlign.center),*/
                       ],
                     ),
                   ),
@@ -93,7 +105,7 @@ class _NewMarketPostState extends State<NewMarketPost> {
       },
       openBuilder: (context, action) {
         return MarketProductDetailsPage(
-          borderColour: widget.borderColour,
+          condition: widget.condition,
           price: widget.price,
           productTitle: widget.productTitle,
         );

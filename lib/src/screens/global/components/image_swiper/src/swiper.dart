@@ -1,5 +1,5 @@
-import 'package:dog_meet_app/src/screens/market/body/details/product_details/transformer_page_view/index_controller.dart';
-import 'package:dog_meet_app/src/screens/market/body/details/product_details/transformer_page_view/transformer_page_view.dart';
+import 'package:dog_meet_app/src/screens/global/components/image_swiper/transformer_page_view/index_controller.dart';
+import 'package:dog_meet_app/src/screens/global/components/image_swiper/transformer_page_view/transformer_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';

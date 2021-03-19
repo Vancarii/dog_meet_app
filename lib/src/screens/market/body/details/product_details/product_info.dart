@@ -1,14 +1,14 @@
-import 'package:dog_meet_app/src/screens/global/components/app_colors%20.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfo extends StatefulWidget {
-  final Color borderColour;
+  final String condition;
   final String price;
   final String productTitle;
 
   const ProductInfo({
-    @required this.borderColour,
+    @required this.condition,
     @required this.price,
     @required this.productTitle,
   });
@@ -24,27 +24,14 @@ class _ProductInfoState extends State<ProductInfo> {
       crossAxisAlignment: CrossAxisAlignment.start,
       direction: Axis.vertical,
       children: [
-        widget.borderColour == Colors.white
-            ? CustomText(
-                text: 'Used',
-                size: 15,
-                bold: true,
-                color: AppColors.colorPrimaryOrange,
-                alignment: TextAlign.start,
-                padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
-              )
-            /*gibsonSemiBoldText(
-                'Used', 5, 0, 5, 5, 15, Color(0xfffc816a), TextAlign.start)*/
-            : CustomText(
-                text: 'New',
-                size: 15,
-                bold: true,
-                color: AppColors.colorPrimaryOrange,
-                alignment: TextAlign.start,
-                padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
-              ),
-        /*gibsonSemiBoldText(
-                'New', 5, 0, 5, 5, 15, Color(0xfffc816a), TextAlign.start),*/
+        CustomText(
+          text: widget.condition,
+          size: 15,
+          bold: true,
+          color: AppColors.colorPrimaryOrange,
+          alignment: TextAlign.start,
+          padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
+        ),
         CustomText(
           text: widget.productTitle,
           size: 20,

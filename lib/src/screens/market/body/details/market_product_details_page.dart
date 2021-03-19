@@ -14,12 +14,12 @@ import 'package:lottie/lottie.dart';
 class MarketProductDetailsPage extends StatefulWidget {
   static const String id = 'market_product_details_page';
 
-  final Color borderColour;
+  final String condition;
   final String price;
   final String productTitle;
 
   const MarketProductDetailsPage({
-    this.borderColour,
+    this.condition,
     this.price,
     this.productTitle,
   });
@@ -99,7 +99,7 @@ class _MarketProductDetailsPageState extends State<MarketProductDetailsPage> {
             ProductImageCarousel(),
             ProductActions(),
             ProductInfo(
-              borderColour: widget.borderColour,
+              condition: widget.condition,
               price: widget.price,
               productTitle: widget.productTitle,
             ),

@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/screens/market/body/details/product_details/transformer_page_view/transformer_page_view.dart';
+import 'package:dog_meet_app/src/screens/global/components/image_swiper/transformer_page_view/transformer_page_view.dart';
 import 'package:flutter/widgets.dart';
 
 typedef void PaintCallback(Canvas canvas, Size siz);

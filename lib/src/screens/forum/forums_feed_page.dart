@@ -1,4 +1,5 @@
 import 'package:dog_meet_app/src/screens/forum/post/new_forums_post.dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/global/components/to_the_top_button.dart';
 import 'file:///D:/flutter/flutterprojects/dog_meet_app/lib/src/screens/global/search/search_screen.dart';
@@ -26,8 +27,14 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [AppColors.colorPrimaryOrange, AppColors.colorPrimaryYellow])),
+        ),
         elevation: 0,
-        centerTitle: true,
         title: CustomText(
           text: 'Forum',
           size: 18,
@@ -40,7 +47,7 @@ class _ForumsFeedPageState extends State<ForumsFeedPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              FontAwesomeIcons.search,
+              Icons.search,
             ),
             onPressed: () {
               Navigator.pushNamed(context, SearchBarScreen.id);

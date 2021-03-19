@@ -1,5 +1,5 @@
 import 'package:dog_meet_app/src/screens/forum/components/forums_page_filter_chip.dart';
-import 'package:dog_meet_app/src/screens/global/components/app_colors .dart';
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/market/body/components/new_market_post.dart';
 import 'package:flutter/cupertino.dart';
@@ -128,7 +128,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                             children: <Widget>[
                               CustomText(
                                 text: '5.0',
-                                size: 26,
+                                size: 15,
                                 bold: true,
                                 alignment: TextAlign.start,
                                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -170,6 +170,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                               color: Colors.blue,
                               alignment: TextAlign.start,
                               bold: true,
+                              padding: const EdgeInsets.only(left: 5.0),
                             ),
 
                             /*Text(
@@ -188,7 +189,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                             children: <Widget>[
                               CustomText(
                                 text: 'Location',
-                                size: 26,
+                                size: 15,
                                 bold: true,
                                 color: AppColors.colorPrimaryOrange,
                                 alignment: TextAlign.end,
@@ -365,8 +366,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                     ],
                   ),
                 ),
-                NewMarketPost(AppColors.colorPrimaryOrange, 'assets/images/trainingtab2.jpg',
-                    '15.99', 'Training tabs'),
+                NewMarketPost('New', 'assets/images/trainingtab2.jpg', '15.99', 'Training tabs'),
               ],
             ),
           ],

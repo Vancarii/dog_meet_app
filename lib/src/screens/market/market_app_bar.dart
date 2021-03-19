@@ -1,9 +1,11 @@
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/global/search/search_screen.dart';
+import 'package:dog_meet_app/src/screens/market/body/market_all_page.dart';
+import 'package:dog_meet_app/src/screens/market/body/market_new_page.dart';
+import 'package:dog_meet_app/src/screens/market/body/market_used_page.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'market_body_tabs.dart';
+import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 
 //This page only consists of the appbar in the scaffold for the market page
 //the tab bar is the MarketTabBar linked through the body of the scaffold below
@@ -18,36 +20,90 @@ class MarketAppBar extends StatefulWidget {
   _MarketAppBarState createState() => _MarketAppBarState();
 }
 
-class _MarketAppBarState extends State<MarketAppBar> {
+class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderStateMixin {
+  TabController _marketTabController;
+
+  List<Tab> marketTabs = <Tab>[
+    Tab(
+      child: CustomText(text: 'All', size: 15, color: Colors.black, bold: true),
+    ),
+    Tab(
+      child: CustomText(text: 'New', size: 15, color: Colors.black, bold: true),
+    ),
+    Tab(
+      child: CustomText(text: 'Used', size: 15, color: Colors.black, bold: true),
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _marketTabController = TabController(length: marketTabs.length, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+            AppColors.colorOrange,
+            AppColors.colorPrimaryYellow,
+          ])),
+        ),
         elevation: 0,
-        centerTitle: true,
+        //centerTitle: true,
         title: CustomText(
           text: 'Market',
           size: 18,
           bold: true,
         ),
-        /*Text(
-          'Market',
-          style: AppTextStyles.h18BlackBold,
-          textAlign: TextAlign.center,
-        ),*/
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              FontAwesomeIcons.search,
+              Icons.search,
             ),
             onPressed: () {
               Navigator.pushNamed(context, SearchBarScreen.id);
             },
           ),
+          IconButton(
+            icon: Icon(Icons.sort),
+            onPressed: () {},
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(35),
+          child: Theme(
+            data: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: TabBar(
+              controller: _marketTabController,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: BubbleTabIndicator(
+                indicatorHeight: 35.0,
+                indicatorColor: AppColors.colorWhite,
+                tabBarIndicatorSize: TabBarIndicatorSize.tab,
+              ),
+              tabs: marketTabs,
+            ),
+          ),
+        ),
+      ),
+      body: TabBarView(
+        controller: _marketTabController,
+        children: [
+          MarketAllPage(),
+          MarketNewPage(),
+          MarketUsedPage(),
         ],
       ),
-      //----------------------- BODY OF THE MARKET PAGE IS CONNECTED THROUGH MARKETTABBAR -----------------------
-      body: MarketBodyTabs(),
     );
+
+    //MarketBodyTabs();
   }
 }

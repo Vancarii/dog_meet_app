@@ -1,12 +1,11 @@
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import 'body/market_all_page.dart';
-import 'body/market_new_page.dart';
-import 'body/market_used_page.dart';
+import '../market_all_page.dart';
+import '../market_new_page.dart';
+import '../market_used_page.dart';
 
-//This is where the tab bar
-//tabBarColors handles what to do when each tab is selected
+//UNUSED FILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 enum tabBarCategories {
   All,
@@ -66,12 +65,6 @@ class _MarketBodyTabsState extends State<MarketBodyTabs> {
         bold: true,
         alignment: TextAlign.center,
       ),
-
-      /*Text(
-        text,
-        style: AppTextStyles.h15BlackBold,
-        textAlign: TextAlign.center,
-      ),*/
     );
   }
 
@@ -85,7 +78,7 @@ class _MarketBodyTabsState extends State<MarketBodyTabs> {
   Widget build(BuildContext context) {
     return ListView(children: [
       Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           marketBodyFilterButton(allColor, 'All', tabBarCategories.All),
           marketBodyFilterButton(newColor, 'New', tabBarCategories.New),

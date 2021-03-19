@@ -20,13 +20,15 @@ class _MarketStoreRoundedButtonState extends State<MarketStoreRoundedButton> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 5, 5),
+          padding: const EdgeInsets.only(left: 5.0, right: 5.0, top: 10, bottom: 10),
           child: OpenContainer(
             transitionDuration: Duration(milliseconds: 500),
             closedElevation: 3,
-            closedShape: CircleBorder(),
+            closedShape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
             openBuilder: (context, action) {
               return MarketStoreDetailsPage(
                 storeName: widget.storeName,
@@ -40,7 +42,7 @@ class _MarketStoreRoundedButtonState extends State<MarketStoreRoundedButton> {
                 child: Container(
                   child: Image(
                     image: AssetImage(widget.storeImage),
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.cover,
                   ),
                 ),
               );

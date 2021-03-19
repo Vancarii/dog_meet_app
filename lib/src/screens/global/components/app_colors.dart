@@ -10,7 +10,10 @@ kBoxShadow() {
 }
 
 class AppColors {
-  static const Color colorPrimaryOrange = const Color(0xfffc816a);
+  static const Color colorOrange = const Color(0xfffc816a);
+
+  static const Color colorPrimaryOrange = const Color(0xfffFC846A);
+  static const Color colorPrimaryYellow = const Color(0xfffffc371);
   static const Color colorWhite = const Color(0xfffffffff);
   static const Color colorBlack = const Color(0xfff000000);
 }
