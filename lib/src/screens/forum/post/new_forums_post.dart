@@ -1,9 +1,13 @@
-import 'package:dog_meet_app/src/screens/forum/comments/forum_comment_section.dart';
+import 'package:dog_meet_app/src/screens/forum/post/comments/forum_comment_section.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart' as ionIcons;
-import '../forums_feed_page.dart';
+
+enum readMoreText {
+  more,
+  less,
+}
 
 class NewForumsPost extends StatefulWidget {
   @override
@@ -11,6 +15,15 @@ class NewForumsPost extends StatefulWidget {
 }
 
 class _NewForumsPostState extends State<NewForumsPost> {
+  readMoreText selectedReadText = readMoreText.more;
+  String readMoreLessPrompt = 'READ MORE';
+  int textMaxLines = 20;
+  TextOverflow textOverflowBehavior = TextOverflow.ellipsis;
+
+  Icon tennisBallIcon = Icon(ionIcons.Ionicons.tennisball_outline);
+
+  bool boolTennisBall = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -133,18 +146,31 @@ class _NewForumsPostState extends State<NewForumsPost> {
                               "Hey guys! Sorry I haven't been so active the last couple days. Rosy got attacked by another dog a few days ago😔 Rosy was just greeting the dog when he thought Rosy was trying to take his ball, and straight up attacked her. I lunged and shoved him off and even got my hand all bloody. Thankfully Rosy was fine physically and she still played happily at another park. But there was something about this that pissed me off... "
                               "Rosy being attacked really sucks and I really hope it never happens again. But the fact that the owner did nothing when it happened, and also came up with different excuses to justify her dog attacking Rosy was unacceptable. She went on about how her dog is old and was a search and rescue dog, and that it's okay for something like this to happen? She even knew her dog was ball possessive and she could've taken the ball away when he's not fetching or even not taken him in the dog park. She continued talking about how nothing serious happened and gave more excuses, but the fact is that I don't care if your dog is a hero or if he's the smartest dog in the world, he cannot go around attacking dogs while the owner lets it happen. The owner should be taking responsibility and acknowledging the problem and handling it accordingly."
                               "I just wanted a simple and sincere apology. That's all. Take responsibility of what happened and accept that your were wrong for not being in control of your dog. If you know he has a behavioral problem, see a trainer or don't let it happen.",
-                              maxLines: 20,
-                              overflow: TextOverflow.ellipsis,
+                              maxLines: textMaxLines,
+                              overflow: textOverflowBehavior,
                               style: TextStyle(
                                 color: Colors.black,
                               ),
                             ),
                             InkWell(
                               onTap: () {
-                                setState(() {});
+                                setState(() {
+                                  if (selectedReadText == readMoreText.more) {
+                                    selectedReadText = readMoreText.less;
+                                    readMoreLessPrompt = 'SHOW LESS';
+                                    textMaxLines = null;
+                                    textOverflowBehavior = null;
+                                  } else if (selectedReadText == readMoreText.less) {
+                                    selectedReadText = readMoreText.more;
+                                    readMoreLessPrompt = 'READ MORE';
+                                    textMaxLines = 20;
+                                    textOverflowBehavior = TextOverflow.ellipsis;
+                                  }
+                                  //readMoreLessPrompt = readText();
+                                });
                               },
                               child: Text(
-                                '$readMoreText',
+                                '$readMoreLessPrompt',
                                 style: TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,

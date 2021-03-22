@@ -2,8 +2,8 @@ import 'package:dog_meet_app/src/core/auth/register/create_profile.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
-import 'package:dog_meet_app/src/screens/forum/comments/forum_comment_section.dart';
-import 'package:dog_meet_app/src/screens/forum/forums_feed_page.dart';
+import 'package:dog_meet_app/src/screens/forum/post/comments/forum_comment_section.dart';
+import 'package:dog_meet_app/src/screens/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/global/bnb/main_bottom_nav_menu.dart';
 import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/search/search_screen.dart';
@@ -40,7 +40,7 @@ class DogMeetApp extends StatelessWidget {
         PupfileAddBio.id: (context) => PupfileAddBio(),
         MeetUpPageView.id: (context) => MeetUpPageView(),
         SearchBarScreen.id: (context) => SearchBarScreen(),
-        ForumsFeedPage.id: (context) => ForumsFeedPage(),
+        ForumsAppBar.id: (context) => ForumsAppBar(),
         MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
         MarketAppBar.id: (context) => MarketAppBar(),
         MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),

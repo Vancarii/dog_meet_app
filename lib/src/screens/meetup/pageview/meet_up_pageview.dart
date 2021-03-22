@@ -11,24 +11,19 @@ class MeetUpPageView extends StatefulWidget {
 }
 
 class _MeetUpPageViewState extends State<MeetUpPageView> {
-  PageController _controller = PageController(
+  PageController pageViewController = PageController(
     initialPage: 1,
   );
 
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return PageView(
-      controller: _controller,
+      controller: pageViewController,
+      allowImplicitScrolling: true,
       children: [
         MapPage(
           onBackPressed: () {
-            _controller.animateToPage(
+            pageViewController.animateToPage(
               1,
               duration: Duration(milliseconds: 300),
               curve: Curves.linear,
@@ -37,13 +32,13 @@ class _MeetUpPageViewState extends State<MeetUpPageView> {
         ),
         MeetUpPage(
           onMessagePressed: () {
-            _controller.animateToPage(
+            pageViewController.animateToPage(
               2,
               duration: Duration(milliseconds: 300),
               curve: Curves.linear,
             );
           },
-          onMapPressed: () => _controller.animateToPage(
+          onMapPressed: () => pageViewController.animateToPage(
             0,
             duration: Duration(milliseconds: 300),
             curve: Curves.linear,
@@ -51,7 +46,7 @@ class _MeetUpPageViewState extends State<MeetUpPageView> {
         ),
         MessagesPage(
           onBackPressed: () {
-            _controller.animateToPage(
+            pageViewController.animateToPage(
               1,
               duration: Duration(milliseconds: 300),
               curve: Curves.linear,

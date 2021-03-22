@@ -1,5 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:dog_meet_app/src/screens/forum/forums_feed_page.dart';
+import 'package:dog_meet_app/src/screens/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/market/market_app_bar.dart';
 import 'file:///D:/flutter/flutterprojects/dog_meet_app/lib/src/screens/meetup/Pageview/meet_up_pageview.dart';
@@ -29,7 +29,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
   var _currentSelectedScreenIndex = 2;
 
   final _pageOptions = [
-    ForumsFeedPage(),
+    ForumsAppBar(),
     MarketAppBar(),
     MeetUpPageView(),
     NotificationsPage(),

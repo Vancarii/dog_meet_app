@@ -43,11 +43,12 @@ class _MeetUpPageState extends State<MeetUpPage> {
         ),
         /*gibsonSemiBoldText(
             'Meet', 0, 0, 0, 0, 18, Colors.black, TextAlign.center),*/
-        leading: IconButton(icon: Icon(FontAwesomeIcons.solidMap), onPressed: widget.onMapPressed),
+        leading: IconButton(icon: Icon(Icons.location_on_outlined), onPressed: widget.onMapPressed),
         actions: <Widget>[
           IconButton(
               icon: Icon(
-                FontAwesomeIcons.solidPaperPlane,
+                FontAwesomeIcons.paperPlane,
+                size: 20,
               ),
               onPressed: widget.onMessagePressed
               // do something

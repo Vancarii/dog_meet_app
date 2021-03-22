@@ -25,13 +25,13 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
 
   List<Tab> marketTabs = <Tab>[
     Tab(
-      child: CustomText(text: 'All', size: 15, color: Colors.black, bold: true),
+      child: CustomText(text: 'All', size: 15, color: null, bold: true),
     ),
     Tab(
-      child: CustomText(text: 'New', size: 15, color: Colors.black, bold: true),
+      child: CustomText(text: 'New', size: 15, color: null, bold: true),
     ),
     Tab(
-      child: CustomText(text: 'Used', size: 15, color: Colors.black, bold: true),
+      child: CustomText(text: 'Used', size: 15, color: null, bold: true),
     ),
   ];
 
@@ -82,6 +82,8 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
               highlightColor: Colors.transparent,
             ),
             child: TabBar(
+              unselectedLabelColor: Colors.black38,
+              labelColor: AppColors.colorBlack,
               controller: _marketTabController,
               indicatorSize: TabBarIndicatorSize.tab,
               indicator: BubbleTabIndicator(
