@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
-class MeetUpFeedPage extends StatelessWidget {
-  const MeetUpFeedPage({
+class MeetUpNearbyFeed extends StatelessWidget {
+  const MeetUpNearbyFeed({
     Key key,
     @required this.slidingSheetController,
   }) : super(key: key);
@@ -19,50 +19,6 @@ class MeetUpFeedPage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(bottom: 110),
       children: <Widget>[
-        Container(
-          margin: const EdgeInsets.only(bottom: 10),
-          decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
-            AppColors.colorPrimaryOrange,
-            AppColors.colorPrimaryYellow,
-          ])),
-          //height: 35,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              CustomText(
-                text: 'HOME',
-                size: 15,
-                bold: true,
-                color: Colors.black38,
-                padding: const EdgeInsets.only(left: 15.0),
-              ),
-              CustomText(
-                text: 'NEARBY',
-                size: 15,
-                bold: true,
-                color: Colors.black38,
-                padding: const EdgeInsets.only(left: 15.0),
-              ),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: InkWell(
-                  child: Icon(Icons.search),
-                  onTap: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: InkWell(
-                  child: Icon(Icons.sort),
-                  onTap: () {},
-                ),
-              ),
-            ],
-          ),
-        ),
         MeetUpPost(
           postImage: 'assets/images/rosy.png',
           accountName: 'RosyandMaze',

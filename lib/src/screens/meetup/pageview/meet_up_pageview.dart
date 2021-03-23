@@ -25,7 +25,7 @@ class _MeetUpPageViewState extends State<MeetUpPageView> {
           onBackPressed: () {
             pageViewController.animateToPage(
               1,
-              duration: Duration(milliseconds: 300),
+              duration: Duration(milliseconds: 100),
               curve: Curves.linear,
             );
           },
@@ -34,13 +34,13 @@ class _MeetUpPageViewState extends State<MeetUpPageView> {
           onMessagePressed: () {
             pageViewController.animateToPage(
               2,
-              duration: Duration(milliseconds: 300),
+              duration: Duration(milliseconds: 100),
               curve: Curves.linear,
             );
           },
           onMapPressed: () => pageViewController.animateToPage(
             0,
-            duration: Duration(milliseconds: 300),
+            duration: Duration(milliseconds: 100),
             curve: Curves.linear,
           ),
         ),
@@ -48,7 +48,7 @@ class _MeetUpPageViewState extends State<MeetUpPageView> {
           onBackPressed: () {
             pageViewController.animateToPage(
               1,
-              duration: Duration(milliseconds: 300),
+              duration: Duration(milliseconds: 100),
               curve: Curves.linear,
             );
           },

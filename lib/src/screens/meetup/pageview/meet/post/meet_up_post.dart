@@ -27,9 +27,9 @@ class MeetUpPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         decoration: BoxDecoration(
           color: Colors.white,
           //borderRadius: BorderRadius.all(Radius.circular(15.0)),
