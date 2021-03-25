@@ -1,6 +1,5 @@
 import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
-import 'package:dog_meet_app/src/screens/market/body/details/product_details/product_location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,9 +26,9 @@ class MeetUpPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
         decoration: BoxDecoration(
           color: Colors.white,
           //borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -77,8 +76,37 @@ class MeetUpPost extends StatelessWidget {
                     padding: const EdgeInsets.all(5.0),
                     child: InkWell(
                       child: Icon(Icons.more_vert),
-                      onTap: () {},
                       splashColor: Colors.transparent,
+                      onTap: () {
+                        showCupertinoDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (BuildContext context) {
+                              return CupertinoAlertDialog(
+                                title: Text('Actions'),
+                                actions: [
+                                  CupertinoDialogAction(
+                                    child: Text('Report'),
+                                    onPressed: () {
+                                      //TODO: ADD FUNCTIONALITY TO REPORT LISTING
+                                    },
+                                  ),
+                                  CupertinoDialogAction(
+                                    child: Text('Turn on post notifications'),
+                                    onPressed: () {
+                                      //TODO; ADD FUNCTIONALITY TO HIDE LISTING AND SIMILAR
+                                    },
+                                  ),
+                                  CupertinoDialogAction(
+                                    child: Text('Not Interested'),
+                                    onPressed: () {
+                                      //TODO; ADD FUNCTIONALITY TO HIDE LISTING AND SIMILAR
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                      },
                     ),
                   ),
                 ],

@@ -69,9 +69,12 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
               Navigator.pushNamed(context, SearchBarScreen.id);
             },
           ),
-          IconButton(
-            icon: Icon(Icons.sort),
-            onPressed: () {},
+          Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Icons.sort),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            ),
           ),
         ],
         bottom: PreferredSize(
@@ -103,6 +106,9 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
           MarketNewPage(),
           MarketUsedPage(),
         ],
+      ),
+      endDrawer: Drawer(
+        child: Container(),
       ),
     );
 

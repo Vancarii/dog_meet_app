@@ -52,16 +52,10 @@ class _MarketProductDetailsPageState extends State<MarketProductDetailsPage> {
           bold: true,
           alignment: TextAlign.center,
         ),
-
-        /*Text(
-          'Market',
-          style: AppTextStyles.h20BlackBold,
-          textAlign: TextAlign.center,
-        ),*/
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              FontAwesomeIcons.ellipsisV,
+              Icons.more_vert,
             ),
             onPressed: () {
               setState(() {

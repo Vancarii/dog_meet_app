@@ -5,6 +5,7 @@ class CustomText extends StatelessWidget {
   final EdgeInsets padding;
   final Color color;
   final bool bold;
+  final bool underline;
   final double size;
   final TextAlign alignment;
 
@@ -15,6 +16,7 @@ class CustomText extends StatelessWidget {
     this.bold = false,
     @required this.size,
     this.alignment,
+    this.underline = false,
   });
 
   @override
@@ -29,6 +31,7 @@ class CustomText extends StatelessWidget {
           color: color,
           fontWeight: bold == false ? FontWeight.w400 : FontWeight.w600,
           fontSize: size,
+          decoration: underline == true ? TextDecoration.underline : TextDecoration.none,
         ),
       ),
     );

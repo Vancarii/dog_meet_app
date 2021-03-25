@@ -1,5 +1,5 @@
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
-import 'package:dog_meet_app/src/screens/meetup/pageview/messages/components/view_message_container.dart';
+import 'package:dog_meet_app/src/screens/notification/pageview/messages/components/view_message_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
@@ -50,12 +50,6 @@ class _MessagesPageState extends State<MessagesPage> {
               bold: true,
               alignment: TextAlign.center,
             ),
-
-            /*Text(
-              'Messages',
-              style: AppTextStyles.h20BlackBold,
-              textAlign: TextAlign.center,
-            ),*/
             actions: [
               IconButton(
                   icon: Icon(FontAwesomeIcons.plusSquare),

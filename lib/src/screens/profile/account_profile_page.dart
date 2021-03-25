@@ -30,6 +30,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient:

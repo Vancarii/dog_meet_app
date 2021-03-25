@@ -1,13 +1,11 @@
-import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
-import 'package:dog_meet_app/src/screens/global/search/search_screen.dart';
-import 'package:dog_meet_app/src/screens/meetup/pageview/meet/post/meet_up_post.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/post/meet_up_post.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
-class MeetUpNearbyFeed extends StatelessWidget {
-  const MeetUpNearbyFeed({
+class MeetUpHomeFeed extends StatelessWidget {
+  const MeetUpHomeFeed({
     Key key,
     @required this.slidingSheetController,
   }) : super(key: key);
@@ -19,6 +17,42 @@ class MeetUpNearbyFeed extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(bottom: 110),
       children: <Widget>[
+        Row(
+          children: [
+            InkWell(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    CustomText(
+                      text: 'Port Moody, BC',
+                      size: 15,
+                      bold: true,
+                      padding: const EdgeInsets.only(right: 5.0),
+                      color: Colors.blue,
+                      underline: true,
+                    ),
+                    Icon(
+                      Icons.location_on,
+                      color: Colors.blue,
+                      size: 20,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Spacer(),
+            Builder(
+              builder: (context) => IconButton(
+                icon: Icon(Icons.sort),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              ),
+            ),
+          ],
+        ),
         MeetUpPost(
           postImage: 'assets/images/rosy.png',
           accountName: 'RosyandMaze',
@@ -27,7 +61,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -39,7 +73,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -51,7 +85,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -63,7 +97,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),

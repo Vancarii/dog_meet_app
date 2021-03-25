@@ -1,9 +1,11 @@
-import 'package:dog_meet_app/src/screens/meetup/pageview/meet/post/meet_up_post.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/post/meet_up_post.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
 
-class MeetUpHomeFeed extends StatelessWidget {
-  const MeetUpHomeFeed({
+class MeetUpNearbyFeed extends StatelessWidget {
+  const MeetUpNearbyFeed({
     Key key,
     @required this.slidingSheetController,
   }) : super(key: key);
@@ -15,6 +17,41 @@ class MeetUpHomeFeed extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.only(bottom: 110),
       children: <Widget>[
+        Row(
+          children: [
+            InkWell(
+              onTap: () {},
+              child: Container(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: Colors.blue,
+                      size: 20,
+                    ),
+                    CustomText(
+                      text: 'Port Moody, BC',
+                      size: 12,
+                      bold: true,
+                      color: Colors.blue,
+                      underline: true,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Spacer(),
+            Builder(
+              builder: (context) => IconButton(
+                icon: Icon(Icons.sort),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              ),
+            ),
+          ],
+        ),
         MeetUpPost(
           postImage: 'assets/images/rosy.png',
           accountName: 'RosyandMaze',
@@ -23,7 +60,7 @@ class MeetUpHomeFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -35,7 +72,7 @@ class MeetUpHomeFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -47,7 +84,7 @@ class MeetUpHomeFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -59,7 +96,7 @@ class MeetUpHomeFeed extends StatelessWidget {
           time: '3:30',
           amPm: 'am',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(double.infinity,
+            slidingSheetController.snapToExtent(maxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),

@@ -1,7 +1,8 @@
-import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+
+import '../../meet_up_page.dart';
 
 class MeetUpSlidingHeader extends StatelessWidget {
   const MeetUpSlidingHeader({
@@ -16,10 +17,11 @@ class MeetUpSlidingHeader extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (slidingSheetController.state.isCollapsed == true) {
-          slidingSheetController.snapToExtent(double.infinity,
+          slidingSheetController.snapToExtent(maxSnapPosition,
               duration: Duration(milliseconds: 150));
         } else {
-          slidingSheetController.snapToExtent(110, duration: Duration(milliseconds: 150));
+          slidingSheetController.snapToExtent(minSnapPosition,
+              duration: Duration(milliseconds: 150));
         }
       },
       child: Container(

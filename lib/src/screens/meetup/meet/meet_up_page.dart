@@ -1,0 +1,299 @@
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/meet_up_nearby_feed.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/details/meet_up_details_page.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/details/meet_up_sliding_header.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/meet_up_home_feed.dart';
+
+//This file is the meet up pages app bar and bottom sliding sheet that links to the other components
+
+//This is placed here so that they are global
+//variable names make it easier to reuse
+const double minSnapPosition = 110;
+const double maxSnapPosition = double.infinity;
+
+//This enum is used for the filter button
+// the builder that returns which tab it is currently on changes the variable selectedTab
+// to whichever enum the tab is showing
+// the endDrawer then shows a different drawer depending on which tab is shown
+enum selectedMeetTab {
+  HomeTab,
+  NearbyTab,
+}
+
+class MeetUpPage extends StatefulWidget {
+  @override
+  _MeetUpPageState createState() => _MeetUpPageState();
+}
+
+class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateMixin {
+  //controller for the bottom sliding up sheet / MeetUp Details Page
+  SheetController slidingSheetController = SheetController();
+
+  //list of the tabs that are shown at the bottom of the app bar
+  List<Tab> meetTabs = <Tab>[
+    Tab(child: CustomText(text: 'Home', size: 15, color: null, bold: true)),
+    Tab(child: CustomText(text: 'Nearby', size: 15, color: null, bold: true)),
+  ];
+
+  //for the preferences / filter endDrawer
+  selectedMeetTab selectedTab = selectedMeetTab.HomeTab;
+
+  bool isDefaultPreferences = true;
+  bool isRefined = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: meetTabs.length,
+      //builder to check which tabbar tab is clicked. nothing is done here yet
+      child: Builder(
+        builder: (BuildContext context) {
+          final TabController meetTabController = DefaultTabController.of(context);
+          meetTabController.addListener(() {
+            if (!meetTabController.indexIsChanging) {
+              setState(() {
+                if (meetTabController.index == 0) {
+                  print('Yeet youre home');
+                  selectedTab = selectedMeetTab.HomeTab;
+                } else if (meetTabController.index == 1) {
+                  print('Yeet youre nearby');
+                  selectedTab = selectedMeetTab.NearbyTab;
+                }
+              });
+            }
+          });
+          return Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              //the appbar bg gradient
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        colors: [
+                      AppColors.colorPrimaryOrange,
+                      AppColors.colorPrimaryYellow,
+                    ])),
+              ),
+              elevation: 0,
+              centerTitle: true,
+              title: CustomText(
+                text: 'Meet',
+                size: 18,
+                bold: true,
+              ),
+              leading: IconButton(icon: Icon(Icons.location_on_outlined), onPressed: () {}),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.search,
+                  ),
+                  onPressed: () {},
+                  //onPressed: widget.onMessagePressed
+                  // do something
+                ),
+              ],
+
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(35),
+                child: Theme(
+                  data: ThemeData(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                  ),
+                  //The tabbar is placed in this container and row so that other widgets can be placed
+                  //at the end of the tabbar
+                  child: TabBar(
+                    //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
+                    onTap: (index) {
+                      if (slidingSheetController.state.isExpanded) {
+                        print('sliding sheet true');
+                        slidingSheetController.snapToExtent(minSnapPosition,
+                            duration: Duration(milliseconds: 300), clamp: true);
+                      }
+                    },
+                    isScrollable: true,
+                    unselectedLabelColor: Colors.black38,
+                    labelColor: AppColors.colorBlack,
+                    //controller: meetTabController,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicatorColor: Colors.white,
+                    tabs: meetTabs,
+                  ),
+                ),
+              ),
+            ),
+            endDrawer: selectedTab == selectedMeetTab.HomeTab
+                ? Drawer(
+                    child: ListView(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                text: 'Preferences',
+                                size: 26,
+                                bold: true,
+                              ),
+                              CustomText(
+                                text:
+                                    'These preferences change what will be shown in your home page.',
+                                size: 15,
+                                padding: const EdgeInsets.only(top: 15.0),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15.0),
+                                child: Row(
+                                  children: [
+                                    CustomText(
+                                      text: 'Show All Following',
+                                      size: 15,
+                                      bold: true,
+                                    ),
+                                    Spacer(),
+                                    CupertinoSwitch(
+                                      value: isDefaultPreferences,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          isDefaultPreferences = value;
+                                          if (value == false) {
+                                            isRefined = true;
+                                          } else {
+                                            isRefined = false;
+                                          }
+                                          print(isDefaultPreferences);
+                                        });
+                                      },
+                                      activeColor: AppColors.colorPrimaryOrange,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                children: [
+                                  CustomText(
+                                    text: 'Refine',
+                                    size: 15,
+                                    bold: true,
+                                  ),
+                                  Spacer(),
+                                  CupertinoSwitch(
+                                    value: isRefined,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        isRefined = value;
+                                        if (value == false) {
+                                          isDefaultPreferences = true;
+                                        } else {
+                                          isDefaultPreferences = false;
+                                        }
+                                        print(isRefined);
+                                      });
+                                    },
+                                    activeColor: AppColors.colorPrimaryOrange,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Drawer(
+                    child: ListView(
+                      children: [
+                        DrawerHeader(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                text: 'Filter',
+                                size: 26,
+                                bold: true,
+                              ),
+                              CustomText(
+                                text: 'Filter ',
+                                size: 15,
+                                padding: const EdgeInsets.only(top: 15.0),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15.0),
+                                child: Row(
+                                  children: [
+                                    CustomText(
+                                      text: 'Show All Following',
+                                      size: 15,
+                                      bold: true,
+                                    ),
+                                    Spacer(),
+                                    CupertinoSwitch(
+                                      value: isDefaultPreferences,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          isDefaultPreferences = value;
+                                          print(isDefaultPreferences);
+                                        });
+                                      },
+                                      activeColor: AppColors.colorPrimaryOrange,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+            //This is the sliding sheet that shows whenever a meetup post is clicked.
+            //the body of the sliding sheet is wrapped in a tabbar view so that it can change
+            //pages. MeetUpHomeFeed and nearby feed have the slidingSheetController passed through
+            //so that it can activate the sliding sheet and expand it or collapse it there.
+            //the sliderheader is the small part showing when the sliding sheet is collapsed.
+            //
+            body: SlidingSheet(
+              controller: slidingSheetController,
+              closeOnBackdropTap: true,
+              closeOnBackButtonPressed: true,
+              isBackdropInteractable: true,
+              elevation: 3,
+              shadowColor: AppColors.colorPrimaryOrange,
+              cornerRadius: 15,
+              liftOnScrollHeaderElevation: 5,
+              //duration: Duration(milliseconds: 150),
+              snapSpec: const SnapSpec(
+                snap: true,
+                snappings: [minSnapPosition, maxSnapPosition],
+                positioning: SnapPositioning.pixelOffset,
+              ),
+              body: TabBarView(
+                children: [
+                  MeetUpHomeFeed(slidingSheetController: slidingSheetController),
+                  MeetUpNearbyFeed(slidingSheetController: slidingSheetController),
+                ],
+              ),
+              headerBuilder: (context, state) {
+                return MeetUpSlidingHeader(slidingSheetController: slidingSheetController);
+              },
+              builder: (context, state) {
+                return MeetUpDetailsPage();
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

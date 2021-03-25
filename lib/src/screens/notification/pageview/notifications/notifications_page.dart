@@ -1,7 +1,13 @@
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NotificationsPage extends StatefulWidget {
+  final VoidCallback onMessagesPressed;
+
+  NotificationsPage({@required this.onMessagesPressed});
+
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
 }
@@ -11,21 +17,37 @@ class _NotificationsPageState extends State<NotificationsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
+        elevation: 2,
         centerTitle: true,
         title: CustomText(
           text: 'Notification',
-          size: 20,
+          size: 18,
           bold: true,
         ),
-
-        /*Text(
-            'Notifications',
-            style: AppTextStyles.h20BlackBold,
-          ),*/
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              FontAwesomeIcons.paperPlane,
+              size: 20,
+            ),
+            onPressed: widget.onMessagesPressed,
+          ),
+        ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0),
+          child: Container(
+            height: 2.0,
+            decoration: BoxDecoration(
+                gradient:
+                    LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+              AppColors.colorOrange,
+              AppColors.colorPrimaryYellow,
+            ])),
+          ),
+        ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: ListView(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
         children: [
           CustomText(
             text: 'Reminders',
@@ -112,8 +134,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   Spacer(),
                   CustomText(
                     text: '2 hours ago',
-                    size: 12,
+                    size: 10,
                     bold: true,
+                    color: Colors.grey,
                     alignment: TextAlign.center,
                   ),
                   /*Text(
@@ -134,7 +157,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             )),
                         child: CustomText(
                           text: 'Reply',
-                          size: 10,
+                          size: 12,
                           bold: true,
                           alignment: TextAlign.center,
                         ),
