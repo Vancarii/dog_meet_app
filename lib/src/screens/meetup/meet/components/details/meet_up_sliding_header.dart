@@ -33,7 +33,7 @@ class MeetUpSlidingHeader extends StatelessWidget {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                margin: const EdgeInsets.only(top: 4.0),
+                margin: const EdgeInsets.only(top: 6.0),
                 width: 30,
                 height: 4,
                 decoration: BoxDecoration(

@@ -12,8 +12,10 @@ import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/meet_up_hom
 
 //This is placed here so that they are global
 //variable names make it easier to reuse
-const double minSnapPosition = 110;
-const double maxSnapPosition = double.infinity;
+/*const double minSnapPosition = 110;
+const double maxSnapPosition = double.infinity;*/
+const double minSnapPosition = 0.15;
+const double maxSnapPosition = 0.99;
 
 //This enum is used for the filter button
 // the builder that returns which tab it is currently on changes the variable selectedTab
@@ -70,17 +72,6 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              //the appbar bg gradient
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: [
-                      AppColors.colorPrimaryOrange,
-                      AppColors.colorPrimaryYellow,
-                    ])),
-              ),
               elevation: 0,
               centerTitle: true,
               title: CustomText(
@@ -99,7 +90,6 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
                   // do something
                 ),
               ],
-
               bottom: PreferredSize(
                 preferredSize: Size.fromHeight(35),
                 child: Theme(
@@ -107,8 +97,6 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                   ),
-                  //The tabbar is placed in this container and row so that other widgets can be placed
-                  //at the end of the tabbar
                   child: TabBar(
                     //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
                     onTap: (index) {
@@ -123,7 +111,8 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
                     labelColor: AppColors.colorBlack,
                     //controller: meetTabController,
                     indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: Colors.white,
+                    indicatorColor: AppColors.colorPrimaryOrange,
+                    indicatorWeight: 2,
                     tabs: meetTabs,
                   ),
                 ),
@@ -268,15 +257,15 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
               closeOnBackdropTap: true,
               closeOnBackButtonPressed: true,
               isBackdropInteractable: true,
-              elevation: 3,
-              shadowColor: AppColors.colorPrimaryOrange,
+              elevation: 5,
+              shadowColor: Colors.black54,
               cornerRadius: 15,
               liftOnScrollHeaderElevation: 5,
               //duration: Duration(milliseconds: 150),
               snapSpec: const SnapSpec(
-                snap: true,
-                snappings: [minSnapPosition, maxSnapPosition],
-                positioning: SnapPositioning.pixelOffset,
+                snap: true, snappings: [minSnapPosition, maxSnapPosition],
+                //snappings: [minSnapPosition, SnapSpec.expanded],
+                //positioning: SnapPositioning.pixelOffset,
               ),
               body: TabBarView(
                 children: [
