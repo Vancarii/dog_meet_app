@@ -12,10 +12,10 @@ import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/meet_up_hom
 
 //This is placed here so that they are global
 //variable names make it easier to reuse
-/*const double minSnapPosition = 110;
-const double maxSnapPosition = double.infinity;*/
-const double minSnapPosition = 0.15;
-const double maxSnapPosition = 0.99;
+const double minSnapPosition = 115;
+const double maxSnapPosition = double.infinity;
+/*const double minSnapPosition = 0.15;
+const double maxSnapPosition = 0.99;*/
 
 //This enum is used for the filter button
 // the builder that returns which tab it is currently on changes the variable selectedTab
@@ -97,23 +97,32 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                   ),
-                  child: TabBar(
-                    //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
-                    onTap: (index) {
-                      if (slidingSheetController.state.isExpanded) {
-                        print('sliding sheet true');
-                        slidingSheetController.snapToExtent(minSnapPosition,
-                            duration: Duration(milliseconds: 300), clamp: true);
-                      }
-                    },
-                    isScrollable: true,
-                    unselectedLabelColor: Colors.black38,
-                    labelColor: AppColors.colorBlack,
-                    //controller: meetTabController,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: AppColors.colorPrimaryOrange,
-                    indicatorWeight: 2,
-                    tabs: meetTabs,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
+                        onTap: (index) {
+                          if (slidingSheetController.state.isExpanded) {
+                            print('sliding sheet true');
+                            slidingSheetController.snapToExtent(minSnapPosition,
+                                duration: Duration(milliseconds: 300), clamp: true);
+                          }
+                        },
+                        isScrollable: true,
+                        unselectedLabelColor: Colors.black38,
+                        labelColor: AppColors.colorBlack,
+                        //controller: meetTabController,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        indicatorColor: AppColors.colorPrimaryOrange,
+                        indicatorWeight: 4,
+                        tabs: meetTabs,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 0.5,
+                        color: Colors.black12,
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -253,6 +262,7 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
             //the sliderheader is the small part showing when the sliding sheet is collapsed.
             //
             body: SlidingSheet(
+              color: AppColors.colorLightCoral,
               controller: slidingSheetController,
               closeOnBackdropTap: true,
               closeOnBackButtonPressed: true,
@@ -265,7 +275,7 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
               snapSpec: const SnapSpec(
                 snap: true, snappings: [minSnapPosition, maxSnapPosition],
                 //snappings: [minSnapPosition, SnapSpec.expanded],
-                //positioning: SnapPositioning.pixelOffset,
+                positioning: SnapPositioning.pixelOffset,
               ),
               body: TabBarView(
                 children: [

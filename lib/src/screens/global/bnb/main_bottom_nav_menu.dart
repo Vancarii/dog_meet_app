@@ -49,13 +49,16 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
         child: Container(
           width: 60,
           height: 60,
+          //color: AppColors.colorLightCoral,
           decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient:
+            shape: BoxShape.circle,
+            color: AppColors.colorDarkSlateGrey,
+            /*gradient:
                   LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
                 AppColors.colorOrange,
                 AppColors.colorPrimaryYellow,
-              ])),
+              ]),*/
+          ),
           child: Icon(
             Icons.post_add,
             color: Colors.white,
@@ -72,9 +75,11 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> {
         inactiveColor: Colors.black26,
         height: 50,
         backgroundColor: AppColors.colorWhite,
-        activeColor: AppColors.colorPrimaryOrange,
-        splashColor: AppColors.colorPrimaryOrange,
+        activeColor: AppColors.colorDarkSlateGrey,
+        splashColor: AppColors.colorDarkSlateGrey,
+        splashRadius: 45,
         notchSmoothness: NotchSmoothness.softEdge,
+        leftCornerRadius: 10,
         icons: <IconData>[
           Icons.forum,
           Icons.store,

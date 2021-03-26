@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/components/details/components/meet_up_list_tiles.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +13,19 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
+      padding: const EdgeInsets.only(bottom: 60.0),
+      //height: MediaQuery.of(context).size.height,
       width: double.infinity,
-      child: ListView(
-        //padding: const EdgeInsets.all(10),
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+        color: AppColors.colorWhite,
+      ),
+      child: Column(
+        /*shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),*/
         children: <Widget>[
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
                   GridView.builder(
@@ -91,6 +96,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                   blurRadius: 2,
                 ),
               ],
+              //gradient: AppColors.orangeYellowGradient,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

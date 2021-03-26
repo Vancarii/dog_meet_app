@@ -31,7 +31,7 @@ class DogMeetApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.colorWhite,
         primaryColor: AppColors.colorWhite,
-        accentColor: AppColors.colorPrimaryOrange,
+        accentColor: AppColors.colorDarkSlateGrey,
         backgroundColor: AppColors.colorWhite,
         //visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
