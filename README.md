@@ -1,4 +1,4 @@
-# dog_meet_app
+# Dog Meet App
 
 CEO: Yecheng Wang
 
