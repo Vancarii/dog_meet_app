@@ -104,8 +104,7 @@ class AnimatedBottomNavigationBar extends StatefulWidget {
     this.gapLocation,
     this.gapWidth,
   })  : assert(icons != null || itemCount != null),
-        assert(((itemCount ?? icons!.length) >= 2) &&
-            ((itemCount ?? icons!.length) <= 5)),
+        assert(((itemCount ?? icons!.length) >= 2) && ((itemCount ?? icons!.length) <= 5)),
         super(key: key) {
     if (gapLocation == GapLocation.end) {
       if (rightCornerRadius != 0)
@@ -206,12 +205,11 @@ class AnimatedBottomNavigationBar extends StatefulWidget {
         );
 
   @override
-  _AnimatedBottomNavigationBarState createState() =>
-      _AnimatedBottomNavigationBarState();
+  _AnimatedBottomNavigationBarState createState() => _AnimatedBottomNavigationBarState();
 }
 
-class _AnimatedBottomNavigationBarState
-    extends State<AnimatedBottomNavigationBar> with TickerProviderStateMixin {
+class _AnimatedBottomNavigationBarState extends State<AnimatedBottomNavigationBar>
+    with TickerProviderStateMixin {
   late ValueListenable<ScaffoldGeometry> geometryListenable;
   late AnimationController _bubbleController;
   double _bubbleRadius = 0;
@@ -274,8 +272,7 @@ class _AnimatedBottomNavigationBarState
       clipper: CircularNotchedAndCorneredRectangleClipper(
         shape: CircularNotchedAndCorneredRectangle(
           animation: widget.notchAndCornersAnimation,
-          notchSmoothness:
-              widget.notchSmoothness ?? NotchSmoothness.defaultEdge,
+          notchSmoothness: widget.notchSmoothness ?? NotchSmoothness.defaultEdge,
           gapLocation: widget.gapLocation ?? GapLocation.end,
           leftCornerRadius: widget.leftCornerRadius ?? 0.0,
           rightCornerRadius: widget.rightCornerRadius ?? 0.0,
@@ -347,12 +344,6 @@ class _AnimatedBottomNavigationBarState
   }
 }
 
-enum NotchSmoothness {
-  sharpEdge,
-  defaultEdge,
-  softEdge,
-  smoothEdge,
-  verySmoothEdge
-}
+enum NotchSmoothness { sharpEdge, defaultEdge, softEdge, smoothEdge, verySmoothEdge }
 
 enum GapLocation { none, center, end }

@@ -1,12 +1,14 @@
 import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
-import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/meet_up_nearby_feed.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/home/home_drawer_content.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/nearby/nearby_drawer_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/components/details/meet_up_details_page.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/components/details/meet_up_sliding_header.dart';
-import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/meet_up_home_feed.dart';
+import 'components/tabs/home/meet_up_home_feed.dart';
+import 'components/tabs/nearby/meet_up_nearby_feed.dart';
 
 //This file is the meet up pages app bar and bottom sliding sheet that links to the other components
 
@@ -43,9 +45,6 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
 
   //for the preferences / filter endDrawer
   selectedMeetTab selectedTab = selectedMeetTab.HomeTab;
-
-  bool isDefaultPreferences = true;
-  bool isRefined = false;
 
   @override
   Widget build(BuildContext context) {
@@ -128,133 +127,8 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
               ),
             ),
             endDrawer: selectedTab == selectedMeetTab.HomeTab
-                ? Drawer(
-                    child: ListView(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                text: 'Preferences',
-                                size: 26,
-                                bold: true,
-                              ),
-                              CustomText(
-                                text:
-                                    'These preferences change what will be shown in your home page.',
-                                size: 15,
-                                padding: const EdgeInsets.only(top: 15.0),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 15.0),
-                                child: Row(
-                                  children: [
-                                    CustomText(
-                                      text: 'Show All Following',
-                                      size: 15,
-                                      bold: true,
-                                    ),
-                                    Spacer(),
-                                    CupertinoSwitch(
-                                      value: isDefaultPreferences,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          isDefaultPreferences = value;
-                                          if (value == false) {
-                                            isRefined = true;
-                                          } else {
-                                            isRefined = false;
-                                          }
-                                          print(isDefaultPreferences);
-                                        });
-                                      },
-                                      activeColor: AppColors.colorPrimaryOrange,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Divider(
-                                thickness: 1,
-                              ),
-                              Row(
-                                children: [
-                                  CustomText(
-                                    text: 'Refine',
-                                    size: 15,
-                                    bold: true,
-                                  ),
-                                  Spacer(),
-                                  CupertinoSwitch(
-                                    value: isRefined,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        isRefined = value;
-                                        if (value == false) {
-                                          isDefaultPreferences = true;
-                                        } else {
-                                          isDefaultPreferences = false;
-                                        }
-                                        print(isRefined);
-                                      });
-                                    },
-                                    activeColor: AppColors.colorPrimaryOrange,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : Drawer(
-                    child: ListView(
-                      children: [
-                        DrawerHeader(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                text: 'Filter',
-                                size: 26,
-                                bold: true,
-                              ),
-                              CustomText(
-                                text: 'Filter ',
-                                size: 15,
-                                padding: const EdgeInsets.only(top: 15.0),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 15.0),
-                                child: Row(
-                                  children: [
-                                    CustomText(
-                                      text: 'Show All Following',
-                                      size: 15,
-                                      bold: true,
-                                    ),
-                                    Spacer(),
-                                    CupertinoSwitch(
-                                      value: isDefaultPreferences,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          isDefaultPreferences = value;
-                                          print(isDefaultPreferences);
-                                        });
-                                      },
-                                      activeColor: AppColors.colorPrimaryOrange,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                ? HomeDrawerContent()
+                : NearbyDrawerContent(),
             //This is the sliding sheet that shows whenever a meetup post is clicked.
             //the body of the sliding sheet is wrapped in a tabbar view so that it can change
             //pages. MeetUpHomeFeed and nearby feed have the slidingSheetController passed through
@@ -262,7 +136,7 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
             //the sliderheader is the small part showing when the sliding sheet is collapsed.
             //
             body: SlidingSheet(
-              color: AppColors.colorLightCoral,
+              //color: AppColors.colorLightCoral,
               controller: slidingSheetController,
               closeOnBackdropTap: true,
               closeOnBackButtonPressed: true,

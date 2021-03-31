@@ -39,10 +39,8 @@ class CircularNotchedAndCorneredRectangle extends NotchedShape {
   Path getOuterPath(Rect host, Rect? guest) {
     if (guest == null || !host.overlaps(guest)) {
       if (this.rightCornerRadius > 0 || this.leftCornerRadius > 0) {
-        double leftCornerRadius =
-            this.leftCornerRadius * (animation?.value ?? 1);
-        double rightCornerRadius =
-            this.rightCornerRadius * (animation?.value ?? 1);
+        double leftCornerRadius = this.leftCornerRadius * (animation?.value ?? 1);
+        double rightCornerRadius = this.rightCornerRadius * (animation?.value ?? 1);
         return Path()
           ..moveTo(host.left, host.bottom)
           ..lineTo(host.left, host.top + leftCornerRadius)
@@ -105,7 +103,8 @@ class CircularNotchedAndCorneredRectangle extends NotchedShape {
     double p2yA = math.sqrt(r * r - p2xA * p2xA);
     double p2yB = math.sqrt(r * r - p2xB * p2xB);
 
-    List<Offset> p = []..length = 6;
+    List<Offset> p = List.filled(6, Offset.zero, growable: true);
+    //----------------------------------------------------------------------- Changed ------------------------------------------------------
 
     // p0, p1, and p2 are the control points for segment A.
     p[0] = Offset(a - s1, b);

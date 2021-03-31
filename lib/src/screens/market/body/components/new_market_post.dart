@@ -25,6 +25,7 @@ class _NewMarketPostState extends State<NewMarketPost> {
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
+      closedColor: Colors.transparent,
       transitionDuration: Duration(milliseconds: 500),
       closedElevation: 0,
       closedBuilder: (context, action) {

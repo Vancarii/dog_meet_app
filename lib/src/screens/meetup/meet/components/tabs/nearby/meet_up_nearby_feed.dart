@@ -1,11 +1,11 @@
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
-import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/post/meet_up_post.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
 
-class MeetUpHomeFeed extends StatelessWidget {
-  const MeetUpHomeFeed({
+class MeetUpNearbyFeed extends StatelessWidget {
+  const MeetUpNearbyFeed({
     Key key,
     @required this.slidingSheetController,
   }) : super(key: key);
@@ -22,15 +22,14 @@ class MeetUpHomeFeed extends StatelessWidget {
             InkWell(
               onTap: () {},
               child: Container(
-                padding: const EdgeInsets.only(left: 10.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     CustomText(
                       text: 'Port Moody, BC',
-                      size: 15,
+                      size: 12,
                       bold: true,
-                      padding: const EdgeInsets.only(right: 5.0),
                       color: Colors.blue,
                       underline: true,
                     ),

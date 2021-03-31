@@ -14,7 +14,7 @@ class CustomText extends StatelessWidget {
     this.padding,
     this.color = Colors.black,
     this.bold = false,
-    @required this.size,
+    this.size,
     this.alignment,
     this.underline = false,
   });

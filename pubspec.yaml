@@ -39,6 +39,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/json/
 
   fonts:
   - family: Gibson

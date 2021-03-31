@@ -28,8 +28,8 @@ class MeetUpSlidingHeader extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.colorLightCoral,
-          //gradient: AppColors.orangeYellowGradient,
+          //color: AppColors.colorLightCoral,
+          gradient: AppColors.orangeYellowGradient,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,106 +57,75 @@ class MeetUpSlidingHeader extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.center,
               child: Row(
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CircleAvatar(),
-                  /*Padding(
-                    padding: const EdgeInsets.only(left: 5.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CustomText(
-                          text: 'Account Name',
-                          size: 12,
-                          bold: true,
-                          alignment: TextAlign.start,
-                          padding: const EdgeInsets.symmetric(vertical: 2),
-                        ),
-                         CustomText(
-                          text: 'Golden Retriever',
-                          size: 15,
-                          bold: true,
-                          alignment: TextAlign.start,
-                        ),
-                      ],
-                    ),
-                  ),*/
                   VerticalDivider(
                     indent: 10,
                     endIndent: 10,
                     color: Colors.black54,
                     thickness: 1,
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 3.0),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    child: Icon(
-                      FontAwesomeIcons.venus,
-                      color: Colors.pink,
-                    ),
+                  Expanded(
+                    child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 2.0),
+                        //width: 40,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                        child: FittedBox(
+                          child: CustomText(
+                            text: '3:30 pm',
+                            size: 18,
+                            bold: true,
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          ),
+                        )),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 3.0),
-                    width: 40,
-                    height: 40,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    child: CustomText(
-                      text: '3',
-                      size: 20,
-                      bold: true,
-                    ),
+                  Expanded(
+                    child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 2.0),
+                        //width: 40,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                        child: FittedBox(
+                          child: CustomText(
+                            text: '3 going',
+                            size: 18,
+                            bold: true,
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          ),
+                        )),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 3.0),
-                    width: 40,
-                    height: 40,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    child: CustomText(
-                      text: 'M',
-                      size: 20,
-                      bold: true,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 3.0),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    child: Icon(
-                      FontAwesomeIcons.bolt,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 3.0),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                    ),
-                    child: Icon(
-                      FontAwesomeIcons.bone,
-                      color: Colors.black,
-                    ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                        margin: const EdgeInsets.only(left: 2.0),
+                        //width: double.infinity,
+                        height: 40,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                        child: FittedBox(
+                          child: CustomText(
+                            text: 'Glen Park ~ 5km',
+                            size: 15,
+                            bold: true,
+                            alignment: TextAlign.center,
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          ),
+                        )),
                   ),
                 ],
               ),

@@ -43,6 +43,9 @@ class NavigationBarItem extends StatelessWidget {
             maxBubbleRadius: maxBubbleRadius,
           ),
           child: InkWell(
+            //----------------------------------------------Commented out this transform so that the icons dont pop when clicked----------------
+            /*child: Transform.scale(
+              scale: isActive ? iconScale : 1,*/
             child: TabItem(
               isActive: isActive,
               iconData: iconData,
@@ -51,6 +54,7 @@ class NavigationBarItem extends StatelessWidget {
               inactiveColor: inactiveColor,
               child: child,
             ),
+            //),
             splashColor: Colors.transparent,
             focusColor: Colors.transparent,
             highlightColor: Colors.transparent,
