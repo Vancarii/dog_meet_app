@@ -2,7 +2,7 @@ import 'package:dog_meet_app/src/screens/global/components/image_swiper/transfor
 import 'package:dog_meet_app/src/screens/global/components/image_swiper/transformer_page_view/transformer_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import '../../flutter_page_indicator.dart';
 import 'dart:async';
 
 import '../flutter_swiper.dart';

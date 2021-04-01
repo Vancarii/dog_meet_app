@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import '../../flutter_page_indicator.dart';
 import '../flutter_swiper.dart';
 
 class FractionPaginationBuilder extends SwiperPlugin {
@@ -19,11 +19,7 @@ class FractionPaginationBuilder extends SwiperPlugin {
   final Key key;
 
   const FractionPaginationBuilder(
-      {this.color,
-      this.fontSize: 20.0,
-      this.key,
-      this.activeColor,
-      this.activeFontSize: 35.0});
+      {this.color, this.fontSize: 20.0, this.key, this.activeColor, this.activeFontSize: 35.0});
 
   @override
   Widget build(BuildContext context, SwiperPluginConfig config) {
@@ -231,8 +227,7 @@ class DotSwiperPaginationBuilder extends SwiperPlugin {
   }
 }
 
-typedef Widget SwiperPaginationBuilder(
-    BuildContext context, SwiperPluginConfig config);
+typedef Widget SwiperPaginationBuilder(BuildContext context, SwiperPluginConfig config);
 
 class SwiperCustomPagination extends SwiperPlugin {
   final SwiperPaginationBuilder builder;

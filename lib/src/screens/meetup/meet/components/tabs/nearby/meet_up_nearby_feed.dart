@@ -6,9 +6,8 @@ import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
 
 class MeetUpNearbyFeed extends StatelessWidget {
   const MeetUpNearbyFeed({
-    Key key,
     @required this.slidingSheetController,
-  }) : super(key: key);
+  });
 
   final SheetController slidingSheetController;
 

@@ -1,4 +1,3 @@
-import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarScreen extends StatefulWidget {
@@ -15,10 +14,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SearchBar(
-            onSearch: (String text) {},
-            onItemFound: (item, int index) {},
-          ),
+          child: null,
         ),
       ),
     );

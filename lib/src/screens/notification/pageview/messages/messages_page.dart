@@ -2,8 +2,10 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/notification/pageview/messages/components/view_message_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
+//import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+//USE SLIDING SHEET INSTEAD
 
 class MessagesPage extends StatefulWidget {
   final VoidCallback onBackPressed;
@@ -17,7 +19,7 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   ScrollController scrollController;
 
-  SlidingUpPanelController newMessagePanelController = SlidingUpPanelController();
+/*  SlidingUpPanelController newMessagePanelController = SlidingUpPanelController();
 
   @override
   void initState() {
@@ -32,7 +34,7 @@ class _MessagesPageState extends State<MessagesPage> {
       } else {}
     });
     super.initState();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class _MessagesPageState extends State<MessagesPage> {
               IconButton(
                   icon: Icon(FontAwesomeIcons.plusSquare),
                   onPressed: () {
-                    newMessagePanelController.anchor();
+                    //newMessagePanelController.anchor();
                   })
             ],
           ),
@@ -67,7 +69,7 @@ class _MessagesPageState extends State<MessagesPage> {
             ),
           ),
         ),
-        SlidingUpPanelWidget(
+        /*SlidingUpPanelWidget(
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 15.0),
             decoration: ShapeDecoration(
@@ -127,7 +129,7 @@ class _MessagesPageState extends State<MessagesPage> {
               newMessagePanelController.collapse();
             }
           },
-        )
+        )*/
       ],
     );
   }

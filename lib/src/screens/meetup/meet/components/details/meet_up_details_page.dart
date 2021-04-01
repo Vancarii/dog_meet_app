@@ -2,7 +2,6 @@ import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/components/details/components/meet_up_list_tiles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MeetUpDetailsPage extends StatefulWidget {

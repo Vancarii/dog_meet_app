@@ -1,6 +1,5 @@
-import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:dog_meet_app/src/screens/global/components/flutter_page_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:dog_meet_app/src/screens/global/components/image_swiper/flutter_swiper.dart';
 
 class ProfileCarousel extends StatefulWidget {

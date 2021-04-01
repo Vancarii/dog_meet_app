@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import '../../flutter_page_indicator.dart';
 
 import '../flutter_swiper.dart';
 
