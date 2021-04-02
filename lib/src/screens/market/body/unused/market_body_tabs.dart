@@ -1,9 +1,8 @@
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../market_all_page.dart';
-import '../market_new_page.dart';
-import '../market_used_page.dart';
+import 'package:dog_meet_app/src/screens/market/body/market_all_page.dart';
+import 'package:dog_meet_app/src/screens/market/body/market_new_page.dart';
+import 'package:dog_meet_app/src/screens/market/body/market_used_page.dart';
 
 //UNUSED FILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -13,11 +12,11 @@ enum tabBarCategories {
   Used,
 }
 
-Color allColor;
-Color newColor;
-Color usedColor;
+Color? allColor;
+Color? newColor;
+Color? usedColor;
 
-Widget marketPageBody;
+Widget? marketPageBody;
 
 class MarketBodyTabs extends StatefulWidget {
   @override
@@ -49,7 +48,7 @@ class _MarketBodyTabsState extends State<MarketBodyTabs> {
     });
   }
 
-  RawMaterialButton marketBodyFilterButton(Color fillColor, String text, tabBarCategories page) {
+  RawMaterialButton marketBodyFilterButton(Color? fillColor, String text, tabBarCategories page) {
     return RawMaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
       fillColor: fillColor,
@@ -85,7 +84,7 @@ class _MarketBodyTabsState extends State<MarketBodyTabs> {
           marketBodyFilterButton(usedColor, 'Used', tabBarCategories.Used),
         ],
       ),
-      marketPageBody,
+      marketPageBody!,
     ]);
   }
 }

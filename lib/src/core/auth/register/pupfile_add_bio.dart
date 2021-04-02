@@ -81,7 +81,7 @@ class _PupfileAddBioState extends State<PupfileAddBio> {
                         BoxDecoration(color: Colors.white, shape: BoxShape.circle, boxShadow: [
                       BoxShadow(
                           blurRadius: 2,
-                          color: Colors.grey[400],
+                          color: Colors.grey[400]!,
                           spreadRadius: 1,
                           offset: Offset(-1, 2)),
                     ]),

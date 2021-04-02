@@ -1,6 +1,6 @@
 library animated_bottom_navigation_bar;
 
-import 'package:animated_bottom_navigation_bar/src/navigation_bar_item.dart';
+import 'package:dog_meet_app/src/screens/global/bnb/animated_bottom_navigation_bar/src/navigation_bar_item.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

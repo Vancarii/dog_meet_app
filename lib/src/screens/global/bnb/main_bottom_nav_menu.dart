@@ -1,4 +1,4 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:dog_meet_app/src/screens/global/bnb/animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:dog_meet_app/src/screens/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/market/market_app_bar.dart';
@@ -7,7 +7,7 @@ import 'package:dog_meet_app/src/screens/notification/pageview/notification_page
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../profile/account_profile_page.dart';
+import 'package:dog_meet_app/src/screens/profile/account_profile_page.dart';
 
 //This file stays the same throughout all 5 pages of the bottom navigation
 //the only thing that changes is the body of the scaffold which is set to _currentSelectedScreenIndex and switches
@@ -115,7 +115,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with TickerProvid
         onTap: (index) {
           setState(() {
             print('index' + index.toString());
-            return _currentSelectedScreenIndex = index;
+            _currentSelectedScreenIndex = index;
           });
         },
       ),

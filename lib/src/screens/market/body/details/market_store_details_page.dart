@@ -13,8 +13,8 @@ class MarketStoreDetailsPage extends StatefulWidget {
   final String storeImage;
 
   const MarketStoreDetailsPage({
-    @required this.storeImage,
-    @required this.storeName,
+    required this.storeImage,
+    required this.storeName,
   });
 
   @override

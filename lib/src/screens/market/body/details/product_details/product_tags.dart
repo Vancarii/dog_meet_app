@@ -1,7 +1,7 @@
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import 'market_product_tags_chips.dart';
+import 'package:dog_meet_app/src/screens/market/body/details/product_details/market_product_tags_chips.dart';
 
 class ProductTags extends StatefulWidget {
   @override

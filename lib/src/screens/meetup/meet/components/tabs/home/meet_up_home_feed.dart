@@ -6,8 +6,8 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 
 class MeetUpHomeFeed extends StatelessWidget {
   const MeetUpHomeFeed({
-    Key key,
-    @required this.slidingSheetController,
+    Key? key,
+    required this.slidingSheetController,
   }) : super(key: key);
 
   final SheetController slidingSheetController;

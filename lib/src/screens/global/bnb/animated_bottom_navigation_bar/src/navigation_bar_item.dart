@@ -1,4 +1,4 @@
-import 'package:animated_bottom_navigation_bar/src/bubble_selection_painter.dart';
+import 'package:dog_meet_app/src/screens/global/bnb/animated_bottom_navigation_bar/src/bubble_selection_painter.dart';
 import 'package:flutter/material.dart';
 
 import 'tab_item.dart';

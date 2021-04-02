@@ -3,14 +3,14 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class ProductInfo extends StatefulWidget {
-  final String condition;
-  final String price;
-  final String productTitle;
+  final String? condition;
+  final String? price;
+  final String? productTitle;
 
   const ProductInfo({
-    @required this.condition,
-    @required this.price,
-    @required this.productTitle,
+    required this.condition,
+    required this.price,
+    required this.productTitle,
   });
 
   @override
@@ -40,7 +40,7 @@ class _ProductInfoState extends State<ProductInfo> {
           padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
         ),
         CustomText(
-          text: '\$' + widget.price,
+          text: '\$' + widget.price!,
           size: 20,
           bold: true,
           color: AppColors.colorPrimaryOrange,

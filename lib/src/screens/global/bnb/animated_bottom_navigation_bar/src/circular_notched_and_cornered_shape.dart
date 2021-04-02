@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:dog_meet_app/src/screens/global/bnb/animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/painting.dart';
 
@@ -11,16 +11,16 @@ class CircularNotchedAndCorneredRectangle extends NotchedShape {
   ///
   /// The same object can be used to create multiple shapes.
   final Animation<double>? animation;
-  final NotchSmoothness notchSmoothness;
-  final GapLocation gapLocation;
-  final double leftCornerRadius;
-  final double rightCornerRadius;
+  final NotchSmoothness? notchSmoothness;
+  final GapLocation? gapLocation;
+  final double? leftCornerRadius;
+  final double? rightCornerRadius;
 
   CircularNotchedAndCorneredRectangle({
-    required this.notchSmoothness,
-    required this.gapLocation,
-    required this.leftCornerRadius,
-    required this.rightCornerRadius,
+    this.notchSmoothness,
+    this.gapLocation,
+    this.leftCornerRadius,
+    this.rightCornerRadius,
     this.animation,
   });
 
@@ -38,9 +38,9 @@ class CircularNotchedAndCorneredRectangle extends NotchedShape {
   @override
   Path getOuterPath(Rect host, Rect? guest) {
     if (guest == null || !host.overlaps(guest)) {
-      if (this.rightCornerRadius > 0 || this.leftCornerRadius > 0) {
-        double leftCornerRadius = this.leftCornerRadius * (animation?.value ?? 1);
-        double rightCornerRadius = this.rightCornerRadius * (animation?.value ?? 1);
+      if (this.rightCornerRadius! > 0 || this.leftCornerRadius! > 0) {
+        double leftCornerRadius = this.leftCornerRadius! * (animation?.value ?? 1);
+        double rightCornerRadius = this.rightCornerRadius! * (animation?.value ?? 1);
         return Path()
           ..moveTo(host.left, host.bottom)
           ..lineTo(host.left, host.top + leftCornerRadius)
@@ -79,8 +79,8 @@ class CircularNotchedAndCorneredRectangle extends NotchedShape {
     // The guest's shape is a circle bounded by the guest rectangle.
     // So the guest's radius is half the guest width.
     double notchRadius = guest.width / 2 * (animation?.value ?? 1);
-    double leftCornerRadius = this.leftCornerRadius * (animation?.value ?? 1);
-    double rightCornerRadius = this.rightCornerRadius * (animation?.value ?? 1);
+    double leftCornerRadius = this.leftCornerRadius! * (animation?.value ?? 1);
+    double rightCornerRadius = this.rightCornerRadius! * (animation?.value ?? 1);
 
     // We build a path for the notch from 3 segments:
     // Segment A - a Bezier curve from the host's top edge to segment B.
@@ -166,7 +166,7 @@ extension on NotchSmoothness? {
     NotchSmoothness.verySmoothEdge: 25.0,
   };
 
-  double get s1 => curveS1[this] ?? 15.0;
+  double get s1 => curveS1[this!] ?? 15.0;
 
-  double get s2 => curveS2[this] ?? 1.0;
+  double get s2 => curveS2[this!] ?? 1.0;
 }

@@ -2,12 +2,12 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class MeetUpListTiles extends StatelessWidget {
-  final IconData leadingIcon;
-  final Color iconColor;
-  final String title;
-  final String description;
+  final IconData? leadingIcon;
+  final Color? iconColor;
+  final String? title;
+  final String? description;
 
-  const MeetUpListTiles({Key key, this.leadingIcon, this.iconColor, this.title, this.description})
+  const MeetUpListTiles({Key? key, this.leadingIcon, this.iconColor, this.title, this.description})
       : super(key: key);
 
   @override

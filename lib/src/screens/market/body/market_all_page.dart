@@ -3,13 +3,12 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-import 'components/market_store_rounded_button.dart';
-import 'components/new_market_post.dart';
+import 'package:dog_meet_app/src/screens/market/body/components/market_store_rounded_button.dart';
+import 'package:dog_meet_app/src/screens/market/body/components/new_market_post.dart';
 
 class MarketAllPage extends StatelessWidget {
   const MarketAllPage({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

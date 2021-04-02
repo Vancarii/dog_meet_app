@@ -2,7 +2,7 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class MarketProductTagsChips extends StatefulWidget {
-  final String tagWord;
+  final String? tagWord;
 
   const MarketProductTagsChips({
     this.tagWord,

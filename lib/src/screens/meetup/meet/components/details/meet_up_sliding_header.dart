@@ -3,13 +3,12 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-
-import '../../meet_up_page.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
 
 class MeetUpSlidingHeader extends StatelessWidget {
   const MeetUpSlidingHeader({
-    Key key,
-    @required this.slidingSheetController,
+    Key? key,
+    required this.slidingSheetController,
   }) : super(key: key);
 
   final SheetController slidingSheetController;
@@ -18,7 +17,7 @@ class MeetUpSlidingHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (slidingSheetController.state.isCollapsed == true) {
+        if (slidingSheetController.state!.isCollapsed == true) {
           slidingSheetController.snapToExtent(maxSnapPosition,
               duration: Duration(milliseconds: 150));
         } else {

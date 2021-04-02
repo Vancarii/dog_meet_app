@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 
 class BeautyTextfield extends StatefulWidget {
   final BorderRadius cornerRadius;
-  final double width, height, wordSpacing;
+  final double? width, height, wordSpacing;
   final Color backgroundColor, accentColor, textColor;
-  final String placeholder, fontFamily;
-  final Icon prefixIcon, suffixIcon;
+  final String? placeholder, fontFamily;
+  final Icon? prefixIcon, suffixIcon;
   final TextInputType inputType;
   final EdgeInsets margin;
   final Duration duration;
-  final VoidCallback onClickSuffix;
-  final TextBaseline textBaseline;
-  final FontStyle fontStyle;
-  final FontWeight fontWeight;
+  final VoidCallback? onClickSuffix;
+  final TextBaseline? textBaseline;
+  final FontStyle? fontStyle;
+  final FontWeight? fontWeight;
   final bool autofocus, autocorrect, enabled, obscureText, isShadow;
-  final FocusNode focusNode;
-  final int maxLength, minLines, maxLines;
-  final ValueChanged<String> onChanged, onSubmitted;
-  final GestureTapCallback onTap;
-  final TextEditingController controller;
+  final FocusNode? focusNode;
+  final int? maxLength, minLines, maxLines;
+  final ValueChanged<String>? onChanged, onSubmitted;
+  final GestureTapCallback? onTap;
+  final TextEditingController? controller;
 
   const BeautyTextfield(
-      {@required this.width,
-      @required this.height,
-      @required this.prefixIcon,
-      @required this.inputType,
+      {required double this.width,
+      required double this.height,
+      required Icon this.prefixIcon,
+      required this.inputType,
       this.controller,
       this.suffixIcon,
       this.duration = const Duration(milliseconds: 500),
@@ -51,11 +51,7 @@ class BeautyTextfield extends StatefulWidget {
       this.minLines,
       this.onChanged,
       this.onTap,
-      this.onSubmitted})
-      : assert(width != null),
-        assert(height != null),
-        assert(prefixIcon != null),
-        assert(inputType != null);
+      this.onSubmitted});
 
   @override
   _BeautyTextfieldState createState() => _BeautyTextfieldState();
@@ -74,7 +70,7 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
       decoration: BoxDecoration(
           boxShadow: widget.isShadow
               ? [BoxShadow(color: Colors.grey, blurRadius: 2, spreadRadius: 1)]
-              : BoxShadow(spreadRadius: 0, blurRadius: 0),
+              : BoxShadow(spreadRadius: 0, blurRadius: 0) as List<BoxShadow>?,
           borderRadius: widget.cornerRadius,
           color: widget.suffixIcon == null
               ? isFocus
@@ -93,9 +89,8 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
                     margin: EdgeInsets.only(right: isFocus ? 0 : 7),
                     duration: widget.duration,
                     decoration: BoxDecoration(
-                      borderRadius: isFocus
-                          ? widget.cornerRadius
-                          : BorderRadius.all(Radius.circular(60)),
+                      borderRadius:
+                          isFocus ? widget.cornerRadius : BorderRadius.all(Radius.circular(60)),
                       color: widget.accentColor,
                     ),
                   ),
@@ -107,7 +102,7 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
                     setState(() {
                       isFocus ? isFocus = false : isFocus = true;
                       if (widget.onClickSuffix != null) {
-                        widget.onClickSuffix();
+                        widget.onClickSuffix!();
                       }
                     });
                   },
@@ -115,7 +110,7 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
                     margin: EdgeInsets.only(right: 15),
                     alignment: Alignment.centerRight,
                     child: Icon(
-                      widget.suffixIcon.icon,
+                      widget.suffixIcon!.icon,
                       color: widget.textColor,
                     ),
                   ),
@@ -127,9 +122,8 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
                 Expanded(
                   flex: 1,
                   child: Icon(
-                    widget.prefixIcon.icon,
-                    color:
-                        isFocus ? widget.backgroundColor : widget.accentColor,
+                    widget.prefixIcon!.icon,
+                    color: isFocus ? widget.backgroundColor : widget.accentColor,
                   ),
                 ),
                 Expanded(
@@ -164,22 +158,21 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
                           isFocus = true;
                         });
                         if (widget.onTap != null) {
-                          widget.onTap();
+                          widget.onTap!();
                         }
                       },
                       onSubmitted: (t) {
                         setState(() {
                           isFocus = false;
                         });
-                        widget.onSubmitted(t);
+                        widget.onSubmitted!(t);
                       },
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                           hintStyle: TextStyle(color: widget.textColor),
                           hintText: widget.placeholder,
                           border: InputBorder.none),
-                      cursorColor:
-                          isFocus ? widget.accentColor : widget.backgroundColor,
+                      cursorColor: isFocus ? widget.accentColor : widget.backgroundColor,
                     ),
                   ),
                 ),

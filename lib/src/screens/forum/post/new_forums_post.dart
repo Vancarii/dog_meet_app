@@ -17,8 +17,8 @@ class NewForumsPost extends StatefulWidget {
 class _NewForumsPostState extends State<NewForumsPost> {
   readMoreText selectedReadText = readMoreText.more;
   String readMoreLessPrompt = 'READ MORE';
-  int textMaxLines = 20;
-  TextOverflow textOverflowBehavior = TextOverflow.ellipsis;
+  int? textMaxLines = 20;
+  TextOverflow? textOverflowBehavior = TextOverflow.ellipsis;
 
   Icon tennisBallIcon = Icon(ionIcons.Ionicons.tennisball_outline);
 

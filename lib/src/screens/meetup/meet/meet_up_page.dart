@@ -7,8 +7,8 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/components/details/meet_up_details_page.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/components/details/meet_up_sliding_header.dart';
-import 'components/tabs/home/meet_up_home_feed.dart';
-import 'components/tabs/nearby/meet_up_nearby_feed.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/home/meet_up_home_feed.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/components/tabs/nearby/meet_up_nearby_feed.dart';
 
 //This file is the meet up pages app bar and bottom sliding sheet that links to the other components
 
@@ -53,7 +53,7 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
       //builder to check which tabbar tab is clicked. nothing is done here yet
       child: Builder(
         builder: (BuildContext context) {
-          final TabController meetTabController = DefaultTabController.of(context);
+          final TabController meetTabController = DefaultTabController.of(context)!;
           meetTabController.addListener(() {
             if (!meetTabController.indexIsChanging) {
               setState(() {
@@ -101,7 +101,7 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
                       TabBar(
                         //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
                         onTap: (index) {
-                          if (slidingSheetController.state.isExpanded) {
+                          if (slidingSheetController.state!.isExpanded) {
                             print('sliding sheet true');
                             slidingSheetController.snapToExtent(minSnapPosition,
                                 duration: Duration(milliseconds: 300), clamp: true);

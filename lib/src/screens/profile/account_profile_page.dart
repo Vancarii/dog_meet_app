@@ -4,7 +4,6 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/global/search/search_screen.dart';
 import 'package:dog_meet_app/src/screens/profile/profile_carousel.dart';
 import 'package:dog_meet_app/src/screens/profile/profile_info.dart';
-import 'package:dog_meet_app/src/screens/profile/profile_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

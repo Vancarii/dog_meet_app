@@ -10,14 +10,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class MessagesPage extends StatefulWidget {
   final VoidCallback onBackPressed;
 
-  MessagesPage({@required this.onBackPressed});
+  MessagesPage({required this.onBackPressed});
 
   @override
   _MessagesPageState createState() => _MessagesPageState();
 }
 
 class _MessagesPageState extends State<MessagesPage> {
-  ScrollController scrollController;
+  ScrollController? scrollController;
 
 /*  SlidingUpPanelController newMessagePanelController = SlidingUpPanelController();
 
