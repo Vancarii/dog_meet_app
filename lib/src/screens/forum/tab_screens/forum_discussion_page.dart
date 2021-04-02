@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/screens/forum/post/new_forums_post.dart';
+import 'package:dog_meet_app/src/screens/forum/post/forum_post.dart';
 import 'package:flutter/material.dart';
 
 class ForumDiscussionPage extends StatefulWidget {
@@ -15,8 +15,8 @@ class _ForumDiscussionPageState extends State<ForumDiscussionPage> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            NewForumsPost(),
-            NewForumsPost(),
+            ForumPost(),
+            ForumPost(),
           ],
         ),
       ],

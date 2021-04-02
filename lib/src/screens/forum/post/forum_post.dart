@@ -9,12 +9,12 @@ enum readMoreText {
   less,
 }
 
-class NewForumsPost extends StatefulWidget {
+class ForumPost extends StatefulWidget {
   @override
-  _NewForumsPostState createState() => _NewForumsPostState();
+  _ForumPostState createState() => _ForumPostState();
 }
 
-class _NewForumsPostState extends State<NewForumsPost> {
+class _ForumPostState extends State<ForumPost> {
   readMoreText selectedReadText = readMoreText.more;
   String readMoreLessPrompt = 'READ MORE';
   int? textMaxLines = 20;

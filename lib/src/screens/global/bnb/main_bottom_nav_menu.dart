@@ -1,8 +1,12 @@
+import 'package:dog_meet_app/src/screens/forum/new/new_forum_post_page.dart';
 import 'package:dog_meet_app/src/screens/global/bnb/animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:dog_meet_app/src/screens/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
+import 'package:dog_meet_app/src/screens/global/route_transitions/slideup_route_transition.dart';
 import 'package:dog_meet_app/src/screens/market/market_app_bar.dart';
+import 'package:dog_meet_app/src/screens/market/new/new_market_post_page.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
+import 'package:dog_meet_app/src/screens/meetup/meet/new/new_meet_up_post_page.dart';
 import 'package:dog_meet_app/src/screens/notification/pageview/notification_pageview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +27,10 @@ class MainBottomNavMenu extends StatefulWidget {
   _MainBottomNavMenuState createState() => _MainBottomNavMenuState();
 }
 
-class _MainBottomNavMenuState extends State<MainBottomNavMenu> with TickerProviderStateMixin {
+class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTickerProviderStateMixin {
   var _currentSelectedScreenIndex = 2;
+
+  IconData fabIcon = FontAwesomeIcons.paw;
 
   final _pageOptions = [
     ForumsAppBar(),
@@ -50,26 +56,6 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with TickerProvid
     FontAwesomeIcons.paw,
   ];
 
-/*  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 2),
-    vsync: this,
-  )..repeat(reverse: true);
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.elasticOut,
-  );
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,14 +74,34 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with TickerProvid
             shape: BoxShape.circle,
             color: AppColors.colorPrimaryOrange,
           ),
-          child: Icon(
-            newPostIcons[_currentSelectedScreenIndex],
-            color: Colors.white,
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 250),
+            switchInCurve: Curves.easeInOutSine,
+            switchOutCurve: Curves.easeOutSine,
+            child: Icon(
+              newPostIcons[_currentSelectedScreenIndex],
+              color: Colors.white,
+              key: UniqueKey(),
+            ),
+
+            /*Icon(
+              fabIcon,
+              key: ValueKey<IconData>(fabIcon),
+              color: Colors.white,
+            ),*/
           ),
         ),
         onPressed: () {
           setState(() {
-            //TODO: GO TO PAGE THAT POSTS TO EITHER OF THE 3 PAGES
+            if (_currentSelectedScreenIndex == 0) {
+              Navigator.of(context).push(slideUpRoute(NewForumPostPage()));
+            }
+            if (_currentSelectedScreenIndex == 1) {
+              Navigator.of(context).push(slideUpRoute(NewListingPage()));
+            }
+            if (_currentSelectedScreenIndex == 2 || _currentSelectedScreenIndex == 4) {
+              Navigator.of(context).push(slideUpRoute(NewMeetUpPostPage()));
+            }
           });
         },
       ),

@@ -8,7 +8,6 @@
 import 'package:dog_meet_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'dart:ui';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
