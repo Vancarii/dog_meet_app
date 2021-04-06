@@ -1,17 +1,19 @@
+import 'package:animations/animations.dart';
 import 'package:dog_meet_app/src/screens/forum/new/new_forum_post_page.dart';
 import 'package:dog_meet_app/src/screens/global/bnb/animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:dog_meet_app/src/screens/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
-import 'package:dog_meet_app/src/screens/global/route_transitions/slideup_route_transition.dart';
+//import 'package:dog_meet_app/src/screens/global/route_transitions/slideup_route_transition.dart';
 import 'package:dog_meet_app/src/screens/market/market_app_bar.dart';
 import 'package:dog_meet_app/src/screens/market/new/new_market_post_page.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/meetup/meet/new/new_meet_up_post_page.dart';
 import 'package:dog_meet_app/src/screens/notification/pageview/notification_pageview.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dog_meet_app/src/screens/profile/account_profile_page.dart';
+import 'package:provider/provider.dart';
+import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
 
 //This file stays the same throughout all 5 pages of the bottom navigation
 //the only thing that changes is the body of the scaffold which is set to _currentSelectedScreenIndex and switches
@@ -53,79 +55,134 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
     Icons.store,
     FontAwesomeIcons.paw,
     FontAwesomeIcons.solidPaperPlane,
-    FontAwesomeIcons.paw,
+    FontAwesomeIcons.solidPaperPlane,
   ];
+
+  _navBarOnTap(int index) {
+    setState(() {
+      print('index' + index.toString());
+      _currentSelectedScreenIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      extendBodyBehindAppBar: true,
-      extendBody: true,
-      floatingActionButton: FloatingActionButton(
-        splashColor: AppColors.colorPrimaryOrange,
-        elevation: 2,
-        highlightElevation: 0,
-        child: Container(
-          width: 60,
-          height: 60,
-          //color: AppColors.colorLightCoral,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: AppColors.colorPrimaryOrange,
-          ),
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 250),
-            switchInCurve: Curves.easeInOutSine,
-            switchOutCurve: Curves.easeOutSine,
-            child: Icon(
-              newPostIcons[_currentSelectedScreenIndex],
-              color: Colors.white,
-              key: UniqueKey(),
-            ),
-
-            /*Icon(
-              fabIcon,
-              key: ValueKey<IconData>(fabIcon),
-              color: Colors.white,
-            ),*/
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => FabMessageNotifier(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        extendBodyBehindAppBar: true,
+        extendBody: true,
+        floatingActionButton: _currentSelectedScreenIndex == 0 ||
+                _currentSelectedScreenIndex == 1 ||
+                _currentSelectedScreenIndex == 2
+            ? fabOpenContainer(_currentSelectedScreenIndex, newPostIcons)
+            : FabMessage(
+                iconList: newPostIcons,
+                pageIndex: _currentSelectedScreenIndex,
+                fabTapCallback: () {
+                  setState(() {
+                    _currentSelectedScreenIndex = 3;
+                  });
+                }),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
+        bottomNavigationBar: SafeArea(
+          child: AnimatedBottomNavigationBar(
+            //gapLocation: GapLocation.center,
+            inactiveColor: Colors.black26,
+            height: 50,
+            backgroundColor: AppColors.colorWhite,
+            activeColor: AppColors.colorPrimaryOrange,
+            splashColor: Colors.grey[350],
+            splashRadius: 45,
+            notchSmoothness: NotchSmoothness.softEdge,
+            leftCornerRadius: 10,
+            icons: bottomNavIcons,
+            activeIndex: _currentSelectedScreenIndex,
+            onTap: _navBarOnTap,
           ),
         ),
-        onPressed: () {
-          setState(() {
-            if (_currentSelectedScreenIndex == 0) {
-              Navigator.of(context).push(slideUpRoute(NewForumPostPage()));
-            }
-            if (_currentSelectedScreenIndex == 1) {
-              Navigator.of(context).push(slideUpRoute(NewListingPage()));
-            }
-            if (_currentSelectedScreenIndex == 2 || _currentSelectedScreenIndex == 4) {
-              Navigator.of(context).push(slideUpRoute(NewMeetUpPostPage()));
-            }
-          });
-        },
+        body: IndexedStack(children: _pageOptions, index: _currentSelectedScreenIndex),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        //gapLocation: GapLocation.center,
-        inactiveColor: Colors.black26,
-        height: 50,
-        backgroundColor: AppColors.colorWhite,
-        activeColor: AppColors.colorPrimaryOrange,
-        splashColor: Colors.grey[350],
-        splashRadius: 45,
-        notchSmoothness: NotchSmoothness.softEdge,
-        leftCornerRadius: 10,
-        icons: bottomNavIcons,
-        activeIndex: _currentSelectedScreenIndex,
-        onTap: (index) {
-          setState(() {
-            print('index' + index.toString());
-            _currentSelectedScreenIndex = index;
-          });
-        },
-      ),
-      body: IndexedStack(children: _pageOptions, index: _currentSelectedScreenIndex),
     );
+  }
+}
+
+OpenContainer fabOpenContainer(int pageIndex, List shownIcons) {
+  return OpenContainer(
+    openBuilder: (BuildContext context, void Function({Object returnValue}) action) {
+      if (pageIndex == 0) {
+        return NewForumPostPage();
+      } else if (pageIndex == 1) {
+        return NewListingPage();
+      } else {
+        return NewMeetUpPostPage();
+      }
+    },
+    closedElevation: 6.0,
+    closedShape: CircleBorder(),
+    closedColor: AppColors.colorPrimaryOrange,
+    closedBuilder: (BuildContext context, void Function() action) {
+      return Container(
+        width: 55,
+        height: 55,
+        //color: AppColors.colorLightCoral,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.colorPrimaryOrange,
+        ),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 250),
+          switchInCurve: Curves.easeInOutSine,
+          switchOutCurve: Curves.easeOutSine,
+          child: Icon(
+            shownIcons[pageIndex],
+            color: Colors.white,
+            key: UniqueKey(),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+class FabMessage extends StatefulWidget {
+  final List<IconData> iconList;
+  final int pageIndex;
+  final VoidCallback fabTapCallback;
+
+  FabMessage({
+    required this.iconList,
+    required this.pageIndex,
+    required this.fabTapCallback,
+  });
+
+  @override
+  _FabMessageState createState() => _FabMessageState();
+}
+
+class _FabMessageState extends State<FabMessage> {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+        splashColor: AppColors.colorPrimaryOrange,
+        elevation: 6,
+        highlightElevation: 0,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 250),
+          switchInCurve: Curves.easeInOutSine,
+          switchOutCurve: Curves.easeOutSine,
+          child: Icon(
+            widget.iconList[widget.pageIndex],
+            color: Colors.white,
+            key: UniqueKey(),
+          ),
+        ),
+        onPressed: widget.pageIndex == 3
+            ? () {
+                Provider.of<FabMessageNotifier>(context, listen: false).changeIsOnMessagesPage();
+                print(Provider.of<FabMessageNotifier>(context, listen: false).messageFabClicked);
+              }
+            : widget.fabTapCallback);
   }
 }

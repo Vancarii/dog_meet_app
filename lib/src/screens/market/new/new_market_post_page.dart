@@ -15,10 +15,11 @@ class NewListingPage extends StatelessWidget {
           //alignment: TextAlign.center,
         ),
         leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(Icons.close_rounded)),
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.close_rounded),
+        ),
         actions: <Widget>[
           Center(
             child: GestureDetector(

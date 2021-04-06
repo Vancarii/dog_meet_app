@@ -10,19 +10,19 @@ class NotificationsPageView extends StatefulWidget {
 }
 
 class _NotificationsPageViewState extends State<NotificationsPageView> {
-  PageController pageViewController = PageController(
+  PageController _pageViewController = PageController(
     initialPage: 0,
   );
 
   @override
   Widget build(BuildContext context) {
     return PageView(
-      controller: pageViewController,
-      allowImplicitScrolling: true,
+      controller: _pageViewController,
+      //allowImplicitScrolling: false,
       children: [
         NotificationsPage(
           onMessagesPressed: () {
-            pageViewController.animateToPage(
+            _pageViewController.animateToPage(
               1,
               duration: Duration(milliseconds: 100),
               curve: Curves.linear,
@@ -31,7 +31,7 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
         ),
         MessagesPage(
           onBackPressed: () {
-            pageViewController.animateToPage(
+            _pageViewController.animateToPage(
               0,
               duration: Duration(milliseconds: 100),
               curve: Curves.linear,

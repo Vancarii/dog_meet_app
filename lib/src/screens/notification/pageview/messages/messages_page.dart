@@ -2,8 +2,6 @@ import 'package:dog_meet_app/src/screens/global/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/notification/pageview/messages/components/view_message_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //USE SLIDING SHEET INSTEAD
 
@@ -44,21 +42,16 @@ class _MessagesPageState extends State<MessagesPage> {
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            leading:
-                IconButton(icon: Icon(FontAwesomeIcons.arrowLeft), onPressed: widget.onBackPressed),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: widget.onBackPressed,
+            ),
             title: CustomText(
               text: 'Messages',
-              size: 20,
+              size: 18,
               bold: true,
               alignment: TextAlign.center,
             ),
-            actions: [
-              IconButton(
-                  icon: Icon(FontAwesomeIcons.plusSquare),
-                  onPressed: () {
-                    //newMessagePanelController.anchor();
-                  })
-            ],
           ),
           body: SafeArea(
             child: ListView(

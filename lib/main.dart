@@ -9,6 +9,7 @@ import 'package:dog_meet_app/src/screens/global/components/app_colors.dart';
 import 'package:dog_meet_app/src/screens/global/search/search_screen.dart';
 import 'package:dog_meet_app/src/screens/market/body/details/market_product_details_page.dart';
 import 'package:dog_meet_app/src/screens/market/market_app_bar.dart';
+import 'package:dog_meet_app/src/screens/notification/pageview/messages/messages_page.dart';
 import 'package:dog_meet_app/src/screens/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/profile/profile_view_meetup.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +26,9 @@ void main() {
 class DogMeetApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent, systemNavigationBarColor: Colors.transparent));
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
