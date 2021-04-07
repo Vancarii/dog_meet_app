@@ -1,7 +1,6 @@
 import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'messages/messages_page.dart';
 import 'notifications/notifications_page.dart';
 
