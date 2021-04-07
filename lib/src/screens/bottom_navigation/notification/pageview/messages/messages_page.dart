@@ -1,11 +1,10 @@
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/view_message_container.dart';
 
-//USE SLIDING SHEET INSTEAD
+SheetController messagesSlidingSheetController = SheetController();
 
 class MessagesPage extends StatefulWidget {
   final VoidCallback onBackPressed;
@@ -17,8 +16,6 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagesPageState extends State<MessagesPage> {
-  ScrollController? scrollController;
-
 /*  SlidingUpPanelController newMessagePanelController = SlidingUpPanelController();
 
   @override
@@ -38,33 +35,55 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            centerTitle: true,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: widget.onBackPressed,
-            ),
-            title: CustomText(
-              text: 'Messages',
-              size: 18,
-              bold: true,
-              alignment: TextAlign.center,
-            ),
+    return SlidingSheet(
+      controller: messagesSlidingSheetController,
+      closeOnBackdropTap: true,
+      closeOnBackButtonPressed: true,
+      isBackdropInteractable: true,
+      backdropColor: Colors.black54,
+      elevation: 5,
+      shadowColor: Colors.black54,
+      cornerRadius: 15,
+      liftOnScrollHeaderElevation: 5,
+      //duration: Duration(milliseconds: 150),
+      snapSpec: const SnapSpec(
+        snap: true, snappings: [0.0, 0.6],
+        //snappings: [minSnapPosition, SnapSpec.expanded],
+      ),
+      body: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: widget.onBackPressed,
           ),
-          body: SafeArea(
-            child: ListView(
-              children: [
-                ViewMessageContainer(),
-                ViewMessageContainer(),
-              ],
-            ),
+          title: CustomText(
+            text: 'Messages',
+            size: 18,
+            bold: true,
+            alignment: TextAlign.center,
           ),
         ),
-        /*SlidingUpPanelWidget(
+        body: SafeArea(
+          child: ListView(
+            children: [
+              ViewMessageContainer(),
+              ViewMessageContainer(),
+            ],
+          ),
+        ),
+      ),
+      builder: (BuildContext context, SheetState state) {
+        return Container(
+          height: MediaQuery.of(context).size.height,
+        );
+      },
+    );
+  }
+}
+
+/*SlidingUpPanelWidget(
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 15.0),
             decoration: ShapeDecoration(
@@ -125,7 +144,3 @@ class _MessagesPageState extends State<MessagesPage> {
             }
           },
         )*/
-      ],
-    );
-  }
-}

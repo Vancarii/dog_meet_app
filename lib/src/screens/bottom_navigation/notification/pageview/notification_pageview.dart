@@ -19,7 +19,7 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
   @override
   Widget build(BuildContext context) {
     setState(() {
-      if (Provider.of<FabMessageNotifier>(context).messageFabClicked == true) {
+      if (Provider.of<FabMessageNotifier>(context).onMessagesPage == true) {
         _pageViewController.animateToPage(
           1,
           duration: Duration(milliseconds: 200),

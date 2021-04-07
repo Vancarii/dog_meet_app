@@ -6,9 +6,12 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/post/comments/forum_comment_section.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/market_product_details_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/post_listing_page.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/new/post_meet_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/profile_view_meetup.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
@@ -55,6 +58,9 @@ class DogMeetApp extends StatelessWidget {
           MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
           ForumCommentSection.id: (context) => ForumCommentSection(),
           ProfileViewMeetUp.id: (context) => ProfileViewMeetUp(),
+          PostForumPage.id: (context) => PostForumPage(),
+          PostListingPage.id: (context) => PostListingPage(),
+          PostMeetPage.id: (context) => PostMeetPage(),
         },
       ),
     );

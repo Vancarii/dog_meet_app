@@ -2,7 +2,6 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-
 import 'components/details/meet_up_details_page.dart';
 import 'components/details/meet_up_sliding_header.dart';
 import 'components/tabs/home/home_drawer_content.dart';
@@ -33,9 +32,9 @@ class MeetUpPage extends StatefulWidget {
   _MeetUpPageState createState() => _MeetUpPageState();
 }
 
-class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateMixin {
+class _MeetUpPageState extends State<MeetUpPage> {
   //controller for the bottom sliding up sheet / MeetUp Details Page
-  SheetController slidingSheetController = SheetController();
+  SheetController meetSlidingSheetController = SheetController();
 
   //list of the tabs that are shown at the bottom of the app bar
   List<Tab> meetTabs = <Tab>[
@@ -50,7 +49,7 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: meetTabs.length,
-      //builder to check which tabbar tab is clicked. nothing is done here yet
+      //builder to check which tabbar tab is clicked
       child: Builder(
         builder: (BuildContext context) {
           final TabController meetTabController = DefaultTabController.of(context)!;
@@ -101,26 +100,21 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
                       TabBar(
                         //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
                         onTap: (index) {
-                          if (slidingSheetController.state!.isExpanded) {
+                          if (meetSlidingSheetController.state!.isExpanded) {
                             print('sliding sheet true');
-                            slidingSheetController.snapToExtent(minSnapPosition,
+                            meetSlidingSheetController.snapToExtent(minSnapPosition,
                                 duration: Duration(milliseconds: 300), clamp: true);
                           }
                         },
                         isScrollable: true,
                         unselectedLabelColor: Colors.black38,
-                        labelColor: AppColors.colorBlack,
+                        labelColor: AppColors.colorPrimaryOrange,
                         //controller: meetTabController,
                         indicatorSize: TabBarIndicatorSize.tab,
                         indicatorColor: AppColors.colorPrimaryOrange,
-                        indicatorWeight: 4,
+                        indicatorWeight: 3,
                         tabs: meetTabs,
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 0.5,
-                        color: Colors.black12,
-                      )
                     ],
                   ),
                 ),
@@ -137,7 +131,7 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
             //
             body: SlidingSheet(
               //color: AppColors.colorLightCoral,
-              controller: slidingSheetController,
+              controller: meetSlidingSheetController,
               closeOnBackdropTap: true,
               closeOnBackButtonPressed: true,
               isBackdropInteractable: true,
@@ -153,12 +147,12 @@ class _MeetUpPageState extends State<MeetUpPage> with SingleTickerProviderStateM
               ),
               body: TabBarView(
                 children: [
-                  MeetUpHomeFeed(slidingSheetController: slidingSheetController),
-                  MeetUpNearbyFeed(slidingSheetController: slidingSheetController),
+                  MeetUpHomeFeed(slidingSheetController: meetSlidingSheetController),
+                  MeetUpNearbyFeed(slidingSheetController: meetSlidingSheetController),
                 ],
               ),
               headerBuilder: (context, state) {
-                return MeetUpSlidingHeader(slidingSheetController: slidingSheetController);
+                return MeetUpSlidingHeader(slidingSheetController: meetSlidingSheetController);
               },
               builder: (context, state) {
                 return MeetUpDetailsPage();

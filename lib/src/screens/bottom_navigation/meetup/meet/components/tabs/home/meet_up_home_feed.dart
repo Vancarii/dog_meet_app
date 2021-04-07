@@ -2,7 +2,6 @@ import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/tabs/post/meet_up_post.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-
 import '../../../meet_up_page.dart';
 
 class MeetUpHomeFeed extends StatelessWidget {
@@ -16,6 +15,7 @@ class MeetUpHomeFeed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      key: PageStorageKey('meet_key'),
       padding: const EdgeInsets.only(bottom: 110),
       children: <Widget>[
         Row(

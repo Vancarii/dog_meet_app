@@ -2,7 +2,9 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class NewForumPostPage extends StatelessWidget {
+class PostForumPage extends StatelessWidget {
+  static const String id = 'post_forum_page';
+
   @override
   Widget build(BuildContext context) {
     return Hero(

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class FabMessageNotifier extends ChangeNotifier {
-  bool messageFabClicked = false;
-  bool notificationTabClicked = true;
+  bool onMessagesPage = false;
 
   void messageFabChanged(bool newValue) {
-    messageFabClicked = newValue;
-    print(messageFabClicked);
+    onMessagesPage = newValue;
+    print(onMessagesPage);
     notifyListeners();
   }
 }
