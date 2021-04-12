@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 
 class CreateAccountTextfield extends StatefulWidget {
   final BorderRadius cornerRadius;
-  final double? width, height, wordSpacing;
-  final Color? backgroundColor, accentColor, textColor, suffixColor;
+  final double width, height, wordSpacing;
+  final Color backgroundColor, accentColor, textColor, suffixColor;
   final String placeholder, fontFamily;
-  final Icon? prefixIcon, suffixIcon;
+  final Icon prefixIcon, suffixIcon;
   final TextInputType inputType;
   final EdgeInsets margin;
   final Duration duration;
-  final VoidCallback? onClickSuffix;
-  final TextBaseline? textBaseline;
-  final FontStyle? fontStyle;
+  final VoidCallback onClickSuffix;
+  final TextBaseline textBaseline;
+  final FontStyle fontStyle;
   final FontWeight fontWeight;
   final bool autofocus, autocorrect, enabled, obscureText, isShadow;
-  final FocusNode? focusNode;
-  final int? maxLength, minLines, maxLines;
-  final ValueChanged<String>? onChanged, onSubmitted;
-  final GestureTapCallback? onTap;
-  final TextEditingController? controller;
+  final FocusNode focusNode;
+  final int maxLength, minLines, maxLines;
+  final ValueChanged<String> onChanged, onSubmitted;
+  final GestureTapCallback onTap;
+  final TextEditingController controller;
 
   const CreateAccountTextfield(
-      {required double this.width,
-      required double this.height,
+      {this.width,
+      this.height,
       this.inputType = TextInputType.text,
       this.prefixIcon,
       this.controller,
@@ -72,7 +72,7 @@ class _BeautyTextfieldState extends State<CreateAccountTextfield> {
           boxShadow: widget.isShadow
               ? [
                   BoxShadow(
-                      color: Colors.grey[400]!,
+                      color: Colors.grey[400],
                       blurRadius: 2,
                       spreadRadius: 0.5,
                       offset: Offset(-1, 3))
@@ -90,7 +90,7 @@ class _BeautyTextfieldState extends State<CreateAccountTextfield> {
                     margin: EdgeInsets.only(right: 10),
                     alignment: Alignment.centerRight,
                     child: Icon(
-                      widget.suffixIcon!.icon,
+                      widget.suffixIcon.icon,
                       color: widget.suffixColor,
                     ),
                   ),
@@ -131,14 +131,14 @@ class _BeautyTextfieldState extends State<CreateAccountTextfield> {
                           isFocus = true;
                         });
                         if (widget.onTap != null) {
-                          widget.onTap!();
+                          widget.onTap();
                         }
                       },
                       onSubmitted: (t) {
                         setState(() {
                           isFocus = false;
                         });
-                        widget.onSubmitted!(t);
+                        widget.onSubmitted(t);
                       },
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(

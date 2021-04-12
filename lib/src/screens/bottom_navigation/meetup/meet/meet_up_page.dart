@@ -52,7 +52,7 @@ class _MeetUpPageState extends State<MeetUpPage> {
       //builder to check which tabbar tab is clicked
       child: Builder(
         builder: (BuildContext context) {
-          final TabController meetTabController = DefaultTabController.of(context)!;
+          final TabController meetTabController = DefaultTabController.of(context);
           meetTabController.addListener(() {
             if (!meetTabController.indexIsChanging) {
               setState(() {
@@ -100,7 +100,7 @@ class _MeetUpPageState extends State<MeetUpPage> {
                       TabBar(
                         //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
                         onTap: (index) {
-                          if (meetSlidingSheetController.state!.isExpanded) {
+                          if (meetSlidingSheetController.state.isExpanded) {
                             print('sliding sheet true');
                             meetSlidingSheetController.snapToExtent(minSnapPosition,
                                 duration: Duration(milliseconds: 300), clamp: true);

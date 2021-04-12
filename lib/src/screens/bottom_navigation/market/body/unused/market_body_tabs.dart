@@ -12,11 +12,11 @@ enum tabBarCategories {
   Used,
 }
 
-Color? allColor;
-Color? newColor;
-Color? usedColor;
+Color allColor;
+Color newColor;
+Color usedColor;
 
-Widget? marketPageBody;
+Widget marketPageBody;
 
 class MarketBodyTabs extends StatefulWidget {
   @override
@@ -48,7 +48,7 @@ class _MarketBodyTabsState extends State<MarketBodyTabs> {
     });
   }
 
-  RawMaterialButton marketBodyFilterButton(Color? fillColor, String text, tabBarCategories page) {
+  RawMaterialButton marketBodyFilterButton(Color fillColor, String text, tabBarCategories page) {
     return RawMaterialButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30))),
       fillColor: fillColor,
@@ -84,7 +84,7 @@ class _MarketBodyTabsState extends State<MarketBodyTabs> {
           marketBodyFilterButton(usedColor, 'Used', tabBarCategories.Used),
         ],
       ),
-      marketPageBody!,
+      marketPageBody,
     ]);
   }
 }

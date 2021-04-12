@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class NotificationsPage extends StatefulWidget {
   final VoidCallback onMessagesPressed;
 
-  NotificationsPage({required this.onMessagesPressed});
+  NotificationsPage({@required this.onMessagesPressed});
 
   @override
   _NotificationsPageState createState() => _NotificationsPageState();

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 bool boolChipSelected = false;
 
 class ForumsPageFilterChip extends StatefulWidget {
-  final String? topicText;
+  final String topicText;
 
   const ForumsPageFilterChip({
     this.topicText,

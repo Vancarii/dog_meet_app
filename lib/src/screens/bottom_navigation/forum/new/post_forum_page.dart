@@ -192,7 +192,7 @@ class AddMediaButtons extends StatelessWidget {
   final String title;
   final IconData icon;
 
-  AddMediaButtons({required this.title, required this.icon});
+  AddMediaButtons({this.title, this.icon});
 
   @override
   Widget build(BuildContext context) {

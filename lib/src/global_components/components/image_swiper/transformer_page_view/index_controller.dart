@@ -8,11 +8,11 @@ class IndexController extends ChangeNotifier {
   static const int PREVIOUS = -1;
   static const int MOVE = 0;
 
-  late Completer _completer;
+  Completer _completer;
 
-  int? index;
-  bool? animation;
-  int? event;
+  int index;
+  bool animation;
+  int event;
 
   Future move(int index, {bool animation: true}) {
     this.animation = animation;

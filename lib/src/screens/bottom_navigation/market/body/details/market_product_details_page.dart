@@ -14,9 +14,9 @@ import 'package:lottie/lottie.dart';
 class MarketProductDetailsPage extends StatefulWidget {
   static const String id = 'market_product_details_page';
 
-  final String? condition;
-  final String? price;
-  final String? productTitle;
+  final String condition;
+  final String price;
+  final String productTitle;
 
   const MarketProductDetailsPage({
     this.condition,

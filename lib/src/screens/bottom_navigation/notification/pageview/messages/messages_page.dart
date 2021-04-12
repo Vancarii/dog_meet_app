@@ -10,7 +10,7 @@ SheetController messagesSlidingSheetController = SheetController();
 class MessagesPage extends StatefulWidget {
   final VoidCallback onBackPressed;
 
-  MessagesPage({required this.onBackPressed});
+  MessagesPage({@required this.onBackPressed});
 
   @override
   _MessagesPageState createState() => _MessagesPageState();

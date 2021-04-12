@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
-  final String? text;
-  final EdgeInsets? padding;
-  final Color? color;
+  final String text;
+  final EdgeInsets padding;
+  final Color color;
   final bool bold;
   final bool underline;
-  final double? size;
-  final TextAlign? alignment;
+  final double size;
+  final TextAlign alignment;
 
   CustomText({
-    required this.text,
+    @required this.text,
     this.padding,
     this.color = Colors.black,
     this.bold = false,
@@ -22,9 +22,9 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding != null ? padding! : EdgeInsets.all(0),
+      padding: padding != null ? padding : EdgeInsets.all(0),
       child: Text(
-        text!,
+        text,
         textAlign: alignment,
         style: TextStyle(
           fontFamily: 'Gibson',

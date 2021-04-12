@@ -4,7 +4,7 @@ class GapItem extends StatelessWidget {
   final double width;
 
   GapItem({
-    required this.width,
+    @required this.width,
   });
 
   @override

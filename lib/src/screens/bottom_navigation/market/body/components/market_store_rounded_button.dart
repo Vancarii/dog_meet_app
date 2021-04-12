@@ -9,8 +9,8 @@ class MarketStoreRoundedButton extends StatefulWidget {
   final String storeImage;
 
   const MarketStoreRoundedButton({
-    required this.storeImage,
-    required this.storeName,
+    this.storeImage,
+    this.storeName,
   });
 
   @override

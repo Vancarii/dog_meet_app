@@ -12,22 +12,22 @@ class ColorPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    int index = info.fromIndex!;
+    int index = info.fromIndex;
     _paint.color = colors[index];
     canvas.drawRect(new Rect.fromLTWH(0.0, 0.0, size.width, size.height), _paint);
-    if (info.done!) {
+    if (info.done) {
       return;
     }
     int alpha;
     int color;
     double opacity;
-    double? position = info.position;
-    if (info.forward!) {
+    double position = info.position;
+    if (info.forward) {
       if (index < colors.length - 1) {
         color = colors[index + 1].value & 0x00ffffff;
-        opacity = (position! <= 0
-            ? (-position / info.viewportFraction!)
-            : 1 - position / info.viewportFraction!);
+        opacity = (position <= 0
+            ? (-position / info.viewportFraction)
+            : 1 - position / info.viewportFraction);
         if (opacity > 1) {
           opacity -= 1.0;
         }
@@ -42,9 +42,9 @@ class ColorPainter extends CustomPainter {
     } else {
       if (index > 0) {
         color = colors[index - 1].value & 0x00ffffff;
-        opacity = (position! > 0
-            ? position / info.viewportFraction!
-            : (1 + position / info.viewportFraction!));
+        opacity = (position > 0
+            ? position / info.viewportFraction
+            : (1 + position / info.viewportFraction));
         if (opacity > 1) {
           opacity -= 1.0;
         }
@@ -85,9 +85,9 @@ class ParallaxColor extends StatefulWidget {
   final TransformInfo info;
 
   ParallaxColor({
-    required this.colors,
-    required this.info,
-    required this.child,
+    this.colors,
+    this.info,
+    this.child,
   });
 
   @override
@@ -103,10 +103,7 @@ class ParallaxContainer extends StatelessWidget {
   final double opacityFactor;
 
   ParallaxContainer(
-      {required this.child,
-      required this.position,
-      this.translationFactor: 100.0,
-      this.opacityFactor: 1.0});
+      {this.child, this.position, this.translationFactor: 100.0, this.opacityFactor: 1.0});
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +121,7 @@ class ParallaxImage extends StatelessWidget {
   final Image image;
   final double imageFactor;
 
-  ParallaxImage.asset(String name, {required double position, this.imageFactor: 0.3})
+  ParallaxImage.asset(String name, {double position, this.imageFactor: 0.3})
       : image = Image.asset(name,
             fit: BoxFit.cover,
             alignment: FractionalOffset(

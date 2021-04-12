@@ -7,8 +7,8 @@ import '../../meet_up_page.dart';
 
 class MeetUpSlidingHeader extends StatelessWidget {
   const MeetUpSlidingHeader({
-    Key? key,
-    required this.slidingSheetController,
+    Key key,
+    @required this.slidingSheetController,
   }) : super(key: key);
 
   final SheetController slidingSheetController;
@@ -17,7 +17,7 @@ class MeetUpSlidingHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (slidingSheetController.state!.isCollapsed == true) {
+        if (slidingSheetController.state.isCollapsed == true) {
           slidingSheetController.snapToExtent(maxSnapPosition,
               duration: Duration(milliseconds: 150));
         } else {

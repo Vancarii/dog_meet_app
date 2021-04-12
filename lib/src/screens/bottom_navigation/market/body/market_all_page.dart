@@ -7,7 +7,7 @@ import 'components/new_market_post.dart';
 
 class MarketAllPage extends StatelessWidget {
   const MarketAllPage({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override

@@ -7,7 +7,7 @@ import '../../../meet_up_page.dart';
 
 class MeetUpNearbyFeed extends StatelessWidget {
   const MeetUpNearbyFeed({
-    required this.slidingSheetController,
+    @required this.slidingSheetController,
   });
 
   final SheetController slidingSheetController;

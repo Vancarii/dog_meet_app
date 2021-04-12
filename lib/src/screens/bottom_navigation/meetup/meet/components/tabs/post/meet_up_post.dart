@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MeetUpPost extends StatelessWidget {
-  final String? accountName;
-  final String? postImage;
-  final String? location;
-  final String? time;
-  final int? numOfPeopleGoing;
-  final String? amPm;
+  final String accountName;
+  final String postImage;
+  final String location;
+  final String time;
+  final int numOfPeopleGoing;
+  final String amPm;
 
   final VoidCallback onMeetUpPostSelected;
 
@@ -20,7 +20,7 @@ class MeetUpPost extends StatelessWidget {
     this.numOfPeopleGoing,
     this.time,
     this.amPm,
-    required this.onMeetUpPostSelected,
+    this.onMeetUpPostSelected,
   });
 
   @override
@@ -234,7 +234,7 @@ class MeetUpPost extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         CustomText(
-                          text: time! + amPm!,
+                          text: time + amPm,
                           size: 15,
                           bold: true,
                           alignment: TextAlign.center,

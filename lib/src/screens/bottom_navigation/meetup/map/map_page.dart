@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class MapPage extends StatefulWidget {
   final VoidCallback onBackPressed;
 
-  MapPage({required this.onBackPressed});
+  MapPage({@required this.onBackPressed});
 
   @override
   _MapPageState createState() => _MapPageState();

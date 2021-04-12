@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ProfileViewMeetUp extends StatelessWidget {
   static const String id = 'profile_view_meet_up';
   const ProfileViewMeetUp({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override

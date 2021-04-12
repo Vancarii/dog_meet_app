@@ -22,7 +22,7 @@ class MarketAppBar extends StatefulWidget {
 }
 
 class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderStateMixin {
-  TabController? _marketTabController;
+  TabController _marketTabController;
 
   List<Tab> marketTabs = <Tab>[
     Tab(

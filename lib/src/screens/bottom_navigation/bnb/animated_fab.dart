@@ -14,9 +14,9 @@ class AnimatedFab extends StatefulWidget {
   final VoidCallback fabTapCallback;
 
   AnimatedFab({
-    required this.iconList,
-    required this.pageIndex,
-    required this.fabTapCallback,
+    this.iconList,
+    this.pageIndex,
+    this.fabTapCallback,
   });
 
   @override
