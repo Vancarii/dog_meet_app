@@ -71,7 +71,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
   //onTap for the bottom nav bar
   _navBarOnTap(int index) {
     setState(() {
-      print('index' + index.toString());
+      //print('index' + index.toString());
       _currentSelectedScreenIndex = index;
     });
   }
@@ -117,41 +117,3 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
     );
   }
 }
-
-/*OpenContainer fabOpenContainer(int pageIndex, List shownIcons) {
-  return OpenContainer(
-    openBuilder: (BuildContext context, void Function({Object returnValue}) action) {
-      if (pageIndex == 0) {
-        return NewForumPostPage();
-      } else if (pageIndex == 1) {
-        return NewListingPage();
-      } else {
-        return NewMeetUpPostPage();
-      }
-    },
-    closedElevation: 6.0,
-    closedShape: CircleBorder(),
-    closedColor: AppColors.colorPrimaryOrange,
-    closedBuilder: (BuildContext context, void Function() action) {
-      return Container(
-        width: 55,
-        height: 55,
-        //color: AppColors.colorLightCoral,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.colorPrimaryOrange,
-        ),
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 250),
-          switchInCurve: Curves.easeInOutSine,
-          switchOutCurve: Curves.easeOutSine,
-          child: Icon(
-            shownIcons[pageIndex],
-            color: Colors.white,
-            key: UniqueKey(),
-          ),
-        ),
-      );
-    },
-  );
-}*/

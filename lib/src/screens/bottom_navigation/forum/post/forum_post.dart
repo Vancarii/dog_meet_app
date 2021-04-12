@@ -88,7 +88,8 @@ class _ForumPostState extends State<ForumPost> {
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
                         child: RawChip(
-                          elevation: 2,
+                          pressElevation: 0,
+                          elevation: 4,
                           backgroundColor: Color(0xfffc816a),
                           label: CustomText(
                             text: 'Topic',

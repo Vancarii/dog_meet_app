@@ -15,7 +15,6 @@ class MeetUpNearbyFeed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      key: PageStorageKey('nearby_key'),
       padding: const EdgeInsets.only(bottom: 110),
       children: <Widget>[
         Row(

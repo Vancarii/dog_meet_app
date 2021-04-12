@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,50 +36,130 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SlidingSheet(
-      controller: messagesSlidingSheetController,
-      closeOnBackdropTap: true,
-      closeOnBackButtonPressed: true,
-      isBackdropInteractable: true,
-      backdropColor: Colors.black54,
-      elevation: 5,
-      shadowColor: Colors.black54,
-      cornerRadius: 15,
-      liftOnScrollHeaderElevation: 5,
-      //duration: Duration(milliseconds: 150),
-      snapSpec: const SnapSpec(
-        snap: true, snappings: [0.0, 0.6],
-        //snappings: [minSnapPosition, SnapSpec.expanded],
-      ),
-      body: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: widget.onBackPressed,
+    return SafeArea(
+      bottom: false,
+      child: SlidingSheet(
+        controller: messagesSlidingSheetController,
+        closeOnBackdropTap: true,
+        closeOnBackButtonPressed: true,
+        isBackdropInteractable: true,
+        backdropColor: Colors.black54,
+        elevation: 5,
+        shadowColor: Colors.black54,
+        cornerRadius: 15,
+        liftOnScrollHeaderElevation: 5,
+        //duration: Duration(milliseconds: 150),
+        snapSpec: const SnapSpec(
+          snap: true, snappings: [0.0, 0.6, 1.0],
+          //snappings: [minSnapPosition, SnapSpec.expanded],
+        ),
+        body: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: widget.onBackPressed,
+            ),
+            title: CustomText(
+              text: 'Messages',
+              size: 18,
+              bold: true,
+              alignment: TextAlign.center,
+            ),
           ),
-          title: CustomText(
-            text: 'Messages',
-            size: 18,
-            bold: true,
-            alignment: TextAlign.center,
+          body: SafeArea(
+            child: ListView(
+              children: [
+                ViewMessageContainer(),
+                ViewMessageContainer(),
+              ],
+            ),
           ),
         ),
-        body: SafeArea(
-          child: ListView(
-            children: [
-              ViewMessageContainer(),
-              ViewMessageContainer(),
-            ],
-          ),
-        ),
+        headerBuilder: (BuildContext context, SheetState state) {
+          return Container(
+            width: double.infinity,
+            height: 50,
+            color: AppColors.colorWhite,
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 6.0, bottom: 5.0),
+                    width: 30,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    ),
+                  ),
+                ),
+                CustomText(
+                  text: 'New Message',
+                  size: 15,
+                  bold: true,
+                  padding: const EdgeInsets.only(top: 5.0),
+                ),
+              ],
+            ),
+          );
+        },
+        builder: (BuildContext context, SheetState state) {
+          return Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    cursorColor: AppColors.colorPrimaryOrange,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
+                    decoration: InputDecoration(
+                        hintText: 'Search...',
+                        hintStyle: TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey,
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)))),
+                  ),
+                ),
+                /*Container(
+                  alignment: Alignment.centerLeft,
+                  margin: const EdgeInsets.all(10),
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                  child: TextField(
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)))),
+
+                    */ /*child: CustomText(
+                      text: 'Search...',
+                      size: 15,
+                      color: Colors.grey,
+                      padding: const EdgeInsets.only(left: 20.0),
+                    ),*/ /*
+                  ),
+                ),*/
+              ],
+            ),
+          );
+        },
       ),
-      builder: (BuildContext context, SheetState state) {
-        return Container(
-          height: MediaQuery.of(context).size.height,
-        );
-      },
     );
   }
 }

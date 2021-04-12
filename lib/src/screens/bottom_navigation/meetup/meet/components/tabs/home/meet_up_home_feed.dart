@@ -15,7 +15,6 @@ class MeetUpHomeFeed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      key: PageStorageKey('meet_key'),
       padding: const EdgeInsets.only(bottom: 110),
       children: <Widget>[
         Row(
