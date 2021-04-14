@@ -40,9 +40,11 @@ class _ProductConditionChipsState extends State<ProductConditionChips> {
       child: ChoiceChip(
           elevation: 2,
           pressElevation: 0,
+          selectedShadowColor: Colors.transparent,
           selectedColor: AppColors.colorPrimaryOrange,
           backgroundColor: AppColors.colorWhite,
           label: CustomText(
+            color: productCondition == condition ? AppColors.colorWhite : AppColors.colorBlack,
             text: titleDecider(condition),
           ),
           selected: productCondition == condition ? true : false,
