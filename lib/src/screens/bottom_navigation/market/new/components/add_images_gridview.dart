@@ -16,8 +16,6 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     setState(() {
       images.add("Add Image");
       images.add("Add Image");
@@ -26,6 +24,7 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
       images.add("Add Image");
       images.add("Add Image");
     });
+    super.initState();
   }
 
   Future _onAddImageClick(int index) async {
@@ -124,33 +123,3 @@ class ImageUploadModel {
     this.imageUrl,
   });
 }
-
-/*GridView.builder(
-      //padding: const EdgeInsets.all(5.0),
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        childAspectRatio: 1.0,
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 10.0,
-      ),
-      itemCount: 8,
-      itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            //TODO: add images to the gridview and use the itembuilder index
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppColors.colorGrey.withOpacity(0.5),
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-            ),
-            child: Icon(
-              Icons.add,
-              color: AppColors.colorDarkSlateGrey,
-            ),
-          ),
-        );
-      },
-    );*/

@@ -1,17 +1,92 @@
+import 'dart:io';
+import 'package:chewie/chewie.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forum_post_header_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:video_player/video_player.dart';
+import 'components/add_media_buttons.dart';
+import 'components/forum_content_textfield.dart';
+import 'components/forum_title_textfield.dart';
 
-class PostForumPage extends StatelessWidget {
+class PostForumPage extends StatefulWidget {
   static const String id = 'post_forum_page';
+
+  @override
+  _PostForumPageState createState() => _PostForumPageState();
+}
+
+class _PostForumPageState extends State<PostForumPage> {
+  File _media;
+  final _picker = ImagePicker();
+
+  VideoPlayerController _videoPlayerController;
+  ChewieController _chewieController;
+
+  bool isVideo = false;
+
+  @override
+  void initState() {
+    super.initState();
+    initializePlayer(_media);
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
+    super.dispose();
+  }
+
+  Future<void> initializePlayer(File file) async {
+    print('initializePlayer');
+    _videoPlayerController = VideoPlayerController.file(file);
+
+    await Future.wait([_videoPlayerController.initialize()]);
+
+    print('videoplayer: ' + _videoPlayerController.toString());
+
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController,
+      autoPlay: true,
+      looping: true,
+      allowPlaybackSpeedChanging: false,
+      allowFullScreen: false,
+      allowedScreenSleep: false,
+      materialProgressColors: ChewieProgressColors(
+        playedColor: AppColors.colorPrimaryOrange,
+        handleColor: AppColors.colorPrimaryOrange,
+        backgroundColor: AppColors.colorGrey,
+        bufferedColor: AppColors.colorGrey,
+      ),
+    );
+
+    setState(() {});
+  }
+
+  Future getMedia(Future<PickedFile> file, bool onVideoTapped) async {
+    final pickedFile = await file;
+
+    setState(() {
+      if (pickedFile != null) {
+        _media = File(pickedFile.path);
+        /*print('_media: ' + _media.toString());
+        print('onVideoTapped: ' + onVideoTapped.toString());*/
+        if (onVideoTapped == true) {
+          initializePlayer(_media);
+        }
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
-      //extendBodyBehindAppBar: true,
       backgroundColor: AppColors.colorPrimaryOrange,
       appBar: AppBar(
         elevation: 0,
@@ -20,7 +95,6 @@ class PostForumPage extends StatelessWidget {
           text: 'New Text Post',
           size: 18,
           bold: true,
-          //alignment: TextAlign.center,
         ),
         leading: InkWell(
           onTap: () {
@@ -61,111 +135,30 @@ class PostForumPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                       child: Column(
                         children: [
-                          Row(
-                            children: <Widget>[
-                              RawMaterialButton(
-                                onPressed: () {},
-                                child: Row(
-                                  children: <Widget>[
-                                    CircleAvatar(
-                                      maxRadius: 18,
-                                    ),
-                                    CustomText(
-                                      text: 'Rosyandmaze',
-                                      size: 12,
-                                      bold: true,
-                                      alignment: TextAlign.center,
-                                      padding: const EdgeInsets.only(left: 5),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Spacer(),
-                              RawChip(
-                                pressElevation: 0,
-                                elevation: 4,
-                                backgroundColor: Color(0xfffc816a),
-                                label: CustomText(
-                                  text: 'Add Topic',
-                                  size: 12,
-                                  bold: true,
-                                  alignment: TextAlign.center,
-                                ),
-                                onSelected: (bool value) {},
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: TextField(
-                                    scrollPhysics: NeverScrollableScrollPhysics(),
-                                    minLines: 1,
-                                    maxLines: 10,
-                                    maxLength: 200,
-                                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                    keyboardType: TextInputType.text,
-                                    textAlignVertical: TextAlignVertical.center,
-                                    textCapitalization: TextCapitalization.sentences,
-                                    cursorColor: AppColors.colorPrimaryOrange,
-                                    cursorRadius: Radius.circular(15),
-                                    style: TextStyle(
-                                        fontSize: 26,
-                                        color: AppColors.colorBlack,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: 'Gibson'),
-                                    decoration: InputDecoration(
-                                        counterText: '',
-                                        border: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        enabledBorder: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        disabledBorder: InputBorder.none,
-                                        hintText: 'Post Title...',
-                                        hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                        )),
-                                  ),
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    FontAwesomeIcons.palette,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: TextField(
-                              maxLines: null,
-                              maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                              keyboardType: TextInputType.multiline,
-                              textAlignVertical: TextAlignVertical.center,
-                              textCapitalization: TextCapitalization.sentences,
-                              cursorColor: AppColors.colorPrimaryOrange,
-                              cursorRadius: Radius.circular(15),
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: AppColors.colorBlack,
-                                  //fontWeight: FontWeight.w600,
-                                  fontFamily: 'Gibson'),
-                              decoration: InputDecoration(
-                                  //counterText: '',
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  hintText: 'Enter your text here...',
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                  )),
-                            ),
-                          ),
+                          ForumPostHeaderInfo(),
+                          ForumTitleTextField(),
+                          isVideo == false
+                              ? _media != null
+                                  ? Container(
+                                      width: double.infinity,
+                                      child: Image.file(_media),
+                                      constraints: BoxConstraints(
+                                        maxHeight: 400,
+                                      ),
+                                    )
+                                  : Container()
+                              : _chewieController != null &&
+                                      _chewieController.videoPlayerController.value.isInitialized
+                                  ? Container(
+                                      constraints: BoxConstraints(
+                                        maxHeight: 400,
+                                      ),
+                                      child: Chewie(
+                                        controller: _chewieController,
+                                      ),
+                                    )
+                                  : Container(),
+                          ForumContentTextField(),
                         ],
                       ),
                     ),
@@ -175,9 +168,31 @@ class PostForumPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AddMediaButtons(title: 'Add Link', icon: FontAwesomeIcons.link),
-                  AddMediaButtons(title: 'Add Image', icon: FontAwesomeIcons.camera),
-                  AddMediaButtons(title: 'Add Video', icon: Icons.movie),
+                  AddMediaButtons(
+                    title: 'Add Link',
+                    icon: FontAwesomeIcons.link,
+                    onTapCallback: () {},
+                  ),
+                  AddMediaButtons(
+                    title: 'Add Image',
+                    icon: FontAwesomeIcons.camera,
+                    onTapCallback: () {
+                      setState(() {
+                        isVideo = false;
+                        getMedia(_picker.getImage(source: ImageSource.gallery), false);
+                      });
+                    },
+                  ),
+                  AddMediaButtons(
+                    title: 'Add Video',
+                    icon: Icons.movie,
+                    onTapCallback: () {
+                      setState(() {
+                        isVideo = true;
+                        getMedia(_picker.getVideo(source: ImageSource.gallery), true);
+                      });
+                    },
+                  ),
                 ],
               ),
             ],
@@ -188,54 +203,4 @@ class PostForumPage extends StatelessWidget {
   }
 }
 
-class AddMediaButtons extends StatelessWidget {
-  final String title;
-  final IconData icon;
-
-  AddMediaButtons({this.title, this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: InkWell(
-        onTap: () {
-          //TODO: Add MEdia FUnc
-        },
-        child: Container(
-          alignment: Alignment.center,
-          height: 35,
-          margin: const EdgeInsets.only(top: 5.0, left: 2.0, right: 2.0, bottom: 2.0),
-          padding: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-            color: AppColors.colorWhite,
-            boxShadow: [
-              kBoxShadow(),
-            ],
-            borderRadius: BorderRadius.all(
-              Radius.circular(5),
-            ),
-          ),
-          child: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  icon,
-                  size: 15,
-                ),
-                CustomText(
-                  text: title,
-                  size: 15,
-                  bold: true,
-                  padding: const EdgeInsets.only(left: 5.0),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+class GetMedia {}
