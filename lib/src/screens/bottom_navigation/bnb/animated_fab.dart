@@ -48,6 +48,7 @@ class _AnimatedFabState extends State<AnimatedFab> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      backgroundColor: AppColors.colorWhite,
       splashColor: AppColors.colorPrimaryOrange,
       elevation: 6,
       highlightElevation: 0,
@@ -60,7 +61,7 @@ class _AnimatedFabState extends State<AnimatedFab> {
               //iconList[5] is the new message icon
               ? widget.iconList[5]
               : widget.iconList[widget.pageIndex],
-          color: Colors.white,
+          color: AppColors.colorPrimaryOrange,
           key: UniqueKey(),
         ),
       ),

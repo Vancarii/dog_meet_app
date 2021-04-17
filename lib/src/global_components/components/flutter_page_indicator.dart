@@ -322,7 +322,9 @@ class PageIndicator extends StatefulWidget {
       this.activeColor: Colors.white,
       this.scale: 0.6,
       this.dropHeight: 20.0})
-      : super(key: key);
+      : assert(count != null),
+        assert(controller != null),
+        super(key: key);
 
   @override
   State<StatefulWidget> createState() {

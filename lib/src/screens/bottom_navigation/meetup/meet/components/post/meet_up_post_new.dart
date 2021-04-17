@@ -3,7 +3,7 @@ import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MeetUpPost extends StatelessWidget {
+class MeetUpPostNew extends StatelessWidget {
   final String accountName;
   final String postImage;
   final String location;
@@ -13,7 +13,7 @@ class MeetUpPost extends StatelessWidget {
 
   final VoidCallback onMeetUpPostSelected;
 
-  MeetUpPost({
+  MeetUpPostNew({
     this.postImage,
     this.accountName,
     this.location,

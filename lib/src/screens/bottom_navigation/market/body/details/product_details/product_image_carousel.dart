@@ -24,7 +24,8 @@ class _ProductImageCarouselState extends State<ProductImageCarousel> {
         child: Swiper(
           loop: false,
           index: 0,
-          indicatorLayout: PageIndicatorLayout.WARM,
+          //flutter_page_indicator stopped working
+          //indicatorLayout: PageIndicatorLayout.SLIDE,
           itemCount: images.length,
           pagination: SwiperPagination(
             builder: DotSwiperPaginationBuilder(

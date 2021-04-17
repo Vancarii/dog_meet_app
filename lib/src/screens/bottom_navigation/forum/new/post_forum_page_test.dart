@@ -23,21 +23,20 @@ class _PostForumPageState extends State<PostForumPage> {
   final _picker = ImagePicker();
 
   VideoPlayerController _videoPlayerController;
+  ChewieController _chewieController;
 
   bool isVideo = false;
-
-  IconData playPauseIcon = Icons.play_arrow_rounded;
 
   @override
   void initState() {
     super.initState();
+    initializePlayer(_media);
   }
 
   @override
   void dispose() {
-    if (_media != null) {
-      _videoPlayerController.dispose();
-    }
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
     super.dispose();
   }
 
@@ -47,9 +46,22 @@ class _PostForumPageState extends State<PostForumPage> {
 
     await Future.wait([_videoPlayerController.initialize()]);
 
-    _videoPlayerController.setLooping(true);
-
     print('videoplayer: ' + _videoPlayerController.toString());
+
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController,
+      autoPlay: true,
+      looping: true,
+      allowPlaybackSpeedChanging: false,
+      allowFullScreen: false,
+      allowedScreenSleep: false,
+      materialProgressColors: ChewieProgressColors(
+        playedColor: AppColors.colorPrimaryOrange,
+        handleColor: AppColors.colorPrimaryOrange,
+        backgroundColor: AppColors.colorGrey,
+        bufferedColor: AppColors.colorGrey,
+      ),
+    );
 
     setState(() {});
   }
@@ -136,43 +148,14 @@ class _PostForumPageState extends State<PostForumPage> {
                                       ),
                                     )
                                   : Container()
-                              : _media != null
-                                  ? InkWell(
-                                      onTap: () {
-                                        if (_media != null) {
-                                          setState(() {
-                                            if (_videoPlayerController.value.isPlaying) {
-                                              _videoPlayerController.pause();
-                                              playPauseIcon = Icons.play_arrow_rounded;
-                                            } else {
-                                              _videoPlayerController.play();
-                                              playPauseIcon = Icons.pause_rounded;
-                                            }
-                                          });
-                                        }
-                                      },
-                                      child: Container(
-                                        constraints: BoxConstraints(
-                                          maxHeight: 400,
-                                        ),
-                                        child: Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            AspectRatio(
-                                                aspectRatio:
-                                                    _videoPlayerController.value.aspectRatio,
-                                                child: VideoPlayer(_videoPlayerController)),
-                                            Positioned(
-                                              top: 2.0,
-                                              left: 2.0,
-                                              child: Icon(
-                                                playPauseIcon,
-                                                size: 50,
-                                                color: AppColors.colorWhite.withOpacity(0.7),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                              : _chewieController != null &&
+                                      _chewieController.videoPlayerController.value.isInitialized
+                                  ? Container(
+                                      constraints: BoxConstraints(
+                                        maxHeight: 400,
+                                      ),
+                                      child: Chewie(
+                                        controller: _chewieController,
                                       ),
                                     )
                                   : Container(),
@@ -202,10 +185,13 @@ class _PostForumPageState extends State<PostForumPage> {
                     },
                   ),
                   AddMediaButtons(
-                    title: isVideo == false ? 'Add Video' : 'Change Video',
+                    title: 'Add Video',
                     icon: Icons.movie,
                     onTapCallback: () {
                       setState(() {
+                        if (_chewieController != null) {
+                          _chewieController.dispose();
+                        }
                         isVideo = true;
                         getMedia(_picker.getVideo(source: ImageSource.gallery), true);
                       });

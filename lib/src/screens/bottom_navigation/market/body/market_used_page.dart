@@ -11,20 +11,8 @@ class MarketUsedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.only(top: 20.0, bottom: 80),
+      padding: const EdgeInsets.only(top: 5.0, bottom: 80),
       children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 15.0,
-            bottom: 15.0,
-          ),
-          child: CustomText(
-            text: 'Products',
-            size: 26,
-            bold: true,
-            alignment: TextAlign.left,
-          ),
-        ),
         Wrap(
           children: [
             NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',

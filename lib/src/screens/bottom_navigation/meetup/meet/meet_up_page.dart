@@ -39,7 +39,7 @@ class _MeetUpPageState extends State<MeetUpPage> {
   //list of the tabs that are shown at the bottom of the app bar
   List<Tab> meetTabs = <Tab>[
     Tab(child: CustomText(text: 'Home', size: 15, color: null, bold: true)),
-    Tab(child: CustomText(text: 'Nearby', size: 15, color: null, bold: true)),
+    Tab(child: CustomText(text: 'Explore', size: 15, color: null, bold: true)),
   ];
 
   //for the preferences / filter endDrawer
@@ -68,7 +68,9 @@ class _MeetUpPageState extends State<MeetUpPage> {
           });
           return Scaffold(
             resizeToAvoidBottomInset: false,
+            extendBodyBehindAppBar: true,
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
               automaticallyImplyLeading: false,
               elevation: 0,
               centerTitle: true,
@@ -106,7 +108,7 @@ class _MeetUpPageState extends State<MeetUpPage> {
                                 duration: Duration(milliseconds: 300), clamp: true);
                           }
                         },
-                        isScrollable: true,
+                        //isScrollable: true,
                         unselectedLabelColor: Colors.black38,
                         labelColor: AppColors.colorPrimaryOrange,
                         //controller: meetTabController,
