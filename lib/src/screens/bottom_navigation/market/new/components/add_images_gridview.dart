@@ -9,6 +9,10 @@ import 'package:image_picker/image_picker.dart';
 import 'fullscreen_image.dart';
 
 class AddImagesGridView extends StatefulWidget {
+  final int gridCount;
+
+  AddImagesGridView({@required this.gridCount});
+
   @override
   _AddImagesGridViewState createState() => _AddImagesGridViewState();
 }
@@ -23,12 +27,9 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
   @override
   void initState() {
     setState(() {
-      images.add("Add Image");
-      images.add("Add Image");
-      images.add("Add Image");
-      images.add("Add Image");
-      images.add("Add Image");
-      images.add("Add Image");
+      for (var i = 0; i < widget.gridCount; i++) {
+        images.add("Add Image");
+      }
     });
     super.initState();
   }

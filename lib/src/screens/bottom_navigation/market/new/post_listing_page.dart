@@ -28,7 +28,7 @@ class _PostListingPageState extends State<PostListingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //resizeToAvoidBottomInset: true,
-      backgroundColor: AppColors.colorPrimaryOrange,
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -101,7 +101,7 @@ class _PostListingPageState extends State<PostListingPage> {
                             ]),
                       ),
                     ),
-                    AddImagesGridView(),
+                    AddImagesGridView(gridCount: 6),
                     SizedBox(
                       height: 15,
                     ),
