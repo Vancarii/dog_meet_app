@@ -1,11 +1,9 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/details/meet_up_details_page.dart';
 import 'components/details/meet_up_sliding_header.dart';
-import 'components/tabs/home/home_drawer_content.dart';
 import 'components/tabs/home/meet_up_home_feed.dart';
 import 'components/tabs/nearby/meet_up_nearby_feed.dart';
 import 'components/tabs/nearby/nearby_drawer_content.dart';
@@ -139,8 +137,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          endDrawer:
-              selectedTab == selectedMeetTab.HomeTab ? HomeDrawerContent() : NearbyDrawerContent(),
+          endDrawer: NearbyDrawerContent(),
           //This is the sliding sheet that shows whenever a meetup post is clicked.
           //the body of the sliding sheet is wrapped in a tabbar view so that it can change
           //pages. MeetUpHomeFeed and nearby feed have the slidingSheetController passed through
