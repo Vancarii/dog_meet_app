@@ -5,7 +5,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
-
+import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page_1.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -114,7 +114,10 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
       ),
       //indexstacked is so that all the screens are preloaded when the app first starts and that
       //the states and scroll positions are saved when you leave to a different screen and come back
-      body: IndexedStack(children: _pageOptions, index: _currentSelectedScreenIndex),
+      body: IndexedStack(
+        children: _pageOptions,
+        index: _currentSelectedScreenIndex,
+      ),
     );
   }
 }

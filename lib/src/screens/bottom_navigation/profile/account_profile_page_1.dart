@@ -3,8 +3,6 @@ import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/post/forum_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/new_market_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/tabs/nearby/nearby_drawer_content.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/profile/components/profile_drawer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,33 +10,25 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'info/profile_info.dart';
 import 'components/profile_tab_delegate.dart';
 
-class AccountProfilePage extends StatefulWidget {
+class AccountProfilePage1 extends StatefulWidget {
   @override
-  _AccountProfilePageState createState() => _AccountProfilePageState();
+  _AccountProfilePage1State createState() => _AccountProfilePage1State();
 }
 
-class _AccountProfilePageState extends State<AccountProfilePage> with TickerProviderStateMixin {
-  List<Tab> profilePostTabs = <Tab>[
-    Tab(
-      child: Icon(FontAwesomeIcons.paw),
-    ),
-    Tab(
-      child: Icon(Icons.store),
-    ),
-    Tab(
-      child: Icon(Icons.forum),
-    ),
-  ];
+final PageController _profilePageController = PageController();
 
-  TabController profileTabController;
+PageView myPageView = PageView(
+  controller: _profilePageController,
+  allowImplicitScrolling: true,
+  children: <Widget>[
+    ProfilePageSliver(),
+    Container(color: Colors.yellow),
+  ],
+);
 
+class _AccountProfilePage1State extends State<AccountProfilePage1> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    // Local dragStartDetail.
-    DragStartDetails dragStartDetails;
-    // Current drag instance - should be instantiated on overscroll and updated alongside.
-    Drag drag;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -65,42 +55,81 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
             ),
             onPressed: () {},
           ),
-          Builder(
-            builder: (context) => IconButton(
-              icon: Icon(
-                FontAwesomeIcons.bars,
-                size: 20,
-              ),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              //tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          IconButton(
+            icon: Icon(
+              FontAwesomeIcons.bars,
+              size: 20,
             ),
+            onPressed: () {},
           ),
         ],
       ),
-      endDrawer: ProfileDrawer(),
-      body: DefaultTabController(
-        length: profilePostTabs.length,
-        child: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return [
-              SliverToBoxAdapter(
-                child: ProfileInfo(),
-              ),
-              SliverPersistentHeader(
-                pinned: true,
-                delegate: ProfileTabDelegate(
-                  TabBar(
-                    indicatorColor: AppColors.colorPrimaryOrange,
-                    labelColor: AppColors.colorPrimaryOrange,
-                    unselectedLabelColor: Colors.grey,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    tabs: profilePostTabs,
-                  ),
+      body: myPageView,
+    );
+  }
+}
+
+class ProfilePageSliver extends StatefulWidget {
+  @override
+  _ProfilePageSliverState createState() => _ProfilePageSliverState();
+}
+
+class _ProfilePageSliverState extends State<ProfilePageSliver> {
+  List<Tab> profilePostTabs = <Tab>[
+    Tab(
+      child: Icon(FontAwesomeIcons.paw),
+    ),
+    Tab(
+      child: Icon(Icons.store),
+    ),
+    Tab(
+      child: Icon(Icons.forum),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    // Local dragStartDetail.
+    DragStartDetails dragStartDetails;
+    // Current drag instance - should be instantiated on overscroll and updated alongside.
+    Drag drag;
+    return DefaultTabController(
+      length: profilePostTabs.length,
+      child: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            SliverToBoxAdapter(
+              child: ProfileInfo(),
+            ),
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: ProfileTabDelegate(
+                TabBar(
+                  indicatorColor: AppColors.colorPrimaryOrange,
+                  labelColor: AppColors.colorPrimaryOrange,
+                  unselectedLabelColor: Colors.grey,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  tabs: profilePostTabs,
                 ),
               ),
-            ];
+            ),
+          ];
+        },
+        body: NotificationListener(
+          onNotification: (notification) {
+            if (notification is ScrollStartNotification) {
+              dragStartDetails = notification.dragDetails;
+            }
+            if (notification is OverscrollNotification) {
+              drag = _profilePageController.position.drag(dragStartDetails, () {});
+              drag.update(notification.dragDetails);
+            }
+            if (notification is ScrollEndNotification) {
+              drag?.cancel();
+            }
+            return true;
           },
-          body: TabBarView(
+          child: TabBarView(
             children: [
               ListView(
                 children: [

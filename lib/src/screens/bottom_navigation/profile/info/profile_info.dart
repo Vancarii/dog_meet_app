@@ -2,12 +2,19 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
+import 'components/pup_attributes.dart';
+import 'components/pup_tab_bar.dart';
+
 class ProfileInfo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => ProfileInfoState();
 }
 
 class ProfileInfoState extends State<ProfileInfo> {
+  nameIsActive activePup = nameIsActive.pup1;
+
+  function(value) => setState(() => activePup = value);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +39,6 @@ class ProfileInfoState extends State<ProfileInfo> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        //padding: const EdgeInsets.only(top: 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -247,105 +253,15 @@ class ProfileInfoState extends State<ProfileInfo> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0, left: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CustomText(
-                  text: 'ROSY',
-                  size: 20,
-                  bold: true,
-                  color: Colors.black87,
-                  alignment: TextAlign.start,
-                  padding: const EdgeInsets.all(5.0),
-                ),
-                CustomText(
-                  text: 'MAZE',
-                  size: 20,
-                  bold: true,
-                  color: Colors.black26,
-                  alignment: TextAlign.start,
-                  padding: const EdgeInsets.all(5.0),
-                ),
-              ],
-            ),
+          PupTabBar(
+            funcIsPup: function,
           ),
           Container(
             width: MediaQuery.of(context).size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Wrap(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: RawChip(
-                        label: CustomText(
-                          text: 'Golden Retriever',
-                          size: 12,
-                          bold: true,
-                        ),
-                        backgroundColor: Colors.amber[100],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: RawChip(
-                        label: CustomText(
-                          text: '45 pounds',
-                          size: 12,
-                          bold: true,
-                        ),
-                        backgroundColor: Colors.amber[100],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: RawChip(
-                        label: CustomText(
-                          text: 'Not very playful',
-                          size: 12,
-                          bold: true,
-                        ),
-                        backgroundColor: Colors.amber[100],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: RawChip(
-                        label: CustomText(
-                          text: 'Gentle Greeter',
-                          size: 12,
-                          bold: true,
-                        ),
-                        backgroundColor: Colors.amber[100],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: RawChip(
-                        label: CustomText(
-                          text: 'Intact',
-                          size: 12,
-                          bold: true,
-                        ),
-                        backgroundColor: Colors.amber[100],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: RawChip(
-                        label: CustomText(
-                          text: 'Female',
-                          size: 12,
-                          bold: true,
-                        ),
-                        backgroundColor: Colors.amber[100],
-                      ),
-                    ),
-                  ],
-                ),
+                activePup == nameIsActive.pup1 ? Pup1Attributes() : Pup2Attributes(),
               ],
             ),
           ),
