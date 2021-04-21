@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
 
-kBoxShadow() {
-  return BoxShadow(
-    color: Colors.black26,
-    spreadRadius: 1,
-    blurRadius: 1,
-    offset: Offset(1, 1), // changes position of shadow
-  );
-}
-
 class AppColors {
   static const Gradient orangeYellowGradient =
-      const LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+      const LinearGradient(begin: Alignment.topLeft, end: Alignment.topRight, colors: [
     AppColors.colorOrange,
     AppColors.colorPrimaryYellow,
   ]);

@@ -1,5 +1,6 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class MeetUpPost extends StatelessWidget {
       child: InkWell(
         onTap: onMeetUpPostSelected,
         child: Container(
-          height: 400,
+          height: kMeetUpPostHeight,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             boxShadow: [

@@ -106,8 +106,8 @@ class MarketAllPage extends StatelessWidget {
         ),
         Wrap(
           children: [
-            NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
-                'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
+            NewMarketPost(
+                'New', 'assets/images/trainingtab2.jpg', '14.99', 'Training Tabs - Hoot \& Co'),
             NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
                 'Waterproof Training Tabs - Hoot \& Co'),
             NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',

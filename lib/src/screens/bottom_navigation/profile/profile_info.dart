@@ -2,7 +2,12 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
-class ProfileInfo extends StatelessWidget {
+class ProfileInfo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => ProfileInfoState();
+}
+
+class ProfileInfoState extends State<ProfileInfo> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -10,11 +15,8 @@ class ProfileInfo extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       //height: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
-          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.topRight, colors: [
-            AppColors.colorOrange,
-            AppColors.colorPrimaryYellow,
-          ])),
+          //borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+          gradient: AppColors.orangeYellowGradient),
       child: Column(
         children: [
           //ProfileCarousel(),
@@ -174,6 +176,7 @@ class ProfileInfo extends StatelessWidget {
               children: [
                 Expanded(
                   child: InkWell(
+                    onTap: () {},
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       alignment: Alignment.center,

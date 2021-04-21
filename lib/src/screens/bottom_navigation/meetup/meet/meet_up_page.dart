@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/details/meet_up_details_page.dart';
@@ -9,14 +12,6 @@ import 'components/tabs/nearby/meet_up_nearby_feed.dart';
 import 'components/tabs/nearby/nearby_drawer_content.dart';
 
 //This file is the meet up pages app bar and bottom sliding sheet that links to the other components
-
-//This is placed here so that they are global
-//variable names make it easier to reuse
-const double minSnapPosition = 115;
-const double maxSnapPosition = double.infinity - 100;
-// TODO: Change these values so that it works for all devices
-/*const double minSnapPosition = 0.15;
-const double maxSnapPosition = 0.99;*/
 
 //This enum is used for the filter button
 // the builder that returns which tab it is currently on changes the variable selectedTab
@@ -46,20 +41,6 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
 
   //for the preferences / filter endDrawer
   selectedMeetTab selectedTab = selectedMeetTab.HomeTab;
-
-  double getCurrClr(TabController controller) {
-    if (controller.index == 0 && controller.animation.value < 1) {
-      print('animation value 1: ' + controller.animation.value.toString());
-      return 1 - controller.animation.value;
-    }
-
-    if (controller.index == 1 && controller.animation.value <= 1) {
-      print('animation value 1: ' + controller.animation.value.toString());
-      return controller.animation.value;
-    }
-
-    return 0.0;
-  }
 
   @override
   void initState() {
@@ -120,7 +101,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
                   onTap: (index) {
                     if (meetSlidingSheetController.state.isExpanded) {
                       print('sliding sheet true');
-                      meetSlidingSheetController.snapToExtent(minSnapPosition,
+                      meetSlidingSheetController.snapToExtent(kMinSnapPosition,
                           duration: Duration(milliseconds: 300), clamp: true);
                     }
                     print('offset: ' + meetTabController.animation.value.toString());
@@ -145,18 +126,18 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
           //the sliderheader is the small part showing when the sliding sheet is collapsed.
           //
           body: SlidingSheet(
-            //color: AppColors.colorLightCoral,
+            color: AppColors.colorPrimaryOrange,
             controller: meetSlidingSheetController,
             closeOnBackdropTap: true,
             closeOnBackButtonPressed: true,
             isBackdropInteractable: true,
-            elevation: 5,
-            shadowColor: Colors.black54,
-            cornerRadius: 15,
+            elevation: 15,
+            cornerRadius: 30,
             liftOnScrollHeaderElevation: 5,
+            margin: const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
             //duration: Duration(milliseconds: 150),
             snapSpec: const SnapSpec(
-              snap: true, snappings: [minSnapPosition, maxSnapPosition],
+              snap: true, snappings: [kMinSnapPosition, kMaxSnapPosition],
               //snappings: [minSnapPosition, SnapSpec.expanded],
               positioning: SnapPositioning.pixelOffset,
             ),

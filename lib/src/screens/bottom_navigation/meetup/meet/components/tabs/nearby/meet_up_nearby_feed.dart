@@ -1,4 +1,5 @@
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           amPm: 'am',
           date: 'Sunday, April 18th, 2021',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(maxSnapPosition,
+            slidingSheetController.snapToExtent(kMaxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -84,7 +85,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           amPm: 'am',
           date: 'Sunday, April 18th, 2021',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(maxSnapPosition,
+            slidingSheetController.snapToExtent(kMaxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -97,7 +98,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           amPm: 'am',
           date: 'Sunday, April 18th, 2021',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(maxSnapPosition,
+            slidingSheetController.snapToExtent(kMaxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),
@@ -110,7 +111,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           amPm: 'am',
           date: 'Sunday, April 18th, 2021',
           onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(maxSnapPosition,
+            slidingSheetController.snapToExtent(kMaxSnapPosition,
                 duration: Duration(milliseconds: 150), clamp: true);
           },
         ),

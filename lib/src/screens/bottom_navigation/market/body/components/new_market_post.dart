@@ -1,5 +1,6 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/market_product_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
@@ -30,6 +31,7 @@ class _NewMarketPostState extends State<NewMarketPost> {
       closedElevation: 0,
       closedBuilder: (context, action) {
         return SizedBox(
+          height: 330,
           width: MediaQuery.of(context).size.width / 2,
           child: Padding(
             padding: const EdgeInsets.all(5.0),
@@ -76,7 +78,7 @@ class _NewMarketPostState extends State<NewMarketPost> {
                             fontFamily: 'Gibson',
                             fontWeight: FontWeight.w600,
                           ),
-                          maxLines: 2,
+                          maxLines: 1,
                           overflow: TextOverflow.fade,
                         ),
                       ],

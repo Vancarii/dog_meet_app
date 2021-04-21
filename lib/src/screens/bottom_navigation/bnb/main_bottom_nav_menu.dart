@@ -5,6 +5,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -99,8 +100,8 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
         child: AnimatedBottomNavigationBar(
           //gapLocation: GapLocation.center,
           inactiveColor: Colors.black26,
-          height: 50,
-          backgroundColor: AppColors.colorWhite,
+          height: kBottomNavigationBarHeight,
+          backgroundColor: AppColors.colorWhite.withOpacity(1),
           activeColor: AppColors.colorPrimaryOrange,
           splashColor: Colors.grey[350],
           splashRadius: 45,

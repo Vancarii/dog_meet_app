@@ -13,7 +13,6 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/post_listing_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/new/post_meet_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/profile/profile_view_meetup.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +58,6 @@ class DogMeetApp extends StatelessWidget {
           MarketAppBar.id: (context) => MarketAppBar(),
           MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
           ForumCommentSection.id: (context) => ForumCommentSection(),
-          ProfileViewMeetUp.id: (context) => ProfileViewMeetUp(),
           PostForumPage.id: (context) => PostForumPage(),
           PostListingPage.id: (context) => PostListingPage(),
           PostMeetPage.id: (context) => PostMeetPage(),

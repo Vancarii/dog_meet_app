@@ -1,5 +1,8 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/forum/post/forum_post.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/new_market_post.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/profile_info.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,8 +12,8 @@ class AccountProfilePage extends StatefulWidget {
   _AccountProfilePageState createState() => _AccountProfilePageState();
 }
 
-class _AccountProfilePageState extends State<AccountProfilePage> {
-  List<Tab> marketTabs = <Tab>[
+class _AccountProfilePageState extends State<AccountProfilePage> with TickerProviderStateMixin {
+  List<Tab> profilePostTabs = <Tab>[
     Tab(
       child: Icon(FontAwesomeIcons.paw),
     ),
@@ -21,6 +24,8 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
       child: Icon(Icons.forum),
     ),
   ];
+
+  TabController profileTabController;
 
   @override
   Widget build(BuildContext context) {
@@ -60,65 +65,85 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
         ],
       ),
       body: DefaultTabController(
-        length: marketTabs.length,
+        length: profilePostTabs.length,
         child: NestedScrollView(
-          physics: NeverScrollableScrollPhysics(),
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
-              SliverAppBar(
-                backgroundColor: Colors.black,
-                expandedHeight: 372,
-                collapsedHeight: 372,
-                //pinned: false,
-                flexibleSpace: ProfileInfo(),
+              SliverToBoxAdapter(
+                child: ProfileInfo(),
               ),
               SliverPersistentHeader(
-                  floating: true,
-                  delegate: MyDelegate(
-                    TabBar(
-                      indicatorColor: AppColors.colorPrimaryOrange,
-                      labelColor: AppColors.colorPrimaryOrange,
-                      unselectedLabelColor: Colors.grey,
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      tabs: marketTabs,
-                    ),
-                  ))
+                pinned: true,
+                delegate: MyDelegate(
+                  TabBar(
+                    indicatorColor: AppColors.colorPrimaryOrange,
+                    labelColor: AppColors.colorPrimaryOrange,
+                    unselectedLabelColor: Colors.grey,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    tabs: profilePostTabs,
+                  ),
+                ),
+              ),
             ];
           },
           body: TabBarView(
             children: [
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: [
-                      AppColors.colorPrimaryYellow,
-                      AppColors.colorPrimaryOrange,
-                    ])),
+              ListView(
+                children: [
+                  MeetUpPost(
+                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    accountName: 'RosyandMaze',
+                    location: 'Glen Off-Leash Dog Park',
+                    numOfPeopleGoing: 3,
+                    time: '3:30',
+                    amPm: 'am',
+                    date: 'Sunday, April 18th, 2021',
+                    onMeetUpPostSelected: () {},
+                  ),
+                  MeetUpPost(
+                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    accountName: 'RosyandMaze',
+                    location: 'Glen Off-Leash Dog Park',
+                    numOfPeopleGoing: 3,
+                    time: '3:30',
+                    amPm: 'am',
+                    date: 'Sunday, April 18th, 2021',
+                    onMeetUpPostSelected: () {},
+                  ),
+                  MeetUpPost(
+                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    accountName: 'RosyandMaze',
+                    location: 'Glen Off-Leash Dog Park',
+                    numOfPeopleGoing: 3,
+                    time: '3:30',
+                    amPm: 'am',
+                    date: 'Sunday, April 18th, 2021',
+                    onMeetUpPostSelected: () {},
+                  ),
+                  MeetUpPost(
+                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    accountName: 'RosyandMaze',
+                    location: 'Glen Off-Leash Dog Park',
+                    numOfPeopleGoing: 3,
+                    time: '3:30',
+                    amPm: 'am',
+                    date: 'Sunday, April 18th, 2021',
+                    onMeetUpPostSelected: () {},
+                  ),
+                ],
               ),
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: [
-                      AppColors.colorPrimaryYellow,
-                      AppColors.colorPrimaryOrange,
-                    ])),
+              Wrap(
+                children: [
+                  NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
+                      'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
+                  NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
+                      'Waterproof Training Tabs - Hoot \& Co'),
+                ],
               ),
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: [
-                      AppColors.colorPrimaryOrange,
-                      AppColors.colorPrimaryYellow,
-                    ])),
+              ListView(
+                children: [
+                  ForumPost(),
+                ],
               ),
             ],
           ),

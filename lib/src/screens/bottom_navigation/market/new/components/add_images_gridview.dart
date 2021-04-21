@@ -1,11 +1,8 @@
 import 'dart:io';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
 import 'package:flutter/material.dart';
-import 'package:full_screen_image/full_screen_image.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'fullscreen_image.dart';
 
 class AddImagesGridView extends StatefulWidget {
