@@ -1,15 +1,16 @@
-//import 'package:dog_meet_app/src/screens/global/route_transitions/slideup_route_transition.dart';
+//import 'package:dog_meet_app/src/screens/global/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page_1.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 import 'animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'animated_fab.dart';
 
@@ -26,6 +27,96 @@ import 'animated_fab.dart';
 //for the fab, it calls animated_fab which handles most of the changing of the icons
 //the notification_pageview is also listening to the provider and changes the screen depending on the
 //changes to the provider that the animated_fab does on the onTap function.
+
+SheetController mainSlidingSheetController = SheetController();
+
+class MainSlidingSheet extends StatefulWidget {
+  static const String id = 'main_sliding_sheet';
+
+  @override
+  _MainSlidingSheetState createState() => _MainSlidingSheetState();
+}
+
+class _MainSlidingSheetState extends State<MainSlidingSheet> {
+  @override
+  Widget build(BuildContext context) {
+    return SlidingSheet(
+      controller: mainSlidingSheetController,
+      closeOnBackdropTap: true,
+      closeOnBackButtonPressed: true,
+      isBackdropInteractable: true,
+      backdropColor: Colors.black54,
+      elevation: 5,
+      shadowColor: Colors.black54,
+      cornerRadius: 15,
+      liftOnScrollHeaderElevation: 5,
+      duration: Duration(milliseconds: 200),
+      snapSpec: const SnapSpec(
+        snap: true,
+        snappings: [0.0, 0.7],
+      ),
+      body: MainBottomNavMenu(),
+      headerBuilder: (BuildContext context, SheetState state) {
+        return Container(
+          width: double.infinity,
+          height: 50,
+          color: AppColors.colorWhite,
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 6.0, bottom: 5.0),
+                  width: 30,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.all(Radius.circular(2)),
+                  ),
+                ),
+              ),
+              CustomText(
+                text: 'New Message',
+                size: 15,
+                bold: true,
+                padding: const EdgeInsets.only(top: 5.0),
+              ),
+            ],
+          ),
+        );
+      },
+      builder: (BuildContext context, SheetState state) {
+        return Material(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextField(
+                    cursorColor: AppColors.colorPrimaryOrange,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey,
+                    ),
+                    decoration: InputDecoration(
+                        hintText: 'Search...',
+                        hintStyle: TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey,
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(30)))),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
 
 class MainBottomNavMenu extends StatefulWidget {
   static const String id = 'main_bottom_nav_menu';

@@ -1,6 +1,11 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/slide_up_share_prompt.dart';
+import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -70,8 +75,13 @@ class MeetUpPost extends StatelessWidget {
                   children: [
                     Row(
                       children: <Widget>[
-                        GestureDetector(
-                          onTap: () {},
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                RouteTransitions()
+                                    .slideRightToLeftTransitionType(OtherProfilePage()));
+                          },
                           child: Container(
                             child: Row(
                               children: <Widget>[
@@ -192,7 +202,15 @@ class MeetUpPost extends StatelessWidget {
                               ),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                mainSlidingSheetController.snapToExtent(0.7,
+                                    duration: Duration(milliseconds: 200), clamp: true);
+                                /*Navigator.push(
+                                  context,
+                                  SlideUpTransparentRoute(
+                                      builder: (context) => SlideUpSharePrompt()),
+                                );*/
+                              },
                               icon: Icon(
                                 FontAwesomeIcons.paperPlane,
                                 color: AppColors.colorWhite,

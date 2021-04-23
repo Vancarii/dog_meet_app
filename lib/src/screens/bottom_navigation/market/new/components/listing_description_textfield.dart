@@ -8,7 +8,7 @@ class ListingDescriptionTextField extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 10.0),
       width: double.infinity,
-      //height: 100,
+      height: 100,
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
         //color: AppColors.colorGrey.withOpacity(0.5),

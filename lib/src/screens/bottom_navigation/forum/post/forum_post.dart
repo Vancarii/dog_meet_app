@@ -1,4 +1,5 @@
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forum_post_header_info.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
 import 'package:flutter/material.dart';
@@ -170,6 +171,7 @@ class _ForumPostState extends State<ForumPost> {
                         IconButton(
                           icon: Icon(FontAwesomeIcons.paperPlane),
                           onPressed: () {
+                            mainSlidingSheetController.snapToExtent(0.7);
                             print('share');
                           },
                           padding: EdgeInsets.only(left: 10, bottom: 8),

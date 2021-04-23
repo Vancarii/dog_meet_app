@@ -1,41 +1,50 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'new_forum_comment.dart';
-
-class ForumCommentSection extends StatefulWidget {
-  static const String id = 'forum_comment_section';
-
+class ChatsScreen extends StatefulWidget {
   @override
-  _ForumCommentSectionState createState() => _ForumCommentSectionState();
+  _ChatsScreenState createState() => _ChatsScreenState();
 }
 
-class _ForumCommentSectionState extends State<ForumCommentSection> {
+class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
         leading: IconButton(
-          icon: Icon(FontAwesomeIcons.arrowLeft),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
-            setState(() {
-              Navigator.pop(context);
-            });
+            Navigator.pop(context);
           },
         ),
-        elevation: 0,
-        centerTitle: true,
-        title: CustomText(
-          text: 'Comments',
-          size: 20,
-          bold: true,
-          alignment: TextAlign.center,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: CircleAvatar(
+                  //radius: 25,
+                  ),
+            ),
+            CustomText(
+              text: 'Rosyandmaze',
+              size: 14,
+              //bold: true,
+              alignment: TextAlign.start,
+            ),
+          ],
         ),
-
-        /*gibsonSemiBoldText(
-            'Comments', 0, 0, 0, 0, 20, Colors.black, TextAlign.center),*/
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.info_outline),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -43,9 +52,7 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
             Expanded(
               child: ListView(
                 padding: EdgeInsets.all(5),
-                children: <Widget>[
-                  NewForumComment(),
-                ],
+                children: <Widget>[],
               ),
             ),
             Container(
@@ -65,6 +72,12 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
                         alignLabelWithHint: true,
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         labelText: 'Message',
+                        suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.image,
+                              color: AppColors.colorBlack,
+                            )),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: 0.0,

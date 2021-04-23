@@ -4,17 +4,20 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/forum/post/forum_post
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/new_market_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/components/profile_drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'info/profile_info.dart';
-import 'components/profile_tab_delegate.dart';
+import 'components/other_profile_tab_delegate.dart';
+import 'info/other_profile_info.dart';
 
-class AccountProfilePage extends StatefulWidget {
+class OtherProfilePage extends StatefulWidget {
+  static const String id = 'other_profile_page';
+
   @override
-  _AccountProfilePageState createState() => _AccountProfilePageState();
+  _OtherProfilePageState createState() => _OtherProfilePageState();
 }
 
-class _AccountProfilePageState extends State<AccountProfilePage> with TickerProviderStateMixin {
+class _OtherProfilePageState extends State<OtherProfilePage> with TickerProviderStateMixin {
   List<Tab> profilePostTabs = <Tab>[
     Tab(
       child: Icon(FontAwesomeIcons.paw),
@@ -33,7 +36,6 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient:
@@ -43,29 +45,55 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
           ])),
         ),
         elevation: 0,
-        //centerTitle: true,
+        leading: IconButton(
+          icon: Icon(
+            FontAwesomeIcons.arrowLeft,
+            size: 20,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: CustomText(
-          text: 'Rosyandmaze',
+          text: 'Account Name',
           size: 26,
           bold: true,
         ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              FontAwesomeIcons.edit,
-              size: 20,
+              Icons.more_vert,
             ),
-            onPressed: () {},
-          ),
-          Builder(
-            builder: (context) => IconButton(
-              icon: Icon(
-                FontAwesomeIcons.bars,
-                size: 20,
-              ),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              //tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            ),
+            onPressed: () {
+              showCupertinoDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      title: Text('Actions'),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text('Report'),
+                          onPressed: () {
+                            //TODO: ADD FUNCTIONALITY TO REPORT LISTING
+                          },
+                        ),
+                        CupertinoDialogAction(
+                          child: Text('Turn on post notifications'),
+                          onPressed: () {
+                            //TODO; ADD FUNCTIONALITY TO HIDE LISTING AND SIMILAR
+                          },
+                        ),
+                        CupertinoDialogAction(
+                          child: Text('Not Interested'),
+                          onPressed: () {
+                            //TODO; ADD FUNCTIONALITY TO HIDE LISTING AND SIMILAR
+                          },
+                        ),
+                      ],
+                    );
+                  });
+            },
           ),
         ],
       ),
@@ -76,11 +104,11 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverToBoxAdapter(
-                child: ProfileInfo(),
+                child: OtherProfileInfo(),
               ),
               SliverPersistentHeader(
                 pinned: true,
-                delegate: ProfileTabDelegate(
+                delegate: OtherProfileTabDelegate(
                   TabBar(
                     indicatorColor: AppColors.colorPrimaryOrange,
                     labelColor: AppColors.colorPrimaryOrange,

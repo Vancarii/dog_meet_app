@@ -44,7 +44,6 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     meetTabController = TabController(length: meetTabs.length, vsync: this);
   }

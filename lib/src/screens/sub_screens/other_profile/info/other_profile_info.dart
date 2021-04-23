@@ -1,19 +1,19 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'components/other_pup_attributes.dart';
+import 'components/other_pup_tab_bar.dart';
 
-import 'components/pup_attributes.dart';
-import 'components/pup_tab_bar.dart';
-
-class ProfileInfo extends StatefulWidget {
+class OtherProfileInfo extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => ProfileInfoState();
+  State<StatefulWidget> createState() => OtherProfileInfoState();
 }
 
-class ProfileInfoState extends State<ProfileInfo> {
+class OtherProfileInfoState extends State<OtherProfileInfo> {
   nameIsActive activePup = nameIsActive.pup1;
-
   function(value) => setState(() => activePup = value);
+
+  bool isFollowed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -182,6 +182,58 @@ class ProfileInfoState extends State<ProfileInfo> {
               children: [
                 Expanded(
                   child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        isFollowed = !isFollowed;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      alignment: Alignment.center,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        color:
+                            isFollowed == true ? Colors.transparent : AppColors.colorDarkSlateGrey,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        border: Border.all(
+                          width: 2,
+                          color: AppColors.colorDarkSlateGrey,
+                        ),
+                      ),
+                      child: CustomText(
+                        text: isFollowed == true ? 'Following' : 'Follow',
+                        size: 15,
+                        bold: true,
+                        color: isFollowed == true ? AppColors.colorBlack : AppColors.colorWhite,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      alignment: Alignment.center,
+                      //width: MediaQuery.of(context).size.width / 3,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: CustomText(
+                        text: 'Message',
+                        size: 15,
+                        bold: true,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       alignment: Alignment.center,
@@ -203,7 +255,7 @@ class ProfileInfoState extends State<ProfileInfo> {
               ],
             ),
           ),
-          PupTabBar(
+          OtherPupTabBar(
             funcIsPup: function,
           ),
           Container(
@@ -211,7 +263,7 @@ class ProfileInfoState extends State<ProfileInfo> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                activePup == nameIsActive.pup1 ? Pup1Attributes() : Pup2Attributes(),
+                activePup == nameIsActive.pup1 ? OtherPup1Attributes() : OtherPup2Attributes(),
               ],
             ),
           ),

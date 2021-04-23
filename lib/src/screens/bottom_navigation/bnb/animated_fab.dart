@@ -1,5 +1,5 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/route_transitions/slideup_route_transition.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/post_listing_page.dart';
