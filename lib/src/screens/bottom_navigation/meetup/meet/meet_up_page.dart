@@ -136,8 +136,9 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
             margin: const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
             //duration: Duration(milliseconds: 150),
             snapSpec: const SnapSpec(
-              snap: true, snappings: [kMinSnapPosition, kMaxSnapPosition],
-              //snappings: [minSnapPosition, SnapSpec.expanded],
+              snap: true,
+              snappings: [kMinSnapPosition, kMaxSnapPosition],
+              initialSnap: kMinSnapPosition,
               positioning: SnapPositioning.pixelOffset,
             ),
             body: TabBarView(
