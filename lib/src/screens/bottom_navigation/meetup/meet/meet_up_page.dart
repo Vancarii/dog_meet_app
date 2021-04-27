@@ -4,7 +4,9 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
+import 'package:dog_meet_app/src/provider/fab_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/details/meet_up_details_page.dart';
 import 'components/details/meet_up_sliding_header.dart';
@@ -126,6 +128,13 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
           //the sliderheader is the small part showing when the sliding sheet is collapsed.
           //
           body: SlidingSheet(
+            /*listener: (state) {
+              if (state.isExpanded) {
+                Provider.of<FabNotifier>(context, listen: false).meetUpSheetExpanded(true);
+              } else {
+                Provider.of<FabNotifier>(context, listen: false).meetUpSheetExpanded(false);
+              }
+            },*/
             color: AppColors.colorPrimaryOrange,
             controller: meetSlidingSheetController,
             closeOnBackdropTap: true,

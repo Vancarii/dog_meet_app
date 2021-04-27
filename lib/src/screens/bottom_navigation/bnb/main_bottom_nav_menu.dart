@@ -99,24 +99,6 @@ class _MainSlidingSheetState extends State<MainSlidingSheet> {
                   labelText: 'Search',
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 ),
-                /*Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    cursorColor: AppColors.colorPrimaryOrange,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.grey,
-                    ),
-                    decoration: InputDecoration(
-                        hintText: 'Search...',
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)))),
-                  ),
-                ),*/
               ],
             ),
           ),

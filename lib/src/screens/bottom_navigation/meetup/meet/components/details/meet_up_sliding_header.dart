@@ -1,7 +1,9 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
+import 'package:dog_meet_app/src/provider/fab_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 class MeetUpSlidingHeader extends StatelessWidget {
@@ -23,6 +25,8 @@ class MeetUpSlidingHeader extends StatelessWidget {
           slidingSheetController.snapToExtent(kMinSnapPosition,
               duration: Duration(milliseconds: 150));
         }
+
+        Provider.of<FabNotifier>(context, listen: false).meetUpSheetExpanded(true);
       },
       child: Container(
         height: 80,
