@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
           }
         });
         return Scaffold(
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: true,
           //extendBodyBehindAppBar: true,
           appBar: AppBar(
             backgroundColor: Colors.white,

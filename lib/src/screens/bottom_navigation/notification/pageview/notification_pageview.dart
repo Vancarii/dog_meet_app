@@ -1,7 +1,7 @@
-import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
+import 'package:dog_meet_app/src/provider/fab_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'messages/messages_page.dart';
+import 'messages/all_messages_screen.dart';
 import 'notifications/notifications_page.dart';
 
 class NotificationsPageView extends StatefulWidget {
@@ -19,7 +19,7 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
   @override
   Widget build(BuildContext context) {
     setState(() {
-      if (Provider.of<FabMessageNotifier>(context).onMessagesPage == true) {
+      if (Provider.of<FabNotifier>(context).onMessagesPage == true) {
         _pageViewController.animateToPage(
           1,
           duration: Duration(milliseconds: 200),
@@ -31,10 +31,10 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
       controller: _pageViewController,
       onPageChanged: (int page) {
         if (page == 0) {
-          Provider.of<FabMessageNotifier>(context, listen: false).messageFabChanged(false);
+          Provider.of<FabNotifier>(context, listen: false).messageFabChanged(false);
         }
         if (page == 1) {
-          Provider.of<FabMessageNotifier>(context, listen: false).messageFabChanged(true);
+          Provider.of<FabNotifier>(context, listen: false).messageFabChanged(true);
         }
       },
       //allowImplicitScrolling: false,

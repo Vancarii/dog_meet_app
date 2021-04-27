@@ -1,6 +1,6 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/animated_bottom_navigation_bar/src/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -26,7 +26,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
       child: Column(
         /*shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),*/
-
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 25.0, bottom: 25.0, left: 30.0),
@@ -142,6 +142,111 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                 description: 'Puppies only!',
               ),
             ],
+          ),
+          Divider(
+            thickness: 1,
+            indent: 20,
+            endIndent: 20,
+          ),
+          CustomText(
+            text: 'Comments (1)',
+            size: 15,
+            bold: true,
+            padding: const EdgeInsets.only(top: 5.0),
+          ),
+          Container(
+            width: double.infinity,
+            height: 300,
+            margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0, top: 5.0),
+            padding: const EdgeInsets.only(top: 5.0),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
+              ),
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.all(5.0),
+                    children: <Widget>[
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          CircleAvatar(),
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            padding: const EdgeInsets.all(10.0),
+                            decoration: BoxDecoration(
+                              color: AppColors.colorGrey.withOpacity(0.3),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                            ),
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.of(context).size.width / 1.5,
+                            ),
+                            child: Wrap(
+                              children: [
+                                CustomText(
+                                  text: 'Where is this meet? is it at a field or a dog park?',
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 10.0,
+                    top: 10.0,
+                    left: 10.0,
+                  ),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomRoundedTextField(
+                              maxLines: null,
+                              minLines: 1,
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              labelText: 'Add Comment / Ask a Question',
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.send_rounded,
+                              color: AppColors.colorBlack,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Wrap(
+                          children: [
+                            CustomText(
+                              text: 'Your comment is public to everyone who views this meet',
+                              size: 12,
+                              color: AppColors.colorBlack.withOpacity(0.5),
+                              padding: const EdgeInsets.only(left: 10.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

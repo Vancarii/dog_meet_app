@@ -1,5 +1,6 @@
 //import 'package:dog_meet_app/src/screens/global/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar.dart';
@@ -9,7 +10,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profi
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
+import 'package:dog_meet_app/src/provider/fab_notifier.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'animated_fab.dart';
@@ -48,7 +49,7 @@ class _MainSlidingSheetState extends State<MainSlidingSheet> {
       backdropColor: Colors.black54,
       elevation: 5,
       shadowColor: Colors.black54,
-      cornerRadius: 15,
+      cornerRadius: 30,
       liftOnScrollHeaderElevation: 5,
       duration: Duration(milliseconds: 200),
       snapSpec: const SnapSpec(
@@ -91,7 +92,14 @@ class _MainSlidingSheetState extends State<MainSlidingSheet> {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                Padding(
+                CustomRoundedTextField(
+                  minLines: 1,
+                  maxLines: 1,
+                  keyboard: TextInputType.name,
+                  labelText: 'Search',
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                ),
+                /*Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
                     cursorColor: AppColors.colorPrimaryOrange,
@@ -108,7 +116,7 @@ class _MainSlidingSheetState extends State<MainSlidingSheet> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)))),
                   ),
-                ),
+                ),*/
               ],
             ),
           ),
@@ -183,7 +191,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
               //these two lines change the screen to the notifications screen
               //then sets messagefab to true which slides the screen to the messages screen
               _currentSelectedScreenIndex = 3;
-              Provider.of<FabMessageNotifier>(context, listen: false).messageFabChanged(true);
+              Provider.of<FabNotifier>(context, listen: false).messageFabChanged(true);
             });
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,

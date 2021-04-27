@@ -1,6 +1,11 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/messages/components/chat_info_screen.dart';
+import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ChatsScreen extends StatefulWidget {
   @override
@@ -21,27 +26,38 @@ class _ChatsScreenState extends State<ChatsScreen> {
             Navigator.pop(context);
           },
         ),
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: CircleAvatar(
-                  //radius: 25,
-                  ),
-            ),
-            CustomText(
-              text: 'Rosyandmaze',
-              size: 14,
-              //bold: true,
-              alignment: TextAlign.start,
-            ),
-          ],
+        title: InkWell(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          onTap: () {
+            Navigator.push(
+                context, RouteTransitions().slideRightToLeftTransitionType(OtherProfilePage()));
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: CircleAvatar(
+                    //radius: 25,
+                    ),
+              ),
+              CustomText(
+                text: 'Rosyandmaze',
+                size: 14,
+                //bold: true,
+                alignment: TextAlign.start,
+              ),
+            ],
+          ),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, RouteTransitions().slideRightToLeftTransitionType(ChatInfoScreen()));
+            },
             icon: Icon(Icons.info_outline),
           ),
         ],
@@ -62,35 +78,16 @@ class _ChatsScreenState extends State<ChatsScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      maxLines: 50,
-                      minLines: 1,
-                      decoration: new InputDecoration(
-                        fillColor: AppColors.colorGrey.withOpacity(0.2),
-                        filled: true,
-                        contentPadding: EdgeInsets.only(left: 10, bottom: 15),
-                        alignLabelWithHint: true,
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        labelText: 'Message',
-                        suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.image,
-                              color: AppColors.colorBlack,
-                            )),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 0.0,
-                              color: AppColors.colorGrey.withOpacity(0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 0.0,
-                              color: AppColors.colorGrey.withOpacity(0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)),
-                      ),
+                    child: CustomRoundedTextField(
+                      maxLines: null,
+                      padding: const EdgeInsets.all(0.0),
+                      labelText: 'Message',
+                      endIcon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.image,
+                            color: AppColors.colorBlack,
+                          )),
                     ),
                   ),
                   Padding(

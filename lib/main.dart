@@ -3,7 +3,7 @@ import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/provider/fab_message_notifier.dart';
+import 'package:dog_meet_app/src/provider/fab_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
@@ -37,7 +37,7 @@ class DogMeetApp extends StatelessWidget {
       systemNavigationBarColor: Colors.transparent,
     ));
     return ChangeNotifierProvider(
-      create: (BuildContext context) => FabMessageNotifier(),
+      create: (BuildContext context) => FabNotifier(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

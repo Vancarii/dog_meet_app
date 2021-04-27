@@ -1,12 +1,8 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/animated_bottom_navigation_bar/src/circular_notch_and_corner_clipper.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/info_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-
-import '../../meet_up_page.dart';
 
 class MeetUpSlidingHeader extends StatelessWidget {
   const MeetUpSlidingHeader({
@@ -28,53 +24,45 @@ class MeetUpSlidingHeader extends StatelessWidget {
               duration: Duration(milliseconds: 150));
         }
       },
-      child: Stack(
-        children: [
-          Container(
-            height: 80,
-            width: double.infinity,
-            color: AppColors.colorPrimaryOrange,
-          ),
-          Container(
-            height: 70,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 6.0, bottom: 5.0),
-                    width: 30,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: AppColors.colorDarkSlateGrey,
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
-                    ),
-                  ),
+      child: Container(
+        height: 80,
+        width: double.infinity,
+        color: AppColors.colorPrimaryOrange,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                margin: const EdgeInsets.only(top: 6.0, bottom: 5.0),
+                width: 30,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: AppColors.colorDarkSlateGrey,
+                  borderRadius: BorderRadius.all(Radius.circular(2)),
                 ),
-                Spacer(),
-                Container(
-                  child: CustomText(
-                    text: 'Meet Up Details',
-                    size: 26,
-                    bold: true,
-                    color: AppColors.colorDarkSlateGrey,
-                    padding: const EdgeInsets.only(left: 20.0),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            Spacer(),
+            Container(
+              child: CustomText(
+                text: 'Meet Up Details',
+                size: 26,
+                bold: true,
+                color: AppColors.colorDarkSlateGrey,
+                padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class SlidingSheetClipper extends CustomClipper<Path> {
+/*class SlidingSheetClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
@@ -98,4 +86,4 @@ class SlidingSheetClipper extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return false;
   }
-}
+}*/

@@ -1,4 +1,5 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -94,23 +95,12 @@ class _MessagesPageState extends State<MessagesPage> {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    cursorColor: AppColors.colorPrimaryOrange,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.grey,
-                    ),
-                    decoration: InputDecoration(
-                        hintText: 'Search...',
-                        hintStyle: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)))),
-                  ),
+                CustomRoundedTextField(
+                  minLines: 1,
+                  maxLines: 1,
+                  keyboard: TextInputType.name,
+                  labelText: 'Search',
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 ),
               ],
             ),
