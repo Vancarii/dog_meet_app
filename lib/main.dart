@@ -13,7 +13,6 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/post_listing_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/new/post_meet_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
-import 'package:dog_meet_app/src/screens/sub_screens/other_profile/info/other_profile_info.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/cupertino.dart';

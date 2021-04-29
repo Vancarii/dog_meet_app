@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
-class MeetUpSlidingHeader extends StatelessWidget {
+class MeetUpSlidingHeader extends StatefulWidget {
   const MeetUpSlidingHeader({
     Key key,
     @required this.slidingSheetController,
@@ -15,52 +16,121 @@ class MeetUpSlidingHeader extends StatelessWidget {
   final SheetController slidingSheetController;
 
   @override
+  _MeetUpSlidingHeaderState createState() => _MeetUpSlidingHeaderState();
+}
+
+class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
+  bool isAttending = false;
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (slidingSheetController.state.isCollapsed == true) {
-          slidingSheetController.snapToExtent(kMaxSnapPosition,
-              duration: Duration(milliseconds: 150));
+        if (widget.slidingSheetController.state.isCollapsed == true) {
+          widget.slidingSheetController
+              .snapToExtent(kMaxSnapPosition, duration: Duration(milliseconds: 150));
         } else {
-          slidingSheetController.snapToExtent(kMinSnapPosition,
-              duration: Duration(milliseconds: 150));
+          widget.slidingSheetController
+              .snapToExtent(kMinSnapPosition, duration: Duration(milliseconds: 150));
         }
 
         Provider.of<FabNotifier>(context, listen: false).meetUpSheetExpanded(true);
       },
-      child: Container(
-        height: 80,
-        width: double.infinity,
-        color: AppColors.colorPrimaryOrange,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                margin: const EdgeInsets.only(top: 6.0, bottom: 5.0),
-                width: 30,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: AppColors.colorDarkSlateGrey,
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+      child: Stack(
+        children: [
+          Container(
+            height: 80,
+            width: double.infinity,
+            color: AppColors.colorPrimaryOrange,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 6.0, bottom: 5.0),
+                    width: 30,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: AppColors.colorDarkSlateGrey,
+                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    ),
+                  ),
                 ),
+                Spacer(),
+                Container(
+                  margin: const EdgeInsets.only(left: 20.0, bottom: 10.0, right: 10.0),
+                  child: CustomText(
+                    text: 'Meet Up Details',
+                    size: 26,
+                    bold: true,
+                    color: AppColors.colorDarkSlateGrey,
+                    // padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 12.0,
+            right: 12.0,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 150),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return ScaleTransition(child: child, scale: animation);
+              },
+              child: FloatingActionButton(
+                key: UniqueKey(),
+                mini: true,
+                onPressed: () {
+                  setState(() {
+                    isAttending = !isAttending;
+                  });
+
+                  Flushbar(
+                    borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                    margin: const EdgeInsets.all(10.0),
+                    title: isAttending == true ? 'Cancelled Attendance' : 'You\'re Going!',
+                    message: isAttending == true
+                        ? 'That\'s Okay! Find someone else to play!'
+                        : 'It\'s great to meet more friends!',
+                    icon: isAttending == true
+                        ? Icon(
+                            Icons.close_rounded,
+                            size: 30,
+                            color: AppColors.colorRed,
+                          )
+                        : Icon(
+                            Icons.check_rounded,
+                            size: 30,
+                            color: AppColors.colorLightGreen,
+                          ),
+                    duration: Duration(milliseconds: 2500),
+                    animationDuration: Duration(milliseconds: 500),
+                  )..show(context);
+                },
+                backgroundColor:
+                    isAttending == true ? AppColors.colorRed : AppColors.colorLightGreen,
+                focusElevation: 0,
+                highlightElevation: 0,
+                splashColor: AppColors.colorPrimaryOrange,
+                child: isAttending == true
+                    ? Icon(
+                        Icons.close_rounded,
+                        size: 30,
+                        color: AppColors.colorWhite,
+                      )
+                    : Icon(
+                        Icons.check_rounded,
+                        size: 30,
+                        color: AppColors.colorWhite,
+                      ),
               ),
             ),
-            Spacer(),
-            Container(
-              child: CustomText(
-                text: 'Meet Up Details',
-                size: 26,
-                bold: true,
-                color: AppColors.colorDarkSlateGrey,
-                padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

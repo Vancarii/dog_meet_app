@@ -1,9 +1,9 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'components/meet_up_list_tiles.dart';
 
 class MeetUpDetailsPage extends StatefulWidget {
@@ -12,20 +12,22 @@ class MeetUpDetailsPage extends StatefulWidget {
 }
 
 class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
+  bool isAttending = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 60.0),
+      padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight + 10.0),
       //margin: const EdgeInsets.only(bottom: 100.0),
       //height: MediaQuery.of(context).size.height,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(15), bottom: Radius.circular(15)),
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
         color: AppColors.colorWhite,
       ),
       child: Column(
         /*shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),*/
+            physics: NeverScrollableScrollPhysics(),*/
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(

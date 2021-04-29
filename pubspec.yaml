@@ -26,6 +26,7 @@ dependencies:
   video_player: 2.1.1
   chewie: 1.0.0
   expandable: ^5.0.1
+  another_flushbar: ^1.10.20
 
 
 
