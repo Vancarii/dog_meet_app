@@ -23,12 +23,28 @@ class MarketStoreDetailsPage extends StatefulWidget {
 }
 
 class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
+  List<String> productTypes = [
+    'Leashes',
+    'Collars',
+    'Harnesses',
+    'Crates',
+    'Clothes',
+    'Bandanas',
+    'Beds',
+    'Treats',
+    'Grooming',
+  ];
+
+  bool pageIsLiked = false;
+
+  int pageLikes = 169;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(FontAwesomeIcons.arrowLeft),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             setState(() {
               Navigator.pop(context);
@@ -39,7 +55,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
         centerTitle: true,
         title: CustomText(
           text: widget.storeName,
-          size: 20,
+          size: 18,
           bold: true,
         ),
         /*Text(
@@ -50,7 +66,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              FontAwesomeIcons.ellipsisV,
+              Icons.more_vert,
             ),
             onPressed: () {
               setState(() {
@@ -90,22 +106,23 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Stack(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.bottomLeft,
                   clipBehavior: Clip.none,
                   children: <Widget>[
                     Container(
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.width / 2.5,
+                      height: 150,
                       child: Image(
                         image: AssetImage('assets/images/trainingtab2.jpg'),
                         fit: BoxFit.fitWidth,
                       ),
                     ),
                     Positioned(
-                      bottom: -MediaQuery.of(context).size.width / 8,
+                      bottom: -60,
+                      left: 20,
                       child: Container(
-                        width: MediaQuery.of(context).size.width / 4,
-                        height: MediaQuery.of(context).size.width / 4,
+                        width: 100,
+                        height: 100,
                         decoration: BoxDecoration(
                           boxShadow: [kBoxShadow()],
                           color: Colors.white,
@@ -117,260 +134,244 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                     ),
                   ],
                 ),
-                Container(
-                  margin: EdgeInsets.all(3),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              CustomText(
-                                text: '5.0',
-                                size: 15,
-                                bold: true,
-                                alignment: TextAlign.start,
-                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                              ),
-                              /*Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                                child: Text(
-                                  '4.9',
-                                  style: AppTextStyles.h26BlackBold,
-                                  textAlign: TextAlign.start,
-                                ),
-                              ),*/
-                              Icon(
-                                Icons.star_border,
-                                size: MediaQuery.of(context).size.width / 20,
-                              ),
-                              Icon(
-                                Icons.star_border,
-                                size: MediaQuery.of(context).size.width / 20,
-                              ),
-                              Icon(
-                                Icons.star_border,
-                                size: MediaQuery.of(context).size.width / 20,
-                              ),
-                              Icon(
-                                Icons.star_border,
-                                size: MediaQuery.of(context).size.width / 20,
-                              ),
-                              Icon(
-                                Icons.star_border,
-                                size: MediaQuery.of(context).size.width / 20,
-                              ),
-                            ],
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    margin: const EdgeInsets.all(10.0),
+                    constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width / 3 * 2,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        StoreIconButton(
+                          onTap: () {
+                            setState(() {
+                              pageIsLiked = !pageIsLiked;
+                              pageIsLiked == true ? pageLikes += 1 : pageLikes -= 1;
+                            });
+                          },
+                          fillColor: pageIsLiked == false ? AppColors.colorPrimaryOrange : null,
+                          text: CustomText(
+                            text: pageIsLiked == false ? 'Like' : 'Liked',
+                            color: pageIsLiked == false
+                                ? AppColors.colorWhite
+                                : AppColors.colorPrimaryOrange,
+                            bold: true,
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           ),
-                          InkWell(
-                            child: CustomText(
-                              text: 'Customer Reviews (3)',
-                              size: 12,
-                              color: Colors.blue,
-                              alignment: TextAlign.start,
-                              bold: true,
-                              padding: const EdgeInsets.only(left: 5.0),
-                            ),
-
-                            /*Text(
-                              ' Customer Reviews (3)',
-                              style: AppTextStyles.h12BlueBold,
-                              textAlign: TextAlign.start,
-                            ),*/
+                        ),
+                        StoreIconButton(
+                          onTap: () {
+                            setState(() {
+                              showCupertinoDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return CupertinoAlertDialog(
+                                    title: Text('Open in Google Maps?'),
+                                    actions: [
+                                      CupertinoDialogAction(
+                                        child: Text('Open Maps'),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            });
+                          },
+                          icon: Icon(
+                            Icons.location_on_rounded,
+                            color: AppColors.colorPrimaryOrange,
                           ),
-                        ],
-                      ),
-                      Spacer(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              CustomText(
-                                text: 'Location',
-                                size: 15,
-                                bold: true,
-                                color: AppColors.colorPrimaryOrange,
-                                alignment: TextAlign.end,
-                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                              ),
-                              /*Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                                child: Text(
-                                  'location',
-                                  style: AppTextStyles.h26OrangeBold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              ),*/
-                              Icon(
-                                Icons.location_on_rounded,
-                                size: MediaQuery.of(context).size.width / 20,
-                              ),
-                            ],
+                        ),
+                        StoreIconButton(
+                          onTap: () {
+                            setState(() {
+                              showCupertinoDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return CupertinoAlertDialog(
+                                    title: Text('(778) - 636 - 7881'),
+                                    actions: [
+                                      CupertinoDialogAction(
+                                        child: Text('Call'),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            });
+                          },
+                          icon: Icon(
+                            Icons.phone_rounded,
+                            color: AppColors.colorPrimaryOrange,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CustomText(
-                                text: 'Open',
-                                size: 15,
-                                bold: true,
-                                color: Colors.green,
-                                alignment: TextAlign.end,
-                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                              ),
-                              /*Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                                child: Text(
-                                  'Open',
-                                  style: AppTextStyles.h15GreenBold,
-                                  textAlign: TextAlign.end,
-                                ),
-                              ),*/
-                              CustomText(
-                                text: 'closes 5 pm',
-                                size: 12,
-                                bold: true,
-                                alignment: TextAlign.end,
-                              ),
-                              /*Text(
-                                'closes 5 pm',
-                                style: AppTextStyles.h12BlackBold,
-                                textAlign: TextAlign.end,
-                              ),*/
-                              Icon(
-                                Icons.arrow_drop_down_rounded,
-                              ),
-                            ],
+                        ),
+                        StoreIconButton(
+                          onTap: () {
+                            setState(() {
+                              showCupertinoDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context) {
+                                  return CupertinoAlertDialog(
+                                    content: Text('link'),
+                                    title: Text('Store Website'),
+                                    actions: [
+                                      CupertinoDialogAction(
+                                        child: Text('Open Website'),
+                                        onPressed: () {},
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            });
+                          },
+                          icon: Icon(
+                            Icons.public,
+                            color: AppColors.colorPrimaryOrange,
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      GestureDetector(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [kBoxShadow()],
-                              borderRadius: BorderRadius.all(Radius.circular(5))),
-                          child: CustomText(
-                            text: 'Call',
-                            bold: true,
-                            size: 12,
-                            alignment: TextAlign.center,
-                            padding: const EdgeInsets.all(5.0),
-                          ),
-
-                          /*Padding(
-                            padding: EdgeInsets.all(5.0),
-                            child: Text(
-                              'Call',
-                              style: AppTextStyles.h12BlackBold,
-                              textAlign: TextAlign.center,
+                CustomText(
+                  text: 'This is the bio, store owners can put whatever they want here',
+                  padding: const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: AppColors.colorPrimaryOrange,
                             ),
-                          ),*/
+                            Icon(
+                              Icons.star,
+                              color: AppColors.colorPrimaryOrange,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color: AppColors.colorPrimaryOrange,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color: AppColors.colorPrimaryOrange,
+                            ),
+                            Icon(
+                              Icons.star,
+                              color: AppColors.colorPrimaryOrange,
+                            ),
+                            CustomText(
+                              text: ' 120 Reviews',
+                              size: 15,
+                              //bold: true,
+                              color: AppColors.colorGrey,
+                            ),
+                          ],
                         ),
                       ),
-                      GestureDetector(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [kBoxShadow()],
-                              borderRadius: BorderRadius.all(Radius.circular(5))),
-                          child: CustomText(
-                            text: 'Website',
-                            bold: true,
-                            size: 12,
-                            alignment: TextAlign.center,
-                            padding: const EdgeInsets.all(5.0),
-                          ),
-                          /*Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Text(
-                              'Website',
-                              style: AppTextStyles.h12BlackBold,
-                              textAlign: TextAlign.center,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: InkWell(
+                          child: RichText(
+                            text: TextSpan(
+                              text: '$pageLikes',
+                              style: TextStyle(
+                                color: AppColors.colorBlack,
+                                fontFamily: 'Gibson',
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: ' People liked this store',
+                                  style: TextStyle(
+                                    color: AppColors.colorGrey,
+                                    fontFamily: 'Gibson',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),*/
+                          ),
                         ),
                       ),
-                      GestureDetector(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [kBoxShadow()],
-                              borderRadius: BorderRadius.all(Radius.circular(5))),
-                          child: CustomText(
-                            text: 'Directions',
-                            bold: true,
-                            size: 12,
-                            alignment: TextAlign.center,
-                            padding: const EdgeInsets.all(5.0),
-                          ),
-
-                          /*Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Text(
-                              'Directions',
-                              style: AppTextStyles.h12BlackBold,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),*/
-                        ),
-                      )
                     ],
                   ),
                 ),
                 SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: ListView(
+                  child: ListView.builder(
+                    itemCount: productTypes.length,
                     padding: EdgeInsets.only(left: 5, bottom: 5),
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      ForumsPageFilterChip(
-                        topicText: 'Leashes',
-                      ),
-                      ForumsPageFilterChip(
-                        topicText: 'Collars',
-                      ),
-                      ForumsPageFilterChip(
-                        topicText: 'Harnesses',
-                      ),
-                      ForumsPageFilterChip(
-                        topicText: 'Crates',
-                      ),
-                      ForumsPageFilterChip(
-                        topicText: 'Clothes',
-                      ),
-                      ForumsPageFilterChip(
-                        topicText: 'Beds',
-                      ),
-                      ForumsPageFilterChip(
-                        topicText: 'Treats',
-                      ),
-                      ForumsPageFilterChip(
-                        topicText: 'Grooming Tools',
-                      ),
-                    ],
+                    itemBuilder: (BuildContext context, int index) {
+                      return ForumsPageFilterChip(
+                        topicText: productTypes[index],
+                      );
+                    },
                   ),
                 ),
                 NewMarketPost('New', 'assets/images/trainingtab2.jpg', '15.99', 'Training tabs'),
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class StoreIconButton extends StatelessWidget {
+  final Icon icon;
+  final CustomText text;
+  final Color fillColor;
+  final VoidCallback onTap;
+
+  StoreIconButton({
+    this.icon,
+    this.text,
+    this.fillColor = Colors.transparent,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 2.5,
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+        onTap: onTap,
+        child: Container(
+          height: 38,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            border: Border.all(color: AppColors.colorPrimaryOrange, width: 2),
+            color: fillColor,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: text == null ? icon : text,
+          ),
         ),
       ),
     );

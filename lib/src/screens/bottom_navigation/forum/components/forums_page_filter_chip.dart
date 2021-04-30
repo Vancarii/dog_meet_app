@@ -22,8 +22,12 @@ class _ForumsPageFilterChipState extends State<ForumsPageFilterChip> {
       padding: const EdgeInsets.only(
         top: 2.0,
         bottom: 2.0,
+        left: 5.0,
+        right: 5.0,
       ),
       child: FilterChip(
+        elevation: 2.0,
+        pressElevation: 0.0,
         backgroundColor: Colors.white,
         label: CustomText(
           text: widget.topicText,
