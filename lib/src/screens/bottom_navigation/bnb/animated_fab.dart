@@ -48,6 +48,7 @@ class _AnimatedFabState extends State<AnimatedFab> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: null,
       backgroundColor: AppColors.colorWhite,
       splashColor: AppColors.colorPrimaryOrange,
       elevation: 6,

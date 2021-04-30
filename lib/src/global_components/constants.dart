@@ -21,3 +21,9 @@ const double kMaxSnapPosition = double.infinity;
 // TODO: Change these values so that it works for all devices
 /*const double minSnapPosition = 0.15;
 const double maxSnapPosition = 0.99;*/
+
+//Fullscreen Image Hero String Tags
+const String kNewListingPostHeroTag = 'ListingImage';
+
+const String kStoreProfileCoverHeroTag = 'StoreCover';
+const String kStoreProfileImageHeroTag = 'StoreProfileImage';

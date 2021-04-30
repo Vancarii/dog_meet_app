@@ -82,6 +82,8 @@ class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
                 return ScaleTransition(child: child, scale: animation);
               },
               child: FloatingActionButton(
+                //this herotag is important so that there wont be an error
+                heroTag: null,
                 key: UniqueKey(),
                 mini: true,
                 onPressed: () {

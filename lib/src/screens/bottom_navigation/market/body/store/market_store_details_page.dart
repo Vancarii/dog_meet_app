@@ -1,11 +1,12 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forums_page_filter_chip.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/new_market_post.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/review_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MarketStoreDetailsPage extends StatefulWidget {
   static const String id = 'market_store_details_page';
@@ -112,9 +113,14 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                     Container(
                       width: double.infinity,
                       height: 150,
-                      child: Image(
-                        image: AssetImage('assets/images/trainingtab2.jpg'),
-                        fit: BoxFit.fitWidth,
+                      child: InkWell(
+                        child: Hero(
+                          tag: kStoreProfileCoverHeroTag,
+                          child: Image(
+                            image: AssetImage('assets/images/trainingtab2.jpg'),
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
                       ),
                     ),
                     Positioned(
@@ -128,7 +134,9 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           color: Colors.white,
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: AssetImage(widget.storeImage), fit: BoxFit.fitHeight),
+                            image: AssetImage(widget.storeImage),
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                     ),
@@ -172,7 +180,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                                     title: Text('Open in Google Maps?'),
                                     actions: [
                                       CupertinoDialogAction(
-                                        child: Text('Open Maps'),
+                                        child: Text('Open'),
                                         onPressed: () {},
                                       ),
                                     ],
@@ -251,6 +259,12 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () {
+                          Navigator.push(context,
+                              RouteTransitions().slideRightToLeftTransitionType(ReviewsPage()));
+                        },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [

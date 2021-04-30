@@ -1,14 +1,11 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/components/add_images_gridview.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/post_listing_page.dart';
 import 'package:flutter/material.dart';
 
 class FullscreenImage extends StatelessWidget {
   final Widget image;
-  final int index;
+  final String heroTag;
 
-  FullscreenImage({this.image, this.index});
+  FullscreenImage({@required this.image, @required this.heroTag});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,7 @@ class FullscreenImage extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Hero(
-            tag: 'listingImage$index',
+            tag: heroTag,
             child: image,
           ),
         ),

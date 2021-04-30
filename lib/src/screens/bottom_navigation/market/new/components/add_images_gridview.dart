@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,10 +33,9 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
   }
 
   Future _onAddImageClick(int index) async {
-    setState(() async {
-      _imageFile = await picker.getImage(source: ImageSource.gallery);
-      getFileImage(index);
-    });
+    _imageFile = await picker.getImage(source: ImageSource.gallery);
+    getFileImage(index);
+    setState(() {});
   }
 
   void getFileImage(int index) async {
@@ -80,7 +80,7 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
                           uploadModel.imageFile,
                           fit: BoxFit.contain,
                         ),
-                        index: index,
+                        heroTag: kNewListingPostHeroTag + index.toString(),
                       ),
                     ),
                   );
@@ -88,7 +88,7 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
                 child: Card(
                   clipBehavior: Clip.antiAlias,
                   child: Hero(
-                    tag: 'listingImage$index',
+                    tag: kNewListingPostHeroTag + index.toString(),
                     child: Image.file(
                       uploadModel.imageFile,
                       width: 300,
@@ -99,19 +99,19 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
                 ),
               ),
               Positioned(
-                right: -2,
-                top: -2,
+                right: 0,
+                top: 0,
                 child: InkWell(
                   child: Container(
                     padding: const EdgeInsets.all(5.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.colorWhite,
+                      color: AppColors.colorPrimaryOrange,
                     ),
                     child: Icon(
                       Icons.close_rounded,
                       size: 20,
-                      color: Colors.red,
+                      color: AppColors.colorWhite,
                     ),
                   ),
                   onTap: () {
