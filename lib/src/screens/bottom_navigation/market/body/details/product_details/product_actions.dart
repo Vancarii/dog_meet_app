@@ -77,7 +77,11 @@ class _ProductActionsState extends State<ProductActions> {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                    color: Colors.black12, offset: Offset(-2, 2), blurRadius: 5, spreadRadius: 5)
+                  color: Colors.black12,
+                  offset: Offset(-1, 1),
+                  blurRadius: 1,
+                  spreadRadius: 1,
+                ),
               ],
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30),
@@ -89,7 +93,10 @@ class _ProductActionsState extends State<ProductActions> {
               text: 'Hi, is this still available?',
               size: 15,
               bold: false,
-              padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5, right: 10.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10.0,
+                horizontal: 15.0,
+              ),
             ),
 
             /*Padding(

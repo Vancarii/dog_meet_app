@@ -10,6 +10,8 @@ class CustomRoundedTextField extends StatelessWidget {
   final IconButton endIcon;
   final TextInputType keyboard;
   final Color borderColor;
+  final TextEditingController controller;
+  final Function(String) onTextChanged;
 
   const CustomRoundedTextField({
     Key key,
@@ -20,6 +22,8 @@ class CustomRoundedTextField extends StatelessWidget {
     this.endIcon,
     this.keyboard = TextInputType.multiline,
     this.borderColor = AppColors.colorWhite,
+    this.controller,
+    this.onTextChanged,
   }) : super(key: key);
 
   @override
@@ -27,9 +31,12 @@ class CustomRoundedTextField extends StatelessWidget {
     return Padding(
       padding: padding,
       child: TextFormField(
+        onChanged: onTextChanged,
+        controller: controller,
         maxLines: maxLines,
         minLines: minLines,
         keyboardType: keyboard,
+        cursorColor: AppColors.colorPrimaryOrange,
         textCapitalization: TextCapitalization.sentences,
         maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
         decoration: new InputDecoration(

@@ -37,7 +37,7 @@ class _MarketProductDetailsPageState extends State<MarketProductDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(FontAwesomeIcons.arrowLeft),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             setState(() {
               Navigator.pop(context);

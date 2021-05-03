@@ -1,4 +1,5 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,12 +14,20 @@ class ForumCommentSection extends StatefulWidget {
 }
 
 class _ForumCommentSectionState extends State<ForumCommentSection> {
+  final TextEditingController _forumCommentTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    _forumCommentTextController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(FontAwesomeIcons.arrowLeft),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             setState(() {
               Navigator.pop(context);
@@ -26,12 +35,11 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
           },
         ),
         elevation: 0,
-        centerTitle: true,
+        centerTitle: false,
         title: CustomText(
           text: 'Comments',
-          size: 20,
+          size: 18,
           bold: true,
-          alignment: TextAlign.center,
         ),
 
         /*gibsonSemiBoldText(
@@ -55,29 +63,37 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      maxLines: 50,
-                      minLines: 1,
-                      decoration: new InputDecoration(
-                        fillColor: AppColors.colorGrey.withOpacity(0.2),
-                        filled: true,
-                        contentPadding: EdgeInsets.only(left: 10, bottom: 15),
-                        alignLabelWithHint: true,
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        labelText: 'Message',
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 0.0,
-                              color: AppColors.colorGrey.withOpacity(0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 0.0,
-                              color: AppColors.colorGrey.withOpacity(0.2),
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)),
-                      ),
+                    child: CustomRoundedTextField(
+                      controller: _forumCommentTextController,
+                      maxLines: null,
+                      padding: const EdgeInsets.all(0.0),
+                      labelText: 'Message',
+                      onTextChanged: (value) {},
+                      endIcon: IconButton(
+                          onPressed: () {
+                            _forumCommentTextController.text =
+                                _forumCommentTextController.text + '@';
+                            print('CONTROLLERYEET' + _forumCommentTextController.text);
+                            print('CONTROLLERLENGTH' +
+                                _forumCommentTextController.text.length.toString());
+
+                            int currentOffset = _forumCommentTextController.selection.base.offset;
+
+                            _forumCommentTextController.selection =
+                                TextSelection.fromPosition(TextPosition(offset: currentOffset));
+                          },
+                          /* onPressed: () {
+                            final _textAddAlternate = _forumCommentTextController.value.text + '@';
+                            int currentOffset = _forumCommentTextController.selection.base.offset;
+                            _forumCommentTextController.value = TextEditingValue(
+                              text: _textAddAlternate,
+                              selection: TextSelection.collapsed(offset: currentOffset),
+                            );
+                          },*/
+                          icon: Icon(
+                            Icons.alternate_email_rounded,
+                            color: AppColors.colorBlack,
+                          )),
                     ),
                   ),
                   Padding(

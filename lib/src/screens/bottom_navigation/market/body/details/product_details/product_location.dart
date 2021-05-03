@@ -14,7 +14,12 @@ class _ProductLocationState extends State<ProductLocation> {
       margin: const EdgeInsets.only(top: 20.0, left: 5, right: 5, bottom: 10),
       decoration: BoxDecoration(
         boxShadow: [
-          BoxShadow(color: Colors.black12, offset: Offset(-2, 2), blurRadius: 5, spreadRadius: 5)
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(-2, 2),
+            blurRadius: 2,
+            spreadRadius: 2,
+          ),
         ],
         borderRadius: BorderRadius.all(Radius.circular(30)),
         color: Colors.white,

@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/details/meet_up_details_page.dart';
@@ -83,7 +85,10 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
                 icon: Icon(
                   Icons.search,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
+                },
                 //onPressed: widget.onMessagePressed
                 // do something
               ),

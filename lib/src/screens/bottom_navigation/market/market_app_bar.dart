@@ -1,5 +1,6 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/filter_drawer/market_filter_drawer.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,8 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
               Icons.search,
             ),
             onPressed: () {
-              Navigator.pushNamed(context, SearchBarScreen.id);
+              Navigator.of(context)
+                  .push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
             },
           ),
           Builder(

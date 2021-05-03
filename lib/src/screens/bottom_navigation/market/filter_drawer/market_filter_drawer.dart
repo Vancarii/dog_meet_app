@@ -17,10 +17,13 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
   bool colorChanged = false;
   bool resetAll = false;
 
+  RangeValues _currentRangeValues = RangeValues(0, 500);
+
   @override
   Widget build(BuildContext context) {
     productFunction(value) => setState(() => productChanged = value);
     colorFunction(value) => setState(() => colorChanged = value);
+    rangeValuesFunction(value) => setState(() => _currentRangeValues = value);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -73,7 +76,14 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
                   tapBodyToCollapse: true,
                 ),
                 header: CustomText(
-                  text: 'Price Range',
+                  text: sliderChanged == false
+                      ? 'Free  -  \$500+'
+                      : '\$' +
+                          _currentRangeValues.start.round().toString() +
+                          '  -  ' +
+                          '\$' +
+                          _currentRangeValues.end.round().toString() +
+                          '+',
                   size: 18,
                   bold: true,
                   color:
@@ -81,6 +91,7 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
                 ),
                 expanded: MarketPriceRangeSlider(
                   reset: sliderChanged == false ? true : false,
+                  onChanged: rangeValuesFunction,
                   onStart: (values) {
                     setState(() {
                       sliderChanged = true;

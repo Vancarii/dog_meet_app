@@ -1,5 +1,6 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/tab_screens/forum_discussion_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/tab_screens/forum_funny_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/tab_screens/forum_home_page.dart';
@@ -46,7 +47,8 @@ class _ForumsAppBarState extends State<ForumsAppBar> {
                 Icons.search,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, SearchBarScreen.id);
+                Navigator.of(context)
+                    .push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
               },
             ),
           ],
