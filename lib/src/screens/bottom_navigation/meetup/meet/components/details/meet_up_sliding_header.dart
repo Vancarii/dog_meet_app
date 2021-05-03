@@ -107,14 +107,14 @@ class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
                         : Icon(
                             Icons.check_rounded,
                             size: 30,
-                            color: AppColors.colorLightGreen,
+                            color: AppColors.colorBrightGreen,
                           ),
                     duration: Duration(milliseconds: 2500),
                     animationDuration: Duration(milliseconds: 500),
                   )..show(context);
                 },
                 backgroundColor:
-                    isAttending == true ? AppColors.colorRed : AppColors.colorLightGreen,
+                    isAttending == true ? AppColors.colorRed : AppColors.colorBrightGreen,
                 focusElevation: 0,
                 highlightElevation: 0,
                 splashColor: AppColors.colorPrimaryOrange,

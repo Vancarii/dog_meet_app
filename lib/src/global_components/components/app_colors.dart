@@ -12,7 +12,8 @@ class AppColors {
   static const Color colorDarkSalmon = const Color(0xffff1907f);
   static const Color colorLightCoral = const Color(0xffff1907f);
   static const Color colorDarkSlateGrey = const Color(0xfff285264);
-  static const Color colorLightGreen = const Color(0xfff13d9b4);
+  static const Color colorBrightGreen = const Color(0xfff13d9b4);
+  static const Color colorGreen = const Color(0xfff81C784);
   static const MaterialAccentColor colorRed = Colors.redAccent;
 
   static const Color colorPrimaryOrange = const Color(0xfffFC846A);

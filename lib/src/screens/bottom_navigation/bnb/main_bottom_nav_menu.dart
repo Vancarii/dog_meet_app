@@ -77,7 +77,7 @@ class _MainSlidingSheetState extends State<MainSlidingSheet> {
                 ),
               ),
               CustomText(
-                text: 'New Message',
+                text: 'Share',
                 size: 15,
                 bold: true,
                 padding: const EdgeInsets.only(top: 5.0),

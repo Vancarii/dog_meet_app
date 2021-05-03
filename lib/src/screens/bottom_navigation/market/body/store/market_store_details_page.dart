@@ -3,7 +3,7 @@ import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forums_page_filter_chip.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/new_market_post.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/market_product_tile.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/review_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -342,7 +342,13 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                     },
                   ),
                 ),
-                NewMarketPost('New', 'assets/images/trainingtab2.jpg', '15.99', 'Training tabs'),
+                MarketProductTile(
+                  condition: 'New',
+                  productImage: 'assets/images/trainingtab2.jpg',
+                  productTitle: 'Training Tabs - Hoot \& Co',
+                  stock: true,
+                  price: '14.99',
+                ),
               ],
             ),
           ],

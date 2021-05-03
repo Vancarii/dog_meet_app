@@ -1,7 +1,7 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/post/forum_post.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/new_market_post.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/market_product_tile.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/components/profile_drawer.dart';
 import 'package:flutter/material.dart';
@@ -120,10 +120,20 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
               ),
               Wrap(
                 children: [
-                  NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
-                      'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
-                  NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
-                      'Waterproof Training Tabs - Hoot \& Co'),
+                  MarketProductTile(
+                    condition: 'New',
+                    productImage: 'assets/images/trainingtab2.jpg',
+                    productTitle: 'Training Tabs - Hoot \& Co',
+                    stock: true,
+                    price: '14.99',
+                  ),
+                  MarketProductTile(
+                    condition: 'New',
+                    productImage: 'assets/images/trainingtab2.jpg',
+                    productTitle: 'Training Tabs - Hoot \& Co',
+                    stock: true,
+                    price: '14.99',
+                  ),
                 ],
               ),
               ListView(

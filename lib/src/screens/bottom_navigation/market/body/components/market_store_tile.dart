@@ -4,20 +4,20 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/mar
 
 import 'package:flutter/material.dart';
 
-class MarketStoreRoundedButton extends StatefulWidget {
+class MarketStoreTile extends StatefulWidget {
   final String storeName;
   final String storeImage;
 
-  const MarketStoreRoundedButton({
+  const MarketStoreTile({
     this.storeImage,
     this.storeName,
   });
 
   @override
-  _MarketStoreRoundedButtonState createState() => _MarketStoreRoundedButtonState();
+  _MarketStoreTileState createState() => _MarketStoreTileState();
 }
 
-class _MarketStoreRoundedButtonState extends State<MarketStoreRoundedButton> {
+class _MarketStoreTileState extends State<MarketStoreTile> {
   @override
   Widget build(BuildContext context) {
     return Column(

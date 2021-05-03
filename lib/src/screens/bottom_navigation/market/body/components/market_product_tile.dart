@@ -5,24 +5,26 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/m
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
-class NewMarketPost extends StatefulWidget {
+class MarketProductTile extends StatefulWidget {
   final String condition;
   final String productImage;
   final String price;
   final String productTitle;
+  final bool stock;
 
-  const NewMarketPost(
-    this.condition,
+  const MarketProductTile({
+    this.condition = 'Unknown',
     this.productImage,
-    this.price,
-    this.productTitle,
-  );
+    this.price = 'Free',
+    this.productTitle = 'Unknown',
+    this.stock = false,
+  });
 
   @override
-  _NewMarketPostState createState() => _NewMarketPostState();
+  _MarketProductTileState createState() => _MarketProductTileState();
 }
 
-class _NewMarketPostState extends State<NewMarketPost> {
+class _MarketProductTileState extends State<MarketProductTile> {
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
@@ -48,22 +50,46 @@ class _NewMarketPostState extends State<NewMarketPost> {
                     height: 250,
                     child: ClipRRect(
                       borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
-                      child: Image.asset(
-                        widget.productImage,
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topCenter,
-                      ),
+                      child: widget.productImage != null
+                          ? Image.asset(
+                              widget.productImage,
+                              fit: BoxFit.cover,
+                            )
+                          : Align(
+                              alignment: Alignment.center,
+                              child: CustomText(
+                                text: 'No Images',
+                                bold: true,
+                              ),
+                            ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 5.0, left: 5.0),
-                    child: Wrap(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         CustomText(
                           text: widget.condition,
                           size: 12,
                           bold: true,
                           color: AppColors.colorPrimaryOrange,
+                        ),
+                        CustomText(
+                          text: widget.condition == 'New' ? '  ·  ' : '',
+                          size: 12,
+                          bold: true,
+                          color: AppColors.colorOffBlack,
+                        ),
+                        CustomText(
+                          text: widget.condition == 'New'
+                              ? widget.stock == true
+                                  ? 'In Stock'
+                                  : 'Out of Stock'
+                              : '',
+                          size: 12,
+                          bold: true,
+                          color: widget.stock == true ? AppColors.colorGreen : AppColors.colorRed,
                         ),
                       ],
                     ),
@@ -95,7 +121,6 @@ class _NewMarketPostState extends State<NewMarketPost> {
                           bold: true,
                           alignment: TextAlign.center,
                           color: AppColors.colorPrimaryOrange,
-                          padding: const EdgeInsets.only(right: 5),
                         )
                       ],
                     ),
@@ -111,6 +136,7 @@ class _NewMarketPostState extends State<NewMarketPost> {
           condition: widget.condition,
           price: widget.price,
           productTitle: widget.productTitle,
+          stock: widget.stock,
         );
       },
     );

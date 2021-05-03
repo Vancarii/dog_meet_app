@@ -17,11 +17,13 @@ class MarketProductDetailsPage extends StatefulWidget {
   final String condition;
   final String price;
   final String productTitle;
+  final bool stock;
 
   const MarketProductDetailsPage({
     this.condition,
     this.price,
     this.productTitle,
+    this.stock,
   });
 
   @override
@@ -96,6 +98,7 @@ class _MarketProductDetailsPageState extends State<MarketProductDetailsPage> {
               condition: widget.condition,
               price: widget.price,
               productTitle: widget.productTitle,
+              stock: widget.stock,
             ),
             ProductPosterAccount(),
             ProductDescription(),

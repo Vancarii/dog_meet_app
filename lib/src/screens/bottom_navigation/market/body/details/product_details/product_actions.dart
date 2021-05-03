@@ -1,4 +1,6 @@
+import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,6 +10,8 @@ class ProductActions extends StatefulWidget {
 }
 
 class _ProductActionsState extends State<ProductActions> {
+  bool bookmarked = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,11 +21,7 @@ class _ProductActionsState extends State<ProductActions> {
           InkWell(
             onTap: () {
               setState(() {
-                /*if (onTapSave == false) {
-                  return onTapSave = true;
-                } else {
-                  return onTapSave = false;
-                }*/
+                bookmarked = !bookmarked;
               });
             },
             borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -29,27 +29,20 @@ class _ProductActionsState extends State<ProductActions> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.all(Radius.circular(30)),
+                color: bookmarked == false
+                    ? AppColors.colorBlack.withOpacity(0.1)
+                    : AppColors.colorPrimaryOrange.withOpacity(0.1),
+                shape: BoxShape.circle,
+                //borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
-              child:
-                  /*Container(
-                          alignment: Alignment.center,
-                          width: 24,
-                          height: 24,
-                          child: Lottie.asset(
-                            'assets/bookmark.json',
-                            controller: lottieController,
-                            animate: onTapSave,
-                            repeat: false,
-
-                            //reverse: onTapSave,
-                          ),
-                        ),*/
-
-                  Icon(
-                Icons.bookmark_border_rounded,
-              ),
+              child: bookmarked == false
+                  ? Icon(
+                      Icons.bookmark_border_rounded,
+                    )
+                  : Icon(
+                      Icons.bookmark_rounded,
+                      color: AppColors.colorPrimaryOrange,
+                    ),
             ),
           ),
           SizedBox(
@@ -64,8 +57,9 @@ class _ProductActionsState extends State<ProductActions> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.all(Radius.circular(30)),
+                color: AppColors.colorBlack.withOpacity(0.1),
+                shape: BoxShape.circle,
+                //borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
               child: Icon(
                 Icons.share,

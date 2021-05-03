@@ -1,8 +1,8 @@
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import 'components/market_store_rounded_button.dart';
-import 'components/new_market_post.dart';
+import 'components/market_store_tile.dart';
+import 'components/market_product_tile.dart';
 
 class MarketNewPage extends StatelessWidget {
   const MarketNewPage({
@@ -63,27 +63,27 @@ class MarketNewPage extends StatelessWidget {
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              MarketStoreRoundedButton(
+              MarketStoreTile(
                 storeImage: 'assets/images/boneandbiscuit.png',
                 storeName: 'Bone And Biscuit',
               ),
-              MarketStoreRoundedButton(
+              MarketStoreTile(
                 storeImage: 'assets/images/trainingtab2.jpg',
                 storeName: 'Store Name',
               ),
-              MarketStoreRoundedButton(
+              MarketStoreTile(
                 storeImage: 'assets/images/trainingtab2.jpg',
                 storeName: 'Store Name',
               ),
-              MarketStoreRoundedButton(
+              MarketStoreTile(
                 storeImage: 'assets/images/trainingtab2.jpg',
                 storeName: 'Store Name',
               ),
-              MarketStoreRoundedButton(
+              MarketStoreTile(
                 storeImage: 'assets/images/trainingtab2.jpg',
                 storeName: 'Store Name',
               ),
-              MarketStoreRoundedButton(
+              MarketStoreTile(
                 storeImage: 'assets/images/trainingtab2.jpg',
                 storeName: 'Store Name',
               ),
@@ -105,14 +105,41 @@ class MarketNewPage extends StatelessWidget {
         ),
         Wrap(
           children: [
-            NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
-                'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
-            NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
-                'Waterproof Training Tabs - Hoot \& Co'),
-            NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
-                'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
-            NewMarketPost('New', 'assets/images/trainingtab2.jpg', '14.99',
-                'Waterproof Training Tabs - All Colors - 10 inches, durable synthetic leather - Hoot \& Co'),
+            MarketProductTile(
+              condition: 'New',
+              productImage: 'assets/images/trainingtab2.jpg',
+              productTitle: 'Training Tabs - Hoot \& Co',
+              stock: true,
+              price: '14.99',
+            ),
+            MarketProductTile(
+              condition: 'New',
+              productImage: 'assets/images/trainingtab2.jpg',
+              productTitle: 'Training Tabs - Hoot \& Co',
+              stock: true,
+              price: '14.99',
+            ),
+            MarketProductTile(
+              condition: 'New',
+              productImage: 'assets/images/trainingtab2.jpg',
+              productTitle: 'Training Tabs - Hoot \& Co',
+              stock: true,
+              price: '14.99',
+            ),
+            MarketProductTile(
+              condition: 'New',
+              productImage: 'assets/images/trainingtab2.jpg',
+              productTitle: 'Training Tabs - Hoot \& Co',
+              stock: true,
+              price: '14.99',
+            ),
+            MarketProductTile(
+              condition: 'New',
+              productImage: 'assets/images/trainingtab2.jpg',
+              productTitle: 'Training Tabs - Hoot \& Co',
+              stock: true,
+              price: '14.99',
+            ),
           ],
         ),
       ],
