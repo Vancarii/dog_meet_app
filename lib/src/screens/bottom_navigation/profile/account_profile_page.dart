@@ -34,6 +34,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        centerTitle: false,
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient:

@@ -1,4 +1,3 @@
-import 'package:dog_meet_app/src/global_components/components/flutter_page_indicator.dart';
 import 'package:dog_meet_app/src/global_components/components/image_swiper/flutter_swiper.dart';
 import 'package:flutter/material.dart';
 

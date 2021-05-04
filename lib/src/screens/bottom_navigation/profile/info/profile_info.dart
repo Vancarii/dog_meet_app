@@ -1,6 +1,8 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/market_store_details_page.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'components/pup_attributes.dart';
 import 'components/pup_tab_bar.dart';
@@ -25,182 +27,122 @@ class ProfileInfoState extends State<ProfileInfo> {
           //borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
           gradient: AppColors.orangeYellowGradient),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //ProfileCarousel(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.8,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomText(
-                                    text: '458',
-                                    size: 18,
-                                    bold: true,
-                                  ),
-                                  CustomText(
-                                    text: 'Followers',
-                                    size: 15,
-                                    //bold: true,
-                                    color: Colors.black54,
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            InkWell(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomText(
-                                    text: '511',
-                                    size: 18,
-                                    bold: true,
-                                  ),
-                                  CustomText(
-                                    text: 'Following',
-                                    size: 15,
-                                    //bold: true,
-                                    color: Colors.black54,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5.0),
-                        child: Divider(
-                          endIndent: 50,
-                          color: Colors.black54,
-                          thickness: 1,
-                        ),
-                      ),
-                      CustomText(
-                        text: 'Yecheng Wang',
-                        size: 20,
-                        bold: true,
-                        alignment: TextAlign.start,
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                      ),
-                      Row(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 20.0),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.subdirectory_arrow_right_rounded,
-                            size: 15,
+                          CustomText(
+                            text: 'Yecheng Wang',
+                            size: 20,
+                            bold: true,
+                            alignment: TextAlign.start,
                           ),
-                          Flexible(
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: Column(
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          text: 'Rosy',
-                                          style: TextStyle(
-                                            fontFamily: 'Gibson',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                        TextSpan(
-                                          text: ' and ',
-                                          style: TextStyle(
-                                            fontFamily: 'Gibson',
-                                            fontWeight: FontWeight.w200,
-                                            fontSize: 15,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: 'Maze',
-                                          style: TextStyle(
-                                            fontFamily: 'Gibson',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ])),
-                                ],
-                              ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5.0),
+                            child: Divider(
+                              thickness: 2,
                             ),
                           ),
-                          /*CustomText(
-                              text: 'Rosy and Maze',
-                              size: 18,
-                              alignment: TextAlign.start,
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                            ),*/
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 0),
+                            child: Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              runSpacing: 5.0,
+                              children: [
+                                StoreIconButton(
+                                  icon: Icon(
+                                    Icons.link,
+                                    color: AppColors.colorOffBlack,
+                                  ),
+                                  borderColor: AppColors.colorOffBlack,
+                                ),
+                                StoreIconButton(
+                                  icon: Icon(
+                                    Icons.email_outlined,
+                                    color: AppColors.colorOffBlack,
+                                  ),
+                                  borderColor: AppColors.colorOffBlack,
+                                ),
+                                StoreIconButton(
+                                  icon: Icon(
+                                    FontAwesomeIcons.instagram,
+                                    color: AppColors.colorOffBlack,
+                                  ),
+                                  borderColor: AppColors.colorOffBlack,
+                                ),
+                                StoreIconButton(
+                                  icon: Icon(
+                                    FontAwesomeIcons.twitter,
+                                    color: AppColors.colorDarkSlateGrey,
+                                  ),
+                                  borderColor: AppColors.colorOffBlack,
+                                ),
+                                StoreIconButton(
+                                  icon: Icon(
+                                    FontAwesomeIcons.tiktok,
+                                    color: AppColors.colorOffBlack,
+                                  ),
+                                  borderColor: AppColors.colorOffBlack,
+                                ),
+                              ],
+                            ),
+                          )
                         ],
-                      ),
-                      Wrap(
-                        children: [
-                          CustomText(
-                            text: 'Two sisters exploring Beautiful British Columbia',
-                            size: 15,
-                            alignment: TextAlign.start,
-                            padding: const EdgeInsets.only(bottom: 5.0),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/rosymazeprofile.jpg'),
-                    radius: MediaQuery.of(context).size.width / 5.5,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: InkWell(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      alignment: Alignment.center,
-                      //width: MediaQuery.of(context).size.width / 3,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: CustomText(
-                        text: 'Links',
-                        size: 15,
-                        bold: true,
                       ),
                     ),
                   ),
-                ),
-              ],
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/rosymazeprofile.jpg'),
+                    radius: 65,
+                  ),
+                ],
+              ),
+            ),
+          ),
+/*          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CustomExpandable(),
+          ),*/
+          Wrap(
+            children: [
+              CustomText(
+                text: 'Yecheng, Rosy, and Maze \n Exploring Beautiful British Columbia',
+                size: 16,
+                height: 1.3,
+                alignment: TextAlign.start,
+                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              ),
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 5.0, left: 5.0, bottom: 5.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ProfilePostsCount(num: 457, title: 'Followers'),
+                      ProfilePostsCount(num: 356, title: 'Following'),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           PupTabBar(
@@ -216,6 +158,41 @@ class ProfileInfoState extends State<ProfileInfo> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ProfilePostsCount extends StatelessWidget {
+  final int num;
+  final String title;
+  const ProfilePostsCount({
+    Key key,
+    this.num = 0,
+    this.title = 'Followers',
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomText(
+              text: '$num',
+              size: 18,
+              bold: true,
+            ),
+            CustomText(
+              text: ' $title',
+              size: 15,
+              //bold: true,
+              color: Colors.black54,
+            )
+          ],
+        ),
       ),
     );
   }

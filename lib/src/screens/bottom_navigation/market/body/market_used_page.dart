@@ -1,6 +1,4 @@
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
-
 import 'components/market_product_tile.dart';
 
 class MarketUsedPage extends StatelessWidget {

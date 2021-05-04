@@ -4,7 +4,6 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/component
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-import '../../../meet_up_page.dart';
 
 class MeetUpNearbyFeed extends StatelessWidget {
   const MeetUpNearbyFeed({

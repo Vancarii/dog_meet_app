@@ -362,6 +362,7 @@ class StoreIconButton extends StatelessWidget {
   final Icon icon;
   final CustomText text;
   final Color fillColor;
+  final Color borderColor;
   final VoidCallback onTap;
 
   StoreIconButton({
@@ -369,6 +370,7 @@ class StoreIconButton extends StatelessWidget {
     this.text,
     this.fillColor = Colors.transparent,
     this.onTap,
+    this.borderColor = AppColors.colorPrimaryOrange,
   });
 
   @override
@@ -377,22 +379,27 @@ class StoreIconButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 2.5,
       ),
-      child: InkWell(
-        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-        onTap: onTap,
-        child: Container(
-          height: 38,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          InkWell(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
-            border: Border.all(color: AppColors.colorPrimaryOrange, width: 2),
-            color: fillColor,
+            onTap: onTap,
+            child: Container(
+              height: 38,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                border: Border.all(color: borderColor, width: 2),
+                color: fillColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: text == null ? icon : text,
+              ),
+            ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: text == null ? icon : text,
-          ),
-        ),
+        ],
       ),
     );
   }

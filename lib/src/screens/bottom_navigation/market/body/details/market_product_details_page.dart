@@ -8,8 +8,6 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/p
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/product_details/product_tags.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
 
 class MarketProductDetailsPage extends StatefulWidget {
   static const String id = 'market_product_details_page';

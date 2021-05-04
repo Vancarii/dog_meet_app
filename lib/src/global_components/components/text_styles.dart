@@ -8,6 +8,7 @@ class CustomText extends StatelessWidget {
   final bool underline;
   final double size;
   final TextAlign alignment;
+  final double height;
 
   CustomText({
     @required this.text,
@@ -17,6 +18,7 @@ class CustomText extends StatelessWidget {
     this.size,
     this.alignment,
     this.underline = false,
+    this.height = 1.0,
   });
 
   @override
@@ -27,6 +29,7 @@ class CustomText extends StatelessWidget {
         text,
         textAlign: alignment,
         style: TextStyle(
+          height: height,
           fontFamily: 'Gibson',
           color: color,
           fontWeight: bold == false ? FontWeight.w400 : FontWeight.w600,

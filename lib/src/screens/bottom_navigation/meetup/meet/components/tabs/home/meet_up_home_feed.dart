@@ -2,7 +2,6 @@ import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-import '../../../meet_up_page.dart';
 
 class MeetUpHomeFeed extends StatelessWidget {
   const MeetUpHomeFeed({

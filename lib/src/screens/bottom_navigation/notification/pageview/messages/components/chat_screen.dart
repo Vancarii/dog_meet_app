@@ -5,7 +5,6 @@ import 'package:dog_meet_app/src/global_components/route_transitions/route_trans
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/messages/components/chat_info_screen.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ChatsScreen extends StatefulWidget {
   @override

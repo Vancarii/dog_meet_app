@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:chewie/chewie.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forum_post_header_info.dart';

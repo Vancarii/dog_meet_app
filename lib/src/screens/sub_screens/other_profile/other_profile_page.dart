@@ -36,6 +36,8 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        titleSpacing: 0,
+        centerTitle: false,
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient:
