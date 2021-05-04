@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 class ShareSheet extends StatefulWidget {
@@ -17,30 +14,8 @@ class ShareSheet extends StatefulWidget {
 class _ShareSheetState extends State<ShareSheet> {
   SheetController shareSheetController = SheetController();
 
-  double sheetExtent = 0.0;
-
   @override
   void initState() {
-    /*WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        shareSheetController.snapToExtent(
-          0.7,
-          clamp: true,
-        );
-        print('widget built');
-      });
-    });*/
-
-/*    SchedulerBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        shareSheetController.snapToExtent(
-          0.7,
-          clamp: true,
-        );
-        print('widget built');
-      });
-    });*/
-
     Future.delayed(Duration(milliseconds: 100), () {
       setState(() {
         shareSheetController.snapToExtent(
@@ -64,14 +39,13 @@ class _ShareSheetState extends State<ShareSheet> {
             if (state.isHidden == true) {
               Navigator.pop(context);
             }
-            sheetExtent = state.extent;
           });
         },
         controller: shareSheetController,
         closeOnBackdropTap: true,
         closeOnBackButtonPressed: true,
         isBackdropInteractable: true,
-        backdropColor: AppColors.colorBlack.withOpacity(sheetExtent),
+        backdropColor: AppColors.colorBlack.withOpacity(0.5),
         elevation: 5,
         shadowColor: Colors.black54,
         cornerRadius: 30,
