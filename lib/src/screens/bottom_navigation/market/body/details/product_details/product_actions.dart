@@ -54,6 +54,7 @@ class _ProductActionsState extends State<ProductActions> {
               Navigator.push(
                 context,
                 TransparentRoute(
+                  duration: 0,
                   builder: (context) => ShareSheet(),
                 ),
               );

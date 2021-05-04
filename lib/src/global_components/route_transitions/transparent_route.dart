@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class TransparentRoute extends PageRoute<void> {
   TransparentRoute({
     @required this.builder,
+    this.duration = 350,
     RouteSettings settings,
   })  : assert(builder != null),
         super(settings: settings, fullscreenDialog: false);
 
   final WidgetBuilder builder;
+  final int duration;
 
   @override
   bool get opaque => false;
@@ -22,7 +24,7 @@ class TransparentRoute extends PageRoute<void> {
   bool get maintainState => true;
 
   @override
-  Duration get transitionDuration => Duration(milliseconds: 350);
+  Duration get transitionDuration => Duration(milliseconds: duration);
 
   @override
   Widget buildPage(

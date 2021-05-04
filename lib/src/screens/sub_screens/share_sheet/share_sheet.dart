@@ -16,7 +16,7 @@ class _ShareSheetState extends State<ShareSheet> {
 
   @override
   void initState() {
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(Duration(milliseconds: 0), () {
       setState(() {
         shareSheetController.snapToExtent(
           0.7,
@@ -25,7 +25,6 @@ class _ShareSheetState extends State<ShareSheet> {
         print('widget built');
       });
     });
-
     super.initState();
   }
 

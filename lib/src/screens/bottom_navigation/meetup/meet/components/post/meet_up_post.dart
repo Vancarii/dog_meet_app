@@ -212,6 +212,7 @@ class MeetUpPost extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 TransparentRoute(
+                                  duration: 0,
                                   builder: (context) => ShareSheet(),
                                 ),
                               );

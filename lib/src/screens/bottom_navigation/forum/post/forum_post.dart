@@ -173,6 +173,7 @@ class _ForumPostState extends State<ForumPost> {
                             Navigator.push(
                               context,
                               TransparentRoute(
+                                duration: 0,
                                 builder: (context) => ShareSheet(),
                               ),
                             );
