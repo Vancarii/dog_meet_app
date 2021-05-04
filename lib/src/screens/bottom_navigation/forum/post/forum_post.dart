@@ -1,11 +1,10 @@
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forum_post_header_info.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
+import 'package:dog_meet_app/src/screens/sub_screens/share_sheet/share_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart' as ionIcons;
-
 import 'comments/forum_comment_section.dart';
 
 enum readMoreText {
@@ -171,7 +170,12 @@ class _ForumPostState extends State<ForumPost> {
                         IconButton(
                           icon: Icon(FontAwesomeIcons.paperPlane),
                           onPressed: () {
-                            mainSlidingSheetController.snapToExtent(0.7);
+                            Navigator.push(
+                              context,
+                              TransparentRoute(
+                                builder: (context) => ShareSheet(),
+                              ),
+                            );
                             print('share');
                           },
                           padding: EdgeInsets.only(left: 10, bottom: 8),

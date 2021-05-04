@@ -46,7 +46,7 @@ class DogMeetApp extends StatelessWidget {
           backgroundColor: AppColors.colorWhite,
           //visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: MainSlidingSheet.id,
+        initialRoute: MainBottomNavMenu.id,
         routes: {
           NewUserScreen.id: (context) => NewUserScreen(),
           CreatePupfile.id: (context) => CreatePupfile(),
@@ -63,7 +63,6 @@ class DogMeetApp extends StatelessWidget {
           PostListingPage.id: (context) => PostListingPage(),
           PostMeetPage.id: (context) => PostMeetPage(),
           OtherProfilePage.id: (context) => OtherProfilePage(),
-          MainSlidingSheet.id: (context) => MainSlidingSheet(),
         },
       ),
     );

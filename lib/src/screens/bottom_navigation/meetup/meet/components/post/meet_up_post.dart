@@ -6,6 +6,7 @@ import 'package:dog_meet_app/src/global_components/route_transitions/transparent
 import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/slide_up_share_prompt.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
+import 'package:dog_meet_app/src/screens/sub_screens/share_sheet/share_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -210,13 +211,12 @@ class MeetUpPost extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
-                              mainSlidingSheetController.snapToExtent(0.7,
-                                  duration: Duration(milliseconds: 200), clamp: true);
-                              /*Navigator.push(
+                              Navigator.push(
                                 context,
-                                SlideUpTransparentRoute(
-                                    builder: (context) => SlideUpSharePrompt()),
-                              );*/
+                                TransparentRoute(
+                                  builder: (context) => ShareSheet(),
+                                ),
+                              );
                             },
                             icon: Icon(
                               FontAwesomeIcons.paperPlane,
