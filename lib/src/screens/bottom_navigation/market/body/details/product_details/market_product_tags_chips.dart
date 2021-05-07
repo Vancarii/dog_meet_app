@@ -24,7 +24,6 @@ class _MarketProductTagsChipsState extends State<MarketProductTagsChips> {
         size: 12,
         bold: true,
       ),
-
       /*gibsonSemiBoldText(
           widget.tagWord, 0, 0, 0, 0, 12, Colors.black, TextAlign.center),*/
       onSelected: (bool value) {

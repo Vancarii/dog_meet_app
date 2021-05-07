@@ -174,7 +174,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     width: 40,
                     height: 40,
                     child: Image.asset(
-                      'assets/images/trainingtab2.jpg',
+                      'assets/images/products/trainingtab2.jpg',
                       fit: BoxFit.fitHeight,
                     ),
                   ),

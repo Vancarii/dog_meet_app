@@ -16,12 +16,14 @@ class MarketProductDetailsPage extends StatefulWidget {
   final String price;
   final String productTitle;
   final bool stock;
+  final String firstImage;
 
   const MarketProductDetailsPage({
     this.condition,
     this.price,
     this.productTitle,
     this.stock,
+    this.firstImage,
   });
 
   @override
@@ -90,7 +92,9 @@ class _MarketProductDetailsPageState extends State<MarketProductDetailsPage> {
         minimum: EdgeInsets.all(5),
         child: ListView(
           children: <Widget>[
-            ProductImageCarousel(),
+            ProductImageCarousel(
+              image: widget.firstImage,
+            ),
             ProductActions(),
             ProductInfo(
               condition: widget.condition,

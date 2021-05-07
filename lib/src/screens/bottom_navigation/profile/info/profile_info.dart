@@ -1,9 +1,9 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/market_store_details_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'components/pup_attributes.dart';
 import 'components/pup_tab_bar.dart';
 
@@ -22,91 +22,159 @@ class ProfileInfoState extends State<ProfileInfo> {
     return Container(
       padding: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width,
-      //height: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          //borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
-          gradient: AppColors.orangeYellowGradient),
+      decoration: BoxDecoration(gradient: AppColors.orangeYellowGradient),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //ProfileCarousel(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText(
-                            text: 'Yecheng Wang',
-                            size: 20,
-                            bold: true,
-                            alignment: TextAlign.start,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5.0),
-                            child: Divider(
-                              thickness: 2,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 0),
-                            child: Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.start,
-                              runSpacing: 5.0,
-                              children: [
-                                StoreIconButton(
-                                  icon: Icon(
-                                    Icons.link,
-                                    color: AppColors.colorOffBlack,
-                                  ),
-                                  borderColor: AppColors.colorOffBlack,
-                                ),
-                                StoreIconButton(
-                                  icon: Icon(
-                                    Icons.email_outlined,
-                                    color: AppColors.colorOffBlack,
-                                  ),
-                                  borderColor: AppColors.colorOffBlack,
-                                ),
-                                StoreIconButton(
-                                  icon: Icon(
-                                    FontAwesomeIcons.instagram,
-                                    color: AppColors.colorOffBlack,
-                                  ),
-                                  borderColor: AppColors.colorOffBlack,
-                                ),
-                                StoreIconButton(
-                                  icon: Icon(
-                                    FontAwesomeIcons.twitter,
-                                    color: AppColors.colorDarkSlateGrey,
-                                  ),
-                                  borderColor: AppColors.colorOffBlack,
-                                ),
-                                StoreIconButton(
-                                  icon: Icon(
-                                    FontAwesomeIcons.tiktok,
-                                    color: AppColors.colorOffBlack,
-                                  ),
-                                  borderColor: AppColors.colorOffBlack,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/rosymazeprofile.jpg'),
+                    backgroundImage: AssetImage('assets/images/pictures/rosymazeprofile.jpg'),
                     radius: 65,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ProfilePostsCount(num: 457, title: 'Followers'),
+                              ProfilePostsCount(num: 356, title: 'Following'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0),
+                          child: Divider(
+                            thickness: 1.0,
+                            color: AppColors.colorOffBlack,
+                            indent: 25.0,
+                            endIndent: 25.0,
+                          ),
+                        ),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          runSpacing: 5.0,
+                          children: [
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              icon: Icon(
+                                Icons.link,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              icon: Icon(
+                                Icons.email_outlined,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              onTap: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return CupertinoAlertDialog(
+                                      title: Text('Open Instagram?'),
+                                      content: Text('To open Instagram, you must first Log In'),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: Text('Cancel'),
+                                          onPressed: () {},
+                                        ),
+                                        CupertinoDialogAction(
+                                          child: Text('Log In'),
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.instagram,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              onTap: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return CupertinoAlertDialog(
+                                      title: Text('Open Twitter?'),
+                                      content: Text('To open Twitter, you must first Log In'),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: Text('Cancel'),
+                                          onPressed: () {},
+                                        ),
+                                        CupertinoDialogAction(
+                                          child: Text('Log In'),
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.twitter,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              onTap: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return CupertinoAlertDialog(
+                                      title: Text('Open TikTok?'),
+                                      content: Text('To open TikTok, you must first Log In'),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: Text('Cancel'),
+                                          onPressed: () {},
+                                        ),
+                                        CupertinoDialogAction(
+                                          child: Text('Log In'),
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.tiktok,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -116,37 +184,52 @@ class ProfileInfoState extends State<ProfileInfo> {
             padding: const EdgeInsets.all(8.0),
             child: CustomExpandable(),
           ),*/
-          Wrap(
-            children: [
-              CustomText(
-                text: 'Yecheng, Rosy, and Maze \n Exploring Beautiful British Columbia',
-                size: 16,
-                height: 1.3,
-                alignment: TextAlign.start,
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-              ),
-            ],
-          ),
           Container(
-            margin: const EdgeInsets.only(top: 5.0, left: 5.0, bottom: 5.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+            margin: const EdgeInsets.only(left: 10.0, top: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  text: 'Yecheng Wang',
+                  size: 20.0,
+                  bold: true,
+                  alignment: TextAlign.start,
+                ),
+                Wrap(
+                  children: [
+                    CustomText(
+                      text: 'Yecheng, Rosy, and Maze \n Exploring Beautiful British Columbia',
+                      size: 16,
+                      height: 1.3,
+                      alignment: TextAlign.start,
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Row(
                     children: [
-                      ProfilePostsCount(num: 457, title: 'Followers'),
-                      ProfilePostsCount(num: 356, title: 'Following'),
+                      Icon(
+                        Icons.location_on_rounded,
+                        color: AppColors.colorDarkSlateGrey,
+                      ),
+                      CustomText(
+                        text: 'Port Moody, BC',
+                        color: AppColors.colorDarkSlateGrey,
+                        padding: const EdgeInsets.only(left: 5.0),
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          PupTabBar(
-            funcIsPup: function,
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, top: 5.0),
+            child: PupTabBar(
+              funcIsPup: function,
+            ),
           ),
           Container(
             width: MediaQuery.of(context).size.width,
@@ -177,16 +260,16 @@ class ProfilePostsCount extends StatelessWidget {
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5.0),
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomText(
               text: '$num',
-              size: 18,
+              size: 20,
               bold: true,
             ),
             CustomText(
-              text: ' $title',
+              text: '$title',
               size: 15,
               //bold: true,
               color: Colors.black54,

@@ -13,7 +13,7 @@ class MarketProductTile extends StatefulWidget {
   final bool stock;
 
   const MarketProductTile({
-    this.condition = 'Unknown',
+    this.condition = 'Used',
     this.productImage,
     this.price = 'Free',
     this.productTitle = 'Unknown',
@@ -48,6 +48,7 @@ class _MarketProductTileState extends State<MarketProductTile> {
                 children: <Widget>[
                   Container(
                     height: 250,
+                    //alignment: Alignment.topCenter,
                     child: ClipRRect(
                       borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
                       child: widget.productImage != null
@@ -105,7 +106,7 @@ class _MarketProductTileState extends State<MarketProductTile> {
                             fontWeight: FontWeight.w600,
                           ),
                           maxLines: 1,
-                          overflow: TextOverflow.fade,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
@@ -133,6 +134,7 @@ class _MarketProductTileState extends State<MarketProductTile> {
       },
       openBuilder: (context, action) {
         return MarketProductDetailsPage(
+          firstImage: widget.productImage,
           condition: widget.condition,
           price: widget.price,
           productTitle: widget.productTitle,

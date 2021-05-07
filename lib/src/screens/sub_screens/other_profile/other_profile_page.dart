@@ -112,6 +112,7 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
                 pinned: true,
                 delegate: OtherProfileTabDelegate(
                   TabBar(
+                    indicatorWeight: 3.0,
                     indicatorColor: AppColors.colorPrimaryOrange,
                     labelColor: AppColors.colorPrimaryOrange,
                     unselectedLabelColor: Colors.grey,
@@ -127,7 +128,7 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
               ListView(
                 children: [
                   MeetUpPost(
-                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    postImage: 'assets/images/pictures/rosymazeprofile.jpg',
                     accountName: 'RosyandMaze',
                     location: 'Glen Off-Leash Dog Park',
                     numOfPeopleGoing: 3,
@@ -137,7 +138,7 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
                     onMeetUpPostSelected: () {},
                   ),
                   MeetUpPost(
-                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    postImage: 'assets/images/pictures/rosymazeprofile.jpg',
                     accountName: 'RosyandMaze',
                     location: 'Glen Off-Leash Dog Park',
                     numOfPeopleGoing: 3,
@@ -152,14 +153,14 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
                 children: [
                   MarketProductTile(
                     condition: 'New',
-                    productImage: 'assets/images/trainingtab2.jpg',
+                    productImage: 'assets/images/products/trainingtab2.jpg',
                     productTitle: 'Training Tabs - Hoot \& Co',
                     stock: true,
                     price: '14.99',
                   ),
                   MarketProductTile(
                     condition: 'New',
-                    productImage: 'assets/images/trainingtab2.jpg',
+                    productImage: 'assets/images/products/trainingtab2.jpg',
                     productTitle: 'Training Tabs - Hoot \& Co',
                     stock: true,
                     price: '14.99',

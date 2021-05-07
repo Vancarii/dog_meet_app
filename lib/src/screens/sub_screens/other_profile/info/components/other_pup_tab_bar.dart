@@ -9,8 +9,12 @@ enum nameIsActive {
 
 class OtherPupTabBar extends StatefulWidget {
   final Function funcIsPup;
+  final EdgeInsetsGeometry padding;
 
-  OtherPupTabBar({this.funcIsPup});
+  OtherPupTabBar({
+    this.funcIsPup,
+    this.padding = const EdgeInsets.only(top: 20.0, left: 10.0),
+  });
 
   @override
   _OtherPupTabBarState createState() => _OtherPupTabBarState();
@@ -22,7 +26,7 @@ class _OtherPupTabBarState extends State<OtherPupTabBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20.0, left: 10.0),
+      padding: widget.padding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

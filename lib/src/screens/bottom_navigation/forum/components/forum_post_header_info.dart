@@ -24,7 +24,7 @@ class ForumPostHeaderInfo extends StatelessWidget {
               ),
               CustomText(
                 text: 'Rosyandmaze',
-                size: 12,
+                size: 13,
                 bold: true,
                 alignment: TextAlign.center,
                 padding: const EdgeInsets.only(left: 5),

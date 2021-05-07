@@ -45,4 +45,46 @@ class RouteTransitions {
       },
     );
   }
+
+  Route slideLeftToRightJoinedTransitionType(currentPage, nextPage) {
+    //assert(currentPage != null);
+
+    return PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 200),
+        reverseTransitionDuration: Duration(milliseconds: 200),
+        maintainState: true,
+        pageBuilder: (context, animation, secondaryAnimation) => nextPage,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var curve = Curves.easeInOut;
+
+          return Stack(
+            children: <Widget>[
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(-1.0, 0.0),
+                  end: const Offset(0.0, 0.0),
+                ).animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: curve,
+                  ),
+                ),
+                child: child,
+              ),
+              SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 0.0),
+                  end: const Offset(1.0, 0.0),
+                ).animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: curve,
+                  ),
+                ),
+                child: currentPage,
+              )
+            ],
+          );
+        });
+  }
 }

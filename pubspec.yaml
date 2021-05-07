@@ -43,6 +43,9 @@ flutter:
     - assets/
     - assets/images/
     - assets/json/
+    - assets/images/products/
+    - assets/images/brands/
+    - assets/images/pictures/
 
   fonts:
   - family: Gibson

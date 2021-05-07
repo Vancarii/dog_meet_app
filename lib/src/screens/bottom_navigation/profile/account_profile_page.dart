@@ -83,6 +83,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
                 pinned: true,
                 delegate: ProfileTabDelegate(
                   TabBar(
+                    indicatorWeight: 3.0,
                     indicatorColor: AppColors.colorPrimaryOrange,
                     labelColor: AppColors.colorPrimaryOrange,
                     unselectedLabelColor: Colors.grey,
@@ -98,7 +99,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
               ListView(
                 children: [
                   MeetUpPost(
-                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    postImage: 'assets/images/pictures/rosymazeprofile.jpg',
                     accountName: 'RosyandMaze',
                     location: 'Glen Off-Leash Dog Park',
                     numOfPeopleGoing: 3,
@@ -108,7 +109,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
                     onMeetUpPostSelected: () {},
                   ),
                   MeetUpPost(
-                    postImage: 'assets/images/rosymazeprofile.jpg',
+                    postImage: 'assets/images/pictures/rosymazeprofile.jpg',
                     accountName: 'RosyandMaze',
                     location: 'Glen Off-Leash Dog Park',
                     numOfPeopleGoing: 3,
@@ -122,18 +123,14 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
               Wrap(
                 children: [
                   MarketProductTile(
-                    condition: 'New',
-                    productImage: 'assets/images/trainingtab2.jpg',
-                    productTitle: 'Training Tabs - Hoot \& Co',
-                    stock: true,
-                    price: '14.99',
+                    productImage: 'assets/images/products/rokocollar.jpg',
+                    productTitle: '1.5" Roko Dog Wear Collar',
+                    price: '39.99',
                   ),
                   MarketProductTile(
-                    condition: 'New',
-                    productImage: 'assets/images/trainingtab2.jpg',
-                    productTitle: 'Training Tabs - Hoot \& Co',
-                    stock: true,
-                    price: '14.99',
+                    productImage: 'assets/images/products/landsharkcollar.jpg',
+                    productTitle: '1.5" Land Shark Supply Blue Collar',
+                    price: '59.99',
                   ),
                 ],
               ),

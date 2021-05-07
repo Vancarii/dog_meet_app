@@ -79,7 +79,17 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
               size: 18,
               bold: true,
             ),
-            leading: IconButton(icon: Icon(Icons.location_on_outlined), onPressed: () {}),
+            leading: IconButton(
+                icon: Icon(Icons.location_on_outlined),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    RouteTransitions().slideLeftToRightJoinedTransitionType(
+                      MeetUpPage(),
+                      Scaffold(),
+                    ),
+                  );
+                }),
             actions: <Widget>[
               IconButton(
                 icon: Icon(

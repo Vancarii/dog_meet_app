@@ -1,6 +1,11 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/market_store_details_page.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/messages/components/chat_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'components/other_pup_attributes.dart';
 import 'components/other_pup_tab_bar.dart';
 
@@ -20,165 +25,212 @@ class OtherProfileInfoState extends State<OtherProfileInfo> {
     return Container(
       padding: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width,
-      //height: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          //borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
-          gradient: AppColors.orangeYellowGradient),
+      decoration: BoxDecoration(gradient: AppColors.orangeYellowGradient),
       child: Column(
         children: [
-          //ProfileCarousel(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.8,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/pictures/rosymazeprofile.jpg'),
+                    radius: 65,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              AccountPostCount(num: 457, title: 'Followers'),
+                              AccountPostCount(num: 356, title: 'Following'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0),
+                          child: Divider(
+                            thickness: 1.0,
+                            color: AppColors.colorOffBlack,
+                            indent: 25.0,
+                            endIndent: 25.0,
+                          ),
+                        ),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          runSpacing: 5.0,
                           children: [
-                            InkWell(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomText(
-                                    text: '458',
-                                    size: 18,
-                                    bold: true,
-                                  ),
-                                  CustomText(
-                                    text: 'Followers',
-                                    size: 15,
-                                    //bold: true,
-                                    color: Colors.black54,
-                                  )
-                                ],
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              icon: Icon(
+                                Icons.link,
+                                color: AppColors.colorDarkSlateGrey,
                               ),
+                              borderColor: AppColors.colorOffBlack,
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            InkWell(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomText(
-                                    text: '511',
-                                    size: 18,
-                                    bold: true,
-                                  ),
-                                  CustomText(
-                                    text: 'Following',
-                                    size: 15,
-                                    //bold: true,
-                                    color: Colors.black54,
-                                  )
-                                ],
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              icon: Icon(
+                                Icons.email_outlined,
+                                color: AppColors.colorDarkSlateGrey,
                               ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              onTap: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return CupertinoAlertDialog(
+                                      title: Text('Open Instagram?'),
+                                      content: Text('To open Instagram, you must first Log In'),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: Text('Cancel'),
+                                          onPressed: () {},
+                                        ),
+                                        CupertinoDialogAction(
+                                          child: Text('Log In'),
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.instagram,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              onTap: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return CupertinoAlertDialog(
+                                      title: Text('Open Twitter?'),
+                                      content: Text('To open Twitter, you must first Log In'),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: Text('Cancel'),
+                                          onPressed: () {},
+                                        ),
+                                        CupertinoDialogAction(
+                                          child: Text('Log In'),
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.twitter,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
+                            ),
+                            StoreIconButton(
+                              borderThickness: 1.5,
+                              onTap: () {
+                                showCupertinoDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return CupertinoAlertDialog(
+                                      title: Text('Open TikTok?'),
+                                      content: Text('To open TikTok, you must first Log In'),
+                                      actions: [
+                                        CupertinoDialogAction(
+                                          child: Text('Cancel'),
+                                          onPressed: () {},
+                                        ),
+                                        CupertinoDialogAction(
+                                          child: Text('Log In'),
+                                          onPressed: () {},
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.tiktok,
+                                color: AppColors.colorDarkSlateGrey,
+                              ),
+                              borderColor: AppColors.colorOffBlack,
                             ),
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5.0),
-                        child: Divider(
-                          endIndent: 50,
-                          color: Colors.black54,
-                          thickness: 1,
-                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+/*          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CustomExpandable(),
+          ),*/
+          Container(
+            margin: const EdgeInsets.only(left: 10.0, top: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  text: 'Name',
+                  size: 20.0,
+                  bold: true,
+                  alignment: TextAlign.start,
+                ),
+                Wrap(
+                  children: [
+                    CustomText(
+                      text: 'This is the bio, where users put anything',
+                      size: 16,
+                      height: 1.3,
+                      alignment: TextAlign.start,
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_rounded,
+                        color: AppColors.colorDarkSlateGrey,
                       ),
                       CustomText(
-                        text: 'Yecheng Wang',
-                        size: 20,
-                        bold: true,
-                        alignment: TextAlign.start,
-                        padding: const EdgeInsets.only(bottom: 10.0),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.subdirectory_arrow_right_rounded,
-                            size: 15,
-                          ),
-                          Flexible(
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: Column(
-                                children: [
-                                  RichText(
-                                      text: TextSpan(
-                                          text: 'Rosy',
-                                          style: TextStyle(
-                                            fontFamily: 'Gibson',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                        TextSpan(
-                                          text: ' and ',
-                                          style: TextStyle(
-                                            fontFamily: 'Gibson',
-                                            fontWeight: FontWeight.w200,
-                                            fontSize: 15,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: 'Maze',
-                                          style: TextStyle(
-                                            fontFamily: 'Gibson',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ])),
-                                ],
-                              ),
-                            ),
-                          ),
-                          /*CustomText(
-                              text: 'Rosy and Maze',
-                              size: 18,
-                              alignment: TextAlign.start,
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                            ),*/
-                        ],
-                      ),
-                      Wrap(
-                        children: [
-                          CustomText(
-                            text: 'Two sisters exploring Beautiful British Columbia',
-                            size: 15,
-                            alignment: TextAlign.start,
-                            padding: const EdgeInsets.only(bottom: 5.0),
-                          ),
-                        ],
+                        text: 'Port Moody, BC',
+                        color: AppColors.colorDarkSlateGrey,
+                        padding: const EdgeInsets.only(left: 5.0),
                       ),
                     ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/rosymazeprofile.jpg'),
-                    radius: MediaQuery.of(context).size.width / 5.5,
                   ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
                   child: InkWell(
@@ -206,18 +258,22 @@ class OtherProfileInfoState extends State<OtherProfileInfo> {
                         text: isFollowed == true ? 'Following' : 'Follow',
                         size: 15,
                         bold: true,
-                        color: isFollowed == true ? AppColors.colorBlack : AppColors.colorWhite,
+                        color: isFollowed == true
+                            ? AppColors.colorDarkSlateGrey
+                            : AppColors.colorWhite,
                       ),
                     ),
                   ),
                 ),
                 Expanded(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          RouteTransitions().slideRightToLeftTransitionType(ChatsScreen()));
+                    },
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       alignment: Alignment.center,
-                      //width: MediaQuery.of(context).size.width / 3,
                       height: 35,
                       decoration: BoxDecoration(
                           border: Border.all(
@@ -232,30 +288,11 @@ class OtherProfileInfoState extends State<OtherProfileInfo> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: InkWell(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      alignment: Alignment.center,
-                      //width: MediaQuery.of(context).size.width / 3,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: CustomText(
-                        text: 'Links',
-                        size: 15,
-                        bold: true,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
           OtherPupTabBar(
+            padding: const EdgeInsets.only(top: 15.0, left: 10.0),
             funcIsPup: function,
           ),
           Container(
@@ -268,6 +305,41 @@ class OtherProfileInfoState extends State<OtherProfileInfo> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class AccountPostCount extends StatelessWidget {
+  final int num;
+  final String title;
+  const AccountPostCount({
+    Key key,
+    this.num = 0,
+    this.title = 'Followers',
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomText(
+              text: '$num',
+              size: 20,
+              bold: true,
+            ),
+            CustomText(
+              text: '$title',
+              size: 15,
+              //bold: true,
+              color: Colors.black54,
+            )
+          ],
+        ),
       ),
     );
   }

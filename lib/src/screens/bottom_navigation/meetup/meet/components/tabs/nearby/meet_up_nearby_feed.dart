@@ -63,7 +63,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           ),
         ),
         MeetUpPost(
-          postImage: 'assets/images/rosymazeprofile.jpg',
+          postImage: 'assets/images/pictures/rosymazeprofile.jpg',
           accountName: 'RosyandMaze',
           location: 'Glen Off-Leash Dog Park',
           numOfPeopleGoing: 3,
@@ -76,7 +76,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           },
         ),
         MeetUpPost(
-          postImage: 'assets/images/rosy.png',
+          postImage: 'assets/images/pictures/rosy.png',
           accountName: 'RosyandMaze',
           location: 'location',
           numOfPeopleGoing: 3,
@@ -89,7 +89,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           },
         ),
         MeetUpPost(
-          postImage: 'assets/images/rosy.png',
+          postImage: 'assets/images/pictures/rosy.png',
           accountName: 'RosyandMaze',
           location: 'location',
           numOfPeopleGoing: 3,
@@ -102,7 +102,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
           },
         ),
         MeetUpPost(
-          postImage: 'assets/images/rosy.png',
+          postImage: 'assets/images/pictures/rosy.png',
           accountName: 'RosyandMaze',
           location: 'location',
           numOfPeopleGoing: 3,

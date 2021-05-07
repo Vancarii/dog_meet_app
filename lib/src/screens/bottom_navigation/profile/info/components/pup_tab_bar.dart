@@ -21,49 +21,46 @@ class _PupTabBarState extends State<PupTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0, left: 10.0),
-      child: Wrap(
-        alignment: WrapAlignment.start,
-        children: [
-          InkWell(
-            onTap: () {
-              setState(() {
-                selectedPup = nameIsActive.pup1;
-                widget.funcIsPup(selectedPup);
-              });
-            },
-            child: CustomText(
-              text: 'ROSY',
-              size: 20,
-              bold: true,
-              color: selectedPup == nameIsActive.pup1
-                  ? Colors.black87
-                  : AppColors.colorBlack.withOpacity(0.2),
-              alignment: TextAlign.start,
-              padding: const EdgeInsets.all(5.0),
-            ),
+    return Wrap(
+      alignment: WrapAlignment.start,
+      children: [
+        InkWell(
+          onTap: () {
+            setState(() {
+              selectedPup = nameIsActive.pup1;
+              widget.funcIsPup(selectedPup);
+            });
+          },
+          child: CustomText(
+            text: 'ROSY',
+            size: 20,
+            bold: true,
+            color: selectedPup == nameIsActive.pup1
+                ? Colors.black87
+                : AppColors.colorBlack.withOpacity(0.2),
+            alignment: TextAlign.start,
+            padding: const EdgeInsets.all(5.0),
           ),
-          InkWell(
-            onTap: () {
-              setState(() {
-                selectedPup = nameIsActive.pup2;
-                widget.funcIsPup(selectedPup);
-              });
-            },
-            child: CustomText(
-              text: 'MAZE',
-              size: 20,
-              bold: true,
-              color: selectedPup == nameIsActive.pup2
-                  ? Colors.black87
-                  : AppColors.colorBlack.withOpacity(0.2),
-              alignment: TextAlign.start,
-              padding: const EdgeInsets.all(5.0),
-            ),
+        ),
+        InkWell(
+          onTap: () {
+            setState(() {
+              selectedPup = nameIsActive.pup2;
+              widget.funcIsPup(selectedPup);
+            });
+          },
+          child: CustomText(
+            text: 'MAZE',
+            size: 20,
+            bold: true,
+            color: selectedPup == nameIsActive.pup2
+                ? Colors.black87
+                : AppColors.colorBlack.withOpacity(0.2),
+            alignment: TextAlign.start,
+            padding: const EdgeInsets.all(5.0),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

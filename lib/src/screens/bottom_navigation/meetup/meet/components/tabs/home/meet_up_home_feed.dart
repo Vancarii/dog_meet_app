@@ -17,7 +17,7 @@ class MeetUpHomeFeed extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 110),
       children: <Widget>[
         MeetUpPost(
-          postImage: 'assets/images/rosymazeprofile.jpg',
+          postImage: 'assets/images/pictures/rosymazeprofile.jpg',
           accountName: 'RosyandMaze',
           location: 'Glen Off-Leash Dog Park',
           numOfPeopleGoing: 3,
@@ -30,7 +30,7 @@ class MeetUpHomeFeed extends StatelessWidget {
           },
         ),
         MeetUpPost(
-          postImage: 'assets/images/rosy.png',
+          postImage: 'assets/images/pictures/rosy.png',
           accountName: 'RosyandMaze',
           location: 'location',
           numOfPeopleGoing: 3,
@@ -43,7 +43,7 @@ class MeetUpHomeFeed extends StatelessWidget {
           },
         ),
         MeetUpPost(
-          postImage: 'assets/images/rosy.png',
+          postImage: 'assets/images/pictures/rosy.png',
           accountName: 'RosyandMaze',
           location: 'location',
           numOfPeopleGoing: 3,
@@ -56,7 +56,7 @@ class MeetUpHomeFeed extends StatelessWidget {
           },
         ),
         MeetUpPost(
-          postImage: 'assets/images/rosy.png',
+          postImage: 'assets/images/pictures/rosy.png',
           accountName: 'RosyandMaze',
           location: 'location',
           numOfPeopleGoing: 3,

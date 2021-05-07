@@ -2,9 +2,11 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forums_page_filter_chip.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/market_product_tile.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/review_page.dart';
+import 'package:dog_meet_app/src/screens/sub_screens/share_sheet/share_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -79,6 +81,18 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                         title: Text('Actions'),
                         actions: [
                           CupertinoDialogAction(
+                            child: Text('Share Store Profile'),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                TransparentRoute(
+                                  duration: 0,
+                                  builder: (context) => ShareSheet(),
+                                ),
+                              );
+                            },
+                          ),
+                          CupertinoDialogAction(
                             child: Text('Report Store'),
                             onPressed: () {
                               //TODO: ADD FUNCTIONALITY TO REPORT LISTING
@@ -117,7 +131,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                         child: Hero(
                           tag: kStoreProfileCoverHeroTag,
                           child: Image(
-                            image: AssetImage('assets/images/trainingtab2.jpg'),
+                            image: AssetImage(widget.storeImage),
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -135,7 +149,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             image: AssetImage(widget.storeImage),
-                            fit: BoxFit.fitHeight,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -344,7 +358,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                 ),
                 MarketProductTile(
                   condition: 'New',
-                  productImage: 'assets/images/trainingtab2.jpg',
+                  productImage: 'assets/images/products/trainingtab2.jpg',
                   productTitle: 'Training Tabs - Hoot \& Co',
                   stock: true,
                   price: '14.99',
@@ -363,6 +377,7 @@ class StoreIconButton extends StatelessWidget {
   final CustomText text;
   final Color fillColor;
   final Color borderColor;
+  final double borderThickness;
   final VoidCallback onTap;
 
   StoreIconButton({
@@ -371,6 +386,7 @@ class StoreIconButton extends StatelessWidget {
     this.fillColor = Colors.transparent,
     this.onTap,
     this.borderColor = AppColors.colorPrimaryOrange,
+    this.borderThickness = 2.0,
   });
 
   @override
@@ -389,8 +405,9 @@ class StoreIconButton extends StatelessWidget {
               height: 38,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                border: Border.all(color: borderColor, width: 2),
+                shape: text != null ? BoxShape.rectangle : BoxShape.circle,
+                borderRadius: text != null ? BorderRadius.all(Radius.circular(30.0)) : null,
+                border: Border.all(color: borderColor, width: borderThickness),
                 color: fillColor,
               ),
               child: Padding(

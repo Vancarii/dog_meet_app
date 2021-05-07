@@ -12,7 +12,7 @@ class ProductPosterAccount extends StatelessWidget {
             context, RouteTransitions().slideRightToLeftTransitionType(OtherProfilePage()));
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 5, top: 20),
+        padding: const EdgeInsets.only(left: 5, top: 10),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[

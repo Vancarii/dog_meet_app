@@ -2,15 +2,21 @@ import 'package:dog_meet_app/src/global_components/components/image_swiper/flutt
 import 'package:flutter/material.dart';
 
 class ProductImageCarousel extends StatefulWidget {
+  final String image;
+  ProductImageCarousel({@required this.image});
   @override
   _ProductImageCarouselState createState() => _ProductImageCarouselState();
 }
 
 class _ProductImageCarouselState extends State<ProductImageCarousel> {
-  static const List<String> images = [
-    'assets/images/trainingtab2.jpg',
-    'assets/images/trainingtab2.jpg'
-  ];
+  List<String> images = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    images.add(widget.image);
+  }
 
   @override
   Widget build(BuildContext context) {
