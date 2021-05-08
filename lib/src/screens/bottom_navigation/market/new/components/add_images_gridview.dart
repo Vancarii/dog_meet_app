@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/constants.dart';
+import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

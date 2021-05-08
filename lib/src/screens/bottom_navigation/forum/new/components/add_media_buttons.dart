@@ -1,6 +1,6 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
-import 'package:dog_meet_app/src/global_components/constants.dart';
+import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class AddMediaButtons extends StatelessWidget {

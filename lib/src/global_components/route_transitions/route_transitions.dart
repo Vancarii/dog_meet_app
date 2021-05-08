@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 //This is a animation for the new post page to slide up from the bottom
@@ -50,8 +51,8 @@ class RouteTransitions {
     //assert(currentPage != null);
 
     return PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 200),
-        reverseTransitionDuration: Duration(milliseconds: 200),
+        transitionDuration: Duration(milliseconds: kSlideLeftToRightJoinedDuration),
+        reverseTransitionDuration: Duration(milliseconds: kSlideLeftToRightJoinedDuration),
         maintainState: true,
         pageBuilder: (context, animation, secondaryAnimation) => nextPage,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {

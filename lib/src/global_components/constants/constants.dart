@@ -27,3 +27,6 @@ const String kNewListingPostHeroTag = 'ListingImage';
 
 const String kStoreProfileCoverHeroTag = 'StoreCover';
 const String kStoreProfileImageHeroTag = 'StoreProfileImage';
+
+//Transition Duration
+const int kSlideLeftToRightJoinedDuration = 200;
