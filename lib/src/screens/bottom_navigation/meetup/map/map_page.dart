@@ -10,10 +10,18 @@ class MapPage extends StatefulWidget {
   _MapPageState createState() => _MapPageState();
 }
 
-class _MapPageState extends State<MapPage> {
+class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   GoogleMapController nearbyMeetMapController;
 
+  PageController pageController;
+
+  int prevPage;
+
+  bool pageScrolled = false;
+
   List<Marker> allMarkers = [];
+
+  LatLng currentCoordinates;
 
   void goToLocation({double zoom = 11.0, LatLng location}) {
     nearbyMeetMapController.animateCamera(
@@ -54,11 +62,199 @@ class _MapPageState extends State<MapPage> {
         Marker(
           markerId: MarkerId(element.accountName),
           draggable: false,
-          infoWindow: InfoWindow(title: element.accountName, snippet: element.meetTime),
+          infoWindow: InfoWindow(title: element.meetTime, snippet: element.date),
           position: element.locationCoordinates,
         ),
       );
     });
+    pageController = PageController(initialPage: 1, viewportFraction: 0.9)..addListener(_onScroll);
+
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 250),
+      vsync: this,
+    );
+
+    offsetAnimation = Tween<Offset>(
+      begin: Offset(0.0, 1.5),
+      end: const Offset(0.0, 3.0),
+    ).animate(CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeInOutSine,
+    ));
+  }
+
+  Animation<Offset> offsetAnimation;
+
+  AnimationController animationController;
+
+  @override
+  void dispose() {
+    super.dispose();
+    pageController.dispose();
+    nearbyMeetMapController.dispose();
+    animationController.dispose();
+  }
+
+  void _onScroll() {
+    if (pageController.page.toInt() != prevPage) {
+      setState(() {
+        prevPage = pageController.page.toInt();
+        pageScrolled = true;
+        moveCamera();
+      });
+    }
+  }
+
+  moveCamera() {
+    nearbyMeetMapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+        target: meetUps[pageController.page.toInt()].locationCoordinates,
+        zoom: 14.0,
+        //bearing: 45.0,
+        tilt: 45.0)));
+    nearbyMeetMapController
+        .showMarkerInfoWindow(MarkerId(meetUps[pageController.page.toInt()].accountName));
+  }
+
+  meetUpsList(index) {
+    return AnimatedBuilder(
+      animation: pageController,
+      builder: (BuildContext context, Widget widget) {
+        double value = 1;
+        if (pageController.position.haveDimensions) {
+          value = pageController.page - index;
+          value = (1 - (value.abs() * 0.3) + 0.06).clamp(0.0, 1.0);
+        }
+        return Center(
+          child: SizedBox(
+            height: Curves.easeInOut.transform(value) * 500.0,
+            width: Curves.easeInOut.transform(value) * 600.0,
+            child: widget,
+          ),
+        );
+      },
+      child: InkWell(
+        onTap: () {
+          moveCamera();
+        },
+        child: Stack(
+          children: [
+            Center(
+              child: Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                  vertical: 10.0,
+                ),
+                height: 700.0,
+                width: 600.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      offset: Offset(0.0, 4.0),
+                      blurRadius: 10.0,
+                    ),
+                  ],
+                  color: AppColors.colorWhite,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                  meetUps[index].image,
+                                )),
+                          ),
+                          width: double.infinity,
+                          height: 100,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(5.0),
+                          padding:
+                              const EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
+                          decoration: BoxDecoration(
+                              color: AppColors.colorBlack.withOpacity(0.5),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15.0),
+                              )),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CircleAvatar(
+                                radius: 12,
+                              ),
+                              CustomText(
+                                text: meetUps[index].accountName,
+                                size: 15,
+                                color: AppColors.colorWhite,
+                                padding: const EdgeInsets.only(left: 5.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                            CustomText(
+                              text: meetUps[index].locationName,
+                              size: 20,
+                              bold: true,
+                              //padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                            ),
+                            CustomText(
+                              text: meetUps[index].address,
+                              size: 13,
+                              padding: const EdgeInsets.only(top: 10.0),
+                            ),
+                            CustomText(
+                              text: meetUps[index].description,
+                              size: 12,
+                              color: AppColors.colorGrey,
+                              padding: const EdgeInsets.only(top: 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    //Spacer(),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10.0, bottom: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30.0),
+                          ),
+                          color: AppColors.colorPrimaryOrange,
+                        ),
+                        child: CustomText(
+                          text: 'Open in Maps',
+                          size: 15,
+                          color: AppColors.colorWhite,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -84,27 +280,117 @@ class _MapPageState extends State<MapPage> {
                     }),
               ],
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  goToLocation(zoom: 17.0, location: snapshot.data);
-                });
-              },
-              backgroundColor: AppColors.colorWhite,
-              child: Icon(Icons.my_location_rounded),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 150.0,
+                ),
+                FloatingActionButton(
+                  heroTag: null,
+                  //mini: true,
+                  onPressed: () {
+                    setState(() {
+                      goToLocation(zoom: 17.0, location: snapshot.data);
+                    });
+                  },
+                  backgroundColor: AppColors.colorWhite,
+                  child: Icon(Icons.my_location_rounded),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                FloatingActionButton(
+                  heroTag: null,
+                  //mini: true,
+                  onPressed: () {
+                    setState(() {
+                      goToLocation(zoom: 15.0, location: snapshot.data);
+                    });
+                  },
+                  backgroundColor: AppColors.colorWhite,
+                  child: Icon(Icons.date_range),
+                ),
+              ],
             ),
             body: snapshot.hasData
                 ? SafeArea(
-                    child: GoogleMap(
-                      onMapCreated: onMapCreated,
-                      zoomControlsEnabled: false,
-                      myLocationEnabled: true,
-                      myLocationButtonEnabled: false,
-                      markers: Set.from(allMarkers),
-                      initialCameraPosition: CameraPosition(
-                        target: snapshot.data,
-                        zoom: 11,
-                      ),
+                    child: Stack(
+                      children: [
+                        GoogleMap(
+                          onCameraMove: (camPos) {
+                            setState(() {
+                              currentCoordinates = camPos.target;
+                              //print('campos: ' + camPos.target.toString());
+                            });
+                          },
+                          onCameraIdle: () {
+                            //print('current Coordinates: ' + currentCoordinates.toString());
+                            setState(() {
+                              for (var index = 0; index <= meetUps.length - 1; index++) {
+                                //print('meetUps index coor: ' +
+                                //   meetUps[index].locationCoordinates.toString());
+
+                                if ((currentCoordinates.latitude -
+                                            meetUps[index].locationCoordinates.latitude)
+                                        .abs() <=
+                                    0.0002) {
+                                  if ((currentCoordinates.longitude -
+                                              meetUps[index].locationCoordinates.longitude)
+                                          .abs() <=
+                                      0.0002) {
+                                    animationController.reverse();
+                                    pageController.animateToPage(index,
+                                        duration: Duration(milliseconds: 150),
+                                        curve: Curves.easeInOut);
+                                    pageScrolled = false;
+                                  }
+                                }
+                              }
+                            });
+                          },
+                          onTap: (latLng) {
+                            setState(() {
+                              if (pageScrolled != true) {
+                                animationController.forward();
+                                //pageScrolled = true;
+                              }
+                            });
+                          },
+                          onCameraMoveStarted: () {
+                            setState(() {
+                              if (pageScrolled != true) {
+                                animationController.forward();
+                                //pageScrolled = true;
+                              }
+                            });
+                          },
+                          onMapCreated: onMapCreated,
+                          zoomControlsEnabled: false,
+                          myLocationEnabled: true,
+                          myLocationButtonEnabled: false,
+                          markers: Set.from(allMarkers),
+                          initialCameraPosition: CameraPosition(
+                            target: snapshot.data,
+                            zoom: 12,
+                          ),
+                        ),
+                        SlideTransition(
+                          position: offsetAnimation,
+                          child: Container(
+                            height: 300.0,
+                            width: MediaQuery.of(context).size.width,
+                            child: PageView.builder(
+                              controller: pageController,
+                              itemCount: meetUps.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return meetUpsList(index);
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 : Center(
