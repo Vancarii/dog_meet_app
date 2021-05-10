@@ -28,6 +28,7 @@ dependencies:
   expandable: ^5.0.1
   another_flushbar: ^1.10.20
 
+
   google_maps_flutter: ^2.0.3
   location: ^4.1.1
 

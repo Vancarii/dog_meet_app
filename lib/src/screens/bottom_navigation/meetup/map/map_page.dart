@@ -1,5 +1,8 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/details/map_card_meet_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:dog_meet_app/src/global_components/models/nearby_meets_model.dart';
@@ -75,8 +78,8 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     );
 
     offsetAnimation = Tween<Offset>(
-      begin: Offset(0.0, 1.5),
-      end: const Offset(0.0, 3.0),
+      begin: Offset(0.0, 3.0),
+      end: const Offset(0.0, 1.5),
     ).animate(CurvedAnimation(
       parent: animationController,
       curve: Curves.easeInOutSine,
@@ -115,6 +118,17 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
         .showMarkerInfoWindow(MarkerId(meetUps[pageController.page.toInt()].accountName));
   }
 
+  hideCards() {
+    setState(() {
+      if (pageScrolled == false) {
+        if (animationController.isCompleted) {
+          animationController.reverse();
+          //pageScrolled = true;
+        }
+      }
+    });
+  }
+
   meetUpsList(index) {
     return AnimatedBuilder(
       animation: pageController,
@@ -132,126 +146,139 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
           ),
         );
       },
-      child: InkWell(
-        onTap: () {
-          moveCamera();
-        },
-        child: Stack(
-          children: [
-            Center(
-              child: Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 10.0,
-                  vertical: 10.0,
+      child: Hero(
+        tag: 'meet_up_map_card_$index',
+        child: GestureDetector(
+          onVerticalDragUpdate: (details) {
+            hideCards();
+          },
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MapCardMeetDetailsPage(
+                  heroTag: 'meet_up_map_card_$index',
                 ),
-                height: 700.0,
-                width: 600.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54,
-                      offset: Offset(0.0, 4.0),
-                      blurRadius: 10.0,
-                    ),
-                  ],
-                  color: AppColors.colorWhite,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  meetUps[index].image,
-                                )),
+              ),
+            );
+          },
+          child: Stack(
+            children: [
+              Center(
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                    vertical: 10.0,
+                  ),
+                  height: 700.0,
+                  width: 600.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black54,
+                        offset: Offset(0.0, 4.0),
+                        blurRadius: 10.0,
+                      ),
+                    ],
+                    color: AppColors.colorWhite,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    meetUps[index].image,
+                                  )),
+                            ),
+                            width: double.infinity,
+                            height: 100,
                           ),
-                          width: double.infinity,
-                          height: 100,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.all(5.0),
-                          padding:
-                              const EdgeInsets.only(top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
-                          decoration: BoxDecoration(
-                              color: AppColors.colorBlack.withOpacity(0.5),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15.0),
-                              )),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
+                          Container(
+                            margin: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.only(
+                                top: 5.0, bottom: 5.0, left: 5.0, right: 10.0),
+                            decoration: BoxDecoration(
+                                color: AppColors.colorBlack.withOpacity(0.5),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(15.0),
+                                )),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                CircleAvatar(
+                                  radius: 12,
+                                ),
+                                CustomText(
+                                  text: meetUps[index].accountName,
+                                  size: 15,
+                                  color: AppColors.colorWhite,
+                                  padding: const EdgeInsets.only(left: 5.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: ListView(
+                            shrinkWrap: true,
                             children: [
-                              CircleAvatar(
-                                radius: 12,
+                              CustomText(
+                                text: meetUps[index].locationName,
+                                size: 20,
+                                bold: true,
+                                //padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                               ),
                               CustomText(
-                                text: meetUps[index].accountName,
-                                size: 15,
-                                color: AppColors.colorWhite,
-                                padding: const EdgeInsets.only(left: 5.0),
+                                text: meetUps[index].address,
+                                size: 13,
+                                padding: const EdgeInsets.only(top: 10.0),
+                              ),
+                              CustomText(
+                                text: meetUps[index].description,
+                                size: 12,
+                                color: AppColors.colorGrey,
+                                padding: const EdgeInsets.only(top: 5.0),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: ListView(
-                          shrinkWrap: true,
-                          children: [
-                            CustomText(
-                              text: meetUps[index].locationName,
-                              size: 20,
-                              bold: true,
-                              //padding: const EdgeInsets.only(top: 10.0, left: 10.0),
-                            ),
-                            CustomText(
-                              text: meetUps[index].address,
-                              size: 13,
-                              padding: const EdgeInsets.only(top: 10.0),
-                            ),
-                            CustomText(
-                              text: meetUps[index].description,
-                              size: 12,
-                              color: AppColors.colorGrey,
-                              padding: const EdgeInsets.only(top: 5.0),
-                            ),
-                          ],
-                        ),
                       ),
-                    ),
-                    //Spacer(),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10.0, bottom: 10.0),
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30.0),
+                      //Spacer(),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 10.0, bottom: 10.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(30.0),
+                            ),
+                            color: AppColors.colorPrimaryOrange,
                           ),
-                          color: AppColors.colorPrimaryOrange,
+                          child: CustomText(
+                            text: 'Open in Maps',
+                            size: 15,
+                            color: AppColors.colorWhite,
+                          ),
                         ),
-                        child: CustomText(
-                          text: 'Open in Maps',
-                          size: 15,
-                          color: AppColors.colorWhite,
-                        ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -332,39 +359,31 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                                 //print('meetUps index coor: ' +
                                 //   meetUps[index].locationCoordinates.toString());
 
-                                if ((currentCoordinates.latitude -
-                                            meetUps[index].locationCoordinates.latitude)
-                                        .abs() <=
-                                    0.0002) {
-                                  if ((currentCoordinates.longitude -
-                                              meetUps[index].locationCoordinates.longitude)
+                                if (currentCoordinates != null) {
+                                  if ((currentCoordinates.latitude -
+                                              meetUps[index].locationCoordinates.latitude)
                                           .abs() <=
                                       0.0002) {
-                                    animationController.reverse();
-                                    pageController.animateToPage(index,
-                                        duration: Duration(milliseconds: 150),
-                                        curve: Curves.easeInOut);
-                                    pageScrolled = false;
+                                    if ((currentCoordinates.longitude -
+                                                meetUps[index].locationCoordinates.longitude)
+                                            .abs() <=
+                                        0.0002) {
+                                      animationController.forward();
+                                      pageController.animateToPage(index,
+                                          duration: Duration(milliseconds: 150),
+                                          curve: Curves.easeInOut);
+                                      pageScrolled = false;
+                                    }
                                   }
                                 }
                               }
                             });
                           },
                           onTap: (latLng) {
-                            setState(() {
-                              if (pageScrolled != true) {
-                                animationController.forward();
-                                //pageScrolled = true;
-                              }
-                            });
+                            hideCards();
                           },
                           onCameraMoveStarted: () {
-                            setState(() {
-                              if (pageScrolled != true) {
-                                animationController.forward();
-                                //pageScrolled = true;
-                              }
-                            });
+                            hideCards();
                           },
                           onMapCreated: onMapCreated,
                           zoomControlsEnabled: false,

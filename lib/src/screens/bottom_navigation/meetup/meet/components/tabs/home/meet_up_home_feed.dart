@@ -3,7 +3,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/component
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
-class MeetUpHomeFeed extends StatelessWidget {
+class MeetUpHomeFeed extends StatefulWidget {
   const MeetUpHomeFeed({
     Key key,
     @required this.slidingSheetController,
@@ -12,63 +12,79 @@ class MeetUpHomeFeed extends StatelessWidget {
   final SheetController slidingSheetController;
 
   @override
+  _MeetUpHomeFeedState createState() => _MeetUpHomeFeedState();
+}
+
+class _MeetUpHomeFeedState extends State<MeetUpHomeFeed> {
+  var _refreshKey = GlobalKey<RefreshIndicatorState>();
+
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.only(bottom: 110),
-      children: <Widget>[
-        MeetUpPost(
-          postImage: 'assets/images/pictures/rosymazeprofile.jpg',
-          accountName: 'RosyandMaze',
-          location: 'Glen Off-Leash Dog Park',
-          numOfPeopleGoing: 3,
-          time: '3:30',
-          amPm: 'am',
-          date: 'Sunday, April 18th, 2021',
-          onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(kMaxSnapPosition,
-                duration: Duration(milliseconds: 150), clamp: true);
-          },
-        ),
-        MeetUpPost(
-          postImage: 'assets/images/pictures/rosy.png',
-          accountName: 'RosyandMaze',
-          location: 'location',
-          numOfPeopleGoing: 3,
-          time: '3:30',
-          amPm: 'am',
-          date: 'Sunday, April 18th, 2021',
-          onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(kMaxSnapPosition,
-                duration: Duration(milliseconds: 150), clamp: true);
-          },
-        ),
-        MeetUpPost(
-          postImage: 'assets/images/pictures/rosy.png',
-          accountName: 'RosyandMaze',
-          location: 'location',
-          numOfPeopleGoing: 3,
-          time: '3:30',
-          amPm: 'am',
-          date: 'Sunday, April 18th, 2021',
-          onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(kMaxSnapPosition,
-                duration: Duration(milliseconds: 150), clamp: true);
-          },
-        ),
-        MeetUpPost(
-          postImage: 'assets/images/pictures/rosy.png',
-          accountName: 'RosyandMaze',
-          location: 'location',
-          numOfPeopleGoing: 3,
-          time: '3:30',
-          amPm: 'am',
-          date: 'Sunday, April 18th, 2021',
-          onMeetUpPostSelected: () {
-            slidingSheetController.snapToExtent(kMaxSnapPosition,
-                duration: Duration(milliseconds: 150), clamp: true);
-          },
-        ),
-      ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        _refreshKey.currentState?.show(atTop: true);
+        //await Future.delayed(Duration(milliseconds: 300));
+        //TODO: implement Refresh page
+      },
+      key: _refreshKey,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.only(bottom: 110),
+        children: <Widget>[
+          MeetUpPost(
+            postImage: 'assets/images/pictures/rosymazeprofile.jpg',
+            accountName: 'RosyandMaze',
+            location: 'Glen Off-Leash Dog Park',
+            numOfPeopleGoing: 3,
+            time: '3:30',
+            amPm: 'am',
+            date: 'Sunday, April 18th, 2021',
+            onMeetUpPostSelected: () {
+              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+                  duration: Duration(milliseconds: 150), clamp: true);
+            },
+          ),
+          MeetUpPost(
+            postImage: 'assets/images/pictures/rosy.png',
+            accountName: 'RosyandMaze',
+            location: 'location',
+            numOfPeopleGoing: 3,
+            time: '3:30',
+            amPm: 'am',
+            date: 'Sunday, April 18th, 2021',
+            onMeetUpPostSelected: () {
+              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+                  duration: Duration(milliseconds: 150), clamp: true);
+            },
+          ),
+          MeetUpPost(
+            postImage: 'assets/images/pictures/rosy.png',
+            accountName: 'RosyandMaze',
+            location: 'location',
+            numOfPeopleGoing: 3,
+            time: '3:30',
+            amPm: 'am',
+            date: 'Sunday, April 18th, 2021',
+            onMeetUpPostSelected: () {
+              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+                  duration: Duration(milliseconds: 150), clamp: true);
+            },
+          ),
+          MeetUpPost(
+            postImage: 'assets/images/pictures/rosy.png',
+            accountName: 'RosyandMaze',
+            location: 'location',
+            numOfPeopleGoing: 3,
+            time: '3:30',
+            amPm: 'am',
+            date: 'Sunday, April 18th, 2021',
+            onMeetUpPostSelected: () {
+              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+                  duration: Duration(milliseconds: 150), clamp: true);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
