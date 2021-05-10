@@ -12,7 +12,7 @@ class ListingDescriptionTextField extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
         //color: AppColors.colorGrey.withOpacity(0.5),
-        border: Border.all(color: AppColors.colorGrey.withOpacity(0.5)),
+        border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(0.5)),
         borderRadius: BorderRadius.all(
           Radius.circular(15.0),
         ),
@@ -26,10 +26,10 @@ class ListingDescriptionTextField extends StatelessWidget {
         cursorColor: AppColors.colorPrimaryOrange,
         cursorRadius: Radius.circular(15),
         style: TextStyle(
-            fontSize: 16,
-            color: AppColors.colorBlack,
-            //fontWeight: FontWeight.w600,
-            fontFamily: 'Gibson'),
+          fontSize: 16,
+          //fontWeight: FontWeight.w600,
+          fontFamily: 'Gibson',
+        ),
         decoration: InputDecoration(
           //counterText: '',
           border: InputBorder.none,
@@ -39,7 +39,7 @@ class ListingDescriptionTextField extends StatelessWidget {
           disabledBorder: InputBorder.none,
           hintText: 'Description...',
           hintStyle: TextStyle(
-            color: AppColors.colorGrey,
+            color: Theme.of(context).primaryColorLight.withOpacity(0.4),
             fontFamily: 'Gibson',
           ),
         ),

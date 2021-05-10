@@ -55,7 +55,7 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
               ),
             ),
             Container(
-              color: Colors.white,
+              color: Theme.of(context).primaryColor,
               margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -64,6 +64,7 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
                     child: CustomRoundedTextField(
                       controller: _forumCommentTextController,
                       maxLines: null,
+                      borderColor: Theme.of(context).primaryColor,
                       padding: const EdgeInsets.all(0.0),
                       labelText: 'Message',
                       onTextChanged: (value) {},
@@ -90,7 +91,7 @@ class _ForumCommentSectionState extends State<ForumCommentSection> {
                           },*/
                           icon: Icon(
                             Icons.alternate_email_rounded,
-                            color: AppColors.colorBlack,
+                            color: Theme.of(context).primaryColorLight,
                           )),
                     ),
                   ),

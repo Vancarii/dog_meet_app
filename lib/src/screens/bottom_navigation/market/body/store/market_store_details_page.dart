@@ -318,7 +318,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                             text: TextSpan(
                               text: '$pageLikes',
                               style: TextStyle(
-                                color: AppColors.colorBlack,
+                                color: Theme.of(context).primaryColorLight,
                                 fontFamily: 'Gibson',
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,

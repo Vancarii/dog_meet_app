@@ -136,7 +136,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     text: '2 hours ago',
                     size: 10,
                     bold: true,
-                    color: Colors.grey,
+                    color: Theme.of(context).primaryColorLight.withOpacity(0.8),
                     alignment: TextAlign.center,
                   ),
                   /*Text(
@@ -151,7 +151,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       child: Container(
                         padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
+                            border: Border.all(
+                                color: Theme.of(context).primaryColorLight.withOpacity(0.8)),
                             borderRadius: BorderRadius.all(
                               Radius.circular(5),
                             )),
@@ -229,7 +230,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     CustomText(
                       text: '2 hours ago',
                       size: 10,
-                      color: Colors.grey,
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.8),
                       bold: true,
                       alignment: TextAlign.center,
                     ),
@@ -240,7 +241,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         child: Container(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black),
+                              border: Border.all(
+                                  color: Theme.of(context).primaryColorLight.withOpacity(0.8)),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5),
                               )),

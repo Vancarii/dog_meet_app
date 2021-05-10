@@ -40,7 +40,7 @@ class ForumPostHeaderInfo extends StatelessWidget {
           size: 10,
           bold: true,
           alignment: TextAlign.center,
-          color: Colors.black45,
+          color: Theme.of(context).primaryColorLight.withOpacity(0.4),
           padding: const EdgeInsets.only(right: 5),
         ),
         /* gibsonSemiBoldText('# Hours ago', 0, 0, 0, 5, 10,

@@ -16,7 +16,7 @@ class ForumContentTextField extends StatelessWidget {
         cursorRadius: Radius.circular(15),
         style: TextStyle(
             fontSize: 16,
-            color: AppColors.colorBlack,
+            color: Theme.of(context).primaryColorLight,
             //fontWeight: FontWeight.w600,
             fontFamily: 'Gibson'),
         decoration: InputDecoration(

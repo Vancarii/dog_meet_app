@@ -71,7 +71,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
               ),
             ),
             Container(
-              color: Colors.white,
+              color: Theme.of(context).primaryColor,
               margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -79,13 +79,14 @@ class _ChatsScreenState extends State<ChatsScreen> {
                   Expanded(
                     child: CustomRoundedTextField(
                       maxLines: null,
+                      borderColor: Theme.of(context).primaryColor,
                       padding: const EdgeInsets.all(0.0),
                       labelText: 'Message',
                       endIcon: IconButton(
                           onPressed: () {},
                           icon: Icon(
                             Icons.image,
-                            color: AppColors.colorBlack,
+                            color: Theme.of(context).primaryColorLight,
                           )),
                     ),
                   ),

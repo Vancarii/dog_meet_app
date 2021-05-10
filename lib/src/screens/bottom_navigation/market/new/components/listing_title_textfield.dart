@@ -11,7 +11,7 @@ class ListingTitleTextField extends StatelessWidget {
       //height: 100,
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.colorGrey.withOpacity(0.5)),
+        border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(0.5)),
         borderRadius: BorderRadius.all(
           Radius.circular(15.0),
         ),
@@ -28,10 +28,10 @@ class ListingTitleTextField extends StatelessWidget {
         cursorColor: AppColors.colorPrimaryOrange,
         cursorRadius: Radius.circular(15),
         style: TextStyle(
-            fontSize: 26,
-            color: AppColors.colorBlack,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'Gibson'),
+          fontSize: 26,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Gibson',
+        ),
         decoration: InputDecoration(
             counterText: '',
             border: InputBorder.none,
@@ -41,7 +41,7 @@ class ListingTitleTextField extends StatelessWidget {
             disabledBorder: InputBorder.none,
             hintText: 'Post Title...',
             hintStyle: TextStyle(
-              color: AppColors.colorGrey,
+              color: Theme.of(context).primaryColorLight.withOpacity(0.4),
             )),
       ),
     );

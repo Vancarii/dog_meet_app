@@ -22,7 +22,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15.0)),
-        color: AppColors.colorWhite,
+        color: Theme.of(context).primaryColor,
       ),
       child: Column(
         /*shrinkWrap: true,
@@ -102,7 +102,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
             children: [
               MeetUpListTiles(
                 leadingIcon: FontAwesomeIcons.globeAmericas,
-                iconColor: Colors.black38,
+                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
                 title: 'All Breeds',
                 description: 'All breeds are welcome!',
               ),
@@ -114,31 +114,31 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
               ),
               MeetUpListTiles(
                 leadingIcon: FontAwesomeIcons.bone,
-                iconColor: Colors.black38,
+                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
                 title: 'Intact',
                 description: 'Either Fixed or Intact dogs can come play!',
               ),
               MeetUpListTiles(
                 leadingIcon: FontAwesomeIcons.paw,
-                iconColor: Colors.black38,
+                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
                 title: 'Medium Size',
                 description: '30 - 60 pounds / 15 - 30 kg only please!',
               ),
               MeetUpListTiles(
                 leadingIcon: FontAwesomeIcons.users,
-                iconColor: Colors.black38,
+                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
                 title: '(3) doggos going',
                 description: 'The Group Organizer limits 10 dogs to this meet',
               ),
               MeetUpListTiles(
                 leadingIcon: FontAwesomeIcons.bolt,
-                iconColor: Colors.black38,
+                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
                 title: 'Hyper Puppers',
                 description: 'This meet is for super hyper zoomies!',
               ),
               MeetUpListTiles(
                 leadingIcon: Icons.date_range,
-                iconColor: Colors.black38,
+                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
                 title: '5 - 10 Months',
                 description: 'Puppies only!',
               ),
@@ -161,7 +161,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
             margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0, top: 5.0),
             padding: const EdgeInsets.only(top: 5.0),
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: Theme.of(context).primaryColorLight.withOpacity(0.2),
               borderRadius: BorderRadius.all(
                 Radius.circular(30),
               ),
@@ -180,7 +180,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                             margin: const EdgeInsets.symmetric(horizontal: 5.0),
                             padding: const EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
-                              color: AppColors.colorGrey.withOpacity(0.3),
+                              color: Theme.of(context).primaryColorLight.withOpacity(0.2),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
                               ),
@@ -217,6 +217,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                             child: CustomRoundedTextField(
                               maxLines: null,
                               minLines: 1,
+                              borderColor: Theme.of(context).primaryColorLight,
                               padding: const EdgeInsets.only(bottom: 5.0),
                               labelText: 'Add Comment / Ask a Question',
                             ),
@@ -225,7 +226,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                             onPressed: () {},
                             icon: Icon(
                               Icons.send_rounded,
-                              color: AppColors.colorBlack,
+                              color: Theme.of(context).primaryColorLight,
                             ),
                           ),
                         ],
@@ -237,7 +238,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                             CustomText(
                               text: 'Your comment is public to everyone who views this meet',
                               size: 12,
-                              color: AppColors.colorBlack.withOpacity(0.5),
+                              color: Theme.of(context).primaryColorLight.withOpacity(0.6),
                               padding: const EdgeInsets.only(left: 10.0),
                             ),
                           ],

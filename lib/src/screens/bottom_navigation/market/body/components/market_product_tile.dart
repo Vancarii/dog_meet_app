@@ -41,7 +41,7 @@ class _MarketProductTileState extends State<MarketProductTile> {
               decoration: BoxDecoration(
                   //border: Border.all(color: widget.borderColour, width: 4),
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                   boxShadow: [kBoxShadow()]),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,7 @@ class _MarketProductTileState extends State<MarketProductTile> {
                           text: widget.condition == 'New' ? '  ·  ' : '',
                           size: 12,
                           bold: true,
-                          color: AppColors.colorOffBlack,
+                          color: Theme.of(context).primaryColorLight,
                         ),
                         CustomText(
                           text: widget.condition == 'New'

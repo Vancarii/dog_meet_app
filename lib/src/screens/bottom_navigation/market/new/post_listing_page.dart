@@ -28,7 +28,7 @@ class _PostListingPageState extends State<PostListingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -50,7 +50,7 @@ class _PostListingPageState extends State<PostListingPage> {
               child: CustomText(
                 text: 'Post',
                 size: 18,
-                color: AppColors.colorDarkSlateGrey,
+                color: Theme.of(context).accentColor,
                 bold: true,
                 // alignment: TextAlign.center,
                 padding: const EdgeInsets.only(right: 15.0),
@@ -66,7 +66,7 @@ class _PostListingPageState extends State<PostListingPage> {
           child: SingleChildScrollView(
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors.colorWhite,
+                color: Theme.of(context).primaryColorLight.withOpacity(0.2),
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
               child: Padding(
@@ -84,10 +84,10 @@ class _PostListingPageState extends State<PostListingPage> {
                         text: TextSpan(
                             text: 'Add Images ',
                             style: TextStyle(
-                              color: AppColors.colorBlack,
                               fontSize: 22,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Gibson',
+                              color: Theme.of(context).primaryColorLight,
                             ),
                             children: [
                               TextSpan(
@@ -96,7 +96,7 @@ class _PostListingPageState extends State<PostListingPage> {
                                     fontFamily: 'Gibson',
                                     fontSize: 12,
                                     fontWeight: FontWeight.normal,
-                                    color: AppColors.colorBlack.withOpacity(0.5),
+                                    color: Theme.of(context).primaryColorLight.withOpacity(0.6),
                                   ))
                             ]),
                       ),

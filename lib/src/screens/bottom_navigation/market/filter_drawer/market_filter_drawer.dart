@@ -86,8 +86,9 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
                           '+',
                   size: 18,
                   bold: true,
-                  color:
-                      sliderChanged == true ? AppColors.colorPrimaryOrange : AppColors.colorBlack,
+                  color: sliderChanged == true
+                      ? AppColors.colorPrimaryOrange
+                      : Theme.of(context).primaryColorLight,
                 ),
                 expanded: MarketPriceRangeSlider(
                   reset: sliderChanged == false ? true : false,
@@ -119,7 +120,9 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
                   text: 'Color',
                   size: 18,
                   bold: true,
-                  color: colorChanged == true ? AppColors.colorPrimaryOrange : AppColors.colorBlack,
+                  color: colorChanged == true
+                      ? AppColors.colorPrimaryOrange
+                      : Theme.of(context).primaryColorLight,
                 ),
                 expanded: ColorPicker(
                   reset: colorChanged == false ? true : false,

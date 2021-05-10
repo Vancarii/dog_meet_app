@@ -42,7 +42,7 @@ class _ProductInfoState extends State<ProductInfo> {
                 text: widget.condition == 'New' ? ' · ' : '',
                 size: 15,
                 bold: true,
-                color: AppColors.colorOffBlack,
+                color: Theme.of(context).primaryColorLight,
                 alignment: TextAlign.start,
               ),
               CustomText(

@@ -62,11 +62,13 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
           text: 'Market',
           size: 18,
           bold: true,
+          color: AppColors.colorOffBlack,
         ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.search,
+              color: AppColors.colorOffBlack,
             ),
             onPressed: () {
               Navigator.of(context)
@@ -75,7 +77,10 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
           ),
           Builder(
             builder: (context) => IconButton(
-              icon: Icon(Icons.sort),
+              icon: Icon(
+                Icons.sort,
+                color: AppColors.colorOffBlack,
+              ),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
@@ -90,12 +95,12 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
             ),
             child: TabBar(
               unselectedLabelColor: Colors.black38,
-              labelColor: AppColors.colorBlack,
+              labelColor: Theme.of(context).primaryColorLight,
               controller: _marketTabController,
               indicatorSize: TabBarIndicatorSize.tab,
               indicator: BubbleTabIndicator(
                 indicatorHeight: 35.0,
-                indicatorColor: AppColors.colorWhite,
+                indicatorColor: Theme.of(context).primaryColor,
                 tabBarIndicatorSize: TabBarIndicatorSize.tab,
               ),
               tabs: marketTabs,

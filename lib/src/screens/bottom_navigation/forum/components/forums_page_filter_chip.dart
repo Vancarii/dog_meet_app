@@ -33,6 +33,7 @@ class _ForumsPageFilterChipState extends State<ForumsPageFilterChip> {
           text: widget.topicText,
           size: 12,
           bold: true,
+          color: AppColors.colorBlack,
           alignment: TextAlign.center,
         ),
 

@@ -1,10 +1,21 @@
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/provider/provider_notifier.dart';
+import 'package:dog_meet_app/src/provider/theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ProfileDrawer extends StatelessWidget {
+class ProfileDrawer extends StatefulWidget {
+  @override
+  _ProfileDrawerState createState() => _ProfileDrawerState();
+}
+
+class _ProfileDrawerState extends State<ProfileDrawer> {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ProviderNotifier>(context);
+
     return Drawer(
       child: SafeArea(
         child: Padding(
@@ -29,6 +40,29 @@ class ProfileDrawer extends StatelessWidget {
               ProfileSettingsTileButton(
                 text: 'Notifications',
                 icon: Icons.notifications_none_outlined,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0),
+                child: Row(
+                  children: [
+                    CustomText(
+                      text: 'Dark Theme',
+                      size: 15,
+                      bold: true,
+                    ),
+                    Spacer(),
+                    CupertinoSwitch(
+                      value: themeProvider.isDarkMode,
+                      onChanged: (value) {
+                        setState(() {
+                          final provider = Provider.of<ProviderNotifier>(context, listen: false);
+                          provider.toggleTheme(value);
+                        });
+                      },
+                      activeColor: AppColors.colorPrimaryOrange,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -56,7 +90,7 @@ class ProfileSettingsTileButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Icon(
                 icon,
-                color: AppColors.colorBlack,
+                //color: AppColors.colorBlack,
               ),
             ),
             CustomText(

@@ -31,10 +31,12 @@ class InfoTiles extends StatelessWidget {
                     text: tileText,
                     size: 15,
                     bold: true,
+                    color: AppColors.colorOffBlack,
                   )
                 : Icon(
                     tileIcon,
                     size: 20,
+                    color: AppColors.colorOffBlack,
                   ),
           ),
         ],

@@ -65,7 +65,7 @@ class _MessagesPageState extends State<MessagesPage> {
           return Container(
             width: double.infinity,
             height: 50,
-            color: AppColors.colorWhite,
+            color: Theme.of(context).primaryColor,
             child: Column(
               children: [
                 Align(
@@ -75,7 +75,7 @@ class _MessagesPageState extends State<MessagesPage> {
                     width: 30,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Colors.black12,
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.2),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                   ),
@@ -93,11 +93,13 @@ class _MessagesPageState extends State<MessagesPage> {
         builder: (BuildContext context, SheetState state) {
           return Container(
             height: MediaQuery.of(context).size.height,
+            color: Theme.of(context).primaryColor,
             child: Column(
               children: [
                 CustomRoundedTextField(
                   minLines: 1,
                   maxLines: 1,
+                  borderColor: Theme.of(context).primaryColor,
                   keyboard: TextInputType.name,
                   labelText: 'Search',
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),

@@ -7,7 +7,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profi
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:dog_meet_app/src/provider/fab_notifier.dart';
+import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'animated_fab.dart';
 
@@ -90,16 +90,16 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
               //these two lines change the screen to the notifications screen
               //then sets messagefab to true which slides the screen to the messages screen
               _currentSelectedScreenIndex = 3;
-              Provider.of<FabNotifier>(context, listen: false).messageFabChanged(true);
+              Provider.of<ProviderNotifier>(context, listen: false).messageFabChanged(true);
             });
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       bottomNavigationBar: SafeArea(
         child: AnimatedBottomNavigationBar(
           //gapLocation: GapLocation.center,
-          inactiveColor: Colors.black26,
+          inactiveColor: Theme.of(context).primaryColorLight.withOpacity(0.4),
           height: kBottomNavigationBarHeight,
-          backgroundColor: AppColors.colorWhite.withOpacity(1),
+          backgroundColor: Theme.of(context).primaryColor,
           activeColor: AppColors.colorPrimaryOrange,
           splashColor: Colors.grey[350],
           splashRadius: 45,

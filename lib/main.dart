@@ -3,7 +3,8 @@ import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
 import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/provider/fab_notifier.dart';
+import 'package:dog_meet_app/src/provider/provider_notifier.dart';
+import 'package:dog_meet_app/src/provider/theme.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
@@ -36,35 +37,35 @@ class DogMeetApp extends StatelessWidget {
       systemNavigationBarColor: Colors.transparent,
     ));
     return ChangeNotifierProvider(
-      create: (BuildContext context) => FabNotifier(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.colorWhite,
-          primaryColor: AppColors.colorWhite,
-          accentColor: AppColors.colorPrimaryOrange,
-          backgroundColor: AppColors.colorWhite,
-          //visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        initialRoute: MainBottomNavMenu.id,
-        routes: {
-          NewUserScreen.id: (context) => NewUserScreen(),
-          CreatePupfile.id: (context) => CreatePupfile(),
-          CreateProfile.id: (context) => CreateProfile(),
-          PupfileAddBio.id: (context) => PupfileAddBio(),
-          NotificationsPageView.id: (context) => NotificationsPageView(),
-          SearchBarScreen.id: (context) => SearchBarScreen(),
-          ForumsAppBar.id: (context) => ForumsAppBar(),
-          MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
-          MarketAppBar.id: (context) => MarketAppBar(),
-          MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
-          ForumCommentSection.id: (context) => ForumCommentSection(),
-          PostForumPage.id: (context) => PostForumPage(),
-          PostListingPage.id: (context) => PostListingPage(),
-          PostMeetPage.id: (context) => PostMeetPage(),
-          OtherProfilePage.id: (context) => OtherProfilePage(),
-        },
-      ),
+      create: (BuildContext context) => ProviderNotifier(),
+      builder: (context, _) {
+        final themeProvider = Provider.of<ProviderNotifier>(context);
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          themeMode: themeProvider.themeMode,
+          darkTheme: AppThemes.darkTheme,
+          theme: AppThemes.lightTheme,
+          initialRoute: MainBottomNavMenu.id,
+          routes: {
+            NewUserScreen.id: (context) => NewUserScreen(),
+            CreatePupfile.id: (context) => CreatePupfile(),
+            CreateProfile.id: (context) => CreateProfile(),
+            PupfileAddBio.id: (context) => PupfileAddBio(),
+            NotificationsPageView.id: (context) => NotificationsPageView(),
+            SearchBarScreen.id: (context) => SearchBarScreen(),
+            ForumsAppBar.id: (context) => ForumsAppBar(),
+            MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
+            MarketAppBar.id: (context) => MarketAppBar(),
+            MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
+            ForumCommentSection.id: (context) => ForumCommentSection(),
+            PostForumPage.id: (context) => PostForumPage(),
+            PostListingPage.id: (context) => PostListingPage(),
+            PostMeetPage.id: (context) => PostMeetPage(),
+            OtherProfilePage.id: (context) => OtherProfilePage(),
+          },
+        );
+      },
     );
   }
 }

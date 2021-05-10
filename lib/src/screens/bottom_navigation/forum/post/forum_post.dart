@@ -47,7 +47,7 @@ class _ForumPostState extends State<ForumPost> {
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               child: Padding(
@@ -59,26 +59,12 @@ class _ForumPostState extends State<ForumPost> {
                       postTime: '5 Hours ago',
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: RichText(
-                        text: TextSpan(
-                            text: 'Hello bitches'.toUpperCase(),
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Gibson Semi Bold'),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: ' WahGwan'.toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.orange,
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
+                        padding: const EdgeInsets.symmetric(vertical: 5.0),
+                        child: CustomText(
+                          text: 'AYYEEE WAHGWAN'.toUpperCase(),
+                          bold: true,
+                          size: 18,
+                        )),
                     InkWell(
                       onTap: () {
                         setState(() {
@@ -117,7 +103,7 @@ class _ForumPostState extends State<ForumPost> {
                                   maxLines: textMaxLines,
                                   overflow: textOverflowBehavior,
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: Theme.of(context).primaryColorLight.withOpacity(0.95),
                                   ),
                                 ),
                                 Padding(
@@ -127,7 +113,7 @@ class _ForumPostState extends State<ForumPost> {
                                     style: TextStyle(
                                       fontFamily: 'Gibson',
                                       fontSize: 12,
-                                      color: AppColors.colorOffBlack.withOpacity(0.5),
+                                      color: Theme.of(context).primaryColorLight.withOpacity(0.5),
                                     ),
                                   ),
                                 ),
@@ -207,7 +193,6 @@ class _ForumPostState extends State<ForumPost> {
                                 builder: (context) => ShareSheet(),
                               ),
                             );
-                            print('share');
                           },
                           padding: EdgeInsets.only(left: 10, bottom: 8),
                           constraints: BoxConstraints(),
@@ -215,9 +200,7 @@ class _ForumPostState extends State<ForumPost> {
                         IconButton(
                           iconSize: 28,
                           icon: Icon(ionIcons.Ionicons.bookmark_outline),
-                          onPressed: () {
-                            print('share');
-                          },
+                          onPressed: () {},
                           padding: EdgeInsets.only(left: 10, bottom: 8),
                           constraints: BoxConstraints(),
                         ),

@@ -51,6 +51,7 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
           icon: Icon(
             FontAwesomeIcons.arrowLeft,
             size: 20,
+            color: AppColors.colorBlack,
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -60,11 +61,13 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
           text: 'Account Name',
           size: 26,
           bold: true,
+          color: AppColors.colorBlack,
         ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.more_vert,
+              color: AppColors.colorBlack,
             ),
             onPressed: () {
               showCupertinoDialog(
@@ -119,6 +122,7 @@ class _OtherProfilePageState extends State<OtherProfilePage> with TickerProvider
                     indicatorSize: TabBarIndicatorSize.tab,
                     tabs: profilePostTabs,
                   ),
+                  Theme.of(context).primaryColor,
                 ),
               ),
             ];

@@ -3,10 +3,12 @@ import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_unused.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/details/meet_up_details_page.dart';
 import 'components/details/meet_up_sliding_header.dart';
@@ -55,6 +57,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ProviderNotifier>(context);
     return Builder(
       builder: (BuildContext context) {
         meetTabController.addListener(() {
@@ -72,7 +75,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
           resizeToAvoidBottomInset: true,
           //extendBodyBehindAppBar: true,
           appBar: AppBar(
-            backgroundColor: Colors.white,
+            //backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
             elevation: 0,
             centerTitle: true,
@@ -124,7 +127,9 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
                     print('offset: ' + meetTabController.animation.value.toString());
                   },
                   //isScrollable: true,
-                  unselectedLabelColor: Colors.black38,
+                  unselectedLabelColor: themeProvider.isDarkMode == true
+                      ? AppColors.colorWhite.withOpacity(0.3)
+                      : AppColors.colorOffBlack.withOpacity(0.3),
                   labelColor: AppColors.colorPrimaryOrange,
                   //controller: meetTabController,
                   indicatorSize: TabBarIndicatorSize.tab,

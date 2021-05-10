@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/all_store_page/all_stores_page.dart';
@@ -57,6 +58,7 @@ class MarketAllPage extends StatelessWidget {
                     child: Icon(
                       Icons.keyboard_arrow_right_rounded,
                       size: 30,
+                      color: AppColors.colorOffBlack,
                     ),
                   ),
                 ),

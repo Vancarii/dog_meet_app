@@ -33,7 +33,7 @@ class _ProductActionsState extends State<ProductActions> {
               height: 40,
               decoration: BoxDecoration(
                 color: bookmarked == false
-                    ? AppColors.colorBlack.withOpacity(0.1)
+                    ? Theme.of(context).primaryColorLight.withOpacity(0.1)
                     : AppColors.colorPrimaryOrange.withOpacity(0.1),
                 shape: BoxShape.circle,
                 //borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -66,7 +66,7 @@ class _ProductActionsState extends State<ProductActions> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: AppColors.colorBlack.withOpacity(0.1),
+                color: Theme.of(context).primaryColorLight.withOpacity(0.1),
                 shape: BoxShape.circle,
                 //borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
@@ -99,6 +99,7 @@ class _ProductActionsState extends State<ProductActions> {
                         text: 'Hi, is this still available?',
                         size: 15,
                         bold: false,
+                        color: AppColors.colorBlack,
                         padding: const EdgeInsets.symmetric(
                           vertical: 10.0,
                           horizontal: 15.0,
@@ -137,7 +138,7 @@ class _ProductActionsState extends State<ProductActions> {
                       text: 'Sent!',
                       size: 16,
                       bold: true,
-                      color: AppColors.colorBlack,
+                      color: Theme.of(context).primaryColorLight,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -149,7 +150,7 @@ class _ProductActionsState extends State<ProductActions> {
                       child: CustomText(
                         text: 'View Chat',
                         size: 15,
-                        color: AppColors.colorBlack,
+                        color: Theme.of(context).primaryColorLight,
                       ),
                     ),
                   ],

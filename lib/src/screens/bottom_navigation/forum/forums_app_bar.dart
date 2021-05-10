@@ -34,6 +34,8 @@ class _ForumsAppBarState extends State<ForumsAppBar> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: false,
           elevation: 0,
           title: CustomText(
             text: 'Forum',
@@ -60,7 +62,7 @@ class _ForumsAppBarState extends State<ForumsAppBar> {
                 highlightColor: Colors.transparent,
               ),
               child: TabBar(
-                unselectedLabelColor: Colors.black38,
+                unselectedLabelColor: Theme.of(context).primaryColorLight.withOpacity(0.4),
                 labelColor: AppColors.colorPrimaryOrange,
                 indicatorColor: AppColors.colorPrimaryOrange,
                 indicatorWeight: 3,

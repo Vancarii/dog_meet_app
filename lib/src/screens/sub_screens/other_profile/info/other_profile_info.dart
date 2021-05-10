@@ -195,6 +195,7 @@ class OtherProfileInfoState extends State<OtherProfileInfo> {
                   text: 'Name',
                   size: 20.0,
                   bold: true,
+                  color: AppColors.colorBlack,
                   alignment: TextAlign.start,
                 ),
                 Wrap(
@@ -204,6 +205,7 @@ class OtherProfileInfoState extends State<OtherProfileInfo> {
                       size: 16,
                       height: 1.3,
                       alignment: TextAlign.start,
+                      color: AppColors.colorBlack,
                       padding: const EdgeInsets.symmetric(vertical: 5.0),
                     ),
                   ],
@@ -284,6 +286,7 @@ class OtherProfileInfoState extends State<OtherProfileInfo> {
                         text: 'Message',
                         size: 15,
                         bold: true,
+                        color: AppColors.colorBlack,
                       ),
                     ),
                   ),
@@ -331,6 +334,7 @@ class AccountPostCount extends StatelessWidget {
               text: '$num',
               size: 20,
               bold: true,
+              color: AppColors.colorBlack,
             ),
             CustomText(
               text: '$title',

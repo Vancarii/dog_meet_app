@@ -44,6 +44,7 @@ class _ShareSheetState extends State<ShareSheet> {
         closeOnBackdropTap: true,
         closeOnBackButtonPressed: true,
         isBackdropInteractable: true,
+        //color: Theme.of(context).primaryColorLight,
         backdropColor: AppColors.colorBlack.withOpacity(0.5),
         elevation: 5,
         shadowColor: Colors.black54,
@@ -70,7 +71,7 @@ class _ShareSheetState extends State<ShareSheet> {
           return Container(
             width: double.infinity,
             height: 50,
-            color: AppColors.colorWhite,
+            color: Theme.of(context).primaryColor,
             child: Column(
               children: [
                 Align(
@@ -89,6 +90,7 @@ class _ShareSheetState extends State<ShareSheet> {
                   text: 'Share',
                   size: 15,
                   bold: true,
+                  color: Theme.of(context).primaryColorLight,
                   padding: const EdgeInsets.only(top: 5.0),
                 ),
               ],
@@ -106,6 +108,7 @@ class _ShareSheetState extends State<ShareSheet> {
                     maxLines: 1,
                     keyboard: TextInputType.name,
                     labelText: 'Search',
+                    borderColor: Theme.of(context).primaryColor,
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   ),
                 ],

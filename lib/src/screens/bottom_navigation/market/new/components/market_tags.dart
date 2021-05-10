@@ -19,7 +19,7 @@ class _MarketTagsState extends State<MarketTags> {
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
         //color: AppColors.colorGrey.withOpacity(0.5),
-        border: Border.all(color: AppColors.colorGrey.withOpacity(0.5)),
+        border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(0.5)),
         borderRadius: BorderRadius.all(
           Radius.circular(15.0),
         ),

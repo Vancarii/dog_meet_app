@@ -36,6 +36,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                   keyboard: TextInputType.text,
                   controller: _searchTextController,
                   maxLines: 1,
+                  borderColor: Theme.of(context).primaryColor,
                   padding: const EdgeInsets.all(0.0),
                   labelText: 'Search',
                   onTextChanged: (value) {

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-class FabNotifier extends ChangeNotifier {
+class ProviderNotifier extends ChangeNotifier {
   bool onMessagesPage = false;
   bool onMeetDetailsPage = false;
+
+  ThemeMode themeMode = ThemeMode.dark;
+  bool get isDarkMode => themeMode == ThemeMode.dark;
+
+  void toggleTheme(bool isDarkTheme) {
+    themeMode = isDarkTheme ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+  }
 
   void messageFabChanged(bool newValue) {
     onMessagesPage = newValue;

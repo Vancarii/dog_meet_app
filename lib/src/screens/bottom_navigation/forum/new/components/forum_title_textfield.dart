@@ -25,7 +25,7 @@ class ForumTitleTextField extends StatelessWidget {
               cursorRadius: Radius.circular(15),
               style: TextStyle(
                   fontSize: 26,
-                  color: AppColors.colorBlack,
+                  color: Theme.of(context).primaryColorLight,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Gibson'),
               decoration: InputDecoration(

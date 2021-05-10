@@ -193,15 +193,17 @@ class ProfileInfoState extends State<ProfileInfo> {
                   text: 'Yecheng Wang',
                   size: 20.0,
                   bold: true,
+                  color: AppColors.colorBlack,
                   alignment: TextAlign.start,
                 ),
                 Wrap(
                   children: [
                     CustomText(
-                      text: 'Yecheng, Rosy, and Maze \n Exploring Beautiful British Columbia',
+                      text: 'Yecheng, Rosy, and Maze \nExploring Beautiful British Columbia',
                       size: 16,
                       height: 1.3,
                       alignment: TextAlign.start,
+                      color: AppColors.colorBlack,
                       padding: const EdgeInsets.symmetric(vertical: 5.0),
                     ),
                   ],
@@ -267,6 +269,7 @@ class ProfilePostsCount extends StatelessWidget {
               text: '$num',
               size: 20,
               bold: true,
+              color: AppColors.colorBlack,
             ),
             CustomText(
               text: '$title',

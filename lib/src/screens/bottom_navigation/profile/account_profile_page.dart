@@ -49,12 +49,14 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
           text: 'Rosyandmaze',
           size: 26,
           bold: true,
+          color: AppColors.colorBlack,
         ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
               FontAwesomeIcons.edit,
               size: 20,
+              color: AppColors.colorBlack,
             ),
             onPressed: () {},
           ),
@@ -63,6 +65,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
               icon: Icon(
                 FontAwesomeIcons.bars,
                 size: 20,
+                color: AppColors.colorBlack,
               ),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               //tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
@@ -90,6 +93,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
                     indicatorSize: TabBarIndicatorSize.tab,
                     tabs: profilePostTabs,
                   ),
+                  Theme.of(context).primaryColor,
                 ),
               ),
             ];

@@ -83,12 +83,16 @@ class _PostForumPageState extends State<PostForumPage> {
           text: 'New Text Post',
           size: 18,
           bold: true,
+          color: Theme.of(context).primaryColor,
         ),
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.close_rounded),
+          child: Icon(
+            Icons.close_rounded,
+            color: Theme.of(context).primaryColor,
+          ),
         ),
         actions: <Widget>[
           Center(
@@ -116,7 +120,7 @@ class _PostForumPageState extends State<PostForumPage> {
                   child: Container(
                     //margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
                     decoration: BoxDecoration(
-                      color: AppColors.colorWhite,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                     child: Padding(

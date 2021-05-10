@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ProfileTabDelegate extends SliverPersistentHeaderDelegate {
-  ProfileTabDelegate(this.tabBar);
+  ProfileTabDelegate(this.tabBar, this.color);
 
   final TabBar tabBar;
+  final Color color;
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-      color: Colors.white,
+      color: color,
       child: tabBar,
     );
   }

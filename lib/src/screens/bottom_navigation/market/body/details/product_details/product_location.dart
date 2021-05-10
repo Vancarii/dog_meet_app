@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class _ProductLocationState extends State<ProductLocation> {
             text: 'Location',
             size: 15,
             bold: true,
+            color: AppColors.colorBlack,
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             alignment: TextAlign.start,
           ),

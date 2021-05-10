@@ -181,7 +181,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                         blurRadius: 10.0,
                       ),
                     ],
-                    color: AppColors.colorWhite,
+                    color: Theme.of(context).primaryColor,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -322,8 +322,11 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                       goToLocation(zoom: 17.0, location: snapshot.data);
                     });
                   },
-                  backgroundColor: AppColors.colorWhite,
-                  child: Icon(Icons.my_location_rounded),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: Icon(
+                    Icons.my_location_rounded,
+                    color: Theme.of(context).primaryColorLight,
+                  ),
                 ),
                 SizedBox(
                   height: 10.0,
@@ -336,8 +339,11 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                       goToLocation(zoom: 15.0, location: snapshot.data);
                     });
                   },
-                  backgroundColor: AppColors.colorWhite,
-                  child: Icon(Icons.date_range),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: Icon(
+                    Icons.date_range,
+                    color: Theme.of(context).primaryColorLight,
+                  ),
                 ),
               ],
             ),

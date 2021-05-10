@@ -21,7 +21,7 @@ class AddMediaButtons extends StatelessWidget {
           margin: const EdgeInsets.only(top: 5.0, left: 2.0, right: 2.0, bottom: 2.0),
           padding: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
-            color: AppColors.colorWhite,
+            color: Theme.of(context).primaryColor,
             boxShadow: [
               kBoxShadow(),
             ],
@@ -38,11 +38,13 @@ class AddMediaButtons extends StatelessWidget {
                 Icon(
                   icon,
                   size: 15,
+                  color: Theme.of(context).primaryColorLight,
                 ),
                 CustomText(
                   text: title,
                   size: 15,
                   bold: true,
+                  color: Theme.of(context).primaryColorLight,
                   padding: const EdgeInsets.only(left: 5.0),
                 ),
               ],

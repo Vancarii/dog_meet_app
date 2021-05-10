@@ -14,7 +14,7 @@ class ListingPriceTextField extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
         //color: AppColors.colorGrey.withOpacity(0.5),
-        border: Border.all(color: AppColors.colorGrey.withOpacity(0.5)),
+        border: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(0.5)),
         borderRadius: BorderRadius.all(
           Radius.circular(15.0),
         ),
@@ -34,10 +34,10 @@ class ListingPriceTextField extends StatelessWidget {
           FilteringTextInputFormatter.deny(RegExp('[-]')),
         ],
         style: TextStyle(
-            fontSize: 18,
-            color: AppColors.colorBlack,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'Gibson'),
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Gibson',
+        ),
         decoration: InputDecoration(
             //contentPadding: const EdgeInsets.only(bottom: 5.0),
             prefixIcon: Padding(
@@ -58,7 +58,7 @@ class ListingPriceTextField extends StatelessWidget {
             disabledBorder: InputBorder.none,
             hintText: 'Price...',
             hintStyle: TextStyle(
-              color: AppColors.colorGrey,
+              color: Theme.of(context).primaryColorLight.withOpacity(0.4),
               fontFamily: 'Gibson',
             )),
       ),
