@@ -2,7 +2,6 @@ import 'package:dog_meet_app/src/core/auth/register/create_profile.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'package:dog_meet_app/src/provider/theme.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
@@ -14,6 +13,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/post_listing_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/new/post_meet_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
+import 'package:dog_meet_app/src/screens/splash/splash_screen.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,7 +30,13 @@ void main() {
   runApp(DogMeetApp());
 }
 
-class DogMeetApp extends StatelessWidget {
+class DogMeetApp extends StatefulWidget {
+  @override
+  _DogMeetAppState createState() => _DogMeetAppState();
+}
+
+class _DogMeetAppState extends State<DogMeetApp> {
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -40,7 +46,7 @@ class DogMeetApp extends StatelessWidget {
       create: (BuildContext context) => ProviderNotifier(),
       builder: (context, _) {
         final themeProvider = Provider.of<ProviderNotifier>(context);
-
+        //themeProvider.toggleTheme(savedTheme);
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           themeMode: themeProvider.themeMode,
@@ -48,6 +54,7 @@ class DogMeetApp extends StatelessWidget {
           theme: AppThemes.lightTheme,
           initialRoute: MainBottomNavMenu.id,
           routes: {
+            SplashScreen.id: (context) => SplashScreen(),
             NewUserScreen.id: (context) => NewUserScreen(),
             CreatePupfile.id: (context) => CreatePupfile(),
             CreateProfile.id: (context) => CreateProfile(),

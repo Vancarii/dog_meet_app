@@ -22,6 +22,7 @@ class ProfileTabDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+    //setting this to true changes the color when the app theme changes
+    return true;
   }
 }

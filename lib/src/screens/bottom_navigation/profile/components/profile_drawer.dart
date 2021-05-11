@@ -5,6 +5,7 @@ import 'package:dog_meet_app/src/provider/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileDrawer extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ProviderNotifier>(context);
+    final provider = Provider.of<ProviderNotifier>(context, listen: false);
 
     return Drawer(
       child: SafeArea(
@@ -41,27 +43,31 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
                 text: 'Notifications',
                 icon: Icons.notifications_none_outlined,
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: Row(
-                  children: [
-                    CustomText(
-                      text: 'Dark Theme',
-                      size: 15,
-                      bold: true,
-                    ),
-                    Spacer(),
-                    CupertinoSwitch(
-                      value: themeProvider.isDarkMode,
-                      onChanged: (value) {
-                        setState(() {
-                          final provider = Provider.of<ProviderNotifier>(context, listen: false);
-                          provider.toggleTheme(value);
-                        });
-                      },
-                      activeColor: AppColors.colorPrimaryOrange,
-                    ),
-                  ],
+              InkWell(
+                onTap: () {
+                  provider.toggleTheme(!provider.isDarkMode);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                  child: Row(
+                    children: [
+                      CustomText(
+                        text: 'Dark Mode',
+                        size: 15,
+                        bold: true,
+                      ),
+                      Spacer(),
+                      CupertinoSwitch(
+                        value: themeProvider.isDarkMode,
+                        onChanged: (value) {
+                          setState(() {
+                            provider.toggleTheme(value);
+                          });
+                        },
+                        activeColor: AppColors.colorPrimaryOrange,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -27,6 +27,7 @@ dependencies:
   chewie: 1.0.0
   expandable: ^5.0.1
   another_flushbar: ^1.10.20
+  shared_preferences: ^2.0.5
 
 
   google_maps_flutter: ^2.0.3
