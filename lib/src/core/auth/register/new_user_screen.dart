@@ -1,6 +1,6 @@
 import 'package:dog_meet_app/src/core/auth/components/already_have_an_account_prompt.dart';
 import 'package:dog_meet_app/src/core/auth/components/profile_type_rounded_button.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'create_profile.dart';
 import 'create_pupfile.dart';

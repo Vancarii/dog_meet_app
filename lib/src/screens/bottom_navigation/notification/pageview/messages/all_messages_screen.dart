@@ -1,6 +1,5 @@
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';

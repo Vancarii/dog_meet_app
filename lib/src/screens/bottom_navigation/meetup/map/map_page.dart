@@ -1,7 +1,5 @@
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
-import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
-import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/details/map_card_meet_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -103,6 +101,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
       setState(() {
         prevPage = pageController.page.toInt();
         pageScrolled = true;
+        print('page: ' + pageController.page.toInt().toString());
         moveCamera();
       });
     }
@@ -229,20 +228,36 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: ListView(
-                            shrinkWrap: true,
+                          padding: const EdgeInsets.only(
+                            top: 15.0,
+                            left: 10.0,
+                            right: 10.0,
+                            bottom: 15.0,
+                          ),
+                          child: Column(
+                            /*physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true, */
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              CustomText(
-                                text: meetUps[index].locationName,
-                                size: 20,
-                                bold: true,
-                                //padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText(
+                                    text: meetUps[index].locationName,
+                                    size: 20,
+                                    bold: true,
+                                    //padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+                                  ),
+                                  CustomText(
+                                    text: meetUps[index].address,
+                                    size: 13,
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                  ),
+                                ],
                               ),
-                              CustomText(
-                                text: meetUps[index].address,
-                                size: 13,
-                                padding: const EdgeInsets.only(top: 10.0),
+                              SizedBox(
+                                height: 10.0,
                               ),
                               CustomText(
                                 text: meetUps[index].description,
@@ -254,25 +269,46 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      //Spacer(),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 10.0, bottom: 10.0),
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30.0),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 10.0, bottom: 10.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(30.0),
+                                ),
+                                color: AppColors.colorPrimaryOrange,
+                              ),
+                              child: CustomText(
+                                text: 'Open in Maps',
+                                size: 15,
+                                color: AppColors.colorWhite,
+                              ),
                             ),
-                            color: AppColors.colorPrimaryOrange,
                           ),
-                          child: CustomText(
-                            text: 'Open in Maps',
-                            size: 15,
-                            color: AppColors.colorWhite,
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 10.0, bottom: 10.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(30.0),
+                                ),
+                                color: AppColors.colorPrimaryOrange,
+                              ),
+                              child: CustomText(
+                                text: 'Open in Maps',
+                                size: 15,
+                                color: AppColors.colorWhite,
+                              ),
+                            ),
                           ),
-                        ),
-                      )
+                        ],
+                      ),
                     ],
                   ),
                 ),

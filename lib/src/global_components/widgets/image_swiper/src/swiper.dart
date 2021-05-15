@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/global_components/components/image_swiper/transformer_page_view/transformer_page_view.dart';
+import 'package:dog_meet_app/src/global_components/widgets/image_swiper/transformer_page_view/transformer_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import '../../flutter_page_indicator.dart';

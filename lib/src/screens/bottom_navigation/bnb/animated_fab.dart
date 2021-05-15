@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';

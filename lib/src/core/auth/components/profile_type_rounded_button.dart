@@ -1,7 +1,7 @@
+import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-Row profileTypeRoundedButton(
-    String label, String nextPage, BuildContext context) {
+Row profileTypeRoundedButton(String label, String nextPage, BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
@@ -9,16 +9,18 @@ Row profileTypeRoundedButton(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 50),
-            child: Container(
-              width: 100,
-              height: 100,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, nextPage);
-                },
-                color: Colors.white,
-                shape: CircleBorder(),
-                elevation: 10,
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, nextPage);
+              },
+              child: Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [kBoxShadow()],
+                ),
               ),
             ),
           ),

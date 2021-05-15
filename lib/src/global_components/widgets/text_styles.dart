@@ -1,5 +1,3 @@
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/provider/theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {

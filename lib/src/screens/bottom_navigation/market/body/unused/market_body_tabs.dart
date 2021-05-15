@@ -1,6 +1,6 @@
 //UNUSED FILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:flutter/material.dart';
 import '../market_all_page.dart';
 import '../market_new_page.dart';

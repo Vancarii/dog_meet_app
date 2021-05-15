@@ -1,8 +1,8 @@
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
+import '../themes/app_colors.dart';
 
 class CustomExpandable extends StatefulWidget {
   const CustomExpandable({Key key}) : super(key: key);

@@ -1,6 +1,5 @@
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/components/custom_chat_textfield.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/messages/components/chat_info_screen.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';

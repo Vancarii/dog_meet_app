@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
@@ -91,7 +91,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
                     context,
                     RouteTransitions().slideLeftToRightJoinedTransitionType(
                       MeetUpPage(),
-                      MapPage(),
+                      MapPageNew(),
                     ),
                   );
                 }),

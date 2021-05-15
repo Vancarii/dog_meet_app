@@ -1,7 +1,8 @@
 import 'package:dog_meet_app/src/core/auth/components/already_have_an_account_prompt.dart';
 import 'package:dog_meet_app/src/core/auth/components/create_account_textfield.dart';
 import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 bool showTextFieldShadow = true;
@@ -92,22 +93,21 @@ class _CreatePupfileState extends State<CreatePupfile> {
                   Container(
                     width: 100,
                     height: 100,
-                    child: RaisedButton(
-                      onPressed: () {},
+                    decoration: BoxDecoration(
                       color: Colors.white,
-                      shape: CircleBorder(),
-                      elevation: 10,
-                      child: //https://medium.com/fabcoding/adding-an-image-picker-in-a-flutter-app-pick-images-using-camera-and-gallery-photos-7f016365d856
-                          CustomText(
-                        text: 'Add Image',
-                        size: 12,
-                        bold: true,
-                        color: Colors.grey,
-                        alignment: TextAlign.center,
-                      ),
-                      /*gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12,
-                              Colors.grey, TextAlign.center),*/
+                      shape: BoxShape.circle,
+                      boxShadow: [kBoxShadow()],
                     ),
+                    child: //https://medium.com/fabcoding/adding-an-image-picker-in-a-flutter-app-pick-images-using-camera-and-gallery-photos-7f016365d856
+                        CustomText(
+                      text: 'Add Image',
+                      size: 12,
+                      bold: true,
+                      color: Colors.grey,
+                      alignment: TextAlign.center,
+                    ),
+                    /*gibsonSemiBoldText('Add Image', 0, 0, 0, 0, 12,
+                              Colors.grey, TextAlign.center),*/
                   ),
                   SizedBox(height: 20),
 

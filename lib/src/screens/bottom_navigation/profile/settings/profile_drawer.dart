@@ -1,11 +1,16 @@
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
-import 'package:dog_meet_app/src/provider/theme.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/sub/account_settings.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/sub/help.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/sub/notifications_settings.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/sub/privacy_settings.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/sub/saved_posts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileDrawer extends StatefulWidget {
   @override
@@ -34,14 +39,27 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               ProfileSettingsTileButton(
                 text: 'Privacy',
                 icon: Icons.lock_outline_rounded,
+                nextScreen: PrivacySettings(),
               ),
               ProfileSettingsTileButton(
                 text: 'Manage Account',
                 icon: Icons.person_outline_outlined,
+                nextScreen: AccountSettings(),
               ),
               ProfileSettingsTileButton(
                 text: 'Notifications',
                 icon: Icons.notifications_none_outlined,
+                nextScreen: NotificationsSettings(),
+              ),
+              ProfileSettingsTileButton(
+                text: 'Saved',
+                icon: Icons.bookmark_border_rounded,
+                nextScreen: SavedPosts(),
+              ),
+              ProfileSettingsTileButton(
+                text: 'Help',
+                icon: Icons.info_outline_rounded,
+                nextScreen: Help(),
               ),
               InkWell(
                 onTap: () {
@@ -81,12 +99,22 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
 class ProfileSettingsTileButton extends StatelessWidget {
   final String text;
   final IconData icon;
+  final Widget nextScreen;
 
-  ProfileSettingsTileButton({this.text, this.icon});
+  ProfileSettingsTileButton({this.text, this.icon, this.nextScreen});
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
+    return InkWell(
+      onTap: () {
+        Scaffold.of(context).openDrawer();
+        Navigator.push(
+            context,
+            RouteTransitions().slideRightToLeftJoinedTransitionType(
+              AccountProfilePage(),
+              nextScreen,
+            ));
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10.0),
         child: Row(

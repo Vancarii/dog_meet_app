@@ -1,5 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/market_store_details_page.dart';
 
 import 'package:flutter/material.dart';

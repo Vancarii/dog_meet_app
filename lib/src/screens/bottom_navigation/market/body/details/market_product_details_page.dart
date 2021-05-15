@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/product_details/product_actions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/product_details/product_description.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/details/product_details/product_image_carousel.dart';

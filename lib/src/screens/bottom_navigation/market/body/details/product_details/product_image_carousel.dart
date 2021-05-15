@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/global_components/components/image_swiper/flutter_swiper.dart';
+import 'package:dog_meet_app/src/global_components/widgets/image_swiper/flutter_swiper.dart';
 import 'package:flutter/material.dart';
 
 class ProductImageCarousel extends StatefulWidget {

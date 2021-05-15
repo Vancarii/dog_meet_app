@@ -1,9 +1,12 @@
+import 'package:dog_meet_app/src/core/auth/intro/intro_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_profile.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
-import 'package:dog_meet_app/src/provider/theme.dart';
+import 'package:dog_meet_app/src/global_components/themes/theme.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/new/post_forum_page.dart';
@@ -38,15 +41,14 @@ class DogMeetApp extends StatefulWidget {
 class _DogMeetAppState extends State<DogMeetApp> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
-    ));
     return ChangeNotifierProvider(
       create: (BuildContext context) => ProviderNotifier(),
       builder: (context, _) {
         final themeProvider = Provider.of<ProviderNotifier>(context);
-        //themeProvider.toggleTheme(savedTheme);
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          systemNavigationBarColor: AppColors.colorPrimaryOrange,
+        ));
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           themeMode: themeProvider.themeMode,
@@ -54,6 +56,7 @@ class _DogMeetAppState extends State<DogMeetApp> {
           theme: AppThemes.lightTheme,
           initialRoute: MainBottomNavMenu.id,
           routes: {
+            IntroScreen.id: (context) => IntroScreen(),
             SplashScreen.id: (context) => SplashScreen(),
             NewUserScreen.id: (context) => NewUserScreen(),
             CreatePupfile.id: (context) => CreatePupfile(),

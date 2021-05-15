@@ -1,5 +1,5 @@
-import 'package:dog_meet_app/src/global_components/components/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/components/text_styles.dart';
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
+import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/share_sheet/share_sheet.dart';
 import 'package:flutter/cupertino.dart';

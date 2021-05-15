@@ -3,30 +3,25 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/component
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
-class MeetUpHomeFeed extends StatefulWidget {
-  const MeetUpHomeFeed({
+class MeetUpHomeFeed extends StatelessWidget {
+  MeetUpHomeFeed({
     Key key,
     @required this.slidingSheetController,
   }) : super(key: key);
 
   final SheetController slidingSheetController;
 
-  @override
-  _MeetUpHomeFeedState createState() => _MeetUpHomeFeedState();
-}
-
-class _MeetUpHomeFeedState extends State<MeetUpHomeFeed> {
-  var _refreshKey = GlobalKey<RefreshIndicatorState>();
+  final _meetUpHomeRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        _refreshKey.currentState?.show(atTop: true);
+        _meetUpHomeRefreshKey.currentState?.show(atTop: true);
         //await Future.delayed(Duration(milliseconds: 300));
         //TODO: implement Refresh page
       },
-      key: _refreshKey,
+      key: _meetUpHomeRefreshKey,
       child: ListView(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.only(bottom: 110),
@@ -40,7 +35,7 @@ class _MeetUpHomeFeedState extends State<MeetUpHomeFeed> {
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
             onMeetUpPostSelected: () {
-              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+              slidingSheetController.snapToExtent(kMaxSnapPosition,
                   duration: Duration(milliseconds: 150), clamp: true);
             },
           ),
@@ -53,7 +48,7 @@ class _MeetUpHomeFeedState extends State<MeetUpHomeFeed> {
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
             onMeetUpPostSelected: () {
-              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+              slidingSheetController.snapToExtent(kMaxSnapPosition,
                   duration: Duration(milliseconds: 150), clamp: true);
             },
           ),
@@ -66,7 +61,7 @@ class _MeetUpHomeFeedState extends State<MeetUpHomeFeed> {
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
             onMeetUpPostSelected: () {
-              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+              slidingSheetController.snapToExtent(kMaxSnapPosition,
                   duration: Duration(milliseconds: 150), clamp: true);
             },
           ),
@@ -79,7 +74,7 @@ class _MeetUpHomeFeedState extends State<MeetUpHomeFeed> {
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
             onMeetUpPostSelected: () {
-              widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+              slidingSheetController.snapToExtent(kMaxSnapPosition,
                   duration: Duration(milliseconds: 150), clamp: true);
             },
           ),
