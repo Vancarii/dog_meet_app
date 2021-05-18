@@ -111,7 +111,9 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
       ),
       //indexstacked is so that all the screens are preloaded when the app first starts and that
       //the states and scroll positions are saved when you leave to a different screen and come back
-      body: IndexedStack(
+      body: //_pageOptions[_currentSelectedScreenIndex],
+
+          IndexedStack(
         children: _pageOptions,
         index: _currentSelectedScreenIndex,
       ),

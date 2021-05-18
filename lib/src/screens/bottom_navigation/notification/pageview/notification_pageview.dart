@@ -17,6 +17,12 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
   );
 
   @override
+  void dispose() {
+    super.dispose();
+    _pageViewController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     setState(() {
       if (Provider.of<ProviderNotifier>(context).onMessagesPage == true) {

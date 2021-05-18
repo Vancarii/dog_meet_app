@@ -34,7 +34,7 @@ class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
               .snapToExtent(kMinSnapPosition, duration: Duration(milliseconds: 150));
         }
 
-        Provider.of<ProviderNotifier>(context, listen: false).meetUpSheetExpanded(true);
+        //Provider.of<ProviderNotifier>(context, listen: false).meetUpSheetExpanded(true);
       },
       child: Stack(
         children: [

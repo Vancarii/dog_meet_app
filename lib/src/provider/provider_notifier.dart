@@ -11,19 +11,26 @@ class ProviderNotifier extends ChangeNotifier {
   ////////////////////////////////FAB//////////////////////////////////////
 
   bool onMessagesPage = false;
-  bool onMeetDetailsPage = false;
+  bool onNewMessagePressed = false;
+  //bool onMeetDetailsPage = false;
 
   void messageFabChanged(bool newValue) {
     onMessagesPage = newValue;
-    print(onMessagesPage);
+    print('OnMessagesPage' + onMessagesPage.toString());
     notifyListeners();
   }
 
-  void meetUpSheetExpanded(bool newValue) {
+  void newMessageButtonPressed(bool tapped) {
+    onNewMessagePressed = tapped;
+    print('OnNewMessagePressed: ' + onNewMessagePressed.toString());
+    notifyListeners();
+  }
+
+/*  void meetUpSheetExpanded(bool newValue) {
     onMeetDetailsPage = newValue;
     print(onMeetDetailsPage);
     notifyListeners();
-  }
+  }*/
 
 ////////////////////////////////////////THEME////////////////////////////
 

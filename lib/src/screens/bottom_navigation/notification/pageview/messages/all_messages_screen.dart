@@ -1,11 +1,13 @@
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/chats.dart';
-
-SheetController messagesSlidingSheetController = SheetController();
+import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 
 class MessagesPage extends StatefulWidget {
   final VoidCallback onBackPressed;
@@ -17,8 +19,21 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagesPageState extends State<MessagesPage> {
+  SheetController messagesSlidingSheetController = SheetController();
+
   @override
   Widget build(BuildContext context) {
+/*    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: AppColors.colorOffBlack,
+    ));*/
+
+    if (Provider.of<ProviderNotifier>(context).onNewMessagePressed == true) {
+      setState(() {
+        messagesSlidingSheetController.snapToExtent(0.6,
+            duration: Duration(milliseconds: 300), clamp: true);
+      });
+    }
+
     return SafeArea(
       bottom: false,
       child: SlidingSheet(

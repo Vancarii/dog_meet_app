@@ -35,9 +35,9 @@ class _AnimatedFabState extends State<AnimatedFab> {
       } else if (widget.pageIndex == 3) {
         if (Provider.of<ProviderNotifier>(context, listen: false).onMessagesPage == true) {
           //new message
-          messagesSlidingSheetController.snapToExtent(0.6,
-              duration: Duration(milliseconds: 300), clamp: true);
-          //Navigator.of(context).push(RouteTransitions().slideUpTransitionType(PostMeetPage()));
+          Provider.of<ProviderNotifier>(context, listen: false).newMessageButtonPressed(true);
+          /*messagesSlidingSheetController.snapToExtent(0.6,
+              duration: Duration(milliseconds: 300), clamp: true);*/
         } else {
           Provider.of<ProviderNotifier>(context, listen: false).messageFabChanged(true);
         }
