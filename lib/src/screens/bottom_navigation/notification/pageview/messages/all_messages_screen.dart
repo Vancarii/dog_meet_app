@@ -28,15 +28,18 @@ class _MessagesPageState extends State<MessagesPage> {
     ));*/
 
     if (Provider.of<ProviderNotifier>(context).onNewMessagePressed == true) {
-      setState(() {
-        messagesSlidingSheetController.snapToExtent(0.6,
-            duration: Duration(milliseconds: 300), clamp: true);
-      });
+      messagesSlidingSheetController.snapToExtent(0.6,
+          duration: Duration(milliseconds: 300), clamp: true);
     }
 
     return SafeArea(
       bottom: false,
       child: SlidingSheet(
+        listener: (state) {
+          if (state.isHidden) {
+            Provider.of<ProviderNotifier>(context, listen: false).newMessageButtonPressed(false);
+          }
+        },
         controller: messagesSlidingSheetController,
         closeOnBackdropTap: true,
         closeOnBackButtonPressed: true,

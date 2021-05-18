@@ -16,6 +16,9 @@ class ProviderNotifier extends ChangeNotifier {
 
   void messageFabChanged(bool newValue) {
     onMessagesPage = newValue;
+    if (newValue == false) {
+      onNewMessagePressed = false;
+    }
     print('OnMessagesPage' + onMessagesPage.toString());
     notifyListeners();
   }
