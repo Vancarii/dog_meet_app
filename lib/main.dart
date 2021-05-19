@@ -3,7 +3,6 @@ import 'package:dog_meet_app/src/core/auth/register/create_profile.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/pupfile_add_bio.dart';
-import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'package:dog_meet_app/src/global_components/themes/theme.dart';
@@ -23,6 +22,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //TODO: find all controllers and add dispose method
 
@@ -39,43 +39,68 @@ class DogMeetApp extends StatefulWidget {
 }
 
 class _DogMeetAppState extends State<DogMeetApp> {
+  //ProviderNotifier myNotifier;
+
+/*  @override
+  void initState() {
+    myNotifier = ProviderNotifier();
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: myNotifier.themeMode == ThemeMode.dark
+            ? AppColors.colorOffBlack
+            : AppColors.colorWhite));
+    print('isdark: ' + Provider.of<ProviderNotifier>(context).themeMode.toString());
+    print('getthemed 2');
+
+    super.initState();
+  }*/
+
+  @override
+  void initState() {
+    //ProviderNotifier();
+    print('step main init');
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => ProviderNotifier(),
-      builder: (context, _) {
-        final themeProvider = Provider.of<ProviderNotifier>(context);
-        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          systemNavigationBarColor: AppColors.colorPrimaryOrange,
-        ));
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          themeMode: themeProvider.themeMode,
-          darkTheme: AppThemes.darkTheme,
-          theme: AppThemes.lightTheme,
-          initialRoute: MainBottomNavMenu.id,
-          routes: {
-            IntroScreen.id: (context) => IntroScreen(),
-            SplashScreen.id: (context) => SplashScreen(),
-            NewUserScreen.id: (context) => NewUserScreen(),
-            CreatePupfile.id: (context) => CreatePupfile(),
-            CreateProfile.id: (context) => CreateProfile(),
-            PupfileAddBio.id: (context) => PupfileAddBio(),
-            NotificationsPageView.id: (context) => NotificationsPageView(),
-            SearchBarScreen.id: (context) => SearchBarScreen(),
-            ForumsAppBar.id: (context) => ForumsAppBar(),
-            MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
-            MarketAppBar.id: (context) => MarketAppBar(),
-            MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
-            ForumCommentSection.id: (context) => ForumCommentSection(),
-            PostForumPage.id: (context) => PostForumPage(),
-            PostListingPage.id: (context) => PostListingPage(),
-            PostMeetPage.id: (context) => PostMeetPage(),
-            OtherProfilePage.id: (context) => OtherProfilePage(),
-          },
-        );
-      },
-    );
+        create: (BuildContext context) => ProviderNotifier(),
+        builder: (BuildContext context, _) {
+          final themeProvider = Provider.of<ProviderNotifier>(context);
+          SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              systemNavigationBarColor: themeProvider.themeMode == ThemeMode.dark
+                  ? AppColors.colorOffBlack
+                  : AppColors.colorWhite));
+          print('isdark: ' + Provider.of<ProviderNotifier>(context).isDarkMode.toString());
+          print('step main build');
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            themeMode: themeProvider.themeMode,
+            darkTheme: AppThemes.darkTheme,
+            theme: AppThemes.lightTheme,
+            initialRoute: MainBottomNavMenu.id,
+            routes: {
+              IntroScreen.id: (context) => IntroScreen(),
+              SplashScreen.id: (context) => SplashScreen(),
+              NewUserScreen.id: (context) => NewUserScreen(),
+              CreatePupfile.id: (context) => CreatePupfile(),
+              CreateProfile.id: (context) => CreateProfile(),
+              PupfileAddBio.id: (context) => PupfileAddBio(),
+              NotificationsPageView.id: (context) => NotificationsPageView(),
+              SearchBarScreen.id: (context) => SearchBarScreen(),
+              ForumsAppBar.id: (context) => ForumsAppBar(),
+              MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
+              MarketAppBar.id: (context) => MarketAppBar(),
+              MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
+              ForumCommentSection.id: (context) => ForumCommentSection(),
+              PostForumPage.id: (context) => PostForumPage(),
+              PostListingPage.id: (context) => PostListingPage(),
+              PostMeetPage.id: (context) => PostMeetPage(),
+              OtherProfilePage.id: (context) => OtherProfilePage(),
+            },
+          );
+        });
   }
 }

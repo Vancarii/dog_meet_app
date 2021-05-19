@@ -30,7 +30,10 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 25.0, bottom: 25.0, left: 30.0),
+            padding: const EdgeInsets.symmetric(
+              vertical: 25.0,
+              horizontal: 30.0,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -85,7 +88,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.width / 2,
+                    height: 150,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.grey,

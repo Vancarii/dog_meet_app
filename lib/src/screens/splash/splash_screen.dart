@@ -12,14 +12,25 @@ class SplashScreen extends StatelessWidget {
     return Material(
       child: Center(
         child: Container(
-          color: AppColors.colorOffBlack,
+          color: AppColors.colorWhite,
+          width: double.infinity,
+          height: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/logos/doglogo.png'),
+                  ),
+                ),
+              ),
               CustomText(
-                text: 'MIROPUP',
+                text: 'MOOMOO',
                 size: 26,
-                color: AppColors.colorPrimaryOrange,
+                bold: true,
               ),
               CircularProgressIndicator(),
             ],

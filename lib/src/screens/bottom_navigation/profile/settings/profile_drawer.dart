@@ -58,8 +58,19 @@ class _ProfileDrawerState extends State<ProfileDrawer> {
               ),
               ProfileSettingsTileButton(
                 text: 'Help',
-                icon: Icons.info_outline_rounded,
+                icon: Icons.help_outline,
                 nextScreen: Help(),
+              ),
+              ProfileSettingsTileButton(
+                text: 'About',
+                icon: Icons.info_outline_rounded,
+                onTap: () {
+                  showAboutDialog(
+                    context: context,
+                    applicationVersion: '0.0.1',
+                    applicationName: 'Dog Meet App',
+                  );
+                },
               ),
               InkWell(
                 onTap: () {
@@ -100,21 +111,24 @@ class ProfileSettingsTileButton extends StatelessWidget {
   final String text;
   final IconData icon;
   final Widget nextScreen;
+  final VoidCallback onTap;
 
-  ProfileSettingsTileButton({this.text, this.icon, this.nextScreen});
+  ProfileSettingsTileButton({this.text, this.icon, this.nextScreen, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Scaffold.of(context).openDrawer();
-        Navigator.push(
-            context,
-            RouteTransitions().slideRightToLeftJoinedTransitionType(
-              AccountProfilePage(),
-              nextScreen,
-            ));
-      },
+      onTap: nextScreen != null
+          ? () {
+              Scaffold.of(context).openDrawer();
+              Navigator.push(
+                  context,
+                  RouteTransitions().slideRightToLeftJoinedTransitionType(
+                    AccountProfilePage(),
+                    nextScreen,
+                  ));
+            }
+          : onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10.0),
         child: Row(

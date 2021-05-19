@@ -78,6 +78,13 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
+    /*SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Provider.of<ProviderNotifier>(context).themeMode == ThemeMode.dark
+            ? AppColors.colorOffBlack
+            : AppColors.colorWhite));
+    print('isdark: ' + Provider.of<ProviderNotifier>(context).themeMode.toString());
+    print('getthemed 2');*/
     return Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,

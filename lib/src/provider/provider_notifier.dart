@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProviderNotifier extends ChangeNotifier {
   ProviderNotifier() {
     _getTheme();
+    print('step notifier constructor');
     notifyListeners();
   }
 
-  ////////////////////////////////FAB//////////////////////////////////////
+  //--------------------------------FAB-----------------------------------
 
   bool onMessagesPage = false;
   bool onNewMessagePressed = false;
@@ -35,7 +35,7 @@ class ProviderNotifier extends ChangeNotifier {
     notifyListeners();
   }*/
 
-////////////////////////////////////////THEME////////////////////////////
+//-----------------------THEME---------------------------------------------
 
   final String themeKey = 'theme_key';
   SharedPreferences _themePref;
@@ -48,7 +48,7 @@ class ProviderNotifier extends ChangeNotifier {
     }
   }
 
-  void saveTheme() async {
+  void _saveTheme() async {
     await _initPreferences();
     _themePref.setBool(themeKey, isDarkMode);
   }
@@ -62,7 +62,7 @@ class ProviderNotifier extends ChangeNotifier {
 
   void toggleTheme(bool isDarkTheme) {
     themeMode = isDarkTheme ? ThemeMode.dark : ThemeMode.light;
-    saveTheme();
+    _saveTheme();
     notifyListeners();
   }
 }

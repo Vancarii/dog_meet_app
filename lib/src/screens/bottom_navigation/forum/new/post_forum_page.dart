@@ -34,9 +34,7 @@ class _PostForumPageState extends State<PostForumPage> {
 
   @override
   void dispose() {
-    if (_media != null) {
-      _videoPlayerController.dispose();
-    }
+    //_videoPlayerController.dispose();
     super.dispose();
   }
 

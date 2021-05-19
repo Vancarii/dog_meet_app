@@ -23,15 +23,10 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   Widget build(BuildContext context) {
-/*    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: AppColors.colorOffBlack,
-    ));*/
-
     if (Provider.of<ProviderNotifier>(context).onNewMessagePressed == true) {
       messagesSlidingSheetController.snapToExtent(0.6,
           duration: Duration(milliseconds: 300), clamp: true);
     }
-
     return SafeArea(
       bottom: false,
       child: SlidingSheet(

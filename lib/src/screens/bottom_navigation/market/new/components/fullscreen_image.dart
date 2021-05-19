@@ -9,20 +9,22 @@ class FullscreenImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.colorBlack.withOpacity(0.5),
-      child: InkWell(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Hero(
-            tag: heroTag,
-            child: image,
+    return InteractiveViewer(
+      child: Material(
+        color: AppColors.colorBlack.withOpacity(0.5),
+        child: InkWell(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: Hero(
+              tag: heroTag,
+              child: image,
+            ),
           ),
         ),
       ),
