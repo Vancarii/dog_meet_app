@@ -1,11 +1,7 @@
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:flutter/material.dart';
-
-enum nameIsActive {
-  pup1,
-  pup2,
-}
+import 'package:dog_meet_app/src/global_components/enums/enums.dart';
 
 class PupTabBar extends StatefulWidget {
   final Function funcIsPup;

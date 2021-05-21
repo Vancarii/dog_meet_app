@@ -1,12 +1,15 @@
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
+import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/post/forum_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/market_product_tile.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/profile_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'delegate/profile_tab_delegate.dart';
+import 'package:provider/provider.dart';
+import '../../../global_components/delegate/sliver_tab_delegate.dart';
 import 'info/profile_info.dart';
 
 class AccountProfilePage extends StatefulWidget {
@@ -33,6 +36,8 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        brightness: Brightness.light,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         automaticallyImplyLeading: false,
         centerTitle: false,
         flexibleSpace: Container(
@@ -84,7 +89,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
               ),
               SliverPersistentHeader(
                 pinned: true,
-                delegate: ProfileTabDelegate(
+                delegate: SliverTabDelegate(
                   TabBar(
                     indicatorWeight: 3.0,
                     indicatorColor: AppColors.colorPrimaryOrange,

@@ -92,6 +92,9 @@ class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
                   });
 
                   Flushbar(
+                    backgroundColor: Theme.of(context).primaryColorLight,
+                    messageColor: Theme.of(context).primaryColor,
+                    titleColor: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(30.0)),
                     margin: const EdgeInsets.all(10.0),
                     title: isAttending == true ? 'Cancelled Attendance' : 'You\'re Going!',

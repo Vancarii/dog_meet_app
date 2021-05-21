@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProfileTabDelegate extends SliverPersistentHeaderDelegate {
-  ProfileTabDelegate(this.tabBar, this.color);
+class SliverTabDelegate extends SliverPersistentHeaderDelegate {
+  SliverTabDelegate(this.tabBar, this.color);
 
   final TabBar tabBar;
   final Color color;

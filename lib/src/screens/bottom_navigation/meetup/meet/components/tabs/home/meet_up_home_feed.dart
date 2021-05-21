@@ -2,6 +2,7 @@ import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:dog_meet_app/src/global_components/enums/enums.dart';
 
 class MeetUpHomeFeed extends StatelessWidget {
   MeetUpHomeFeed({
@@ -27,6 +28,7 @@ class MeetUpHomeFeed extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 110),
         children: <Widget>[
           MeetUpPost(
+            meetUpType: meetType.playdate,
             postImage: 'assets/images/pictures/rosymazeprofile.jpg',
             accountName: 'RosyandMaze',
             location: 'Glen Off-Leash Dog Park',
@@ -40,6 +42,7 @@ class MeetUpHomeFeed extends StatelessWidget {
             },
           ),
           MeetUpPost(
+            meetUpType: meetType.training,
             postImage: 'assets/images/pictures/rosy.png',
             accountName: 'RosyandMaze',
             location: 'location',
@@ -53,6 +56,7 @@ class MeetUpHomeFeed extends StatelessWidget {
             },
           ),
           MeetUpPost(
+            meetUpType: meetType.socialization,
             postImage: 'assets/images/pictures/rosy.png',
             accountName: 'RosyandMaze',
             location: 'location',
@@ -66,6 +70,7 @@ class MeetUpHomeFeed extends StatelessWidget {
             },
           ),
           MeetUpPost(
+            meetUpType: meetType.playdate,
             postImage: 'assets/images/pictures/rosy.png',
             accountName: 'RosyandMaze',
             location: 'location',

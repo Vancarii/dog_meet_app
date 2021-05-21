@@ -10,6 +10,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/sub/
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/settings/sub/saved_posts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class ProfileDrawer extends StatefulWidget {
@@ -18,6 +19,16 @@ class ProfileDrawer extends StatefulWidget {
 }
 
 class _ProfileDrawerState extends State<ProfileDrawer> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ProviderNotifier>(context);

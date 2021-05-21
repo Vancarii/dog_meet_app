@@ -1,6 +1,9 @@
+import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
+import 'package:dog_meet_app/src/global_components/widgets/custom_expandable.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/components/fullscreen_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'components/meet_up_list_tiles.dart';
@@ -12,6 +15,8 @@ class MeetUpDetailsPage extends StatefulWidget {
 
 class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
   bool isAttending = false;
+
+  bool commentsIsOpen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -152,100 +157,144 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
             indent: 20,
             endIndent: 20,
           ),
-          CustomText(
-            text: 'Comments (1)',
-            size: 15,
-            bold: true,
-            padding: const EdgeInsets.only(top: 5.0),
+          CustomExpandable(
+            headerText: 'Comments (1)',
+            borderColor: AppColors.colorBlack,
+            body: MeetUpCommentSection(),
           ),
           Container(
             width: double.infinity,
-            height: 300,
-            margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0, top: 5.0),
-            padding: const EdgeInsets.only(top: 5.0),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColorLight.withOpacity(0.2),
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
-              ),
+            padding: const EdgeInsets.all(10.0),
+            child: CustomText(
+              text: 'Photos',
+              size: 18,
+              bold: true,
             ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.all(5.0),
-                    children: <Widget>[
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          CircleAvatar(),
-                          Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                            padding: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColorLight.withOpacity(0.2),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(30),
-                              ),
-                            ),
-                            constraints: BoxConstraints(
-                              maxWidth: MediaQuery.of(context).size.width / 1.5,
-                            ),
-                            child: Wrap(
-                              children: [
-                                CustomText(
-                                  text: 'Where is this meet? is it at a field or a dog park?',
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+          ),
+          GridView.count(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            crossAxisCount: 3,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    TransparentRoute(
+                      builder: (context) => FullscreenImage(
+                        image: Image.asset(
+                          'assets/images/pictures/rosy.png',
+                          fit: BoxFit.contain,
+                        ),
+                        heroTag: 'meet_image',
+                      ),
+                    ),
+                  );
+                },
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: Hero(
+                    tag: 'meet_image',
+                    child: Image.asset(
+                      'assets/images/pictures/rosy.png',
+                      width: 300,
+                      height: 300,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(
-                    bottom: 10.0,
-                    top: 10.0,
-                    left: 10.0,
-                  ),
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MeetUpCommentSection extends StatefulWidget {
+  const MeetUpCommentSection({Key key}) : super(key: key);
+
+  @override
+  _MeetUpCommentSectionState createState() => _MeetUpCommentSectionState();
+}
+
+class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 300,
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(5.0),
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    CircleAvatar(),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColorLight.withOpacity(0.2),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      ),
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width / 1.5,
+                      ),
+                      child: Wrap(
                         children: [
-                          Expanded(
-                            child: CustomRoundedTextField(
-                              maxLines: null,
-                              minLines: 1,
-                              borderColor: Theme.of(context).primaryColorLight,
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                              labelText: 'Add Comment / Ask a Question',
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.send_rounded,
-                              color: Theme.of(context).primaryColorLight,
-                            ),
+                          CustomText(
+                            text: 'Where is this meet? is it at a field or a dog park?',
                           ),
                         ],
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.2,
-                        child: Wrap(
-                          children: [
-                            CustomText(
-                              text: 'Your comment is public to everyone who views this meet',
-                              size: 12,
-                              color: Theme.of(context).primaryColorLight.withOpacity(0.6),
-                              padding: const EdgeInsets.only(left: 10.0),
-                            ),
-                          ],
-                        ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomRoundedTextField(
+                        maxLines: null,
+                        minLines: 1,
+                        borderColor: Theme.of(context).primaryColorLight,
+                        padding: const EdgeInsets.only(bottom: 5.0),
+                        labelText: 'Add Comment / Ask a Question',
+                      ),
+                    ),
+                    IconButton(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.send_rounded,
+                        color: Theme.of(context).primaryColorLight,
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  child: Wrap(
+                    children: [
+                      CustomText(
+                        text: 'Your comment is public to everyone who views this meet',
+                        size: 12,
+                        color: Theme.of(context).primaryColorLight.withOpacity(0.6),
+                        padding: const EdgeInsets.only(left: 10.0),
                       ),
                     ],
                   ),

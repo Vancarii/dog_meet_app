@@ -5,9 +5,10 @@ import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_unused.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page.dart';
+import 'package:dog_meet_app/src/global_components/delegate/sliver_tab_delegate.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import 'components/details/meet_up_details_page.dart';
@@ -56,9 +57,14 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    meetTabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ProviderNotifier>(context);
-    return Builder(
+    /*return Builder(
       builder: (BuildContext context) {
         meetTabController.addListener(() {
           if (!meetTabController.indexIsChanging) {
@@ -70,85 +76,37 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
               selectedTab = selectedMeetTab.NearbyTab;
             }
           }
-        });
-        return Scaffold(
-          resizeToAvoidBottomInset: true,
-          //extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            //backgroundColor: Colors.white,
-            automaticallyImplyLeading: false,
-            elevation: 0,
-            centerTitle: true,
-            title: CustomText(
-              text: 'Meet',
-              size: 18,
-              bold: true,
-            ),
-            leading: IconButton(
-                icon: Icon(Icons.location_on_outlined),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    RouteTransitions().slideLeftToRightJoinedTransitionType(
-                      MeetUpPage(),
-                      MapPageNew(),
-                    ),
-                  );
-                }),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                ),
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
-                },
-                //onPressed: widget.onMessagePressed
-                // do something
-              ),
-            ],
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(35),
-              child: Theme(
-                data: ThemeData(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                ),
-                child: TabBar(
-                  controller: meetTabController,
-                  //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
-                  onTap: (index) {
-                    if (meetSlidingSheetController.state.isExpanded) {
-                      print('sliding sheet true');
-                      meetSlidingSheetController.snapToExtent(kMinSnapPosition,
-                          duration: Duration(milliseconds: 300), clamp: true);
-                    }
-                    print('offset: ' + meetTabController.animation.value.toString());
-                  },
-                  //isScrollable: true,
-                  unselectedLabelColor: themeProvider.isDarkMode == true
-                      ? AppColors.colorWhite.withOpacity(0.3)
-                      : AppColors.colorOffBlack.withOpacity(0.3),
-                  labelColor: AppColors.colorPrimaryOrange,
-                  //controller: meetTabController,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  indicatorColor: AppColors.colorPrimaryOrange,
-                  indicatorWeight: 3,
-                  tabs: meetTabs,
-                ),
-              ),
-            ),
-          ),
-          endDrawer: NearbyDrawerContent(),
-          //This is the sliding sheet that shows whenever a meetup post is clicked.
-          //the body of the sliding sheet is wrapped in a tabbar view so that it can change
-          //pages. MeetUpHomeFeed and nearby feed have the slidingSheetController passed through
-          //so that it can activate the sliding sheet and expand it or collapse it there.
-          //the sliderheader is the small part showing when the sliding sheet is collapsed.
-          //
-          body: SlidingSheet(
-            /*listener: (state) {
+        });*/
+    return Scaffold(
+      //resizeToAvoidBottomInset: true,
+      endDrawer: NearbyDrawerContent(),
+      //THIS APPBAR IS CRUCIAL FOR THE STATUS BAR COLOR
+      //ALTHOUGH THE APPBAR IS NOT THERE, ITS FOR THE STATUS BAR
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        toolbarHeight: 0,
+      ),
+
+      //This is the sliding sheet that shows whenever a meetup post is clicked.
+      //the body of the sliding sheet is wrapped in a tabbar view so that it can change
+      //pages. MeetUpHomeFeed and nearby feed have the slidingSheetController passed through
+      //so that it can activate the sliding sheet and expand it or collapse it there.
+      //the sliderheader is the small part showing when the sliding sheet is collapsed.
+      //
+      body: SafeArea(
+        bottom: false,
+        child: meetUpSheet(),
+        //meetUpSheet(),
+      ),
+    );
+    //},
+    //);
+  }
+
+  Widget meetUpSheet() {
+    return SlidingSheet(
+      /*listener: (state) {
               setState(() {
                 if (state.isExpanded) {
                   sheetIsExpanded = true;
@@ -157,38 +115,116 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
                 }
               });
             },*/
-            color: AppColors.colorPrimaryOrange,
-            controller: meetSlidingSheetController,
-            closeOnBackdropTap: true,
-            closeOnBackButtonPressed: true,
-            isBackdropInteractable: true,
-            elevation: 15,
-            cornerRadius: 30,
-            liftOnScrollHeaderElevation: 5,
-            margin: const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
-            //duration: Duration(milliseconds: 150),
-            snapSpec: const SnapSpec(
-              snap: true,
-              snappings: [kMinSnapPosition, kMaxSnapPosition],
-              initialSnap: kMinSnapPosition,
-              positioning: SnapPositioning.pixelOffset,
+      color: AppColors.colorPrimaryOrange,
+      controller: meetSlidingSheetController,
+      closeOnBackdropTap: true,
+      closeOnBackButtonPressed: true,
+      isBackdropInteractable: true,
+      elevation: 5,
+      cornerRadius: 30,
+      //backdropColor: AppColors.colorBlack.withOpacity(0.5),
+      liftOnScrollHeaderElevation: 5,
+      margin: const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
+      //duration: Duration(milliseconds: 150),
+      snapSpec: const SnapSpec(
+        snap: true,
+        snappings: [kMinSnapPosition, kMaxSnapPosition],
+        initialSnap: kMinSnapPosition,
+        positioning: SnapPositioning.pixelOffset,
+      ),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            meetUpAppBar(),
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: SliverTabDelegate(
+                meetUpTabBar(),
+                Theme.of(context).primaryColor,
+              ),
             ),
-            body: TabBarView(
-              controller: meetTabController,
-              children: [
-                MeetUpHomeFeed(slidingSheetController: meetSlidingSheetController),
-                MeetUpNearbyFeed(slidingSheetController: meetSlidingSheetController),
-              ],
-            ),
-            headerBuilder: (context, state) {
-              return MeetUpSlidingHeader(slidingSheetController: meetSlidingSheetController);
-            },
-            builder: (context, state) {
-              return MeetUpDetailsPage();
-            },
-          ),
-        );
+          ];
+        },
+        body: TabBarView(
+          controller: meetTabController,
+          children: [
+            MeetUpHomeFeed(slidingSheetController: meetSlidingSheetController),
+            MeetUpNearbyFeed(slidingSheetController: meetSlidingSheetController),
+          ],
+        ),
+      ),
+
+      headerBuilder: (context, state) {
+        return MeetUpSlidingHeader(slidingSheetController: meetSlidingSheetController);
       },
+      builder: (context, state) {
+        return MeetUpDetailsPage();
+      },
+    );
+  }
+
+  Widget meetUpAppBar() {
+    return SliverAppBar(
+      pinned: true,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+      //backgroundColor: Colors.white,
+      automaticallyImplyLeading: false,
+      elevation: 0,
+      centerTitle: true,
+      title: CustomText(
+        text: 'Meet',
+        size: 18,
+        bold: true,
+      ),
+      leading: IconButton(
+          icon: Icon(Icons.location_on_outlined),
+          onPressed: () {
+            Navigator.push(
+              context,
+              RouteTransitions().slideLeftToRightJoinedTransitionType(
+                MeetUpPage(),
+                MapPageNew(),
+              ),
+            );
+          }),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.search,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
+          },
+          //onPressed: widget.onMessagePressed
+          // do something
+        ),
+      ],
+      // bottom: meetUpTabBar(),
+    );
+  }
+
+  Widget meetUpTabBar() {
+    return TabBar(
+      controller: meetTabController,
+      //hide the sliding sheet when it is expanded and the user taps on one of the tabbar buttons
+      onTap: (index) {
+        if (meetSlidingSheetController.state.isExpanded) {
+          print('sliding sheet true');
+          meetSlidingSheetController.snapToExtent(kMinSnapPosition,
+              duration: Duration(milliseconds: 300), clamp: true);
+        }
+        print('offset: ' + meetTabController.animation.value.toString());
+      },
+      //isScrollable: true,
+      unselectedLabelColor: Provider.of<ProviderNotifier>(context).isDarkMode == true
+          ? AppColors.colorWhite.withOpacity(0.3)
+          : AppColors.colorOffBlack.withOpacity(0.3),
+      labelColor: AppColors.colorPrimaryOrange,
+      //controller: meetTabController,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicatorColor: AppColors.colorPrimaryOrange,
+      indicatorWeight: 3,
+      tabs: meetTabs,
     );
   }
 }

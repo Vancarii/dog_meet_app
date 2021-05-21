@@ -5,6 +5,7 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/market/filter_drawer/
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
+import 'package:flutter/services.dart';
 
 import 'body/market_all_page.dart';
 import 'body/market_new_page.dart';
@@ -48,6 +49,8 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        brightness: Brightness.light,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient:

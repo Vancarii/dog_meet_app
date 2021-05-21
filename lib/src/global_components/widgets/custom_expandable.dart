@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import '../themes/app_colors.dart';
 
 class CustomExpandable extends StatefulWidget {
-  const CustomExpandable({Key key}) : super(key: key);
+  final String headerText;
+  final Widget body;
+  final Color borderColor;
+
+  const CustomExpandable({Key key, this.headerText, this.body, this.borderColor}) : super(key: key);
 
   @override
   _CustomExpandableState createState() => _CustomExpandableState();
@@ -24,9 +28,9 @@ class _CustomExpandableState extends State<CustomExpandable> {
               margin: const EdgeInsets.symmetric(horizontal: 5.0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: AppColors.colorPrimaryOrange.withOpacity(0.5),
+                  color: AppColors.colorDarkSlateGrey.withOpacity(0.3),
                   border: Border.all(
-                    color: Colors.black,
+                    color: widget.borderColor,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               child: ExpandablePanel(
@@ -38,7 +42,7 @@ class _CustomExpandableState extends State<CustomExpandable> {
                   header: Align(
                     alignment: Alignment.center,
                     child: CustomText(
-                      text: 'Links',
+                      text: widget.headerText,
                       size: 15,
                       bold: true,
                       padding: const EdgeInsets.all(10.0),
@@ -46,20 +50,7 @@ class _CustomExpandableState extends State<CustomExpandable> {
                   ),
                   expanded: Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 30,
-                          margin: const EdgeInsets.only(bottom: 5.0, left: 5.0, right: 5.0),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.black,
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(10))),
-                        ),
-                      ],
-                    ),
+                    child: widget.body,
                   )),
             ),
           ),

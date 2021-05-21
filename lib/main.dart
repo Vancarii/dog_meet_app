@@ -69,13 +69,14 @@ class _DogMeetAppState extends State<DogMeetApp> {
         builder: (BuildContext context, _) {
           final themeProvider = Provider.of<ProviderNotifier>(context);
           SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
-              systemNavigationBarColor: themeProvider.themeMode == ThemeMode.dark
-                  ? AppColors.colorOffBlack
-                  : AppColors.colorWhite));
+            statusBarBrightness: Brightness.dark,
+            statusBarColor: Colors.transparent,
+            systemNavigationBarColor: Colors.transparent,
+          ));
           print('isdark: ' + Provider.of<ProviderNotifier>(context).isDarkMode.toString());
           print('step main build');
           return MaterialApp(
+            color: Theme.of(context).primaryColor,
             debugShowCheckedModeBanner: false,
             themeMode: themeProvider.themeMode,
             darkTheme: AppThemes.darkTheme,

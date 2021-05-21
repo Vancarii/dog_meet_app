@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'components/pup_attributes.dart';
 import 'components/pup_tab_bar.dart';
+import 'package:dog_meet_app/src/global_components/enums/enums.dart';
 
 class ProfileInfo extends StatefulWidget {
   @override

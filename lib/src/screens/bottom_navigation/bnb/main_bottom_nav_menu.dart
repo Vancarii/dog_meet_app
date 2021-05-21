@@ -5,7 +5,6 @@ import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/meet_up_p
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
