@@ -184,7 +184,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
               context,
               RouteTransitions().slideLeftToRightJoinedTransitionType(
                 MeetUpPage(),
-                MapPageAndroid(),
+                MapPageIos(),
               ),
             );
           }),
