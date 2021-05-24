@@ -99,16 +99,6 @@ class MeetUpPost extends StatelessWidget {
           ),
           postTimeLocationInfo(),
           Spacer(),
-          meetUpType != null
-              ? InfoTiles(
-                  tileText: meetUpType == meetType.playdate
-                      ? 'PLAYDATE'
-                      : meetUpType == meetType.training
-                          ? 'TRAINING'
-                          : 'SOCIALIZATION',
-                  tileColor: AppColors.colorPrimaryOrange,
-                )
-              : Container(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,20 +106,35 @@ class MeetUpPost extends StatelessWidget {
               //The Wrap for the Info tiles need to be wrapped by a expanded widget
               //so that it has a constraint width and it is as big as possible
               Expanded(
-                child: Wrap(
-                  verticalDirection: VerticalDirection.up,
-                  crossAxisAlignment: WrapCrossAlignment.start,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InfoTiles(
-                      tileIcon: FontAwesomeIcons.venusMars,
-                      tileColor: AppColors.colorWhite,
+                    meetUpType != null
+                        ? InfoTiles(
+                      tileText: meetUpType == meetType.playdate
+                          ? 'PLAYDATE'
+                          : meetUpType == meetType.training
+                          ? 'TRAINING'
+                          : 'SOCIALIZATION',
+                      tileColor: AppColors.colorPrimaryOrange,
+                    )
+                        : Container(),
+                    Wrap(
+                      verticalDirection: VerticalDirection.up,
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      children: [
+                        InfoTiles(
+                          tileIcon: FontAwesomeIcons.venusMars,
+                          tileColor: AppColors.colorWhite,
+                        ),
+                        InfoTiles(tileText: 'Intact'),
+                        InfoTiles(tileText: 'Medium Sizes'),
+                        InfoTiles(tileText: numOfPeopleGoing.toString() + ' Going'),
+                        InfoTiles(tileText: 'All Breeds'),
+                        InfoTiles(tileText: 'Gentle Greeters'),
+                        InfoTiles(tileText: '1.5 Year - 3 Year'),
+                      ],
                     ),
-                    InfoTiles(tileText: 'Intact'),
-                    InfoTiles(tileText: 'Medium Sizes'),
-                    InfoTiles(tileText: numOfPeopleGoing.toString() + ' Going'),
-                    InfoTiles(tileText: 'All Breeds'),
-                    InfoTiles(tileText: 'Gentle Greeters'),
-                    InfoTiles(tileText: '1.5 Year - 3 Year'),
                   ],
                 ),
               ),

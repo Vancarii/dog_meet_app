@@ -4,8 +4,9 @@ import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_unused.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_android.dart';
 import 'package:dog_meet_app/src/global_components/delegate/sliver_tab_delegate.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_ios.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -183,7 +184,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
               context,
               RouteTransitions().slideLeftToRightJoinedTransitionType(
                 MeetUpPage(),
-                MapPageNew(),
+                MapPageIos(),
               ),
             );
           }),

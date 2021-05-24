@@ -6,12 +6,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:dog_meet_app/src/global_components/models/nearby_meets_model.dart';
 import 'package:location/location.dart' as LocationManager;
 
-class MapPageNew extends StatefulWidget {
+class MapPageAndroid extends StatefulWidget {
   @override
-  _MapPageNewState createState() => _MapPageNewState();
+  _MapPageAndroidState createState() => _MapPageAndroidState();
 }
 
-class _MapPageNewState extends State<MapPageNew> with SingleTickerProviderStateMixin {
+class _MapPageAndroidState extends State<MapPageAndroid> with SingleTickerProviderStateMixin {
   GoogleMapController nearbyMeetMapController;
 
   PageController pageController;
