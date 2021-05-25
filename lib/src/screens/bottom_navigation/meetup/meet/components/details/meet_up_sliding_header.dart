@@ -52,7 +52,7 @@ class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
                   child: Container(
                     margin: const EdgeInsets.only(top: 6.0, bottom: 5.0),
                     width: 30,
-                    height: 4,
+                    height: kMeetSheetShownHeaderHeight,
                     decoration: BoxDecoration(
                       color: AppColors.colorDarkSlateGrey,
                       borderRadius: BorderRadius.all(Radius.circular(2)),

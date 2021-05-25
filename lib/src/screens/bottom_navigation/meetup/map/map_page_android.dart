@@ -91,9 +91,12 @@ class _MapPageAndroidState extends State<MapPageAndroid> with SingleTickerProvid
   @override
   void dispose() {
     super.dispose();
-    pageController.dispose();
-    nearbyMeetMapController.dispose();
-    animationController.dispose();
+    if (pageController != null) {
+    pageController.dispose();}
+    if (nearbyMeetMapController != null){
+    nearbyMeetMapController.dispose();}
+    if (animationController != null){
+    animationController.dispose();}
   }
 
   void _onScroll() {

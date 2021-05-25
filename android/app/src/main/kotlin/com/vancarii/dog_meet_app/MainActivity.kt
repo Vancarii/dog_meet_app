@@ -1,4 +1,4 @@
-package com.vancarii.dog_meet_app
+package com.vancarii.dogmeetApp
 
 import io.flutter.embedding.android.FlutterActivity
 

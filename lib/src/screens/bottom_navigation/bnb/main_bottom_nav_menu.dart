@@ -100,7 +100,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
               Provider.of<ProviderNotifier>(context, listen: false).messageFabChanged(true);
             });
           }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
         //gapLocation: GapLocation.center,
         inactiveColor: Theme.of(context).primaryColorLight.withOpacity(0.4),
@@ -118,7 +118,6 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
       //indexstacked is so that all the screens are preloaded when the app first starts and that
       //the states and scroll positions are saved when you leave to a different screen and come back
       body: //_pageOptions[_currentSelectedScreenIndex],
-
           IndexedStack(
         children: _pageOptions,
         index: _currentSelectedScreenIndex,

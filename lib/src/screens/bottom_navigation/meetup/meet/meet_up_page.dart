@@ -80,6 +80,8 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
         });*/
     return Scaffold(
       //resizeToAvoidBottomInset: true,
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       endDrawer: NearbyDrawerContent(),
       //THIS APPBAR IS CRUCIAL FOR THE STATUS BAR COLOR
       //ALTHOUGH THE APPBAR IS NOT THERE, ITS FOR THE STATUS BAR
@@ -95,11 +97,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
       //so that it can activate the sliding sheet and expand it or collapse it there.
       //the sliderheader is the small part showing when the sliding sheet is collapsed.
       //
-      body: SafeArea(
-        bottom: false,
-        child: meetUpSheet(),
-        //meetUpSheet(),
-      ),
+      body: SafeArea( bottom: false, child: meetUpSheet()),
     );
     //},
     //);
