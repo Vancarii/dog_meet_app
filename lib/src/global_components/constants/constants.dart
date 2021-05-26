@@ -20,7 +20,7 @@ const double kMarketPostHeight = 330;
 //variable names make it easier to reuse
 //change min snap to fit on all platforms
 //100 on samsung s10+ , 135 on Iphone 12 Pro Max dunno why
-const double kMinSnapPosition = 140;
+const double kMinSnapPosition = 60;
 const double kMaxSnapPosition = double.infinity;
 // TODO: Change these values so that it works for all devices
 /*const double minSnapPosition = 0.15;

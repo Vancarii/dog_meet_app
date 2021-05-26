@@ -27,16 +27,125 @@ class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
     return InkWell(
       onTap: () {
         if (widget.slidingSheetController.state.isCollapsed == true) {
-          widget.slidingSheetController
-              .snapToExtent(kMaxSnapPosition, duration: Duration(milliseconds: 150));
+          widget.slidingSheetController.snapToExtent(kMaxSnapPosition,
+              duration: Duration(milliseconds: 150));
         } else {
-          widget.slidingSheetController
-              .snapToExtent(kMinSnapPosition, duration: Duration(milliseconds: 150));
+          widget.slidingSheetController.snapToExtent(kMinSnapPosition,
+              duration: Duration(milliseconds: 150));
         }
 
         //Provider.of<ProviderNotifier>(context, listen: false).meetUpSheetExpanded(true);
       },
-      child: Stack(
+      child: Container(
+        height: 80,
+        width: double.infinity,
+        color: AppColors.colorPrimaryOrange,
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 6.0, bottom: 4.0),
+              width: 30,
+              height: kMeetSheetShownHeaderHeight,
+              decoration: BoxDecoration(
+                color: AppColors.colorDarkSlateGrey,
+                borderRadius: BorderRadius.all(Radius.circular(2)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20.0,
+                //bottom: 10.0,
+                right: 15.0,
+                //top: 12.0,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 60,
+                    alignment: Alignment.bottomCenter,
+                    child: CustomText(
+                      text: 'Meet Up Details',
+                      size: 26,
+                      bold: true,
+                      color: AppColors.colorDarkSlateGrey,
+                      // padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
+                    ),
+                  ),
+                  //Spacer(),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 150),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                      return ScaleTransition(child: child, scale: animation);
+                    },
+                    child: FloatingActionButton(
+                      //this herotag is important so that there wont be an error
+                      heroTag: null,
+                      key: UniqueKey(),
+                      mini: true,
+                      onPressed: () {
+                        setState(() {
+                          isAttending = !isAttending;
+                        });
+
+                        Flushbar(
+                          backgroundColor: Theme.of(context).primaryColorLight,
+                          messageColor: Theme.of(context).primaryColor,
+                          titleColor: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          margin: const EdgeInsets.all(10.0),
+                          title: isAttending == true
+                              ? 'Cancelled Attendance'
+                              : 'You\'re Going!',
+                          message: isAttending == true
+                              ? 'That\'s Okay! Find someone else to play!'
+                              : 'It\'s great to meet more friends!',
+                          icon: isAttending == true
+                              ? Icon(
+                                  Icons.close_rounded,
+                                  size: 30,
+                                  color: AppColors.colorRed,
+                                )
+                              : Icon(
+                                  Icons.check_rounded,
+                                  size: 30,
+                                  color: AppColors.colorBrightGreen,
+                                ),
+                          duration: Duration(milliseconds: 2500),
+                          animationDuration: Duration(milliseconds: 500),
+                        )..show(context);
+                      },
+                      backgroundColor: isAttending == true
+                          ? AppColors.colorRed
+                          : AppColors.colorBrightGreen,
+                      focusElevation: 0,
+                      highlightElevation: 0,
+                      splashColor: AppColors.colorPrimaryOrange,
+                      child: isAttending == true
+                          ? Icon(
+                              Icons.close_rounded,
+                              size: 30,
+                              color: AppColors.colorWhite,
+                            )
+                          : Icon(
+                              Icons.check_rounded,
+                              size: 30,
+                              color: AppColors.colorWhite,
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      /*Stack(
         children: [
           Container(
             height: 80,
@@ -136,7 +245,7 @@ class _MeetUpSlidingHeaderState extends State<MeetUpSlidingHeader> {
             ),
           ),
         ],
-      ),
+      ),*/
     );
   }
 }

@@ -71,9 +71,11 @@ class _DogMeetAppState extends State<DogMeetApp> {
           SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
             statusBarBrightness: Brightness.dark,
             statusBarColor: Colors.transparent,
+            systemNavigationBarIconBrightness: Brightness.light,
             systemNavigationBarColor: Colors.transparent,
           ));
-          print('isdark: ' + Provider.of<ProviderNotifier>(context).isDarkMode.toString());
+          print('isdark: ' +
+              Provider.of<ProviderNotifier>(context).isDarkMode.toString());
           print('step main build');
           return MaterialApp(
             color: Theme.of(context).primaryColor,
@@ -94,7 +96,8 @@ class _DogMeetAppState extends State<DogMeetApp> {
               ForumsAppBar.id: (context) => ForumsAppBar(),
               MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
               MarketAppBar.id: (context) => MarketAppBar(),
-              MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
+              MarketProductDetailsPage.id: (context) =>
+                  MarketProductDetailsPage(),
               ForumCommentSection.id: (context) => ForumCommentSection(),
               PostForumPage.id: (context) => PostForumPage(),
               PostListingPage.id: (context) => PostListingPage(),

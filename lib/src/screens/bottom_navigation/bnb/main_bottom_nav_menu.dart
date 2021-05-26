@@ -1,10 +1,13 @@
+import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/custom_nav_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
@@ -32,7 +35,8 @@ class MainBottomNavMenu extends StatefulWidget {
   _MainBottomNavMenuState createState() => _MainBottomNavMenuState();
 }
 
-class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTickerProviderStateMixin {
+class _MainBottomNavMenuState extends State<MainBottomNavMenu>
+    with SingleTickerProviderStateMixin {
   //start the app at the Meet Up page which is index 2
   var _currentSelectedScreenIndex = 2;
 
@@ -52,6 +56,44 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
     FontAwesomeIcons.paw,
     Icons.notifications_rounded,
     FontAwesomeIcons.dog,
+  ];
+
+  List<BottomNavigationBarItem> bottomnav = [
+    BottomNavigationBarItem(
+        icon: Icon(Icons.forum_outlined),
+        activeIcon: Icon(
+          Icons.forum,
+          color: AppColors.colorPrimaryOrange,
+        ),
+        label: ''),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.store_outlined),
+        activeIcon: Icon(
+          Icons.store,
+          color: AppColors.colorPrimaryOrange,
+        ),
+        label: ''),
+    BottomNavigationBarItem(
+        icon: Icon(FontAwesomeIcons.paw),
+        activeIcon: Icon(
+          FontAwesomeIcons.paw,
+          color: AppColors.colorPrimaryOrange,
+        ),
+        label: ''),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.notifications_outlined),
+        activeIcon: Icon(
+          Icons.notifications,
+          color: AppColors.colorPrimaryOrange,
+        ),
+        label: ''),
+    BottomNavigationBarItem(
+        icon: Icon(FontAwesomeIcons.dog),
+        activeIcon: Icon(
+          FontAwesomeIcons.dog,
+          color: AppColors.colorPrimaryOrange,
+        ),
+        label: ''),
   ];
 
   //these are what is shown on the fab
@@ -97,24 +139,33 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTicker
               //these two lines change the screen to the notifications screen
               //then sets messagefab to true which slides the screen to the messages screen
               _currentSelectedScreenIndex = 3;
-              Provider.of<ProviderNotifier>(context, listen: false).messageFabChanged(true);
+              Provider.of<ProviderNotifier>(context, listen: false)
+                  .messageFabChanged(true);
             });
           }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        //gapLocation: GapLocation.center,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      bottomNavigationBar: CustomNavBar(
+        onTap: (index) {
+          setState(() {
+            _currentSelectedScreenIndex = index;
+          });
+        },
+      ),
+
+      /*AnimatedBottomNavigationBar(
+        gapLocation: GapLocation.none,
         inactiveColor: Theme.of(context).primaryColorLight.withOpacity(0.4),
-        height: kBottomNavigationBarHeight,
+        height: kBottomNavBarHeight,
         backgroundColor: Theme.of(context).primaryColor,
         activeColor: AppColors.colorPrimaryOrange,
         splashColor: Colors.grey[350],
         splashRadius: 45,
-        notchSmoothness: NotchSmoothness.softEdge,
+        //notchSmoothness: NotchSmoothness.softEdge,
         leftCornerRadius: 10,
         icons: bottomNavIcons,
         activeIndex: _currentSelectedScreenIndex,
         onTap: _navBarOnTap,
-      ),
+      ),*/
       //indexstacked is so that all the screens are preloaded when the app first starts and that
       //the states and scroll positions are saved when you leave to a different screen and come back
       body: //_pageOptions[_currentSelectedScreenIndex],

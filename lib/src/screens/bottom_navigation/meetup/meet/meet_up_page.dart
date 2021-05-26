@@ -97,7 +97,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
       //so that it can activate the sliding sheet and expand it or collapse it there.
       //the sliderheader is the small part showing when the sliding sheet is collapsed.
       //
-      body: SafeArea( bottom: false, child: meetUpSheet()),
+      //body: SafeArea(child: meetUpSheet()),
     );
     //},
     //);
@@ -148,13 +148,15 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
           controller: meetTabController,
           children: [
             MeetUpHomeFeed(slidingSheetController: meetSlidingSheetController),
-            MeetUpNearbyFeed(slidingSheetController: meetSlidingSheetController),
+            MeetUpNearbyFeed(
+                slidingSheetController: meetSlidingSheetController),
           ],
         ),
       ),
 
       headerBuilder: (context, state) {
-        return MeetUpSlidingHeader(slidingSheetController: meetSlidingSheetController);
+        return MeetUpSlidingHeader(
+            slidingSheetController: meetSlidingSheetController);
       },
       builder: (context, state) {
         return MeetUpDetailsPage();
@@ -192,7 +194,8 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
             Icons.search,
           ),
           onPressed: () {
-            Navigator.of(context).push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
+            Navigator.of(context).push(
+                RouteTransitions().slideUpTransitionType(SearchBarScreen()));
           },
           //onPressed: widget.onMessagePressed
           // do something
@@ -215,9 +218,10 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
         print('offset: ' + meetTabController.animation.value.toString());
       },
       //isScrollable: true,
-      unselectedLabelColor: Provider.of<ProviderNotifier>(context).isDarkMode == true
-          ? AppColors.colorWhite.withOpacity(0.3)
-          : AppColors.colorOffBlack.withOpacity(0.3),
+      unselectedLabelColor:
+          Provider.of<ProviderNotifier>(context).isDarkMode == true
+              ? AppColors.colorWhite.withOpacity(0.3)
+              : AppColors.colorOffBlack.withOpacity(0.3),
       labelColor: AppColors.colorPrimaryOrange,
       //controller: meetTabController,
       indicatorSize: TabBarIndicatorSize.tab,
