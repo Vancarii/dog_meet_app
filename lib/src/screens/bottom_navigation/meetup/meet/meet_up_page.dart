@@ -80,16 +80,15 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
         });*/
     return Scaffold(
       //resizeToAvoidBottomInset: true,
-      extendBody: true,
-      extendBodyBehindAppBar: true,
       endDrawer: NearbyDrawerContent(),
       //THIS APPBAR IS CRUCIAL FOR THE STATUS BAR COLOR
       //ALTHOUGH THE APPBAR IS NOT THERE, ITS FOR THE STATUS BAR
-      appBar: AppBar(
+      appBar: meetUpAppBar(),
+      /*AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         toolbarHeight: 0,
-      ),
+      ),*/
 
       //This is the sliding sheet that shows whenever a meetup post is clicked.
       //the body of the sliding sheet is wrapped in a tabbar view so that it can change
@@ -97,7 +96,14 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
       //so that it can activate the sliding sheet and expand it or collapse it there.
       //the sliderheader is the small part showing when the sliding sheet is collapsed.
       //
-      //body: SafeArea(child: meetUpSheet()),
+      body: TabBarView(
+        controller: meetTabController,
+        children: [
+          MeetUpHomeFeed(slidingSheetController: meetSlidingSheetController),
+          MeetUpNearbyFeed(slidingSheetController: meetSlidingSheetController),
+        ],
+      ),
+      //body: SafeArea(bottom: false, child: meetUpSheet()),
     );
     //},
     //);
@@ -127,33 +133,10 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
       //duration: Duration(milliseconds: 150),
       snapSpec: const SnapSpec(
         snap: true,
-        snappings: [kMinSnapPosition, kMaxSnapPosition],
+        snappings: [0, kMinSnapPosition, kMaxSnapPosition],
         initialSnap: kMinSnapPosition,
         positioning: SnapPositioning.pixelOffset,
       ),
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return [
-            meetUpAppBar(),
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: SliverTabDelegate(
-                meetUpTabBar(),
-                Theme.of(context).primaryColor,
-              ),
-            ),
-          ];
-        },
-        body: TabBarView(
-          controller: meetTabController,
-          children: [
-            MeetUpHomeFeed(slidingSheetController: meetSlidingSheetController),
-            MeetUpNearbyFeed(
-                slidingSheetController: meetSlidingSheetController),
-          ],
-        ),
-      ),
-
       headerBuilder: (context, state) {
         return MeetUpSlidingHeader(
             slidingSheetController: meetSlidingSheetController);
@@ -165,8 +148,8 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
   }
 
   Widget meetUpAppBar() {
-    return SliverAppBar(
-      pinned: true,
+    return AppBar(
+      //pinned: true,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       //backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
@@ -201,7 +184,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
           // do something
         ),
       ],
-      // bottom: meetUpTabBar(),
+      bottom: meetUpTabBar(),
     );
   }
 

@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 import 'animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'animated_fab.dart';
 
@@ -128,8 +129,13 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
     print('getthemed 2');*/
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      extendBodyBehindAppBar: true,
-      extendBody: true,
+      //extendBodyBehindAppBar: true,
+      //extendBody: true,
+      /*appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 0,
+      ),*/
       floatingActionButton: AnimatedFab(
           iconList: fabIcons,
           pageIndex: _currentSelectedScreenIndex,
@@ -144,12 +150,16 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
             });
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      bottomNavigationBar: CustomNavBar(
+      body: CustomNavBar(
         onTap: (index) {
           setState(() {
             _currentSelectedScreenIndex = index;
           });
         },
+        child: IndexedStack(
+          children: _pageOptions,
+          index: _currentSelectedScreenIndex,
+        ),
       ),
 
       /*AnimatedBottomNavigationBar(
@@ -168,11 +178,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
       ),*/
       //indexstacked is so that all the screens are preloaded when the app first starts and that
       //the states and scroll positions are saved when you leave to a different screen and come back
-      body: //_pageOptions[_currentSelectedScreenIndex],
-          IndexedStack(
-        children: _pageOptions,
-        index: _currentSelectedScreenIndex,
-      ),
+      //body: //_pageOptions[_currentSelectedScreenIndex],
     );
   }
 }
