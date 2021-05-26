@@ -59,44 +59,6 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
     FontAwesomeIcons.dog,
   ];
 
-  List<BottomNavigationBarItem> bottomnav = [
-    BottomNavigationBarItem(
-        icon: Icon(Icons.forum_outlined),
-        activeIcon: Icon(
-          Icons.forum,
-          color: AppColors.colorPrimaryOrange,
-        ),
-        label: ''),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.store_outlined),
-        activeIcon: Icon(
-          Icons.store,
-          color: AppColors.colorPrimaryOrange,
-        ),
-        label: ''),
-    BottomNavigationBarItem(
-        icon: Icon(FontAwesomeIcons.paw),
-        activeIcon: Icon(
-          FontAwesomeIcons.paw,
-          color: AppColors.colorPrimaryOrange,
-        ),
-        label: ''),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.notifications_outlined),
-        activeIcon: Icon(
-          Icons.notifications,
-          color: AppColors.colorPrimaryOrange,
-        ),
-        label: ''),
-    BottomNavigationBarItem(
-        icon: Icon(FontAwesomeIcons.dog),
-        activeIcon: Icon(
-          FontAwesomeIcons.dog,
-          color: AppColors.colorPrimaryOrange,
-        ),
-        label: ''),
-  ];
-
   //these are what is shown on the fab
   List<IconData> fabIcons = <IconData>[
     Icons.forum,
@@ -118,6 +80,8 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
     });
   }
 
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     /*SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -128,6 +92,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
     print('isdark: ' + Provider.of<ProviderNotifier>(context).themeMode.toString());
     print('getthemed 2');*/
     return Scaffold(
+      key: scaffoldKey,
       resizeToAvoidBottomInset: false,
       //extendBodyBehindAppBar: true,
       //extendBody: true,
@@ -150,16 +115,71 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
             });
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: CustomNavBar(
+      /*bottomSheet: BottomSheet(
+        onClosing: () {},
+        builder: (BuildContext context) {
+          return Container(
+            height: 50,
+            color: Colors.red,
+          );
+        },
+      ),*/
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          height: 60,
+          color: Theme.of(context).primaryColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              for (var index = 0; index <= bottomNavIcons.length - 1; index++)
+                Expanded(
+                  child: Material(
+                    child: IconButton(
+                      highlightColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      splashColor: AppColors.colorBlack.withOpacity(0.4),
+                      //customBorder: StadiumBorder(),
+                      onPressed: () {
+                        setState(() {
+                          _currentSelectedScreenIndex = index;
+                          print(_currentSelectedScreenIndex);
+                          //widget.onTap(index);
+                          scaffoldKey.currentState
+                              .showBottomSheet((context) => Container(
+                                    height: 100,
+                                    color: Colors.red,
+                                  ));
+                        });
+                      },
+                      icon: _currentSelectedScreenIndex == index
+                          ? Icon(
+                              bottomNavIcons[index],
+                              color: AppColors.colorPrimaryOrange,
+                              size: 28,
+                            )
+                          : Icon(
+                              bottomNavIcons[index],
+                              color: Theme.of(context).primaryColorLight,
+                              size: 24,
+                            ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+      /*bottomNavigationBar: CustomNavBar(
         onTap: (index) {
           setState(() {
             _currentSelectedScreenIndex = index;
           });
         },
-        child: IndexedStack(
-          children: _pageOptions,
-          index: _currentSelectedScreenIndex,
-        ),
+      ),*/
+      body: IndexedStack(
+        children: _pageOptions,
+        index: _currentSelectedScreenIndex,
       ),
 
       /*AnimatedBottomNavigationBar(

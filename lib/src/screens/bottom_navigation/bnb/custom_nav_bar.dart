@@ -55,7 +55,6 @@ class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      top: false,
       child: SlidingSheet(
         //color: AppColors.colorPrimaryOrange,
         controller: meetSheetController,
@@ -73,7 +72,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           initialSnap: SnapSpec.headerFooterSnap,
           positioning: SnapPositioning.pixelOffset,
         ),
-        body: widget.child,
+        //body: widget.child,
         headerBuilder: (context, state) {
           return MeetUpSlidingHeader(
             slidingSheetController: meetSheetController,
