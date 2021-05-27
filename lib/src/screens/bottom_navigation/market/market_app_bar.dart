@@ -24,7 +24,8 @@ class MarketAppBar extends StatefulWidget {
   _MarketAppBarState createState() => _MarketAppBarState();
 }
 
-class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderStateMixin {
+class _MarketAppBarState extends State<MarketAppBar>
+    with SingleTickerProviderStateMixin {
   TabController _marketTabController;
 
   List<Tab> marketTabs = <Tab>[
@@ -42,75 +43,14 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _marketTabController = TabController(length: marketTabs.length, vsync: this);
+    _marketTabController =
+        TabController(length: marketTabs.length, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        brightness: Brightness.light,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
-            AppColors.colorOrange,
-            AppColors.colorPrimaryYellow,
-          ])),
-        ),
-        elevation: 0,
-        //centerTitle: true,
-        title: CustomText(
-          text: 'Market',
-          size: 18,
-          bold: true,
-          color: AppColors.colorOffBlack,
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: AppColors.colorOffBlack,
-            ),
-            onPressed: () {
-              Navigator.of(context)
-                  .push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
-            },
-          ),
-          Builder(
-            builder: (context) => IconButton(
-              icon: Icon(
-                Icons.sort,
-                color: AppColors.colorOffBlack,
-              ),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            ),
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(35),
-          child: Theme(
-            data: ThemeData(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-            ),
-            child: TabBar(
-              unselectedLabelColor: Colors.black38,
-              labelColor: Theme.of(context).primaryColorLight,
-              controller: _marketTabController,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicator: BubbleTabIndicator(
-                indicatorHeight: 35.0,
-                indicatorColor: Theme.of(context).primaryColor,
-                tabBarIndicatorSize: TabBarIndicatorSize.tab,
-              ),
-              tabs: marketTabs,
-            ),
-          ),
-        ),
-      ),
+      appBar: marketAppBar(),
       body: TabBarView(
         controller: _marketTabController,
         children: [
@@ -125,5 +65,77 @@ class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderSt
     );
 
     //MarketBodyTabs();
+  }
+
+  AppBar marketAppBar() {
+    return AppBar(
+      brightness: Brightness.light,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+                colors: [
+              AppColors.colorOrange,
+              AppColors.colorPrimaryYellow,
+            ])),
+      ),
+      elevation: 0,
+      //centerTitle: true,
+      title: CustomText(
+        text: 'Market',
+        size: 18,
+        bold: true,
+        color: AppColors.colorOffBlack,
+      ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.search,
+            color: AppColors.colorOffBlack,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(
+                RouteTransitions().slideUpTransitionType(SearchBarScreen()));
+          },
+        ),
+        Builder(
+          builder: (context) => IconButton(
+            icon: Icon(
+              Icons.sort,
+              color: AppColors.colorOffBlack,
+            ),
+            onPressed: () => Scaffold.of(context).openEndDrawer(),
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          ),
+        ),
+      ],
+      bottom: marketTabBar(),
+    );
+  }
+
+  PreferredSize marketTabBar() {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(35),
+      child: Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: TabBar(
+          unselectedLabelColor: Colors.black38,
+          labelColor: Theme.of(context).primaryColorLight,
+          controller: _marketTabController,
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: BubbleTabIndicator(
+            indicatorHeight: 35.0,
+            indicatorColor: Theme.of(context).primaryColor,
+            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+          ),
+          tabs: marketTabs,
+        ),
+      ),
+    );
   }
 }

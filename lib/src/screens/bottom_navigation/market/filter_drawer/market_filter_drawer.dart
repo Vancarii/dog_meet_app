@@ -21,9 +21,6 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    productFunction(value) => setState(() => productChanged = value);
-    colorFunction(value) => setState(() => colorChanged = value);
-    rangeValuesFunction(value) => setState(() => _currentRangeValues = value);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -40,7 +37,9 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
                   bold: true,
                 ),
                 Visibility(
-                  visible: productChanged == true || sliderChanged == true || colorChanged == true
+                  visible: productChanged == true ||
+                          sliderChanged == true ||
+                          colorChanged == true
                       ? true
                       : false,
                   child: InkWell(
@@ -64,9 +63,12 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: MarketFilterChip(
-                reset: productChanged == false ? true : false,
-                productChanged: productFunction,
-              ),
+                  reset: productChanged == false ? true : false,
+                  productChanged: (value) {
+                    setState(() {
+                      productChanged = value;
+                    });
+                  }),
             ),
             ExpandableNotifier(
               initialExpanded: true,
@@ -92,7 +94,11 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
                 ),
                 expanded: MarketPriceRangeSlider(
                   reset: sliderChanged == false ? true : false,
-                  onChanged: rangeValuesFunction,
+                  onChanged: (value) {
+                    setState(() {
+                      _currentRangeValues = value;
+                    });
+                  },
                   onStart: (values) {
                     setState(() {
                       sliderChanged = true;
@@ -125,9 +131,12 @@ class _MarketFilterDrawerState extends State<MarketFilterDrawer> {
                       : Theme.of(context).primaryColorLight,
                 ),
                 expanded: ColorPicker(
-                  reset: colorChanged == false ? true : false,
-                  colorChanged: colorFunction,
-                ),
+                    reset: colorChanged == false ? true : false,
+                    colorChanged: (value) {
+                      setState(() {
+                        colorChanged = value;
+                      });
+                    }),
                 collapsed: null,
               ),
             ),

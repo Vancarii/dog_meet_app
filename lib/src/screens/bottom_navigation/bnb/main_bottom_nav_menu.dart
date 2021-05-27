@@ -1,18 +1,13 @@
-import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/custom_nav_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
-import 'animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'animated_fab.dart';
 
 //This file stays the same throughout all 5 pages of the bottom navigation
@@ -72,32 +67,10 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
     Icons.add_box_outlined,
   ];
 
-  //onTap for the bottom nav bar
-  _navBarOnTap(int index) {
-    setState(() {
-      //print('index' + index.toString());
-      _currentSelectedScreenIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    /*SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Provider.of<ProviderNotifier>(context).themeMode == ThemeMode.dark
-            ? AppColors.colorOffBlack
-            : AppColors.colorWhite));
-    print('isdark: ' + Provider.of<ProviderNotifier>(context).themeMode.toString());
-    print('getthemed 2');*/
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      //extendBodyBehindAppBar: true,
-      //extendBody: true,
-      /*appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 0,
-      ),*/
       floatingActionButton: AnimatedFab(
           iconList: fabIcons,
           pageIndex: _currentSelectedScreenIndex,
@@ -114,35 +87,12 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
 
       bottomNavigationBar: customBottomNavBar(),
-      /*bottomNavigationBar: CustomNavBar(
-        onTap: (index) {
-          setState(() {
-            _currentSelectedScreenIndex = index;
-          });
-        },
-      ),*/
+      //indexstacked is so that all the screens are preloaded when the app first starts and that
+      //the states and scroll positions are saved when you leave to a different screen and come back
       body: IndexedStack(
         children: _pageOptions,
         index: _currentSelectedScreenIndex,
       ),
-
-      /*AnimatedBottomNavigationBar(
-        gapLocation: GapLocation.none,
-        inactiveColor: Theme.of(context).primaryColorLight.withOpacity(0.4),
-        height: kBottomNavBarHeight,
-        backgroundColor: Theme.of(context).primaryColor,
-        activeColor: AppColors.colorPrimaryOrange,
-        splashColor: Colors.grey[350],
-        splashRadius: 45,
-        //notchSmoothness: NotchSmoothness.softEdge,
-        leftCornerRadius: 10,
-        icons: bottomNavIcons,
-        activeIndex: _currentSelectedScreenIndex,
-        onTap: _navBarOnTap,
-      ),*/
-      //indexstacked is so that all the screens are preloaded when the app first starts and that
-      //the states and scroll positions are saved when you leave to a different screen and come back
-      //body: //_pageOptions[_currentSelectedScreenIndex],
     );
   }
 
@@ -155,6 +105,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
       //Safearea is here so that the buttons are above the systemnavbar
       //but so that the bg color of the bottomnavbar is shown styll
       //now when the theme changes, the systembar will show as the same color
+      //On IOS
       child: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -177,12 +128,6 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
                         setState(() {
                           _currentSelectedScreenIndex = index;
                           print(_currentSelectedScreenIndex);
-                          //widget.onTap(index);
-                          /*scaffoldKey.currentState
-                                .showBottomSheet((context) => Container(
-                                      height: 100,
-                                      color: Colors.red,
-                                    ));*/
                         });
                       },
                       icon: _currentSelectedScreenIndex == index

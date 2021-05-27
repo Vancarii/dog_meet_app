@@ -27,13 +27,11 @@ class MarketProductDetailsPage extends StatefulWidget {
   });
 
   @override
-  _MarketProductDetailsPageState createState() => _MarketProductDetailsPageState();
+  _MarketProductDetailsPageState createState() =>
+      _MarketProductDetailsPageState();
 }
 
 class _MarketProductDetailsPageState extends State<MarketProductDetailsPage> {
-/*  AnimationController lottieController;
-  bool onTapSave = false;*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

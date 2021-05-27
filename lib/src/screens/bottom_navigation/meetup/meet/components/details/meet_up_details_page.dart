@@ -35,8 +35,6 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
 
   @override
   void initState() {
-    super.initState();
-
     _sliverScrollController.addListener(() {
       if (!isPinned &&
           _sliverScrollController.hasClients &&
@@ -54,6 +52,13 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
         });
       }
     });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _sliverScrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -61,37 +66,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: joinCancelFab(),
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: false,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back),
-        ),
-        title: InkWell(
-          onTap: () {
-            Navigator.push(
-                context,
-                RouteTransitions()
-                    .slideRightToLeftTransitionType(OtherProfilePage()));
-          },
-          child: CustomText(
-            text: widget.accountName,
-            size: 18,
-            bold: true,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.more_vert,
-            ),
-          ),
-        ],
-      ),
+      appBar: meetDetailsAppBar(),
       body: GestureDetector(
         onHorizontalDragUpdate: (details) {
           int sens = 5;
@@ -114,106 +89,8 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Row(
-                              children: [
-                                CustomText(
-                                  text: 'Location',
-                                  size: 20,
-                                  bold: true,
-                                  padding: const EdgeInsets.only(bottom: 5),
-                                ),
-                                Spacer(),
-                                CustomText(
-                                  text: 'View in Maps',
-                                  size: 15,
-                                  color: Colors.blue,
-                                  bold: true,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: 150,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                            ),
-                          ),
-                        ],
-                      )),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MeetUpListTiles(
-                        leadingIcon: FontAwesomeIcons.globeAmericas,
-                        iconColor: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.6),
-                        title: 'All Breeds',
-                        description: 'All breeds are welcome!',
-                      ),
-                      MeetUpListTiles(
-                        leadingIcon: FontAwesomeIcons.venus,
-                        iconColor: Colors.pink,
-                        title: 'Female',
-                        description: 'A female only dog Meet Up, sorry boys!',
-                      ),
-                      MeetUpListTiles(
-                        leadingIcon: FontAwesomeIcons.bone,
-                        iconColor: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.6),
-                        title: 'Intact',
-                        description:
-                            'Either Fixed or Intact dogs can come play!',
-                      ),
-                      MeetUpListTiles(
-                        leadingIcon: FontAwesomeIcons.paw,
-                        iconColor: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.6),
-                        title: 'Medium Size',
-                        description: '30 - 60 pounds / 15 - 30 kg only please!',
-                      ),
-                      MeetUpListTiles(
-                        leadingIcon: FontAwesomeIcons.users,
-                        iconColor: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.6),
-                        title: '(3) doggos going',
-                        description:
-                            'The Group Organizer limits 10 dogs to this meet',
-                      ),
-                      MeetUpListTiles(
-                        leadingIcon: FontAwesomeIcons.bolt,
-                        iconColor: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.6),
-                        title: 'Hyper Puppers',
-                        description: 'This meet is for super hyper zoomies!',
-                      ),
-                      MeetUpListTiles(
-                        leadingIcon: Icons.date_range,
-                        iconColor: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.6),
-                        title: '5 - 10 Months',
-                        description: 'Puppies only!',
-                      ),
-                    ],
-                  ),
+                  meetDetailsLocation(),
+                  meetDetailsInfo(),
                   Divider(
                     thickness: 1,
                     indent: 20,
@@ -233,47 +110,178 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
                       bold: true,
                     ),
                   ),
-                  GridView.count(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    crossAxisCount: 3,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            TransparentRoute(
-                              builder: (context) => FullscreenImage(
-                                image: Image.asset(
-                                  'assets/images/pictures/rosy.png',
-                                  fit: BoxFit.contain,
-                                ),
-                                heroTag: 'meet_image',
-                              ),
-                            ),
-                          );
-                        },
-                        child: Card(
-                          clipBehavior: Clip.antiAlias,
-                          child: Hero(
-                            tag: 'meet_image',
-                            child: Image.asset(
-                              'assets/images/pictures/rosy.png',
-                              width: 300,
-                              height: 300,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  meetDetailsPhotoGrid(),
                 ],
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  AppBar meetDetailsAppBar() {
+    return AppBar(
+      elevation: 0,
+      centerTitle: false,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(Icons.arrow_back),
+      ),
+      title: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              RouteTransitions()
+                  .slideRightToLeftTransitionType(OtherProfilePage()));
+        },
+        child: CustomText(
+          text: widget.accountName,
+          size: 18,
+          bold: true,
+        ),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.more_vert,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Padding meetDetailsLocation() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 10.0,
+        right: 10.0,
+        top: 10.0,
+        bottom: 20.0,
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Row(
+              children: [
+                CustomText(
+                  text: 'Location',
+                  size: 20,
+                  bold: true,
+                  padding: const EdgeInsets.only(bottom: 5),
+                ),
+                Spacer(),
+                CustomText(
+                  text: 'View in Maps',
+                  size: 15,
+                  color: Colors.blue,
+                  bold: true,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 150,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Column meetDetailsInfo() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MeetUpListTiles(
+          leadingIcon: FontAwesomeIcons.globeAmericas,
+          iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
+          title: 'All Breeds',
+          description: 'All breeds are welcome!',
+        ),
+        MeetUpListTiles(
+          leadingIcon: FontAwesomeIcons.venus,
+          iconColor: Colors.pink,
+          title: 'Female',
+          description: 'A female only dog Meet Up, sorry boys!',
+        ),
+        MeetUpListTiles(
+          leadingIcon: FontAwesomeIcons.bone,
+          iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
+          title: 'Intact',
+          description: 'Either Fixed or Intact dogs can come play!',
+        ),
+        MeetUpListTiles(
+          leadingIcon: FontAwesomeIcons.paw,
+          iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
+          title: 'Medium Size',
+          description: '30 - 60 pounds / 15 - 30 kg only please!',
+        ),
+        MeetUpListTiles(
+          leadingIcon: FontAwesomeIcons.users,
+          iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
+          title: '(3) doggos going',
+          description: 'The Group Organizer limits 10 dogs to this meet',
+        ),
+        MeetUpListTiles(
+          leadingIcon: FontAwesomeIcons.bolt,
+          iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
+          title: 'Hyper Puppers',
+          description: 'This meet is for super hyper zoomies!',
+        ),
+        MeetUpListTiles(
+          leadingIcon: Icons.date_range,
+          iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
+          title: '5 - 10 Months',
+          description: 'Puppies only!',
+        ),
+      ],
+    );
+  }
+
+  GridView meetDetailsPhotoGrid() {
+    return GridView.count(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      children: [
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              TransparentRoute(
+                builder: (context) => FullscreenImage(
+                  image: Image.asset(
+                    'assets/images/pictures/rosy.png',
+                    fit: BoxFit.contain,
+                  ),
+                  heroTag: 'meet_image',
+                ),
+              ),
+            );
+          },
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: Hero(
+              tag: 'meet_image',
+              child: Image.asset(
+                'assets/images/pictures/rosy.png',
+                width: 300,
+                height: 300,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

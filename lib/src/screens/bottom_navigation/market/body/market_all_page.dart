@@ -43,8 +43,10 @@ class MarketAllPage extends StatelessWidget {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
-                      Navigator.push(context,
-                          RouteTransitions().slideRightToLeftTransitionType(AllStoresPage()));
+                      Navigator.push(
+                          context,
+                          RouteTransitions()
+                              .slideRightToLeftTransitionType(AllStoresPage()));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -65,7 +67,7 @@ class MarketAllPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

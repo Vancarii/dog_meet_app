@@ -1,11 +1,9 @@
-import 'package:animations/animations.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/details/meet_up_details_page.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/details/meet_up_details_sheet.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/share_sheet/share_sheet.dart';
 import 'package:flutter/cupertino.dart';
