@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/global_components/enums/enums.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/meet_up_post.dart';
@@ -6,12 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 class MeetUpNearbyFeed extends StatelessWidget {
-  MeetUpNearbyFeed({
-    @required this.slidingSheetController,
-  });
-
-  final SheetController slidingSheetController;
-
   final _meetUpNearbyRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
@@ -24,9 +19,6 @@ class MeetUpNearbyFeed extends StatelessWidget {
       },
       key: _meetUpNearbyRefreshKey,
       child: ListView(
-        padding: const EdgeInsets.only(
-          bottom: 110,
-        ),
         children: <Widget>[
           InkWell(
             onTap: () {},
@@ -66,12 +58,14 @@ class MeetUpNearbyFeed extends StatelessWidget {
                 builder: (context) => IconButton(
                   icon: Icon(Icons.sort),
                   onPressed: () => Scaffold.of(context).openEndDrawer(),
-                  tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
                 ),
               ),
             ),
           ),
           MeetUpPost(
+            meetUpType: meetType.playdate,
             postImage: 'assets/images/pictures/rosymazeprofile.jpg',
             accountName: 'RosyandMaze',
             location: 'Glen Off-Leash Dog Park',
@@ -79,12 +73,9 @@ class MeetUpNearbyFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
           MeetUpPost(
+            meetUpType: meetType.socialization,
             postImage: 'assets/images/pictures/rosy.png',
             accountName: 'RosyandMaze',
             location: 'location',
@@ -92,12 +83,9 @@ class MeetUpNearbyFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
           MeetUpPost(
+            meetUpType: meetType.playdate,
             postImage: 'assets/images/pictures/rosy.png',
             accountName: 'RosyandMaze',
             location: 'location',
@@ -105,12 +93,9 @@ class MeetUpNearbyFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
           MeetUpPost(
+            meetUpType: meetType.playdate,
             postImage: 'assets/images/pictures/rosy.png',
             accountName: 'RosyandMaze',
             location: 'location',
@@ -118,10 +103,6 @@ class MeetUpNearbyFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
         ],
       ),

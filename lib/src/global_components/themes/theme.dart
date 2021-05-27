@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppThemes {
   static final darkTheme = ThemeData(
+    splashColor: AppColors.colorPrimaryOrange,
     scaffoldBackgroundColor: AppColors.colorOffBlack,
     primaryColor: AppColors.colorOffBlack,
     accentColor: AppColors.colorPrimaryOrange,

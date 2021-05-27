@@ -1,14 +1,26 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/widgets/custom_expandable.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/components/fullscreen_image.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/info_tiles.dart';
+import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'components/meet_up_list_tiles.dart';
 
 class MeetUpDetailsPage extends StatefulWidget {
+  final String accountName;
+  final String image;
+
+  const MeetUpDetailsPage(
+      {Key key, this.accountName = 'Account Name', this.image})
+      : super(key: key);
+
   @override
   _MeetUpDetailsPageState createState() => _MeetUpDetailsPageState();
 }
@@ -18,195 +30,400 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
 
   bool commentsIsOpen = false;
 
+  final ScrollController _sliverScrollController = ScrollController();
+  var isPinned = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _sliverScrollController.addListener(() {
+      if (!isPinned &&
+          _sliverScrollController.hasClients &&
+          _sliverScrollController.offset > 160) {
+        setState(() {
+          print(' Scrolled');
+          isPinned = true;
+        });
+      } else if (isPinned &&
+          _sliverScrollController.hasClients &&
+          _sliverScrollController.offset < 160) {
+        setState(() {
+          print('Not Scrolled');
+          isPinned = false;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight + 10.0),
-      //margin: const EdgeInsets.only(bottom: 100.0),
-      //height: MediaQuery.of(context).size.height,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-        color: Theme.of(context).primaryColor,
-      ),
-      child: Column(
-        /*shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),*/
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 25.0,
-              horizontal: 30.0,
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: joinCancelFab(),
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: false,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        title: InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                RouteTransitions()
+                    .slideRightToLeftTransitionType(OtherProfilePage()));
+          },
+          child: CustomText(
+            text: widget.accountName,
+            size: 18,
+            bold: true,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.more_vert,
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  color: AppColors.colorGrey,
-                  height: 50.0,
-                  width: 2.0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: Column(
+          ),
+        ],
+      ),
+      body: GestureDetector(
+        onHorizontalDragUpdate: (details) {
+          int sens = 5;
+          if (details.delta.dx > sens) {
+            //left to right
+            Navigator.pop(context);
+          } else if (details.delta.dx < -sens) {
+            //right to left
+          }
+        },
+        child: NestedScrollView(
+          controller: _sliverScrollController,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return [
+              meetDetailSliverAppBar(),
+            ];
+          },
+          body: ListView(
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Row(
+                              children: [
+                                CustomText(
+                                  text: 'Location',
+                                  size: 20,
+                                  bold: true,
+                                  padding: const EdgeInsets.only(bottom: 5),
+                                ),
+                                Spacer(),
+                                CustomText(
+                                  text: 'View in Maps',
+                                  size: 15,
+                                  color: Colors.blue,
+                                  bold: true,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 150,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                            ),
+                          ),
+                        ],
+                      )),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(
-                        text: '3:30 pm',
-                        size: 20,
-                        bold: true,
+                      MeetUpListTiles(
+                        leadingIcon: FontAwesomeIcons.globeAmericas,
+                        iconColor: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.6),
+                        title: 'All Breeds',
+                        description: 'All breeds are welcome!',
                       ),
-                      CustomText(
-                        text: 'Tomorrow, Tuesday April 20th, 2021',
-                        color: AppColors.colorGrey,
-                        size: 15,
+                      MeetUpListTiles(
+                        leadingIcon: FontAwesomeIcons.venus,
+                        iconColor: Colors.pink,
+                        title: 'Female',
+                        description: 'A female only dog Meet Up, sorry boys!',
+                      ),
+                      MeetUpListTiles(
+                        leadingIcon: FontAwesomeIcons.bone,
+                        iconColor: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.6),
+                        title: 'Intact',
+                        description:
+                            'Either Fixed or Intact dogs can come play!',
+                      ),
+                      MeetUpListTiles(
+                        leadingIcon: FontAwesomeIcons.paw,
+                        iconColor: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.6),
+                        title: 'Medium Size',
+                        description: '30 - 60 pounds / 15 - 30 kg only please!',
+                      ),
+                      MeetUpListTiles(
+                        leadingIcon: FontAwesomeIcons.users,
+                        iconColor: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.6),
+                        title: '(3) doggos going',
+                        description:
+                            'The Group Organizer limits 10 dogs to this meet',
+                      ),
+                      MeetUpListTiles(
+                        leadingIcon: FontAwesomeIcons.bolt,
+                        iconColor: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.6),
+                        title: 'Hyper Puppers',
+                        description: 'This meet is for super hyper zoomies!',
+                      ),
+                      MeetUpListTiles(
+                        leadingIcon: Icons.date_range,
+                        iconColor: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.6),
+                        title: '5 - 10 Months',
+                        description: 'Puppies only!',
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Row(
-                      children: [
-                        CustomText(
-                          text: 'Location',
-                          size: 20,
-                          bold: true,
-                          padding: const EdgeInsets.only(bottom: 5),
-                        ),
-                        Spacer(),
-                        CustomText(
-                          text: 'View in Maps',
-                          size: 15,
-                          color: Colors.blue,
-                          bold: true,
-                        ),
-                      ],
-                    ),
+                  Divider(
+                    thickness: 1,
+                    indent: 20,
+                    endIndent: 20,
+                  ),
+                  CustomExpandable(
+                    headerText: 'Comments (1)',
+                    borderColor: AppColors.colorBlack,
+                    body: MeetUpCommentSection(),
                   ),
                   Container(
-                    height: 150,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    padding: const EdgeInsets.all(10.0),
+                    child: CustomText(
+                      text: 'Photos',
+                      size: 18,
+                      bold: true,
                     ),
+                  ),
+                  GridView.count(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    crossAxisCount: 3,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            TransparentRoute(
+                              builder: (context) => FullscreenImage(
+                                image: Image.asset(
+                                  'assets/images/pictures/rosy.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                heroTag: 'meet_image',
+                              ),
+                            ),
+                          );
+                        },
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          child: Hero(
+                            tag: 'meet_image',
+                            child: Image.asset(
+                              'assets/images/pictures/rosy.png',
+                              width: 300,
+                              height: 300,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              )),
-          SizedBox(
-            height: 10.0,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MeetUpListTiles(
-                leadingIcon: FontAwesomeIcons.globeAmericas,
-                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
-                title: 'All Breeds',
-                description: 'All breeds are welcome!',
-              ),
-              MeetUpListTiles(
-                leadingIcon: FontAwesomeIcons.venus,
-                iconColor: Colors.pink,
-                title: 'Female',
-                description: 'A female only dog Meet Up, sorry boys!',
-              ),
-              MeetUpListTiles(
-                leadingIcon: FontAwesomeIcons.bone,
-                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
-                title: 'Intact',
-                description: 'Either Fixed or Intact dogs can come play!',
-              ),
-              MeetUpListTiles(
-                leadingIcon: FontAwesomeIcons.paw,
-                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
-                title: 'Medium Size',
-                description: '30 - 60 pounds / 15 - 30 kg only please!',
-              ),
-              MeetUpListTiles(
-                leadingIcon: FontAwesomeIcons.users,
-                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
-                title: '(3) doggos going',
-                description: 'The Group Organizer limits 10 dogs to this meet',
-              ),
-              MeetUpListTiles(
-                leadingIcon: FontAwesomeIcons.bolt,
-                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
-                title: 'Hyper Puppers',
-                description: 'This meet is for super hyper zoomies!',
-              ),
-              MeetUpListTiles(
-                leadingIcon: Icons.date_range,
-                iconColor: Theme.of(context).primaryColorLight.withOpacity(0.6),
-                title: '5 - 10 Months',
-                description: 'Puppies only!',
               ),
             ],
           ),
-          Divider(
-            thickness: 1,
-            indent: 20,
-            endIndent: 20,
+        ),
+      ),
+    );
+  }
+
+  Widget meetDetailSliverAppBar() {
+    return SliverAppBar(
+      pinned: true,
+      expandedHeight: 250.0,
+      brightness: Brightness.dark,
+      automaticallyImplyLeading: false,
+      centerTitle: false,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomText(
+            text: '3:30 pm',
+            bold: true,
+            size: 20,
+            color: isPinned == true
+                ? Theme.of(context).primaryColorLight
+                : AppColors.colorWhite,
           ),
-          CustomExpandable(
-            headerText: 'Comments (1)',
-            borderColor: AppColors.colorBlack,
-            body: MeetUpCommentSection(),
-          ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(10.0),
-            child: CustomText(
-              text: 'Photos',
-              size: 18,
-              bold: true,
-            ),
-          ),
-          GridView.count(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    TransparentRoute(
-                      builder: (context) => FullscreenImage(
-                        image: Image.asset(
-                          'assets/images/pictures/rosy.png',
-                          fit: BoxFit.contain,
-                        ),
-                        heroTag: 'meet_image',
-                      ),
-                    ),
-                  );
-                },
-                child: Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Hero(
-                    tag: 'meet_image',
-                    child: Image.asset(
-                      'assets/images/pictures/rosy.png',
-                      width: 300,
-                      height: 300,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          CustomText(
+            text: 'Tomorrow, Thursday May 27th, 2021',
+            color: isPinned == true
+                ? Theme.of(context).primaryColorLight
+                : AppColors.colorWhite,
+            size: 12,
           ),
         ],
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 5.0),
+          child: InfoTiles(
+            tileColor: AppColors.colorPrimaryOrange,
+            tileText: 'PLAYDATE',
+          ),
+        ),
+      ],
+      /*bottom: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: InfoTiles(
+          tileText: 'Photos',
+        ),
+      ),*/
+      /*bottom: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: joinCancelFab(),
+          ),
+        ),
+      ),*/
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0)),
+            image: DecorationImage(
+              image: AssetImage(widget.image),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black26,
+                BlendMode.multiply,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget joinCancelFab() {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 150),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return ScaleTransition(child: child, scale: animation);
+      },
+      child: FloatingActionButton.extended(
+        //this herotag is important so that there wont be an error
+        heroTag: null,
+        key: UniqueKey(),
+        onPressed: () {
+          setState(() {
+            isAttending = !isAttending;
+          });
+          Flushbar(
+            backgroundColor: Theme.of(context).primaryColorLight,
+            messageColor: Theme.of(context).primaryColor,
+            titleColor: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+            margin: const EdgeInsets.all(10.0),
+            title:
+                isAttending == true ? 'Cancelled Attendance' : 'You\'re Going!',
+            message: isAttending == true
+                ? 'That\'s Okay! Find someone else to play!'
+                : 'It\'s great to meet more friends!',
+            icon: isAttending == true
+                ? Icon(
+                    Icons.close_rounded,
+                    size: 30,
+                    color: AppColors.colorRed,
+                  )
+                : Icon(
+                    Icons.check_rounded,
+                    size: 30,
+                    color: AppColors.colorBrightGreen,
+                  ),
+            duration: Duration(milliseconds: 2500),
+            animationDuration: Duration(milliseconds: 500),
+          )..show(context);
+        },
+        backgroundColor: isAttending == true
+            ? AppColors.colorRed
+            : AppColors.colorBrightGreen,
+        focusElevation: 0,
+        highlightElevation: 0,
+        splashColor: AppColors.colorPrimaryOrange,
+        label: isAttending == true
+            ? Row(
+                children: [
+                  Icon(
+                    Icons.close_rounded,
+                    size: 30,
+                    color: AppColors.colorWhite,
+                  ),
+                  CustomText(
+                    text: 'Cancel',
+                    color: AppColors.colorWhite,
+                    bold: true,
+                  ),
+                ],
+              )
+            : Row(
+                children: [
+                  Icon(
+                    Icons.check_rounded,
+                    size: 30,
+                    color: AppColors.colorWhite,
+                  ),
+                  CustomText(
+                    text: 'Join',
+                    color: AppColors.colorWhite,
+                    bold: true,
+                  ),
+                ],
+              ),
       ),
     );
   }
@@ -239,7 +456,9 @@ class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorLight.withOpacity(0.2),
+                        color: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.2),
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
                         ),
@@ -250,7 +469,8 @@ class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
                       child: Wrap(
                         children: [
                           CustomText(
-                            text: 'Where is this meet? is it at a field or a dog park?',
+                            text:
+                                'Where is this meet? is it at a field or a dog park?',
                           ),
                         ],
                       ),
@@ -291,9 +511,12 @@ class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
                   child: Wrap(
                     children: [
                       CustomText(
-                        text: 'Your comment is public to everyone who views this meet',
+                        text:
+                            'Your comment is public to everyone who views this meet',
                         size: 12,
-                        color: Theme.of(context).primaryColorLight.withOpacity(0.6),
+                        color: Theme.of(context)
+                            .primaryColorLight
+                            .withOpacity(0.6),
                         padding: const EdgeInsets.only(left: 10.0),
                       ),
                     ],
@@ -306,4 +529,46 @@ class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
       ),
     );
   }
+}
+
+class MeetJoinCancelButtonDelegate extends SliverPersistentHeaderDelegate {
+  double toolBarHeight;
+  //toolBarHeight Included in both
+  double closedHeight;
+  double openHeight;
+
+  MeetJoinCancelButtonDelegate({
+    this.toolBarHeight,
+    this.closedHeight,
+    this.openHeight,
+  });
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      height: toolBarHeight + openHeight,
+      color: Colors.transparent,
+      child: SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 64,
+          ),
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Text("Workouts"),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => toolBarHeight + openHeight;
+
+  @override
+  double get minExtent => toolBarHeight + closedHeight;
+
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
 }

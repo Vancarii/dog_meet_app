@@ -5,13 +5,6 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:dog_meet_app/src/global_components/enums/enums.dart';
 
 class MeetUpHomeFeed extends StatelessWidget {
-  MeetUpHomeFeed({
-    Key key,
-    @required this.slidingSheetController,
-  }) : super(key: key);
-
-  final SheetController slidingSheetController;
-
   final _meetUpHomeRefreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
@@ -25,7 +18,7 @@ class MeetUpHomeFeed extends StatelessWidget {
       key: _meetUpHomeRefreshKey,
       child: ListView(
         physics: const AlwaysScrollableScrollPhysics(),
-        padding: const EdgeInsets.only(bottom: 110),
+        //padding: const EdgeInsets.only(bottom: 110),
         children: <Widget>[
           MeetUpPost(
             meetUpType: meetType.playdate,
@@ -36,10 +29,6 @@ class MeetUpHomeFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
           MeetUpPost(
             meetUpType: meetType.training,
@@ -50,10 +39,6 @@ class MeetUpHomeFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
           MeetUpPost(
             meetUpType: meetType.socialization,
@@ -64,10 +49,6 @@ class MeetUpHomeFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
           MeetUpPost(
             meetUpType: meetType.playdate,
@@ -78,10 +59,6 @@ class MeetUpHomeFeed extends StatelessWidget {
             time: '3:30',
             amPm: 'am',
             date: 'Sunday, April 18th, 2021',
-            onMeetUpPostSelected: () {
-              slidingSheetController.snapToExtent(kMaxSnapPosition,
-                  duration: Duration(milliseconds: 150), clamp: true);
-            },
           ),
         ],
       ),

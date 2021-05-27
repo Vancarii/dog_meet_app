@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/global_components/enums/enums.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
@@ -17,7 +18,8 @@ class AccountProfilePage extends StatefulWidget {
   _AccountProfilePageState createState() => _AccountProfilePageState();
 }
 
-class _AccountProfilePageState extends State<AccountProfilePage> with TickerProviderStateMixin {
+class _AccountProfilePageState extends State<AccountProfilePage>
+    with TickerProviderStateMixin {
   List<Tab> profilePostTabs = <Tab>[
     Tab(
       child: Icon(FontAwesomeIcons.paw),
@@ -42,11 +44,13 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
         centerTitle: false,
         flexibleSpace: Container(
           decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
-            AppColors.colorOrange,
-            AppColors.colorPrimaryYellow,
-          ])),
+              gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [
+                AppColors.colorOrange,
+                AppColors.colorPrimaryYellow,
+              ])),
         ),
         elevation: 0,
         //centerTitle: true,
@@ -108,6 +112,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
               ListView(
                 children: [
                   MeetUpPost(
+                    meetUpType: meetType.playdate,
                     postImage: 'assets/images/pictures/rosymazeprofile.jpg',
                     accountName: 'RosyandMaze',
                     location: 'Glen Off-Leash Dog Park',
@@ -115,9 +120,9 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
                     time: '3:30',
                     amPm: 'am',
                     date: 'Sunday, April 18th, 2021',
-                    onMeetUpPostSelected: () {},
                   ),
                   MeetUpPost(
+                    meetUpType: meetType.socialization,
                     postImage: 'assets/images/pictures/rosymazeprofile.jpg',
                     accountName: 'RosyandMaze',
                     location: 'Glen Off-Leash Dog Park',
@@ -125,7 +130,6 @@ class _AccountProfilePageState extends State<AccountProfilePage> with TickerProv
                     time: '3:30',
                     amPm: 'am',
                     date: 'Sunday, April 18th, 2021',
-                    onMeetUpPostSelected: () {},
                   ),
                 ],
               ),

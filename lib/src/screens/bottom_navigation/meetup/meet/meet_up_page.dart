@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-import 'components/details/meet_up_details_page.dart';
+import 'components/details/meet_up_details_sheet.dart';
 import 'components/details/meet_up_sliding_header.dart';
 import 'components/tabs/home/meet_up_home_feed.dart';
 import 'components/tabs/nearby/meet_up_nearby_feed.dart';
@@ -99,52 +99,14 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
       body: TabBarView(
         controller: meetTabController,
         children: [
-          MeetUpHomeFeed(slidingSheetController: meetSlidingSheetController),
-          MeetUpNearbyFeed(slidingSheetController: meetSlidingSheetController),
+          MeetUpHomeFeed(),
+          MeetUpNearbyFeed(),
         ],
       ),
       //body: SafeArea(bottom: false, child: meetUpSheet()),
     );
     //},
     //);
-  }
-
-  Widget meetUpSheet() {
-    return SlidingSheet(
-      /*listener: (state) {
-              setState(() {
-                if (state.isExpanded) {
-                  sheetIsExpanded = true;
-                } else if (state.isCollapsed) {
-                  sheetIsExpanded = false;
-                }
-              });
-            },*/
-      color: AppColors.colorPrimaryOrange,
-      controller: meetSlidingSheetController,
-      closeOnBackdropTap: true,
-      closeOnBackButtonPressed: true,
-      isBackdropInteractable: true,
-      elevation: 5,
-      cornerRadius: 30,
-      //backdropColor: AppColors.colorBlack.withOpacity(0.5),
-      liftOnScrollHeaderElevation: 5,
-      margin: const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
-      //duration: Duration(milliseconds: 150),
-      snapSpec: const SnapSpec(
-        snap: true,
-        snappings: [0, kMinSnapPosition, kMaxSnapPosition],
-        initialSnap: kMinSnapPosition,
-        positioning: SnapPositioning.pixelOffset,
-      ),
-      headerBuilder: (context, state) {
-        return MeetUpSlidingHeader(
-            slidingSheetController: meetSlidingSheetController);
-      },
-      builder: (context, state) {
-        return MeetUpDetailsPage();
-      },
-    );
   }
 
   Widget meetUpAppBar() {
@@ -211,6 +173,44 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
       indicatorColor: AppColors.colorPrimaryOrange,
       indicatorWeight: 3,
       tabs: meetTabs,
+    );
+  }
+
+  Widget meetUpSheet() {
+    return SlidingSheet(
+      /*listener: (state) {
+              setState(() {
+                if (state.isExpanded) {
+                  sheetIsExpanded = true;
+                } else if (state.isCollapsed) {
+                  sheetIsExpanded = false;
+                }
+              });
+            },*/
+      color: AppColors.colorPrimaryOrange,
+      controller: meetSlidingSheetController,
+      closeOnBackdropTap: true,
+      closeOnBackButtonPressed: true,
+      isBackdropInteractable: true,
+      elevation: 5,
+      cornerRadius: 30,
+      //backdropColor: AppColors.colorBlack.withOpacity(0.5),
+      liftOnScrollHeaderElevation: 5,
+      margin: const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
+      //duration: Duration(milliseconds: 150),
+      snapSpec: const SnapSpec(
+        snap: true,
+        snappings: [0, kMinSnapPosition, kMaxSnapPosition],
+        initialSnap: kMinSnapPosition,
+        positioning: SnapPositioning.pixelOffset,
+      ),
+      headerBuilder: (context, state) {
+        return MeetUpSlidingHeader(
+            slidingSheetController: meetSlidingSheetController);
+      },
+      builder: (context, state) {
+        return MeetUpDetailsSheet();
+      },
     );
   }
 }

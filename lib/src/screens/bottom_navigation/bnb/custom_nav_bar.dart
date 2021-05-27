@@ -1,6 +1,6 @@
 import 'package:dog_meet_app/src/global_components/constants/constants.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/details/meet_up_details_page.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/details/meet_up_details_sheet.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/details/meet_up_sliding_header.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -79,7 +79,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
           );
         },
         builder: (context, state) {
-          return MeetUpDetailsPage();
+          return MeetUpDetailsSheet();
         },
         footerBuilder: (context, state) {
           return Container(

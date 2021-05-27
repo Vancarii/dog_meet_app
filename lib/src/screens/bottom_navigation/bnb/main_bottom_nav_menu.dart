@@ -80,8 +80,6 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
     });
   }
 
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     /*SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -92,7 +90,6 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
     print('isdark: ' + Provider.of<ProviderNotifier>(context).themeMode.toString());
     print('getthemed 2');*/
     return Scaffold(
-      key: scaffoldKey,
       resizeToAvoidBottomInset: false,
       //extendBodyBehindAppBar: true,
       //extendBody: true,
@@ -115,61 +112,8 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
             });
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      /*bottomSheet: BottomSheet(
-        onClosing: () {},
-        builder: (BuildContext context) {
-          return Container(
-            height: 50,
-            color: Colors.red,
-          );
-        },
-      ),*/
-      bottomNavigationBar: SafeArea(
-        child: Container(
-          height: 60,
-          color: Theme.of(context).primaryColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              for (var index = 0; index <= bottomNavIcons.length - 1; index++)
-                Expanded(
-                  child: Material(
-                    child: IconButton(
-                      highlightColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      splashColor: AppColors.colorBlack.withOpacity(0.4),
-                      //customBorder: StadiumBorder(),
-                      onPressed: () {
-                        setState(() {
-                          _currentSelectedScreenIndex = index;
-                          print(_currentSelectedScreenIndex);
-                          //widget.onTap(index);
-                          scaffoldKey.currentState
-                              .showBottomSheet((context) => Container(
-                                    height: 100,
-                                    color: Colors.red,
-                                  ));
-                        });
-                      },
-                      icon: _currentSelectedScreenIndex == index
-                          ? Icon(
-                              bottomNavIcons[index],
-                              color: AppColors.colorPrimaryOrange,
-                              size: 28,
-                            )
-                          : Icon(
-                              bottomNavIcons[index],
-                              color: Theme.of(context).primaryColorLight,
-                              size: 24,
-                            ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-      ),
+
+      bottomNavigationBar: customBottomNavBar(),
       /*bottomNavigationBar: CustomNavBar(
         onTap: (index) {
           setState(() {
@@ -199,6 +143,68 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
       //indexstacked is so that all the screens are preloaded when the app first starts and that
       //the states and scroll positions are saved when you leave to a different screen and come back
       //body: //_pageOptions[_currentSelectedScreenIndex],
+    );
+  }
+
+  Widget customBottomNavBar() {
+    return Container(
+      //dont have height so it shrinks to button height - 56
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+      ),
+      //Safearea is here so that the buttons are above the systemnavbar
+      //but so that the bg color of the bottomnavbar is shown styll
+      //now when the theme changes, the systembar will show as the same color
+      child: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            for (var index = 0; index <= bottomNavIcons.length - 1; index++)
+              Expanded(
+                child: Container(
+                  height: 50,
+                  child: Material(
+                    shape: StadiumBorder(),
+                    child: IconButton(
+                      splashRadius: 40,
+                      padding: EdgeInsets.zero,
+                      highlightColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      splashColor: AppColors.colorBlack.withOpacity(0.4),
+                      //customBorder: StadiumBorder(),
+                      onPressed: () {
+                        setState(() {
+                          _currentSelectedScreenIndex = index;
+                          print(_currentSelectedScreenIndex);
+                          //widget.onTap(index);
+                          /*scaffoldKey.currentState
+                                .showBottomSheet((context) => Container(
+                                      height: 100,
+                                      color: Colors.red,
+                                    ));*/
+                        });
+                      },
+                      icon: _currentSelectedScreenIndex == index
+                          ? Icon(
+                              bottomNavIcons[index],
+                              color: AppColors.colorPrimaryOrange,
+                              size: 28,
+                            )
+                          : Icon(
+                              bottomNavIcons[index],
+                              color: Theme.of(context)
+                                  .primaryColorLight
+                                  .withOpacity(0.4),
+                              size: 24,
+                            ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

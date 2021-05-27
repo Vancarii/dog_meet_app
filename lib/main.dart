@@ -71,7 +71,6 @@ class _DogMeetAppState extends State<DogMeetApp> {
           SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
             statusBarBrightness: Brightness.dark,
             statusBarColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.light,
             systemNavigationBarColor: Colors.transparent,
           ));
           print('isdark: ' +
