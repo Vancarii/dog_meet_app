@@ -14,7 +14,9 @@ class ForumHomePage extends StatelessWidget {
       },
       key: _forumHomeRefreshKey,
       child: ListView(
-        padding: const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0, bottom: 60.0),
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.only(
+            top: 10.0, left: 5.0, right: 5.0, bottom: 60.0),
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

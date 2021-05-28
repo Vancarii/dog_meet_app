@@ -19,6 +19,7 @@ class MeetUpNearbyFeed extends StatelessWidget {
       },
       key: _meetUpNearbyRefreshKey,
       child: ListView(
+        physics: const BouncingScrollPhysics(),
         children: <Widget>[
           InkWell(
             onTap: () {},

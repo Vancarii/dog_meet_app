@@ -108,6 +108,7 @@ class _AccountProfilePageState extends State<AccountProfilePage>
             ];
           },
           body: TabBarView(
+            //physics: const BouncingScrollPhysics(),
             children: [
               ListView(
                 children: [
@@ -133,17 +134,52 @@ class _AccountProfilePageState extends State<AccountProfilePage>
                   ),
                 ],
               ),
-              Wrap(
+              ListView(
                 children: [
-                  MarketProductTile(
-                    productImage: 'assets/images/products/rokocollar.jpg',
-                    productTitle: '1.5" Roko Dog Wear Collar',
-                    price: '39.99',
-                  ),
-                  MarketProductTile(
-                    productImage: 'assets/images/products/landsharkcollar.jpg',
-                    productTitle: '1.5" Land Shark Supply Blue Collar',
-                    price: '59.99',
+                  Wrap(
+                    children: [
+                      MarketProductTile(
+                        productImage: 'assets/images/products/rokocollar.jpg',
+                        productTitle: '1.5" Roko Dog Wear Collar',
+                        price: '39.99',
+                      ),
+                      MarketProductTile(
+                        productImage:
+                            'assets/images/products/landsharkcollar.jpg',
+                        productTitle: '1.5" Land Shark Supply Blue Collar',
+                        price: '59.99',
+                      ),
+                      MarketProductTile(
+                        productImage:
+                            'assets/images/products/landsharkcollar.jpg',
+                        productTitle: '1.5" Land Shark Supply Blue Collar',
+                        price: '59.99',
+                      ),
+                      MarketProductTile(
+                        productImage:
+                            'assets/images/products/landsharkcollar.jpg',
+                        productTitle: '1.5" Land Shark Supply Blue Collar',
+                        price: '59.99',
+                      ),
+                      MarketProductTile(
+                        productImage:
+                            'assets/images/products/landsharkcollar.jpg',
+                        productTitle: '1.5" Land Shark Supply Blue Collar',
+                        price: '59.99',
+                      ),
+                      MarketProductTile(
+                        productImage:
+                            'assets/images/products/landsharkcollar.jpg',
+                        productTitle: '1.5" Land Shark Supply Blue Collar',
+                        price: '59.99',
+                      ),
+                      MarketProductTile(
+                        productImage:
+                            'assets/images/products/landsharkcollar.jpg',
+                        productTitle: '1.5" Land Shark Supply Blue Collar',
+                        price: '59.99',
+                      ),
+                    ],
                   ),
                 ],
               ),

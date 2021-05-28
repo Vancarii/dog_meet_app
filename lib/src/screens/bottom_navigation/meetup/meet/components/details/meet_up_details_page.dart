@@ -5,6 +5,7 @@ import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
 import 'package:dog_meet_app/src/global_components/widgets/custom_expandable.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
+import 'package:dog_meet_app/src/provider/provider_notifier.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/components/fullscreen_image.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/info_tiles.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
@@ -12,45 +13,51 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'components/meet_up_list_tiles.dart';
+import 'package:provider/provider.dart';
 
 class MeetUpDetailsPage extends StatefulWidget {
   final String accountName;
   final String image;
 
-  const MeetUpDetailsPage(
-      {Key key, this.accountName = 'Account Name', this.image})
-      : super(key: key);
+  const MeetUpDetailsPage({
+    Key key,
+    this.accountName = 'Account Name',
+    this.image,
+  }) : super(key: key);
 
   @override
   _MeetUpDetailsPageState createState() => _MeetUpDetailsPageState();
 }
 
-class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
+class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
+    with SingleTickerProviderStateMixin {
   bool isAttending = false;
 
   bool commentsIsOpen = false;
 
   final ScrollController _sliverScrollController = ScrollController();
-  var isPinned = false;
+
+  AnimationController _animationController;
+  Animation _animationTween;
 
   @override
   void initState() {
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 0));
+    _animationTween = ColorTween(
+            begin: AppColors.colorWhite,
+            end: Provider.of<ProviderNotifier>(context, listen: false)
+                        .isDarkMode ==
+                    false
+                ? AppColors.colorOffBlack
+                : AppColors.colorWhite)
+        .animate(_animationController);
+
     _sliverScrollController.addListener(() {
-      if (!isPinned &&
-          _sliverScrollController.hasClients &&
-          _sliverScrollController.offset > 160) {
-        setState(() {
-          print(' Scrolled');
-          isPinned = true;
-        });
-      } else if (isPinned &&
-          _sliverScrollController.hasClients &&
-          _sliverScrollController.offset < 160) {
-        setState(() {
-          print('Not Scrolled');
-          isPinned = false;
-        });
-      }
+      //print('offset: ' + (_sliverScrollController.offset).toString());
+      //print('offset: ' +((_sliverScrollController.offset - 150) / 50).toString());
+      _animationController
+          .animateTo((_sliverScrollController.offset - 150) / 50);
     });
     super.initState();
   }
@@ -64,57 +71,58 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: joinCancelFab(),
+      //extendBodyBehindAppBar: true,
+      /*floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: joinCancelFab(),*/
       appBar: meetDetailsAppBar(),
       body: GestureDetector(
-        onHorizontalDragUpdate: (details) {
-          int sens = 5;
-          if (details.delta.dx > sens) {
-            //left to right
-            Navigator.pop(context);
-          } else if (details.delta.dx < -sens) {
-            //right to left
-          }
-        },
-        child: NestedScrollView(
+        /*onHorizontalDragUpdate: (details) {
+                int sens = 5;
+                if (details.delta.dx > sens) {
+                  //left to right
+                  Navigator.pop(context);
+                } else if (details.delta.dx < -sens) {
+                  //right to left
+                }
+              },*/
+        child: CustomScrollView(
           controller: _sliverScrollController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return [
-              meetDetailSliverAppBar(),
-            ];
-          },
-          body: ListView(
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  meetDetailsLocation(),
-                  meetDetailsInfo(),
-                  Divider(
-                    thickness: 1,
-                    indent: 20,
-                    endIndent: 20,
+          slivers: [
+            meetDetailSliverAppBar(),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      meetDetailsLocation(),
+                      meetDetailsInfo(),
+                      Divider(
+                        thickness: 1,
+                        indent: 20,
+                        endIndent: 20,
+                      ),
+                      CustomExpandable(
+                        headerText: 'Comments (1)',
+                        borderColor: AppColors.colorBlack,
+                        body: MeetUpCommentSection(),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(10.0),
+                        child: CustomText(
+                          text: 'Photos',
+                          size: 18,
+                          bold: true,
+                        ),
+                      ),
+                      meetDetailsPhotoGrid(),
+                    ],
                   ),
-                  CustomExpandable(
-                    headerText: 'Comments (1)',
-                    borderColor: AppColors.colorBlack,
-                    body: MeetUpCommentSection(),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(10.0),
-                    child: CustomText(
-                      text: 'Photos',
-                      size: 18,
-                      bold: true,
-                    ),
-                  ),
-                  meetDetailsPhotoGrid(),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -124,33 +132,139 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
     return AppBar(
       elevation: 0,
       centerTitle: false,
+      titleSpacing: 0,
+      //backgroundColor: Colors.transparent,
       leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(Icons.arrow_back),
+        icon: Icon(
+          Icons.arrow_back,
+        ),
       ),
       title: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: () {
           Navigator.push(
               context,
               RouteTransitions()
                   .slideRightToLeftTransitionType(OtherProfilePage()));
         },
-        child: CustomText(
-          text: widget.accountName,
-          size: 18,
-          bold: true,
+        child: Container(
+          padding: const EdgeInsets.all(10.0),
+          child: CustomText(
+            text: widget.accountName,
+            size: 18,
+            bold: true,
+          ),
         ),
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              showCupertinoDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      //title: Text('Actions'),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text('Report Listing'),
+                          onPressed: () {
+                            //TODO: ADD FUNCTIONALITY TO REPORT LISTING
+                          },
+                        ),
+                        CupertinoDialogAction(
+                          child: Text('Hide similar posts'),
+                          onPressed: () {
+                            //TODO; ADD FUNCTIONALITY TO HIDE LISTING AND SIMILAR
+                          },
+                        )
+                      ],
+                    );
+                  });
+            });
+          },
           icon: Icon(
             Icons.more_vert,
           ),
         ),
       ],
+    );
+  }
+
+  Widget meetDetailSliverAppBar() {
+    return SliverAppBar(
+      pinned: true,
+      expandedHeight: 250.0,
+      //brightness: Brightness.dark,
+      automaticallyImplyLeading: false,
+      centerTitle: false,
+
+      title: AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(
+                      text: '3:30 pm',
+                      bold: true,
+                      size: 20,
+                      color: _animationTween.value,
+                    ),
+                    CustomText(
+                      text: 'Tomorrow, Thursday May 27th, 2021',
+                      color: _animationTween.value,
+                      size: 12,
+                    ),
+                  ],
+                ),
+                Spacer(),
+                InfoTiles(
+                  tileColor: AppColors.colorPrimaryOrange,
+                  tileText: 'PLAYDATE',
+                ),
+              ],
+            );
+          }),
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15.0),
+              topRight: Radius.circular(15.0),
+            ),
+            image: DecorationImage(
+              image: AssetImage(widget.image),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                Colors.black26,
+                BlendMode.multiply,
+              ),
+            ),
+          ),
+        ),
+      ),
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(10.0),
+        child: Container(
+          height: 10.0,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -282,78 +396,6 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget meetDetailSliverAppBar() {
-    return SliverAppBar(
-      pinned: true,
-      expandedHeight: 250.0,
-      brightness: Brightness.dark,
-      automaticallyImplyLeading: false,
-      centerTitle: false,
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomText(
-            text: '3:30 pm',
-            bold: true,
-            size: 20,
-            color: isPinned == true
-                ? Theme.of(context).primaryColorLight
-                : AppColors.colorWhite,
-          ),
-          CustomText(
-            text: 'Tomorrow, Thursday May 27th, 2021',
-            color: isPinned == true
-                ? Theme.of(context).primaryColorLight
-                : AppColors.colorWhite,
-            size: 12,
-          ),
-        ],
-      ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 5.0),
-          child: InfoTiles(
-            tileColor: AppColors.colorPrimaryOrange,
-            tileText: 'PLAYDATE',
-          ),
-        ),
-      ],
-      /*bottom: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: InfoTiles(
-          tileText: 'Photos',
-        ),
-      ),*/
-      /*bottom: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: joinCancelFab(),
-          ),
-        ),
-      ),*/
-      flexibleSpace: FlexibleSpaceBar(
-        background: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(15.0),
-                bottomRight: Radius.circular(15.0)),
-            image: DecorationImage(
-              image: AssetImage(widget.image),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                Colors.black26,
-                BlendMode.multiply,
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 

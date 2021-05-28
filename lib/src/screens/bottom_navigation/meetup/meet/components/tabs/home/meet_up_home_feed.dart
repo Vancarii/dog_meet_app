@@ -17,7 +17,7 @@ class MeetUpHomeFeed extends StatelessWidget {
       },
       key: _meetUpHomeRefreshKey,
       child: ListView(
-        physics: const AlwaysScrollableScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         //padding: const EdgeInsets.only(bottom: 110),
         children: <Widget>[
           MeetUpPost(

@@ -32,7 +32,8 @@ class _MessagesPageState extends State<MessagesPage> {
       child: SlidingSheet(
         listener: (state) {
           if (state.isHidden) {
-            Provider.of<ProviderNotifier>(context, listen: false).newMessageButtonPressed(false);
+            Provider.of<ProviderNotifier>(context, listen: false)
+                .newMessageButtonPressed(false);
           }
         },
         controller: messagesSlidingSheetController,
@@ -66,6 +67,7 @@ class _MessagesPageState extends State<MessagesPage> {
           ),
           body: SafeArea(
             child: ListView(
+              physics: const BouncingScrollPhysics(),
               children: [
                 Chats(),
                 Chats(),
@@ -87,7 +89,8 @@ class _MessagesPageState extends State<MessagesPage> {
                     width: 30,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight.withOpacity(0.2),
+                      color:
+                          Theme.of(context).primaryColorLight.withOpacity(0.2),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                   ),

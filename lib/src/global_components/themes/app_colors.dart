@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Gradient orangeYellowGradient =
-      const LinearGradient(begin: Alignment.topLeft, end: Alignment.topRight, colors: [
-    AppColors.colorOrange,
-    AppColors.colorPrimaryYellow,
-  ]);
+  static const Gradient orangeYellowGradient = const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.topRight,
+      colors: [
+        AppColors.colorOrange,
+        AppColors.colorPrimaryYellow,
+      ]);
+
+  static const Gradient darkFadeGradient = const LinearGradient(
+      begin: Alignment.center,
+      end: Alignment.bottomCenter,
+      colors: [
+        Colors.black45,
+        Colors.black,
+      ]);
+
+  static const Gradient lightFadeGradient = const LinearGradient(
+      begin: Alignment.center,
+      end: Alignment.bottomCenter,
+      colors: [
+        Colors.white54,
+        Colors.white,
+      ]);
 
   static const Color colorOrange = const Color(0xfffc816a);
 

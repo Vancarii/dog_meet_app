@@ -38,15 +38,18 @@ class _NotificationsPageState extends State<NotificationsPage> {
           child: Container(
             height: 2.0,
             decoration: BoxDecoration(
-                gradient:
-                    LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
-              AppColors.colorOrange,
-              AppColors.colorPrimaryYellow,
-            ])),
+                gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                  AppColors.colorOrange,
+                  AppColors.colorPrimaryYellow,
+                ])),
           ),
         ),
       ),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
         children: [
           CustomText(
@@ -68,7 +71,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Container(
                 padding: EdgeInsets.all(6),
-                decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black12, width: 1)),
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Wrap(
@@ -98,7 +102,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
             child: Container(
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.black12, width: 0.5))),
+                  border: Border(
+                      bottom: BorderSide(color: Colors.black12, width: 0.5))),
               child: Row(
                 children: [
                   CircleAvatar(),
@@ -152,7 +157,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
                         padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                         decoration: BoxDecoration(
                             border: Border.all(
-                                color: Theme.of(context).primaryColorLight.withOpacity(0.8)),
+                                color: Theme.of(context)
+                                    .primaryColorLight
+                                    .withOpacity(0.8)),
                             borderRadius: BorderRadius.all(
                               Radius.circular(5),
                             )),
@@ -190,7 +197,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
               padding: const EdgeInsets.only(bottom: 2.0),
               child: Container(
                 decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.black12, width: 0.5))),
+                    border: Border(
+                        bottom: BorderSide(color: Colors.black12, width: 0.5))),
                 padding: EdgeInsets.all(6),
                 //decoration: BoxDecoration(border: Border.all(color: Colors.black12, width: 1)),
                 child: Row(
@@ -230,7 +238,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                     CustomText(
                       text: '2 hours ago',
                       size: 10,
-                      color: Theme.of(context).primaryColorLight.withOpacity(0.8),
+                      color:
+                          Theme.of(context).primaryColorLight.withOpacity(0.8),
                       bold: true,
                       alignment: TextAlign.center,
                     ),
@@ -242,7 +251,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Theme.of(context).primaryColorLight.withOpacity(0.8)),
+                                  color: Theme.of(context)
+                                      .primaryColorLight
+                                      .withOpacity(0.8)),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5),
                               )),

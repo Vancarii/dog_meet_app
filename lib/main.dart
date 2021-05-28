@@ -22,7 +22,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 //TODO: find all controllers and add dispose method
 
@@ -39,29 +38,6 @@ class DogMeetApp extends StatefulWidget {
 }
 
 class _DogMeetAppState extends State<DogMeetApp> {
-  //ProviderNotifier myNotifier;
-
-/*  @override
-  void initState() {
-    myNotifier = ProviderNotifier();
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: myNotifier.themeMode == ThemeMode.dark
-            ? AppColors.colorOffBlack
-            : AppColors.colorWhite));
-    print('isdark: ' + Provider.of<ProviderNotifier>(context).themeMode.toString());
-    print('getthemed 2');
-
-    super.initState();
-  }*/
-
-  @override
-  void initState() {
-    //ProviderNotifier();
-    print('step main init');
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -71,12 +47,15 @@ class _DogMeetAppState extends State<DogMeetApp> {
           SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
             statusBarBrightness: Brightness.dark,
             statusBarColor: Colors.transparent,
-            systemNavigationBarColor: Colors.transparent,
+            systemNavigationBarColor: AppColors.colorOffBlack,
           ));
-          print('isdark: ' +
-              Provider.of<ProviderNotifier>(context).isDarkMode.toString());
-          print('step main build');
           return MaterialApp(
+            builder: (context, child) {
+              return ScrollConfiguration(
+                behavior: CustomScrollBehavior(),
+                child: child,
+              );
+            },
             color: Theme.of(context).primaryColor,
             debugShowCheckedModeBanner: false,
             themeMode: themeProvider.themeMode,
@@ -105,5 +84,13 @@ class _DogMeetAppState extends State<DogMeetApp> {
             },
           );
         });
+  }
+}
+
+class CustomScrollBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
   }
 }

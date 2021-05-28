@@ -20,6 +20,7 @@ class MarketAllPage extends StatelessWidget {
       },
       key: _marketAllRefreshKey,
       child: ListView(
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.only(top: 20.0, bottom: 60),
         children: [
           Padding(

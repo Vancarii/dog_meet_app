@@ -115,6 +115,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
                 child: Container(
                   height: 50,
                   child: Material(
+                    color: Theme.of(context).primaryColor,
                     shape: StadiumBorder(),
                     child: IconButton(
                       splashRadius: 40,

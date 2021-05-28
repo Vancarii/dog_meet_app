@@ -8,9 +8,10 @@ class AppThemes {
     primaryColor: AppColors.colorOffBlack,
     accentColor: AppColors.colorPrimaryOrange,
     backgroundColor: AppColors.colorOffBlack,
-    colorScheme: ColorScheme.dark(),
+    //colorScheme: ColorScheme.dark(),
     primaryColorLight: AppColors.colorWhite,
     primaryColorDark: AppColors.colorOffBlack,
+
     //visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 
@@ -19,8 +20,8 @@ class AppThemes {
     primaryColor: AppColors.colorWhite,
     accentColor: AppColors.colorPrimaryOrange,
     backgroundColor: AppColors.colorWhite,
-    colorScheme: ColorScheme.light(),
-    toggleableActiveColor: AppColors.colorOffBlack,
+    //colorScheme: ColorScheme.light(),
+    //toggleableActiveColor: AppColors.colorOffBlack,
     primaryColorLight: AppColors.colorOffBlack,
     primaryColorDark: AppColors.colorWhite,
     //visualDensity: VisualDensity.adaptivePlatformDensity,

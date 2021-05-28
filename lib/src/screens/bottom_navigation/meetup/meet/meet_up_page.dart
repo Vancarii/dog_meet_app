@@ -7,6 +7,7 @@ import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'components/details/meet_up_details_page.dart';
 import 'components/tabs/home/meet_up_home_feed.dart';
 import 'components/tabs/nearby/meet_up_nearby_feed.dart';
 import 'components/tabs/nearby/nearby_drawer_content.dart';
