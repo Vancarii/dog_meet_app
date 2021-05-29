@@ -47,7 +47,6 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
     return Scaffold(
       endDrawer: NearbyDrawerContent(),
       //THIS APPBAR IS CRUCIAL FOR THE STATUS BAR COLOR
-      //ALTHOUGH THE APPBAR IS NOT THERE, ITS FOR THE STATUS BAR
       appBar: meetUpAppBar(),
       body: TabBarView(
         controller: meetTabController,
@@ -61,7 +60,6 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
 
   Widget meetUpAppBar() {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle.light,
       automaticallyImplyLeading: false,
       elevation: 0,
       centerTitle: true,

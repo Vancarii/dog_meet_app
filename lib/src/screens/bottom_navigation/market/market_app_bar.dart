@@ -119,10 +119,7 @@ class _MarketAppBarState extends State<MarketAppBar>
     return PreferredSize(
       preferredSize: Size.fromHeight(35),
       child: Theme(
-        data: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-        ),
+        data: ThemeData(),
         child: TabBar(
           unselectedLabelColor: Colors.black38,
           labelColor: Theme.of(context).primaryColorLight,

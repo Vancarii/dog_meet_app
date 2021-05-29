@@ -72,17 +72,13 @@ class _AddImagesGridViewState extends State<AddImagesGridView> {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.push(
+                  showFullscreenImage(
                     context,
-                    TransparentRoute(
-                      builder: (context) => FullscreenImage(
-                        image: Image.file(
-                          uploadModel.imageFile,
-                          fit: BoxFit.contain,
-                        ),
-                        heroTag: kNewListingPostHeroTag + index.toString(),
-                      ),
+                    Image.file(
+                      uploadModel.imageFile,
+                      fit: BoxFit.contain,
                     ),
+                    kNewListingPostHeroTag + index.toString(),
                   );
                 },
                 child: Card(

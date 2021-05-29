@@ -48,7 +48,6 @@ class _ColorPickerState extends State<ColorPicker> {
               ),
               child: FittedBox(
                 child: IconButton(
-                  splashColor: Colors.transparent,
                   onPressed: () {
                     setState(() {
                       if (selectedColor != index) {

@@ -6,6 +6,7 @@ import 'package:dog_meet_app/src/global_components/route_transitions/transparent
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/components/forums_page_filter_chip.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/components/market_product_tile.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/body/store/review_page.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/components/fullscreen_image.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/share_sheet/share_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,73 +46,7 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            setState(() {
-              Navigator.pop(context);
-            });
-          },
-        ),
-        elevation: 0,
-        centerTitle: true,
-        title: CustomText(
-          text: widget.storeName,
-          size: 18,
-          bold: true,
-        ),
-        /*Text(
-          widget.storeName,
-          style: AppTextStyles.h20BlackBold,
-          textAlign: TextAlign.center,
-        ),*/
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.more_vert,
-            ),
-            onPressed: () {
-              setState(() {
-                showCupertinoDialog(
-                    context: context,
-                    barrierDismissible: true,
-                    builder: (BuildContext context) {
-                      return CupertinoAlertDialog(
-                        title: Text('Actions'),
-                        actions: [
-                          CupertinoDialogAction(
-                            child: Text('Share Store Profile'),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                TransparentRoute(
-                                  duration: 0,
-                                  builder: (context) => ShareSheet(),
-                                ),
-                              );
-                            },
-                          ),
-                          CupertinoDialogAction(
-                            child: Text('Report Store'),
-                            onPressed: () {
-                              //TODO: ADD FUNCTIONALITY TO REPORT LISTING
-                            },
-                          ),
-                          /*CupertinoDialogAction(
-                            child: Text('Hide similar posts'),
-                            onPressed: () {
-
-                            },
-                          )*/
-                        ],
-                      );
-                    });
-              });
-            },
-          ),
-        ],
-      ),
+      appBar: marketStoreAppBar(),
       body: SafeArea(
         maintainBottomViewPadding: true,
         child: ListView(
@@ -128,6 +63,28 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                       width: double.infinity,
                       height: 150,
                       child: InkWell(
+                        onTap: () {
+                          showFullscreenImage(
+                            context,
+                            Image(
+                              image: AssetImage(widget.storeImage),
+                              fit: BoxFit.contain,
+                            ),
+                            kStoreProfileCoverHeroTag,
+                          );
+                          /*Navigator.push(
+                            context,
+                            TransparentRoute(
+                              builder: (context) => FullscreenImage(
+                                image: Image(
+                                  image: AssetImage(widget.storeImage),
+                                  fit: BoxFit.contain,
+                                ),
+                                heroTag: kStoreProfileCoverHeroTag,
+                              ),
+                            ),
+                          );*/
+                        },
                         child: Hero(
                           tag: kStoreProfileCoverHeroTag,
                           child: Image(
@@ -170,17 +127,22 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                           onTap: () {
                             setState(() {
                               pageIsLiked = !pageIsLiked;
-                              pageIsLiked == true ? pageLikes += 1 : pageLikes -= 1;
+                              pageIsLiked == true
+                                  ? pageLikes += 1
+                                  : pageLikes -= 1;
                             });
                           },
-                          fillColor: pageIsLiked == false ? AppColors.colorPrimaryOrange : null,
+                          fillColor: pageIsLiked == false
+                              ? AppColors.colorPrimaryOrange
+                              : null,
                           text: CustomText(
                             text: pageIsLiked == false ? 'Like' : 'Liked',
                             color: pageIsLiked == false
                                 ? AppColors.colorWhite
                                 : AppColors.colorPrimaryOrange,
                             bold: true,
-                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
                           ),
                         ),
                         StoreIconButton(
@@ -264,8 +226,10 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                   ),
                 ),
                 CustomText(
-                  text: 'This is the bio, store owners can put whatever they want here',
-                  padding: const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
+                  text:
+                      'This is the bio, store owners can put whatever they want here',
+                  padding:
+                      const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                 ),
                 Container(
                   margin: const EdgeInsets.all(10.0),
@@ -273,11 +237,11 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
                         onTap: () {
-                          Navigator.push(context,
-                              RouteTransitions().slideRightToLeftTransitionType(ReviewsPage()));
+                          Navigator.push(
+                              context,
+                              RouteTransitions().slideRightToLeftTransitionType(
+                                  ReviewsPage()));
                         },
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -370,6 +334,70 @@ class _MarketStoreDetailsPageState extends State<MarketStoreDetailsPage> {
       ),
     );
   }
+
+  AppBar marketStoreAppBar() {
+    return AppBar(
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          setState(() {
+            Navigator.pop(context);
+          });
+        },
+      ),
+      elevation: 0,
+      centerTitle: true,
+      title: CustomText(
+        text: widget.storeName,
+        size: 18,
+        bold: true,
+      ),
+      /*Text(
+          widget.storeName,
+          style: AppTextStyles.h20BlackBold,
+          textAlign: TextAlign.center,
+        ),*/
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.more_vert,
+          ),
+          onPressed: () {
+            setState(() {
+              showCupertinoDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      title: Text('Actions'),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text('Share Store Profile'),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              TransparentRoute(
+                                duration: 0,
+                                builder: (context) => ShareSheet(),
+                              ),
+                            );
+                          },
+                        ),
+                        CupertinoDialogAction(
+                          child: Text('Report Store'),
+                          onPressed: () {
+                            //TODO: ADD FUNCTIONALITY TO REPORT LISTING
+                          },
+                        ),
+                      ],
+                    );
+                  });
+            });
+          },
+        ),
+      ],
+    );
+  }
 }
 
 class StoreIconButton extends StatelessWidget {
@@ -406,7 +434,9 @@ class StoreIconButton extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 shape: text != null ? BoxShape.rectangle : BoxShape.circle,
-                borderRadius: text != null ? BorderRadius.all(Radius.circular(30.0)) : null,
+                borderRadius: text != null
+                    ? BorderRadius.all(Radius.circular(30.0))
+                    : null,
                 border: Border.all(color: borderColor, width: borderThickness),
                 color: fillColor,
               ),

@@ -59,8 +59,6 @@ class _ShareSheetState extends State<ShareSheet> {
         body: Scaffold(
           backgroundColor: Colors.transparent,
           body: InkWell(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
             onTap: () {
               Navigator.pop(context);
               //shareSheetController.snapToExtent(0.7);

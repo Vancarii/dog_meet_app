@@ -25,11 +25,11 @@ class _ChatsScreenState extends State<ChatsScreen> {
           },
         ),
         title: InkWell(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.transparent,
           onTap: () {
             Navigator.push(
-                context, RouteTransitions().slideRightToLeftTransitionType(OtherProfilePage()));
+                context,
+                RouteTransitions()
+                    .slideRightToLeftTransitionType(OtherProfilePage()));
           },
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -54,7 +54,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context, RouteTransitions().slideRightToLeftTransitionType(ChatInfoScreen()));
+                  context,
+                  RouteTransitions()
+                      .slideRightToLeftTransitionType(ChatInfoScreen()));
             },
             icon: Icon(Icons.info_outline),
           ),
@@ -71,7 +73,8 @@ class _ChatsScreenState extends State<ChatsScreen> {
             ),
             Container(
               color: Theme.of(context).primaryColor,
-              margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

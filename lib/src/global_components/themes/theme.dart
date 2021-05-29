@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 
 class AppThemes {
   static final darkTheme = ThemeData(
-    splashColor: AppColors.colorPrimaryOrange,
+    brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.colorOffBlack,
     primaryColor: AppColors.colorOffBlack,
     accentColor: AppColors.colorPrimaryOrange,
     backgroundColor: AppColors.colorOffBlack,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    //splashFactory: InkRipple.splashFactory,
     //colorScheme: ColorScheme.dark(),
     primaryColorLight: AppColors.colorWhite,
     primaryColorDark: AppColors.colorOffBlack,
@@ -16,10 +19,15 @@ class AppThemes {
   );
 
   static final lightTheme = ThemeData(
+    brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.colorWhite,
     primaryColor: AppColors.colorWhite,
     accentColor: AppColors.colorPrimaryOrange,
     backgroundColor: AppColors.colorWhite,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    //splashFactory: InkRipple.splashFactory,
+
     //colorScheme: ColorScheme.light(),
     //toggleableActiveColor: AppColors.colorOffBlack,
     primaryColorLight: AppColors.colorOffBlack,

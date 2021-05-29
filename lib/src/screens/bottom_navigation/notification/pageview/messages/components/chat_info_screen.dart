@@ -44,11 +44,11 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                 padding: const EdgeInsets.only(bottom: 10.0),
               ),
               InkWell(
-                highlightColor: Colors.transparent,
-                splashColor: Colors.transparent,
                 onTap: () {
-                  Navigator.push(context,
-                      RouteTransitions().slideRightToLeftTransitionType(OtherProfilePage()));
+                  Navigator.push(
+                      context,
+                      RouteTransitions()
+                          .slideRightToLeftTransitionType(OtherProfilePage()));
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -73,8 +73,6 @@ class _ChatInfoScreenState extends State<ChatInfoScreen> {
                 thickness: 1,
               ),
               InkWell(
-                highlightColor: Colors.transparent,
-                splashColor: Colors.transparent,
                 onTap: () {
                   setState(() {
                     boolIsMute = !boolIsMute;

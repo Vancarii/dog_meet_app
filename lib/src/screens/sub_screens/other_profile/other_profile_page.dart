@@ -38,6 +38,7 @@ class _OtherProfilePageState extends State<OtherProfilePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        brightness: Brightness.light,
         titleSpacing: 0,
         centerTitle: false,
         flexibleSpace: Container(

@@ -130,6 +130,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
 
   AppBar meetDetailsAppBar() {
     return AppBar(
+      brightness: Theme.of(context).primaryColorBrightness,
       elevation: 0,
       centerTitle: false,
       titleSpacing: 0,
@@ -143,8 +144,6 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
         ),
       ),
       title: InkWell(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
         onTap: () {
           Navigator.push(
               context,
@@ -203,7 +202,6 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
       //brightness: Brightness.dark,
       automaticallyImplyLeading: false,
       centerTitle: false,
-
       title: AnimatedBuilder(
           animation: _animationController,
           builder: (context, child) {
@@ -286,6 +284,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
                   text: 'Location',
                   size: 20,
                   bold: true,
+                  color: Theme.of(context).primaryColorLight,
                   padding: const EdgeInsets.only(bottom: 5),
                 ),
                 Spacer(),
@@ -369,18 +368,13 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
       children: [
         InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              TransparentRoute(
-                builder: (context) => FullscreenImage(
-                  image: Image.asset(
-                    'assets/images/pictures/rosy.png',
-                    fit: BoxFit.contain,
-                  ),
-                  heroTag: 'meet_image',
+            showFullscreenImage(
+                context,
+                Image.asset(
+                  'assets/images/pictures/rosy.png',
+                  fit: BoxFit.contain,
                 ),
-              ),
-            );
+                'meet_image');
           },
           child: Card(
             clipBehavior: Clip.antiAlias,

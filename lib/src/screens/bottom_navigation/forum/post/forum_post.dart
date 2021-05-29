@@ -28,6 +28,8 @@ class _ForumPostState extends State<ForumPost> {
 
   bool boolTennisBall = false;
 
+  bool forumBookmarked = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,7 +53,8 @@ class _ForumPostState extends State<ForumPost> {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
+                padding:
+                    const EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -103,17 +106,22 @@ class _ForumPostState extends State<ForumPost> {
                                   maxLines: textMaxLines,
                                   overflow: textOverflowBehavior,
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight.withOpacity(0.95),
+                                    color: Theme.of(context)
+                                        .primaryColorLight
+                                        .withOpacity(0.95),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
                                   child: Text(
                                     'Tap anywhere in the grey to $readMoreLessPrompt',
                                     style: TextStyle(
                                       fontFamily: 'Gibson',
                                       fontSize: 12,
-                                      color: Theme.of(context).primaryColorLight.withOpacity(0.5),
+                                      color: Theme.of(context)
+                                          .primaryColorLight
+                                          .withOpacity(0.5),
                                     ),
                                   ),
                                 ),
@@ -178,7 +186,8 @@ class _ForumPostState extends State<ForumPost> {
                           icon: Icon(ionIcons.Ionicons.chatbubbles_outline),
                           onPressed: () {
                             print('comment');
-                            Navigator.pushNamed(context, ForumCommentSection.id);
+                            Navigator.pushNamed(
+                                context, ForumCommentSection.id);
                           },
                           padding: EdgeInsets.only(left: 10, bottom: 8),
                           constraints: BoxConstraints(),
@@ -186,13 +195,7 @@ class _ForumPostState extends State<ForumPost> {
                         IconButton(
                           icon: Icon(FontAwesomeIcons.paperPlane),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              TransparentRoute(
-                                duration: 0,
-                                builder: (context) => ShareSheet(),
-                              ),
-                            );
+                            showShareSheet(context);
                           },
                           padding: EdgeInsets.only(left: 10, bottom: 8),
                           constraints: BoxConstraints(),
@@ -212,7 +215,8 @@ class _ForumPostState extends State<ForumPost> {
                       bold: true,
                       color: Colors.grey,
                       alignment: TextAlign.center,
-                      padding: const EdgeInsets.only(bottom: 5, left: 5, right: 5),
+                      padding:
+                          const EdgeInsets.only(bottom: 5, left: 5, right: 5),
                     ),
                     /*gibsonSemiBoldText('69 others threw the ball', 0, 5, 10, 5,
                         12, Colors.black, TextAlign.center),*/
@@ -228,7 +232,8 @@ class _ForumPostState extends State<ForumPost> {
                         bold: true,
                         color: Colors.grey,
                         alignment: TextAlign.center,
-                        padding: const EdgeInsets.only(bottom: 5, left: 5, right: 5),
+                        padding:
+                            const EdgeInsets.only(bottom: 5, left: 5, right: 5),
                       ),
 
                       /*gibsonSemiBoldText('View all 20 barks', 0, 10, 10, 5,

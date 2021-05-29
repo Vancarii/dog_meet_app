@@ -13,8 +13,6 @@ class FullscreenImage extends StatelessWidget {
       child: Material(
         color: AppColors.colorBlack.withOpacity(0.5),
         child: InkWell(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
           onTap: () {
             Navigator.pop(context);
           },

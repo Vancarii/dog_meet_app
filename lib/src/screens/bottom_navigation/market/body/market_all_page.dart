@@ -41,8 +41,6 @@ class MarketAllPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
                   child: InkWell(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
                     onTap: () {
                       Navigator.push(
                           context,
@@ -72,10 +70,11 @@ class MarketAllPage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 140,
+          Container(
+            height: 150,
             child: ListView(
-              padding: EdgeInsets.only(left: 5),
+              shrinkWrap: true,
+              padding: EdgeInsets.only(left: 10.0, right: 10.0),
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 StoreTile(

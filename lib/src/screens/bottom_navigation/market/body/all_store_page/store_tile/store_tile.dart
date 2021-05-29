@@ -12,8 +12,8 @@ class StoreTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 125,
-      width: 125,
+      height: 150,
+      width: 150,
       child: InkWell(
         onTap: () {
           Navigator.push(

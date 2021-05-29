@@ -7,7 +7,8 @@ class MeetUpListTiles extends StatelessWidget {
   final String title;
   final String description;
 
-  const MeetUpListTiles({Key key, this.leadingIcon, this.iconColor, this.title, this.description})
+  const MeetUpListTiles(
+      {Key key, this.leadingIcon, this.iconColor, this.title, this.description})
       : super(key: key);
 
   @override
@@ -31,11 +32,13 @@ class MeetUpListTiles extends StatelessWidget {
             text: title,
             size: 18,
             bold: true,
+            color: Theme.of(context).primaryColorLight,
           ),
           CustomText(
             text: description,
             size: 12,
             bold: false,
+            color: Theme.of(context).primaryColorLight,
           ),
         ],
       ),

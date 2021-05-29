@@ -50,8 +50,6 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                   },
                   endIcon: canClear == true
                       ? IconButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
                           onPressed: () {
                             setState(() {
                               _searchTextController.clear();

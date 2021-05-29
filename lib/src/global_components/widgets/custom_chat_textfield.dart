@@ -47,6 +47,12 @@ class CustomRoundedTextField extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.never,
           labelText: labelText,
           suffixIcon: endIcon,
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).accentColor,
+            ),
+            borderRadius: BorderRadius.circular(30.0),
+          ),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: borderColor,

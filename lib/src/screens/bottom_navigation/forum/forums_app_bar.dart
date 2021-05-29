@@ -21,7 +21,9 @@ class _ForumsAppBarState extends State<ForumsAppBar> {
   List<Tab> forumTabs = <Tab>[
     Tab(child: CustomText(text: 'Home', size: 15, color: null, bold: true)),
     Tab(child: CustomText(text: 'Pupular', size: 15, color: null, bold: true)),
-    Tab(child: CustomText(text: 'Discussion', size: 15, color: null, bold: true)),
+    Tab(
+        child:
+            CustomText(text: 'Discussion', size: 15, color: null, bold: true)),
     Tab(child: CustomText(text: 'Funny', size: 15, color: null, bold: true)),
     Tab(child: CustomText(text: 'Tricks', size: 15, color: null, bold: true)),
     Tab(child: CustomText(text: 'Training', size: 15, color: null, bold: true)),
@@ -49,20 +51,18 @@ class _ForumsAppBarState extends State<ForumsAppBar> {
                 Icons.search,
               ),
               onPressed: () {
-                Navigator.of(context)
-                    .push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
+                Navigator.of(context).push(RouteTransitions()
+                    .slideUpTransitionType(SearchBarScreen()));
               },
             ),
           ],
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(35),
             child: Theme(
-              data: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
+              data: ThemeData(),
               child: TabBar(
-                unselectedLabelColor: Theme.of(context).primaryColorLight.withOpacity(0.4),
+                unselectedLabelColor:
+                    Theme.of(context).primaryColorLight.withOpacity(0.4),
                 labelColor: AppColors.colorPrimaryOrange,
                 indicatorColor: AppColors.colorPrimaryOrange,
                 indicatorWeight: 3,

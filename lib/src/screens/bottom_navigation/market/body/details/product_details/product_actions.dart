@@ -53,13 +53,7 @@ class _ProductActionsState extends State<ProductActions> {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                TransparentRoute(
-                  duration: 0,
-                  builder: (context) => ShareSheet(),
-                ),
-              );
+              showShareSheet(context);
             },
             borderRadius: BorderRadius.all(Radius.circular(30)),
             child: Container(
@@ -107,8 +101,6 @@ class _ProductActionsState extends State<ProductActions> {
                       ),
                     ),
                     InkWell(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
                       onTap: () {
                         setState(() {
                           messageSent = true;
@@ -142,7 +134,8 @@ class _ProductActionsState extends State<ProductActions> {
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10.0),
                       decoration: BoxDecoration(
                         color: AppColors.colorGrey.withOpacity(0.2),
                         borderRadius: BorderRadius.all(Radius.circular(15.0)),

@@ -161,13 +161,7 @@ class MeetUpPost extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        TransparentRoute(
-                          duration: 0,
-                          builder: (context) => ShareSheet(),
-                        ),
-                      );
+                      showShareSheet(context);
                     },
                     icon: Icon(
                       FontAwesomeIcons.paperPlane,
@@ -221,7 +215,6 @@ class MeetUpPost extends StatelessWidget {
           Icons.more_vert,
           color: AppColors.colorWhite,
         ),
-        splashColor: Colors.transparent,
         onTap: () {
           showCupertinoDialog(
               context: context,
