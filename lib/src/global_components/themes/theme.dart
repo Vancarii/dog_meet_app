@@ -10,6 +10,7 @@ class AppThemes {
     backgroundColor: AppColors.colorOffBlack,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
+
     //splashFactory: InkRipple.splashFactory,
     //colorScheme: ColorScheme.dark(),
     primaryColorLight: AppColors.colorWhite,

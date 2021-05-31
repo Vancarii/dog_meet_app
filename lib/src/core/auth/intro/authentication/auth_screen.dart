@@ -1,19 +1,20 @@
 import 'package:dog_meet_app/src/core/auth/intro/intro_screen.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
+import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 
-class LoginScreen extends StatefulWidget {
+class AuthScreen extends StatefulWidget {
   static const String id = 'login_screen';
 
-  const LoginScreen({Key key}) : super(key: key);
+  const AuthScreen({Key key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _AuthScreenState createState() => _AuthScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _AuthScreenState extends State<AuthScreen> {
   Duration get loginTime => Duration(milliseconds: 2250);
 
 /*  Future<String> _authUser(LoginData data) {
@@ -42,18 +43,36 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
+      loginAfterSignUp: true,
       title: 'DOGGOD',
-      logo: 'assets/images/logos/doglogo.png',
-      onLogin: (_) => Future(null),
-      onSignup: (_) => Future(null),
+      //logo: 'assets/images/logos/doglogo.png',
+      onLogin: (_) => null,
+      onSignup: (_) => null,
       onSubmitAnimationCompleted: () {
-        Navigator.push(
-          context,
-          RouteTransitions()
-              .slideRightToLeftJoinedTransitionType(IntroScreen(), MainBottomNavMenu()),
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MainBottomNavMenu()),
         );
       },
       onRecoverPassword: (_) => Future(null),
+      footer: 'COPYRIGHTED VANCARII',
+
+      theme: LoginTheme(
+        bodyStyle: TextStyle(
+          color: AppColors.colorWhite,
+          fontStyle: FontStyle.italic,
+        ),
+        titleStyle: TextStyle(
+          fontFamily: 'Gibson',
+          fontWeight: FontWeight.w400,
+        ),
+        textFieldStyle: TextStyle(
+          color: AppColors.colorWhite,
+        ),
+        accentColor: AppColors.colorOffBlack,
+        pageColorDark: AppColors.colorPrimaryOrange,
+        pageColorLight: AppColors.colorPrimaryYellow,
+        primaryColor: AppColors.colorPrimaryOrange,
+      ),
     );
   }
 }

@@ -9,6 +9,14 @@ class AppColors {
         AppColors.colorPrimaryYellow,
       ]);
 
+  static const Gradient orangeYellowBLTRGradient = const LinearGradient(
+      begin: Alignment.bottomLeft,
+      end: Alignment.topRight,
+      colors: [
+        AppColors.colorOrange,
+        AppColors.colorPrimaryYellow,
+      ]);
+
   static const Gradient darkFadeGradient = const LinearGradient(
       begin: Alignment.center,
       end: Alignment.bottomCenter,

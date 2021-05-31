@@ -1,12 +1,13 @@
-import 'package:dog_meet_app/src/core/auth/intro/authentication/authentication_screen.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/info_tiles.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'authentication/auth_screen.dart';
 
 class IntroScreen extends StatefulWidget {
   static const String id = 'intro_screen';
@@ -24,7 +25,7 @@ class _IntroScreenState extends State<IntroScreen> {
     Navigator.push(
       context,
       RouteTransitions()
-          .slideRightToLeftJoinedTransitionType(IntroScreen(), AuthenticationScreen()),
+          .slideRightToLeftJoinedTransitionType(IntroScreen(), AuthScreen()),
     );
   }
 
@@ -35,8 +36,10 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     const pageDecoration = const PageDecoration(
+      bodyAlignment: Alignment.centerLeft,
       pageColor: Colors.transparent,
-      imagePadding: EdgeInsets.only(top: 65.0, left: 25.0, right: 65.0, bottom: 20.0),
+      imagePadding:
+          EdgeInsets.only(top: 65.0, left: 25.0, right: 65.0, bottom: 20.0),
     );
 
     return Scaffold(
@@ -51,7 +54,7 @@ class _IntroScreenState extends State<IntroScreen> {
         children: [
           Container(
             decoration: BoxDecoration(
-              gradient: AppColors.orangeYellowGradient,
+              gradient: AppColors.orangeYellowBLTRGradient,
             ),
           ),
           SafeArea(
@@ -74,20 +77,76 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
               pages: [
                 PageViewModel(
-                  titleWidget: CustomText(
-                      text: 'WELCOME!', size: 35, bold: true, color: AppColors.colorDarkSlateGrey),
+                  reverse: true,
+                  title: 'WELCOME',
+                  /*titleWidget: CustomText(
+                      text: 'WELCOME!',
+                      size: 35,
+                      bold: true,
+                      color: AppColors.colorDarkSlateGrey),*/
                   bodyWidget: CustomText(
-                      text: 'Bringing pups and owners together in controlled environments',
+                      text:
+                          'Bringing pups and owners together in controlled environments',
                       size: 20,
-                      alignment: TextAlign.center),
+                      alignment: TextAlign.start),
                   image: _buildImage('doglogo.png'),
                   decoration: pageDecoration,
                 ),
                 PageViewModel(
                   titleWidget: CustomText(
-                      text: 'WELCOME!', size: 35, bold: true, color: AppColors.colorDarkSlateGrey),
+                      text: 'Meet Ups',
+                      size: 35,
+                      bold: true,
+                      color: AppColors.colorDarkSlateGrey),
+                  bodyWidget: Column(
+                    children: [
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          CustomText(
+                            text: 'Set Up ',
+                            size: 18,
+                          ),
+                          InfoTiles(
+                            tileText: 'PLAYDATES',
+                            tileColor: AppColors.colorPrimaryOrange,
+                          ),
+                          CustomText(
+                            text: ', or meet for ',
+                            size: 18,
+                          ),
+                          InfoTiles(
+                            tileText: 'SOCIALIZATION',
+                            tileColor: AppColors.colorPrimaryOrange,
+                          ),
+                          CustomText(
+                            text: ' or ',
+                            size: 18,
+                          ),
+                          InfoTiles(
+                            tileText: 'TRAINING',
+                            tileColor: AppColors.colorPrimaryOrange,
+                          ),
+                          CustomText(
+                            text: ' with nearby pups and people!',
+                            size: 18,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  image: _buildImage('doglogo.png'),
+                  decoration: pageDecoration,
+                ),
+                PageViewModel(
+                  titleWidget: CustomText(
+                      text: 'Market Place',
+                      size: 35,
+                      bold: true,
+                      color: AppColors.colorDarkSlateGrey),
                   bodyWidget: CustomText(
-                      text: 'Bringing pups and owners together in controlled environments',
+                      text:
+                          'Bringing pups and owners together in controlled environments',
                       size: 20,
                       alignment: TextAlign.center),
                   image: _buildImage('doglogo.png'),
