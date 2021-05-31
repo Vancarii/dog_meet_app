@@ -15,7 +15,7 @@ class MarketUsedPage extends StatelessWidget {
       key: _marketUsedRefreshKey,
       child: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(top: 5.0, bottom: 80),
+        padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
         children: [
           Wrap(
             children: [

@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/src/core/auth/intro/authentication/login/login_screen.dart';
 import 'package:dog_meet_app/src/core/auth/intro/intro_screen.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_profile.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
@@ -61,8 +62,9 @@ class _DogMeetAppState extends State<DogMeetApp> {
             themeMode: themeProvider.themeMode,
             darkTheme: AppThemes.darkTheme,
             theme: AppThemes.lightTheme,
-            initialRoute: MainBottomNavMenu.id,
+            initialRoute: IntroScreen.id,
             routes: {
+              LoginScreen.id: (context) => LoginScreen(),
               IntroScreen.id: (context) => IntroScreen(),
               SplashScreen.id: (context) => SplashScreen(),
               NewUserScreen.id: (context) => NewUserScreen(),
@@ -74,8 +76,7 @@ class _DogMeetAppState extends State<DogMeetApp> {
               ForumsAppBar.id: (context) => ForumsAppBar(),
               MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
               MarketAppBar.id: (context) => MarketAppBar(),
-              MarketProductDetailsPage.id: (context) =>
-                  MarketProductDetailsPage(),
+              MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
               ForumCommentSection.id: (context) => ForumCommentSection(),
               PostForumPage.id: (context) => PostForumPage(),
               PostListingPage.id: (context) => PostListingPage(),
@@ -89,8 +90,7 @@ class _DogMeetAppState extends State<DogMeetApp> {
 
 class CustomScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
   }
 }

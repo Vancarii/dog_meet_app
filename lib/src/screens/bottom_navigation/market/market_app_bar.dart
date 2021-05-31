@@ -24,8 +24,7 @@ class MarketAppBar extends StatefulWidget {
   _MarketAppBarState createState() => _MarketAppBarState();
 }
 
-class _MarketAppBarState extends State<MarketAppBar>
-    with SingleTickerProviderStateMixin {
+class _MarketAppBarState extends State<MarketAppBar> with SingleTickerProviderStateMixin {
   TabController _marketTabController;
 
   List<Tab> marketTabs = <Tab>[
@@ -43,8 +42,7 @@ class _MarketAppBarState extends State<MarketAppBar>
   @override
   void initState() {
     super.initState();
-    _marketTabController =
-        TabController(length: marketTabs.length, vsync: this);
+    _marketTabController = TabController(length: marketTabs.length, vsync: this);
   }
 
   @override
@@ -73,13 +71,10 @@ class _MarketAppBarState extends State<MarketAppBar>
       systemOverlayStyle: SystemUiOverlayStyle.light,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [
-              AppColors.colorOrange,
-              AppColors.colorPrimaryYellow,
-            ])),
+            gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
+          AppColors.colorOrange,
+          AppColors.colorPrimaryYellow,
+        ])),
       ),
       elevation: 0,
       //centerTitle: true,
@@ -96,8 +91,7 @@ class _MarketAppBarState extends State<MarketAppBar>
             color: AppColors.colorOffBlack,
           ),
           onPressed: () {
-            Navigator.of(context).push(
-                RouteTransitions().slideUpTransitionType(SearchBarScreen()));
+            Navigator.of(context).push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
           },
         ),
         Builder(
@@ -115,24 +109,18 @@ class _MarketAppBarState extends State<MarketAppBar>
     );
   }
 
-  PreferredSize marketTabBar() {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(35),
-      child: Theme(
-        data: ThemeData(),
-        child: TabBar(
-          unselectedLabelColor: Colors.black38,
-          labelColor: Theme.of(context).primaryColorLight,
-          controller: _marketTabController,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BubbleTabIndicator(
-            indicatorHeight: 35.0,
-            indicatorColor: Theme.of(context).primaryColor,
-            tabBarIndicatorSize: TabBarIndicatorSize.tab,
-          ),
-          tabs: marketTabs,
-        ),
+  TabBar marketTabBar() {
+    return TabBar(
+      unselectedLabelColor: Colors.black38,
+      labelColor: Theme.of(context).primaryColorLight,
+      controller: _marketTabController,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicator: BubbleTabIndicator(
+        indicatorHeight: 35.0,
+        indicatorColor: Theme.of(context).primaryColor,
+        tabBarIndicatorSize: TabBarIndicatorSize.tab,
       ),
+      tabs: marketTabs,
     );
   }
 }

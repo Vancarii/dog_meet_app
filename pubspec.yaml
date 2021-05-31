@@ -29,7 +29,7 @@ dependencies:
   another_flushbar: ^1.10.20
   shared_preferences: ^2.0.5
   introduction_screen: ^2.1.0
-  draggable_home: ^1.0.2
+  flutter_login: ^1.1.0
 
   google_maps_flutter: ^2.0.5
   location: ^4.1.1

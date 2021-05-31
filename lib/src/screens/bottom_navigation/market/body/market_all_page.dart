@@ -21,7 +21,7 @@ class MarketAllPage extends StatelessWidget {
       key: _marketAllRefreshKey,
       child: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(top: 20.0, bottom: 60),
+        padding: const EdgeInsets.only(top: 20.0, bottom: 10),
         children: [
           Padding(
             padding: const EdgeInsets.only(
@@ -42,10 +42,8 @@ class MarketAllPage extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10.0),
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          RouteTransitions()
-                              .slideRightToLeftTransitionType(AllStoresPage()));
+                      Navigator.push(context,
+                          RouteTransitions().slideRightToLeftTransitionType(AllStoresPage()));
                     },
                     child: Container(
                       decoration: BoxDecoration(
