@@ -1,13 +1,11 @@
+import 'package:dog_meet_app/src/core/auth/intro/authentication/auth_screen.dart';
+import 'package:dog_meet_app/src/core/auth/intro/intro_pages/intro_pages.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/info_tiles.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'authentication/auth_screen.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 class IntroScreen extends StatefulWidget {
   static const String id = 'intro_screen';
@@ -20,35 +18,46 @@ class IntroScreen extends StatefulWidget {
 
 class _IntroScreenState extends State<IntroScreen> {
   //final introKey = GlobalKey<IntroductionScreenState>();
+  PageController _introPageViewController = PageController(
+    initialPage: 0,
+  );
 
-  void _onIntroEnd(context) {
-    Navigator.push(
-      context,
-      RouteTransitions()
-          .slideRightToLeftJoinedTransitionType(IntroScreen(), AuthScreen()),
-    );
+  List<Widget> introPagesList = [
+    Intro1(),
+    Intro2(),
+    Intro3(),
+    Intro4(),
+  ];
+
+  double currentIntroPageIndex = 0;
+  bool onLastPage = false;
+  String indicatorHeroTag = 'intro_screen_indicators';
+
+  bool _onScroll(ScrollNotification notification) {
+    final metrics = notification.metrics;
+    if (metrics is PageMetrics && metrics.page != null) {
+      if (mounted) {
+        setState(() => currentIntroPageIndex = metrics.page);
+      }
+    }
+    return false;
   }
 
-  Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset('assets/images/logos/$assetName', width: width);
+  @override
+  void dispose() {
+    super.dispose();
+    _introPageViewController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    const pageDecoration = const PageDecoration(
-      bodyAlignment: Alignment.centerLeft,
-      pageColor: Colors.transparent,
-      imagePadding:
-          EdgeInsets.only(top: 65.0, left: 25.0, right: 65.0, bottom: 20.0),
-    );
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        toolbarHeight: 0,
         backgroundColor: Colors.transparent,
         elevation: 0,
         brightness: Brightness.light,
+        toolbarHeight: 0,
       ),
       body: Stack(
         children: [
@@ -57,141 +66,78 @@ class _IntroScreenState extends State<IntroScreen> {
               gradient: AppColors.orangeYellowBLTRGradient,
             ),
           ),
+          NotificationListener<ScrollNotification>(
+            onNotification: _onScroll,
+            child: PageView(
+              controller: _introPageViewController,
+              onPageChanged: (page) {
+                setState(() {
+                  currentIntroPageIndex = page.toDouble();
+                  if (currentIntroPageIndex == introPagesList.length - 1) {
+                    onLastPage = true;
+                  } else {
+                    onLastPage = false;
+                  }
+                });
+              },
+              children: introPagesList,
+            ),
+          ),
           SafeArea(
-            child: IntroductionScreen(
-              //key: introKey,
-              globalBackgroundColor: Colors.transparent,
-              globalHeader: Align(
-                alignment: Alignment.topLeft,
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 16, left: 16),
-                    child: CustomText(
-                      text: 'DOGGOD',
-                      bold: true,
-                      size: 20,
-                      color: AppColors.colorWhite,
-                    ),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                padding: const EdgeInsets.all(20.0),
+                child: Hero(
+                  tag: 'intro_title_tag',
+                  child: CustomText(
+                    text: 'DOGGOD',
+                    size: 22,
+                    bold: true,
                   ),
-                ),
-              ),
-              pages: [
-                PageViewModel(
-                  reverse: true,
-                  title: 'WELCOME',
-                  /*titleWidget: CustomText(
-                      text: 'WELCOME!',
-                      size: 35,
-                      bold: true,
-                      color: AppColors.colorDarkSlateGrey),*/
-                  bodyWidget: CustomText(
-                      text:
-                          'Bringing pups and owners together in controlled environments',
-                      size: 20,
-                      alignment: TextAlign.start),
-                  image: _buildImage('doglogo.png'),
-                  decoration: pageDecoration,
-                ),
-                PageViewModel(
-                  titleWidget: CustomText(
-                      text: 'Meet Ups',
-                      size: 35,
-                      bold: true,
-                      color: AppColors.colorDarkSlateGrey),
-                  bodyWidget: Column(
-                    children: [
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          CustomText(
-                            text: 'Set Up ',
-                            size: 18,
-                          ),
-                          InfoTiles(
-                            tileText: 'PLAYDATES',
-                            tileColor: AppColors.colorPrimaryOrange,
-                          ),
-                          CustomText(
-                            text: ', or meet for ',
-                            size: 18,
-                          ),
-                          InfoTiles(
-                            tileText: 'SOCIALIZATION',
-                            tileColor: AppColors.colorPrimaryOrange,
-                          ),
-                          CustomText(
-                            text: ' or ',
-                            size: 18,
-                          ),
-                          InfoTiles(
-                            tileText: 'TRAINING',
-                            tileColor: AppColors.colorPrimaryOrange,
-                          ),
-                          CustomText(
-                            text: ' with nearby pups and people!',
-                            size: 18,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  image: _buildImage('doglogo.png'),
-                  decoration: pageDecoration,
-                ),
-                PageViewModel(
-                  titleWidget: CustomText(
-                      text: 'Market Place',
-                      size: 35,
-                      bold: true,
-                      color: AppColors.colorDarkSlateGrey),
-                  bodyWidget: CustomText(
-                      text:
-                          'Bringing pups and owners together in controlled environments',
-                      size: 20,
-                      alignment: TextAlign.center),
-                  image: _buildImage('doglogo.png'),
-                  decoration: pageDecoration,
-                ),
-              ],
-              onDone: () => _onIntroEnd(context),
-              //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
-              showSkipButton: true,
-              skipFlex: 0,
-              nextFlex: 0,
-              //rtl: true, // Display as right-to-left
-              skip: CustomText(
-                text: 'Skip',
-                bold: true,
-              ),
-              next: const Icon(
-                Icons.arrow_forward,
-              ),
-              done: CustomText(
-                text: 'Next',
-                bold: true,
-              ),
-              color: AppColors.colorOffBlack,
-              curve: Curves.fastLinearToSlowEaseIn,
-              controlsMargin: const EdgeInsets.all(16),
-              controlsPadding: kIsWeb
-                  ? const EdgeInsets.all(12.0)
-                  : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-              dotsDecorator: const DotsDecorator(
-                activeColor: AppColors.colorDarkSlateGrey,
-                size: Size(10.0, 10.0),
-                color: Colors.black12,
-                activeSize: Size(22.0, 10.0),
-                activeShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                ),
-              ),
-              dotsContainerDecorator: const ShapeDecoration(
-                color: Colors.black12,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 ),
               ),
             ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+                margin: const EdgeInsets.all(35.0),
+                padding: const EdgeInsets.all(15.0),
+                decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30.0),
+                  ),
+                ),
+                child: onLastPage == true
+                    ? InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            RouteTransitions().slideRightToLeftJoinedTransitionType(
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: AppColors.orangeYellowBLTRGradient,
+                                ),
+                              ),
+                              AuthScreen(),
+                            ),
+                          );
+                        },
+                        child: Icon(Icons.arrow_forward_rounded))
+                    : DotsIndicator(
+                        dotsCount: introPagesList.length,
+                        position: currentIntroPageIndex,
+                        decorator: DotsDecorator(
+                          color: Colors.black12,
+                          activeColor: AppColors.colorDarkSlateGrey,
+                          size: const Size.square(9.0),
+                          activeSize: const Size(18.0, 9.0),
+                          activeShape:
+                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                        ),
+                      )),
           ),
         ],
       ),

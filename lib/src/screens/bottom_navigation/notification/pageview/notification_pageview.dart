@@ -12,21 +12,21 @@ class NotificationsPageView extends StatefulWidget {
 }
 
 class _NotificationsPageViewState extends State<NotificationsPageView> {
-  PageController _pageViewController = PageController(
+  PageController _notifPageViewController = PageController(
     initialPage: 0,
   );
 
   @override
   void dispose() {
     super.dispose();
-    _pageViewController.dispose();
+    _notifPageViewController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     setState(() {
       if (Provider.of<ProviderNotifier>(context).onMessagesPage == true) {
-        _pageViewController.animateToPage(
+        _notifPageViewController.animateToPage(
           1,
           duration: Duration(milliseconds: 200),
           curve: Curves.linear,
@@ -34,7 +34,7 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
       }
     });
     return PageView(
-      controller: _pageViewController,
+      controller: _notifPageViewController,
       onPageChanged: (int page) {
         if (page == 0) {
           Provider.of<ProviderNotifier>(context, listen: false).messageFabChanged(false);
@@ -47,7 +47,7 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
       children: [
         NotificationsPage(
           onMessagesPressed: () {
-            _pageViewController.animateToPage(
+            _notifPageViewController.animateToPage(
               1,
               duration: Duration(milliseconds: 200),
               curve: Curves.linear,
@@ -56,7 +56,7 @@ class _NotificationsPageViewState extends State<NotificationsPageView> {
         ),
         MessagesPage(
           onBackPressed: () {
-            _pageViewController.animateToPage(
+            _notifPageViewController.animateToPage(
               0,
               duration: Duration(milliseconds: 200),
               curve: Curves.linear,

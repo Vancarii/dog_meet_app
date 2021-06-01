@@ -1,5 +1,6 @@
 import 'package:dog_meet_app/src/core/auth/intro/authentication/auth_screen.dart';
 import 'package:dog_meet_app/src/core/auth/intro/intro_screen.dart';
+import 'package:dog_meet_app/src/core/auth/intro/intro_screen2.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_profile.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
@@ -51,12 +52,6 @@ class _DogMeetAppState extends State<DogMeetApp> {
             systemNavigationBarColor: AppColors.colorOffBlack,
           ));
           return MaterialApp(
-            builder: (context, child) {
-              return ScrollConfiguration(
-                behavior: CustomScrollBehavior(),
-                child: child,
-              );
-            },
             color: Theme.of(context).primaryColor,
             debugShowCheckedModeBanner: false,
             themeMode: themeProvider.themeMode,
@@ -66,6 +61,7 @@ class _DogMeetAppState extends State<DogMeetApp> {
             routes: {
               AuthScreen.id: (context) => AuthScreen(),
               IntroScreen.id: (context) => IntroScreen(),
+              IntroScreen2.id: (context) => IntroScreen2(),
               SplashScreen.id: (context) => SplashScreen(),
               NewUserScreen.id: (context) => NewUserScreen(),
               CreatePupfile.id: (context) => CreatePupfile(),
@@ -76,8 +72,7 @@ class _DogMeetAppState extends State<DogMeetApp> {
               ForumsAppBar.id: (context) => ForumsAppBar(),
               MainBottomNavMenu.id: (context) => MainBottomNavMenu(),
               MarketAppBar.id: (context) => MarketAppBar(),
-              MarketProductDetailsPage.id: (context) =>
-                  MarketProductDetailsPage(),
+              MarketProductDetailsPage.id: (context) => MarketProductDetailsPage(),
               ForumCommentSection.id: (context) => ForumCommentSection(),
               PostForumPage.id: (context) => PostForumPage(),
               PostListingPage.id: (context) => PostListingPage(),
@@ -91,8 +86,7 @@ class _DogMeetAppState extends State<DogMeetApp> {
 
 class CustomScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(
-      BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
   }
 }
