@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
+import 'package:dog_meet_app/src/global_components/widgets/custom_rounded_textfield.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'new_forum_comment.dart';

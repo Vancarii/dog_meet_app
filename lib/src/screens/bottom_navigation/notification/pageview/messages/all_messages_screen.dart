@@ -1,5 +1,5 @@
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
+import 'package:dog_meet_app/src/global_components/widgets/custom_rounded_textfield.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +32,7 @@ class _MessagesPageState extends State<MessagesPage> {
       child: SlidingSheet(
         listener: (state) {
           if (state.isHidden) {
-            Provider.of<ProviderNotifier>(context, listen: false)
-                .newMessageButtonPressed(false);
+            Provider.of<ProviderNotifier>(context, listen: false).newMessageButtonPressed(false);
           }
         },
         controller: messagesSlidingSheetController,
@@ -89,8 +88,7 @@ class _MessagesPageState extends State<MessagesPage> {
                     width: 30,
                     height: 4,
                     decoration: BoxDecoration(
-                      color:
-                          Theme.of(context).primaryColorLight.withOpacity(0.2),
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.2),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                   ),

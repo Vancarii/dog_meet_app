@@ -13,6 +13,7 @@ dependencies:
   another_transformer_page_view: ^1.0.0
   another_flushbar: ^1.10.17
 
+
   # flutter_test from sdk depends on quiver
   quiver: ^3.0.0
   pedantic: ^1.11.0

@@ -2,7 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
-import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
+import 'package:dog_meet_app/src/global_components/widgets/custom_rounded_textfield.dart';
 import 'package:dog_meet_app/src/global_components/widgets/custom_expandable.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
@@ -29,8 +29,7 @@ class MeetUpDetailsPage extends StatefulWidget {
   _MeetUpDetailsPageState createState() => _MeetUpDetailsPageState();
 }
 
-class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
-    with SingleTickerProviderStateMixin {
+class _MeetUpDetailsPageState extends State<MeetUpDetailsPage> with SingleTickerProviderStateMixin {
   bool isAttending = false;
 
   bool commentsIsOpen = false;
@@ -42,13 +41,10 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 0));
+    _animationController = AnimationController(vsync: this, duration: Duration(seconds: 0));
     _animationTween = ColorTween(
             begin: AppColors.colorWhite,
-            end: Provider.of<ProviderNotifier>(context, listen: false)
-                        .isDarkMode ==
-                    false
+            end: Provider.of<ProviderNotifier>(context, listen: false).isDarkMode == false
                 ? AppColors.colorOffBlack
                 : AppColors.colorWhite)
         .animate(_animationController);
@@ -56,8 +52,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
     _sliverScrollController.addListener(() {
       //print('offset: ' + (_sliverScrollController.offset).toString());
       //print('offset: ' +((_sliverScrollController.offset - 150) / 50).toString());
-      _animationController
-          .animateTo((_sliverScrollController.offset - 150) / 50);
+      _animationController.animateTo((_sliverScrollController.offset - 150) / 50);
     });
     super.initState();
   }
@@ -146,9 +141,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
       title: InkWell(
         onTap: () {
           Navigator.push(
-              context,
-              RouteTransitions()
-                  .slideRightToLeftTransitionType(OtherProfilePage()));
+              context, RouteTransitions().slideRightToLeftTransitionType(OtherProfilePage()));
         },
         child: Container(
           padding: const EdgeInsets.all(10.0),
@@ -413,8 +406,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
             titleColor: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
             margin: const EdgeInsets.all(10.0),
-            title:
-                isAttending == true ? 'Cancelled Attendance' : 'You\'re Going!',
+            title: isAttending == true ? 'Cancelled Attendance' : 'You\'re Going!',
             message: isAttending == true
                 ? 'That\'s Okay! Find someone else to play!'
                 : 'It\'s great to meet more friends!',
@@ -433,9 +425,7 @@ class _MeetUpDetailsPageState extends State<MeetUpDetailsPage>
             animationDuration: Duration(milliseconds: 500),
           )..show(context);
         },
-        backgroundColor: isAttending == true
-            ? AppColors.colorRed
-            : AppColors.colorBrightGreen,
+        backgroundColor: isAttending == true ? AppColors.colorRed : AppColors.colorBrightGreen,
         focusElevation: 0,
         highlightElevation: 0,
         splashColor: AppColors.colorPrimaryOrange,
@@ -500,9 +490,7 @@ class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       padding: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.2),
+                        color: Theme.of(context).primaryColorLight.withOpacity(0.2),
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
                         ),
@@ -513,8 +501,7 @@ class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
                       child: Wrap(
                         children: [
                           CustomText(
-                            text:
-                                'Where is this meet? is it at a field or a dog park?',
+                            text: 'Where is this meet? is it at a field or a dog park?',
                           ),
                         ],
                       ),
@@ -555,12 +542,9 @@ class _MeetUpCommentSectionState extends State<MeetUpCommentSection> {
                   child: Wrap(
                     children: [
                       CustomText(
-                        text:
-                            'Your comment is public to everyone who views this meet',
+                        text: 'Your comment is public to everyone who views this meet',
                         size: 12,
-                        color: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.6),
+                        color: Theme.of(context).primaryColorLight.withOpacity(0.6),
                         padding: const EdgeInsets.only(left: 10.0),
                       ),
                     ],
@@ -588,8 +572,7 @@ class MeetJoinCancelButtonDelegate extends SliverPersistentHeaderDelegate {
   });
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       height: toolBarHeight + openHeight,
       color: Colors.transparent,

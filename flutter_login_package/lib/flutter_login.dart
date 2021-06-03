@@ -227,6 +227,7 @@ class FlutterLogin extends StatefulWidget {
       this.logo,
       this.messages,
       this.theme,
+      this.emailValidator,
       this.userValidator,
       this.passwordValidator,
       this.onSubmitAnimationCompleted,
@@ -276,6 +277,9 @@ class FlutterLogin extends StatefulWidget {
 
   /// Email validating logic, Returns an error string to display if the input is
   /// invalid, or null otherwise
+
+  final FormFieldValidator<String>? emailValidator;
+
   final FormFieldValidator<String>? userValidator;
 
   /// Same as [userValidator] but for password
@@ -311,16 +315,23 @@ class FlutterLogin extends StatefulWidget {
   /// Optional footer text for example a copyright notice
   final String? footer;
 
+  static final FormFieldValidator<String> defaultUsernameValidator = (value) {
+    if (value!.isEmpty) {
+      return 'Invalid username';
+    }
+    return null;
+  };
+
   static final FormFieldValidator<String> defaultEmailValidator = (value) {
     if (value!.isEmpty || !Regex.email.hasMatch(value)) {
-      return 'Invalid email!';
+      return 'Invalid email';
     }
     return null;
   };
 
   static final FormFieldValidator<String> defaultPasswordValidator = (value) {
-    if (value!.isEmpty || value.length <= 2) {
-      return 'Password is too short!';
+    if (value!.isEmpty || value.length <= 5) {
+      return 'Password is too short';
     }
     return null;
   };
@@ -566,7 +577,8 @@ class _FlutterLoginState extends State<FlutterLogin> with TickerProviderStateMix
     const cardInitialHeight = 300;
     final cardTopPosition = deviceSize.height / 2 - cardInitialHeight / 2;
     final headerHeight = cardTopPosition - headerMargin;
-    final userValidator = widget.userValidator ?? FlutterLogin.defaultEmailValidator;
+    final emailValidator = widget.emailValidator ?? FlutterLogin.defaultEmailValidator;
+    final userValidator = widget.userValidator ?? FlutterLogin.defaultUsernameValidator;
     final passwordValidator = widget.passwordValidator ?? FlutterLogin.defaultPasswordValidator;
 
     Widget footerWidget = SizedBox();
@@ -598,7 +610,14 @@ class _FlutterLoginState extends State<FlutterLogin> with TickerProviderStateMix
         ),
       ],
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          elevation: 0,
+          brightness: Brightness.light,
+          backgroundColor: Colors.transparent,
+          toolbarHeight: 0,
+        ),
         body: Stack(
           children: <Widget>[
             GradientBox(
@@ -621,6 +640,7 @@ class _FlutterLoginState extends State<FlutterLogin> with TickerProviderStateMix
                         userType: widget.userType,
                         padding: EdgeInsets.only(top: cardTopPosition),
                         loadingController: _loadingController,
+                        emailValidator: emailValidator,
                         userValidator: userValidator,
                         passwordValidator: passwordValidator,
                         onSubmit: _reverseHeaderAnimation,

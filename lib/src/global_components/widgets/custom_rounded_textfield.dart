@@ -10,6 +10,7 @@ class CustomRoundedTextField extends StatelessWidget {
   final IconButton endIcon;
   final TextInputType keyboard;
   final Color borderColor;
+  final Color focusedBorderColor;
   final TextEditingController controller;
   final Function(String) onTextChanged;
 
@@ -21,6 +22,7 @@ class CustomRoundedTextField extends StatelessWidget {
     this.labelText,
     this.endIcon,
     this.keyboard = TextInputType.multiline,
+    this.focusedBorderColor = AppColors.colorPrimaryOrange,
     this.borderColor = AppColors.colorWhite,
     this.controller,
     this.onTextChanged,
@@ -49,7 +51,7 @@ class CustomRoundedTextField extends StatelessWidget {
           suffixIcon: endIcon,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Theme.of(context).accentColor,
+              color: focusedBorderColor,
             ),
             borderRadius: BorderRadius.circular(30.0),
           ),

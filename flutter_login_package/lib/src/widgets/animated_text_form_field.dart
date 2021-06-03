@@ -97,11 +97,9 @@ class _AnimatedTextFormFieldState extends State<AnimatedTextFormField> {
         end: 1.0,
       ).animate(CurvedAnimation(
         parent: loadingController,
-        curve: _getInternalInterval(
-            0, .2, interval!.begin, interval.end, Curves.easeOutBack),
+        curve: _getInternalInterval(0, .2, interval!.begin, interval.end, Curves.easeOutBack),
       ));
-      suffixIconOpacityAnimation =
-          Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      suffixIconOpacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
         parent: loadingController,
         curve: _getInternalInterval(.65, 1.0, interval.begin, interval.end),
       ));
@@ -122,14 +120,12 @@ class _AnimatedTextFormFieldState extends State<AnimatedTextFormField> {
         reverseCurve: Curves.easeIn,
       ));
       iconRotationAnimation =
-          Tween<double>(begin: 0.0, end: sign * pi / 12 /* ~15deg */)
-              .animate(CurvedAnimation(
+          Tween<double>(begin: 0.0, end: sign * pi / 12 /* ~15deg */).animate(CurvedAnimation(
         parent: inertiaController,
         curve: Interval(.5, 1.0, curve: Curves.easeOut),
         reverseCurve: Curves.easeIn,
       ));
-      iconTranslateAnimation =
-          Tween<double>(begin: 0.0, end: 8.0).animate(CurvedAnimation(
+      iconTranslateAnimation = Tween<double>(begin: 0.0, end: 8.0).animate(CurvedAnimation(
         parent: inertiaController,
         curve: Interval(.5, 1.0, curve: Curves.easeOut),
         reverseCurve: Curves.easeIn,
@@ -146,8 +142,7 @@ class _AnimatedTextFormFieldState extends State<AnimatedTextFormField> {
       end: widget.width,
     ).animate(CurvedAnimation(
       parent: loadingController,
-      curve: _getInternalInterval(
-          .2, 1.0, interval.begin, interval.end, Curves.linearToEaseOut),
+      curve: _getInternalInterval(.2, 1.0, interval.begin, interval.end, Curves.linearToEaseOut),
       reverseCurve: Curves.easeInExpo,
     ));
   }
@@ -290,12 +285,10 @@ class AnimatedPasswordTextFormField extends StatefulWidget {
   final Iterable<String>? autofillHints;
 
   @override
-  _AnimatedPasswordTextFormFieldState createState() =>
-      _AnimatedPasswordTextFormFieldState();
+  _AnimatedPasswordTextFormFieldState createState() => _AnimatedPasswordTextFormFieldState();
 }
 
-class _AnimatedPasswordTextFormFieldState
-    extends State<AnimatedPasswordTextFormField> {
+class _AnimatedPasswordTextFormFieldState extends State<AnimatedPasswordTextFormField> {
   var _obscureText = true;
 
   @override
@@ -333,9 +326,7 @@ class _AnimatedPasswordTextFormFieldState
             size: 25.0,
             semanticLabel: 'hide password',
           ),
-          crossFadeState: _obscureText
-              ? CrossFadeState.showFirst
-              : CrossFadeState.showSecond,
+          crossFadeState: _obscureText ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         ),
       ),
       obscureText: _obscureText,

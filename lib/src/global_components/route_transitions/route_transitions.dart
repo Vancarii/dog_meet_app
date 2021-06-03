@@ -9,6 +9,25 @@ import 'package:flutter/material.dart';
 //the bottom black
 
 class RouteTransitions {
+  Route scaleTransitionType(secondPage) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => secondPage,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(0.0, 0.8);
+        var end = Offset(0.0, 0.0);
+        var curve = Curves.ease;
+
+        var tween = Tween(begin: 0.0, end: 1.0)
+            .animate(CurvedAnimation(parent: animation, curve: Curves.linear));
+
+        return ScaleTransition(
+          scale: tween,
+          child: child,
+        );
+      },
+    );
+  }
+
   Route slideUpTransitionType(secondPage) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => secondPage,

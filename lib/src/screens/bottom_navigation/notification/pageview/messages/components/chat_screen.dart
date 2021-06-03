@@ -1,4 +1,4 @@
-import 'package:dog_meet_app/src/global_components/widgets/custom_chat_textfield.dart';
+import 'package:dog_meet_app/src/global_components/widgets/custom_rounded_textfield.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/messages/components/chat_info_screen.dart';
@@ -27,9 +27,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
         title: InkWell(
           onTap: () {
             Navigator.push(
-                context,
-                RouteTransitions()
-                    .slideRightToLeftTransitionType(OtherProfilePage()));
+                context, RouteTransitions().slideRightToLeftTransitionType(OtherProfilePage()));
           },
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -54,9 +52,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
           IconButton(
             onPressed: () {
               Navigator.push(
-                  context,
-                  RouteTransitions()
-                      .slideRightToLeftTransitionType(ChatInfoScreen()));
+                  context, RouteTransitions().slideRightToLeftTransitionType(ChatInfoScreen()));
             },
             icon: Icon(Icons.info_outline),
           ),
@@ -73,8 +69,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
             ),
             Container(
               color: Theme.of(context).primaryColor,
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

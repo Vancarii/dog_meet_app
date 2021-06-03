@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '';
 
 class LoginButtonTheme {
   const LoginButtonTheme({
@@ -36,19 +37,31 @@ class LoginButtonTheme {
 
 class LoginTheme with ChangeNotifier {
   LoginTheme({
-    this.pageColorLight,
-    this.pageColorDark,
-    this.primaryColor,
-    this.accentColor,
+    this.pageColorLight = const Color(0xfffffc371),
+    this.pageColorDark = const Color(0xfffFC846A),
+    this.primaryColor = Colors.black87,
+    this.accentColor = Colors.black87,
     this.errorColor,
-    this.cardTheme = const CardTheme(),
+    this.cardTheme = const CardTheme(
+      color: Colors.transparent,
+      elevation: 0,
+    ),
     this.inputTheme = const InputDecorationTheme(
       filled: true,
     ),
     this.buttonTheme = const LoginButtonTheme(),
-    this.titleStyle,
-    this.bodyStyle,
-    this.textFieldStyle,
+    this.titleStyle = const TextStyle(
+      color: Color(0xfff285264),
+      fontFamily: 'Gibson',
+      fontWeight: FontWeight.w400,
+    ),
+    this.bodyStyle = const TextStyle(
+      color: Colors.black87,
+      fontStyle: FontStyle.italic,
+    ),
+    this.textFieldStyle = const TextStyle(
+      color: Colors.black87,
+    ),
     this.buttonStyle,
     this.beforeHeroFontSize = 48.0,
     this.afterHeroFontSize = 15.0,

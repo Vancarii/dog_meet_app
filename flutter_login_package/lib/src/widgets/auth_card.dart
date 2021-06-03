@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:another_transformer_page_view/another_transformer_page_view.dart';
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import '/src/models/login_user_type.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,7 @@ class AuthCard extends StatefulWidget {
     required this.userType,
     this.padding = const EdgeInsets.all(0),
     this.loadingController,
+    this.emailValidator,
     this.userValidator,
     this.passwordValidator,
     this.onSubmit,
@@ -40,6 +42,7 @@ class AuthCard extends StatefulWidget {
 
   final EdgeInsets padding;
   final AnimationController? loadingController;
+  final FormFieldValidator<String>? emailValidator;
   final FormFieldValidator<String>? userValidator;
   final FormFieldValidator<String>? passwordValidator;
   final Function? onSubmit;
@@ -284,6 +287,7 @@ class AuthCardState extends State<AuthCard> with TickerProviderStateMixin {
                     loadingController: _isLoadingFirstTime
                         ? _formLoadingController
                         : (_formLoadingController..value = 1.0),
+                    emailValidator: widget.emailValidator,
                     userValidator: widget.userValidator,
                     passwordValidator: widget.passwordValidator,
                     onSwitchRecoveryPassword: () => _switchRecovery(true),
@@ -332,6 +336,7 @@ class _LoginCard extends StatefulWidget {
   _LoginCard({
     Key? key,
     this.loadingController,
+    required this.emailValidator,
     required this.userValidator,
     required this.passwordValidator,
     required this.onSwitchRecoveryPassword,
@@ -344,6 +349,7 @@ class _LoginCard extends StatefulWidget {
   }) : super(key: key);
 
   final AnimationController? loadingController;
+  final FormFieldValidator<String>? emailValidator;
   final FormFieldValidator<String>? userValidator;
   final FormFieldValidator<String>? passwordValidator;
   final Function onSwitchRecoveryPassword;
@@ -362,9 +368,11 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   final _passwordFocusNode = FocusNode();
+  final _emailFocusNode = FocusNode();
   final _confirmPasswordFocusNode = FocusNode();
 
-  TextEditingController? _nameController;
+  TextEditingController? _userNameController;
+  TextEditingController? _emailController;
   TextEditingController? _passController;
   TextEditingController? _confirmPassController;
 
@@ -393,7 +401,7 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
     super.initState();
 
     final auth = Provider.of<Auth>(context, listen: false);
-    _nameController = TextEditingController(text: auth.email);
+    _userNameController = TextEditingController(text: auth.email);
     _passController = TextEditingController(text: auth.password);
     _confirmPassController = TextEditingController(text: auth.confirmPassword);
 
@@ -492,12 +500,12 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
 
     if (auth.isLogin) {
       error = await auth.onLogin!(LoginData(
-        name: auth.email,
+        name: auth.username,
         password: auth.password,
       ));
     } else {
       error = await auth.onSignup!(LoginData(
-        name: auth.email,
+        name: auth.username,
         password: auth.password,
       ));
     }
@@ -566,7 +574,7 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
   // Create a resource to import these function and avoid duplicated code
   String _getAutofillHints(LoginUserType userType) {
     switch (userType) {
-      case LoginUserType.name:
+      case LoginUserType.userName:
         return AutofillHints.username;
       case LoginUserType.phone:
         return AutofillHints.telephoneNumber;
@@ -580,7 +588,7 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
   // Create a resource to import these function and avoid duplicated code
   TextInputType _getKeyboardType(LoginUserType userType) {
     switch (userType) {
-      case LoginUserType.name:
+      case LoginUserType.userName:
         return TextInputType.name;
       case LoginUserType.phone:
         return TextInputType.number;
@@ -590,25 +598,47 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
     }
   }
 
-  Widget _buildUserField(
-    double width,
-    LoginMessages messages,
-    Auth auth,
-  ) {
+  Widget _buildUserField(double width, LoginMessages messages, Auth auth) {
     return AnimatedTextFormField(
-      controller: _nameController,
+      controller: _userNameController,
       width: width,
       loadingController: _loadingController,
       interval: _nameTextFieldLoadingAnimationInterval,
       labelText: messages.userHint,
-      autofillHints: [_getAutofillHints(widget.userType)],
+      autofillHints: [_getAutofillHints(LoginUserType.userName)],
       prefixIcon: Icon(FontAwesomeIcons.solidUserCircle),
-      keyboardType: _getKeyboardType(widget.userType),
+      keyboardType: _getKeyboardType(LoginUserType.userName),
       textInputAction: TextInputAction.next,
+      onFieldSubmitted: (value) {
+        if (auth.isLogin) {
+          FocusScope.of(context).requestFocus(_passwordFocusNode);
+        } else {
+          FocusScope.of(context).requestFocus(_emailFocusNode);
+        }
+      },
+      validator: widget.userValidator,
+      onSaved: (value) => auth.username = value!,
+    );
+  }
+
+  Widget _buildEmailField(double width, LoginMessages messages, Auth auth) {
+    return AnimatedTextFormField(
+      controller: _emailController,
+      width: width,
+      loadingController: _loadingController,
+      inertiaController: _postSwitchAuthController,
+      inertiaDirection: TextFieldInertiaDirection.right,
+      interval: _nameTextFieldLoadingAnimationInterval,
+      labelText: messages.emailHint,
+      autofillHints: [_getAutofillHints(LoginUserType.email)],
+      prefixIcon: Icon(FontAwesomeIcons.solidEnvelope),
+      keyboardType: _getKeyboardType(LoginUserType.email),
+      textInputAction: TextInputAction.next,
+      focusNode: _emailFocusNode,
       onFieldSubmitted: (value) {
         FocusScope.of(context).requestFocus(_passwordFocusNode);
       },
-      validator: widget.userValidator,
+      validator: widget.emailValidator,
       onSaved: (value) => auth.email = value!,
     );
   }
@@ -684,33 +714,39 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
   }
 
   Widget _buildSubmitButton(ThemeData theme, LoginMessages messages, Auth auth) {
-    return ScaleTransition(
-      scale: _buttonScaleAnimation,
-      child: AnimatedButton(
-        controller: _submitController,
-        text: auth.isLogin ? messages.loginButton : messages.signupButton,
-        onPressed: _submit,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 25.0),
+      child: ScaleTransition(
+        scale: _buttonScaleAnimation,
+        child: AnimatedButton(
+          controller: _submitController,
+          text: auth.isLogin ? messages.loginButton : messages.signupButton,
+          onPressed: _submit,
+        ),
       ),
     );
   }
 
   Widget _buildSwitchAuthButton(
       ThemeData theme, LoginMessages messages, Auth auth, LoginTheme loginTheme) {
-    return FadeIn(
-      controller: _loadingController,
-      offset: .5,
-      curve: _textButtonLoadingAnimationInterval,
-      fadeDirection: FadeDirection.topToBottom,
-      child: MaterialButton(
-        disabledTextColor: theme.primaryColor,
-        onPressed: buttonEnabled ? _switchAuthMode : null,
-        padding:
-            loginTheme.authButtonPadding ?? EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        textColor: theme.primaryColor,
-        child: AnimatedText(
-          text: auth.isSignup ? messages.loginButton : messages.signupButton,
-          textRotation: AnimatedTextRotation.down,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      child: FadeIn(
+        controller: _loadingController,
+        offset: .5,
+        curve: _textButtonLoadingAnimationInterval,
+        fadeDirection: FadeDirection.topToBottom,
+        child: MaterialButton(
+          disabledTextColor: theme.primaryColor,
+          onPressed: buttonEnabled ? _switchAuthMode : null,
+          padding:
+              loginTheme.authButtonPadding ?? EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          textColor: theme.primaryColor,
+          child: AnimatedText(
+            text: auth.isSignup ? messages.loginButton : messages.signupButton,
+            textRotation: AnimatedTextRotation.down,
+          ),
         ),
       ),
     );
@@ -758,42 +794,44 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
     final authForm = Form(
       key: _formKey,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            padding: EdgeInsets.only(
-              left: cardPadding,
-              right: cardPadding,
-              top: cardPadding + 10,
-            ),
-            width: cardWidth,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildUserField(textFieldWidth, messages, auth),
-                SizedBox(height: 20),
-                _buildPasswordField(textFieldWidth, messages, auth),
-                SizedBox(height: 10),
-              ],
-            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: _buildUserField(textFieldWidth, messages, auth),
           ),
           ExpandableContainer(
             backgroundColor: Colors.transparent,
             controller: _switchAuthController,
             initialState:
                 isLogin ? ExpandableContainerState.shrunk : ExpandableContainerState.expanded,
-            alignment: Alignment.topLeft,
+            alignment: Alignment.center,
             color: theme.cardTheme.color,
             width: cardWidth,
-            padding: EdgeInsets.symmetric(
-              horizontal: cardPadding,
-              vertical: 10,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            onExpandCompleted: () => _postSwitchAuthController.forward(),
+            child: _buildEmailField(textFieldWidth, messages, auth),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: _buildPasswordField(textFieldWidth, messages, auth),
+          ),
+          //SizedBox(height: 10),
+          ExpandableContainer(
+            backgroundColor: Colors.transparent,
+            controller: _switchAuthController,
+            initialState:
+                isLogin ? ExpandableContainerState.shrunk : ExpandableContainerState.expanded,
+            alignment: Alignment.center,
+            color: theme.cardTheme.color,
+            width: cardWidth,
+            padding: EdgeInsets.symmetric(vertical: 5.0),
             onExpandCompleted: () => _postSwitchAuthController.forward(),
             child: _buildConfirmPasswordField(textFieldWidth, messages, auth),
           ),
           Container(
-            padding: Paddings.fromRBL(cardPadding),
-            width: cardWidth,
+            //padding: Paddings.fromRBL(cardPadding),
+            //width: cardWidth,
             child: Column(
               children: <Widget>[
                 !widget.hideForgotPasswordButton
@@ -816,10 +854,7 @@ class _LoginCardState extends State<_LoginCard> with TickerProviderStateMixin {
     );
 
     return FittedBox(
-      child: Card(
-        elevation: _showShadow ? theme.cardTheme.elevation : 0,
-        child: authForm,
-      ),
+      child: authForm,
     );
   }
 }
@@ -844,7 +879,7 @@ class _RecoverCard extends StatefulWidget {
 class _RecoverCardState extends State<_RecoverCard> with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _formRecoverKey = GlobalKey();
 
-  TextEditingController? _nameController;
+  TextEditingController? _userNameController;
 
   var _isSubmitting = false;
 
@@ -855,7 +890,7 @@ class _RecoverCardState extends State<_RecoverCard> with SingleTickerProviderSta
     super.initState();
 
     final auth = Provider.of<Auth>(context, listen: false);
-    _nameController = TextEditingController(text: auth.email);
+    _userNameController = TextEditingController(text: auth.email);
 
     _submitController = AnimationController(
       vsync: this,
@@ -898,7 +933,7 @@ class _RecoverCardState extends State<_RecoverCard> with SingleTickerProviderSta
   // Create a resource to import these function and avoid duplicated code
   String _getAutofillHints(LoginUserType userType) {
     switch (userType) {
-      case LoginUserType.name:
+      case LoginUserType.userName:
         return AutofillHints.username;
       case LoginUserType.phone:
         return AutofillHints.telephoneNumber;
@@ -912,7 +947,7 @@ class _RecoverCardState extends State<_RecoverCard> with SingleTickerProviderSta
   // Create a resource to import these function and avoid duplicated code
   TextInputType _getKeyboardType(LoginUserType userType) {
     switch (userType) {
-      case LoginUserType.name:
+      case LoginUserType.userName:
         return TextInputType.name;
       case LoginUserType.phone:
         return TextInputType.number;
@@ -924,12 +959,12 @@ class _RecoverCardState extends State<_RecoverCard> with SingleTickerProviderSta
 
   Widget _buildRecoverNameField(double width, LoginMessages messages, Auth auth) {
     return AnimatedTextFormField(
-      controller: _nameController,
+      controller: _userNameController,
       width: width,
-      labelText: messages.userHint,
-      prefixIcon: Icon(FontAwesomeIcons.solidUserCircle),
-      keyboardType: _getKeyboardType(widget.userType),
-      autofillHints: [_getAutofillHints(widget.userType)],
+      labelText: messages.emailHint,
+      prefixIcon: Icon(FontAwesomeIcons.solidEnvelope),
+      keyboardType: _getKeyboardType(LoginUserType.email),
+      autofillHints: [_getAutofillHints(LoginUserType.email)],
       textInputAction: TextInputAction.done,
       onFieldSubmitted: (value) => _submit(),
       validator: widget.userValidator,
