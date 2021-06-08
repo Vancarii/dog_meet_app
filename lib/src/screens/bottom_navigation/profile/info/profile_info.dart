@@ -16,8 +16,6 @@ class ProfileInfo extends StatefulWidget {
 class ProfileInfoState extends State<ProfileInfo> {
   nameIsActive activePup = nameIsActive.pup1;
 
-  function(value) => setState(() => activePup = value);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -231,7 +229,7 @@ class ProfileInfoState extends State<ProfileInfo> {
           Padding(
             padding: const EdgeInsets.only(left: 10.0, top: 5.0),
             child: PupTabBar(
-              funcIsPup: function,
+              funcIsPup: (value) => setState(() => activePup = value),
             ),
           ),
           Container(

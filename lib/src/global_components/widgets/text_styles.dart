@@ -5,16 +5,19 @@ class CustomText extends StatelessWidget {
   final EdgeInsets padding;
   final Color color;
   final bool bold;
+  final bool italics;
   final bool underline;
   final double size;
   final TextAlign alignment;
   final double height;
 
   CustomText({
+    Key key,
     @required this.text,
     this.padding,
     this.color,
     this.bold = false,
+    this.italics = false,
     this.size,
     this.alignment,
     this.underline = false,
@@ -34,6 +37,7 @@ class CustomText extends StatelessWidget {
           color: color,
           fontWeight: bold == false ? FontWeight.w400 : FontWeight.w600,
           fontSize: size,
+          fontStyle: italics == true ? FontStyle.italic : FontStyle.normal,
           decoration: underline == true ? TextDecoration.underline : TextDecoration.none,
         ),
       ),
