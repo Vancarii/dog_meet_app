@@ -1,6 +1,4 @@
-import 'package:dog_meet_app/src/core/auth/intro/authentication/auth_screen.dart';
 import 'package:dog_meet_app/src/core/auth/intro/intro_screen.dart';
-import 'package:dog_meet_app/src/core/auth/intro/intro_screen2.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_profile.dart';
 import 'package:dog_meet_app/src/core/auth/register/create_pupfile.dart';
 import 'package:dog_meet_app/src/core/auth/register/new_user_screen.dart';
@@ -57,11 +55,9 @@ class _DogMeetAppState extends State<DogMeetApp> {
             themeMode: themeProvider.themeMode,
             darkTheme: AppThemes.darkTheme,
             theme: AppThemes.lightTheme,
-            initialRoute: AuthScreen.id,
+            initialRoute: IntroScreen.id,
             routes: {
-              AuthScreen.id: (context) => AuthScreen(),
               IntroScreen.id: (context) => IntroScreen(),
-              IntroScreen2.id: (context) => IntroScreen2(),
               SplashScreen.id: (context) => SplashScreen(),
               NewUserScreen.id: (context) => NewUserScreen(),
               CreatePupfile.id: (context) => CreatePupfile(),
