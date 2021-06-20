@@ -65,6 +65,9 @@ flutter:
     - asset: assets/fonts/gibson/GibsonBold.ttf
       weight: 700
 
+  - family: Ceviche One
+    fonts:
+      - asset: assets/fonts/ceviche_one/CevicheOne-Regular.ttf
 
   - family: Archivo
     fonts:

@@ -6,8 +6,14 @@ class InfoTiles extends StatelessWidget {
   final String tileText;
   final IconData tileIcon;
   final Color tileColor;
+  final BoxBorder border;
 
-  InfoTiles({this.tileText, this.tileColor = AppColors.colorWhite, this.tileIcon});
+  InfoTiles({
+    this.tileText,
+    this.tileColor = AppColors.colorWhite,
+    this.tileIcon,
+    this.border,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +28,20 @@ class InfoTiles extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             decoration: BoxDecoration(
               color: tileColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(5.0),
-              ),
+              border: border,
+              borderRadius: BorderRadius.circular(5.0),
             ),
             child: tileText != null
                 ? CustomText(
                     text: tileText,
                     size: 15,
                     bold: true,
-                    color: AppColors.colorOffBlack,
+                    color: AppColors.colorBlack,
                   )
                 : Icon(
                     tileIcon,
                     size: 20,
-                    color: AppColors.colorOffBlack,
+                    color: AppColors.colorBlack,
                   ),
           ),
         ],

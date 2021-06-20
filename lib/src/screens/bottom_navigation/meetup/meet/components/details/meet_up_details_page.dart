@@ -6,7 +6,6 @@ import 'package:dog_meet_app/src/global_components/widgets/custom_rounded_textfi
 import 'package:dog_meet_app/src/global_components/widgets/custom_expandable.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
-import 'package:dog_meet_app/src/screens/bottom_navigation/market/new/components/fullscreen_image.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/post/components/info_tiles.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
 import 'package:flutter/cupertino.dart';

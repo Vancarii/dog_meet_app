@@ -17,10 +17,9 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.colorDarkSlateGrey,
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+        elevation: 5,
+        backgroundColor: AppColors.colorDarkSlateGrey,
         brightness: Brightness.dark,
         centerTitle: true,
         title: CustomText(
@@ -37,32 +36,32 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Icon(Icons.arrow_back_rounded),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(child: Align(alignment: Alignment.center, child: AuthCard())),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          AuthCard(),
+          Container(
+            margin: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(15.0),
+            decoration: BoxDecoration(
+              color: Colors.white24,
+              borderRadius: BorderRadius.all(
+                Radius.circular(30.0),
+              ),
+            ),
+            child: DotsIndicator(
+              dotsCount: 3,
+              position: currentSignupStep,
+              decorator: DotsDecorator(
+                color: Colors.black12,
+                activeColor: AppColors.colorPrimaryOrange,
+                size: const Size.square(9.0),
+                activeSize: const Size(18.0, 9.0),
+                activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+              ),
+            ),
+          ),
         ],
-      ),
-      floatingActionButton: Container(
-        margin: const EdgeInsets.all(20.0),
-        padding: const EdgeInsets.all(15.0),
-        decoration: BoxDecoration(
-          color: Colors.white24,
-          borderRadius: BorderRadius.all(
-            Radius.circular(30.0),
-          ),
-        ),
-        child: DotsIndicator(
-          dotsCount: 3,
-          position: currentSignupStep,
-          decorator: DotsDecorator(
-            color: Colors.black12,
-            activeColor: AppColors.colorPrimaryOrange,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
       ),
     );
   }

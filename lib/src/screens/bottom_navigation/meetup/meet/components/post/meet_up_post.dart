@@ -5,7 +5,6 @@ import 'package:dog_meet_app/src/global_components/route_transitions/route_trans
 import 'package:dog_meet_app/src/global_components/route_transitions/transparent_route.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/components/details/meet_up_details_page.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/other_profile/other_profile_page.dart';
-import 'package:dog_meet_app/src/screens/sub_screens/share_sheet/share_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -117,28 +116,33 @@ class MeetUpPost extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    meetUpType != null
-                        ? InfoTiles(
-                            tileText: meetUpType == meetType.playdate
-                                ? 'PLAYDATE'
-                                : meetUpType == meetType.training
-                                    ? 'TRAINING'
-                                    : 'SOCIALIZATION',
-                            tileColor: AppColors.colorPrimaryOrange,
-                          )
-                        : Container(),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        meetUpType != null
+                            ? InfoTiles(
+                                tileText: meetUpType == meetType.playdate
+                                    ? 'PLAYDATE'
+                                    : meetUpType == meetType.training
+                                        ? 'TRAINING'
+                                        : 'SOCIALIZATION',
+                                tileColor: AppColors.colorPrimaryOrange,
+                              )
+                            : Container(),
+                        InfoTiles(
+                          tileText: 'Hike',
+                          border: Border.all(color: AppColors.colorPrimaryOrange, width: 3),
+                        ),
+                      ],
+                    ),
                     Wrap(
                       verticalDirection: VerticalDirection.up,
                       crossAxisAlignment: WrapCrossAlignment.start,
                       children: [
-                        InfoTiles(
-                          tileIcon: FontAwesomeIcons.venusMars,
-                          tileColor: AppColors.colorWhite,
-                        ),
+                        InfoTiles(tileIcon: FontAwesomeIcons.venusMars),
                         InfoTiles(tileText: 'Intact'),
                         InfoTiles(tileText: 'Medium Sizes'),
-                        InfoTiles(
-                            tileText: numOfPeopleGoing.toString() + ' Going'),
+                        InfoTiles(tileText: numOfPeopleGoing.toString() + ' Going'),
                         InfoTiles(tileText: 'All Breeds'),
                         InfoTiles(tileText: 'Gentle Greeters'),
                         InfoTiles(tileText: '1.5 Year - 3 Year'),
@@ -181,9 +185,7 @@ class MeetUpPost extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context,
-            RouteTransitions()
-                .slideRightToLeftTransitionType(OtherProfilePage()));
+            context, RouteTransitions().slideRightToLeftTransitionType(OtherProfilePage()));
       },
       child: Container(
         child: Row(

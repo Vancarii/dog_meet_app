@@ -109,105 +109,95 @@ class _AuthCardState extends State<AuthCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (usernameFocusNode.hasFocus == true ||
-            passwordFocusNode.hasFocus == true ||
-            emailFocusNode.hasFocus == true ||
-            confirmPasswordFocusNode.hasFocus == true) {
-          unfocusAllNodes();
-        }
-      },
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Align(
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Container(
               alignment: Alignment.center,
-              child: Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(35.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    FadeTransition(
-                      opacity: opacityAnimation(),
-                      child: LoginTypeTabBar(
-                        isLogin: (login) {
-                          setState(() {
-                            isLogin = login;
-                            print(isLogin);
-                            unfocusAllNodes();
-                            if (isLogin == false) {
-                              _sizeAnimationController.forward();
-                            } else {
-                              _sizeAnimationController.reverse();
-                            }
-                          });
-                        },
-                      ),
-                    ),
-                    Divider(
-                      color: AppColors.colorOffBlack.withOpacity(0.4),
-                      endIndent: 15.0,
-                      indent: 15.0,
-                      thickness: 0.5,
-                    ),
-                    buildUsernameField(),
-                    buildEmailField(),
-                    buildPasswordField(),
-                    buildConfirmPasswordField(),
-                    FadeTransition(
-                      opacity: opacityAnimation(),
-                      child: SizeTransition(
-                        sizeFactor: sizeAnimation(isTextField: false),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: CustomText(
-                            text: 'Forgot Password?',
-                            italics: true,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 35.0),
-                      child: InkWell(
-                        onTap: () {
-                          if (isLogin == true) {
-                            Navigator.pushReplacement(
-                                context,
-                                RouteTransitions().slideRightToLeftJoinedTransitionType(
-                                    AuthScreen(), MainBottomNavMenu()));
+              padding: const EdgeInsets.all(35.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FadeTransition(
+                    opacity: opacityAnimation(),
+                    child: LoginTypeTabBar(
+                      isLogin: (login) {
+                        setState(() {
+                          isLogin = login;
+                          print(isLogin);
+                          unfocusAllNodes();
+                          if (isLogin == false) {
+                            _sizeAnimationController.forward();
+                          } else {
+                            _sizeAnimationController.reverse();
                           }
-                        },
-                        child: FadeTransition(
-                          opacity: opacityAnimation(),
-                          child: Container(
-                            width: double.infinity,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                              boxShadow: [kBoxShadow()],
-                              color: AppColors.colorPrimaryOrange,
-                            ),
-                            child: CustomText(
-                              text: isLogin == true ? 'Login' : 'Next',
-                              size: 18,
-                              bold: true,
-                              color: AppColors.colorWhite,
-                            ),
+                        });
+                      },
+                    ),
+                  ),
+                  Divider(
+                    color: AppColors.colorOffBlack.withOpacity(0.4),
+                    endIndent: 15.0,
+                    indent: 15.0,
+                    thickness: 0.5,
+                  ),
+                  buildUsernameField(),
+                  buildEmailField(),
+                  buildPasswordField(),
+                  buildConfirmPasswordField(),
+                  FadeTransition(
+                    opacity: opacityAnimation(),
+                    child: SizeTransition(
+                      sizeFactor: sizeAnimation(isTextField: false),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: CustomText(
+                          text: 'Forgot Password?',
+                          italics: true,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 35.0),
+                    child: InkWell(
+                      onTap: () {
+                        if (isLogin == true) {
+                          Navigator.pushReplacement(
+                              context,
+                              RouteTransitions().slideRightToLeftJoinedTransitionType(
+                                  AuthScreen(), MainBottomNavMenu()));
+                        }
+                      },
+                      child: FadeTransition(
+                        opacity: opacityAnimation(),
+                        child: Container(
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                            boxShadow: [kBoxShadow()],
+                            color: AppColors.colorPrimaryOrange,
+                          ),
+                          child: CustomText(
+                            text: isLogin == true ? 'Login' : 'Next',
+                            size: 18,
+                            bold: true,
+                            color: AppColors.colorWhite,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

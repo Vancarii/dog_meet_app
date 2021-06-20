@@ -55,8 +55,9 @@ class _DogMeetAppState extends State<DogMeetApp> {
             themeMode: themeProvider.themeMode,
             darkTheme: AppThemes.darkTheme,
             theme: AppThemes.lightTheme,
-            initialRoute: IntroScreen.id,
+            initialRoute: MainPageView.id,
             routes: {
+              MainPageView.id: (context) => MainPageView(),
               IntroScreen.id: (context) => IntroScreen(),
               SplashScreen.id: (context) => SplashScreen(),
               NewUserScreen.id: (context) => NewUserScreen(),

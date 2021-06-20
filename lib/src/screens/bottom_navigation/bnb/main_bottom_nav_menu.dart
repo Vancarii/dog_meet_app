@@ -1,6 +1,7 @@
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_android.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/meet/meet_up_page.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/notification/pageview/notification_pageview.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/profile/account_profile_page.dart';
@@ -24,15 +25,63 @@ import 'animated_fab.dart';
 //the notification_pageview is also listening to the provider and changes the screen depending on the
 //changes to the provider that the animated_fab does on the onTap function.
 
+class MainPageView extends StatefulWidget {
+  static const String id = 'main_page_view';
+
+  const MainPageView({Key key}) : super(key: key);
+
+  @override
+  _MainPageViewState createState() => _MainPageViewState();
+}
+
+final PageController mainPageViewController = PageController(initialPage: 1);
+
+class _MainPageViewState extends State<MainPageView> {
+  bool meet = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView(
+      onPageChanged: (page) {
+        setState(() {
+          if (page == 0) {
+            meet = false;
+            mainPageViewController.animateToPage(0,
+                duration: Duration(milliseconds: 200), curve: Curves.linear);
+          } else {
+            meet = true;
+          }
+        });
+      },
+      physics: meet == true ? AlwaysScrollableScrollPhysics() : NeverScrollableScrollPhysics(),
+      allowImplicitScrolling: true,
+      controller: mainPageViewController,
+      children: [
+        MapPageAndroid(),
+        MainBottomNavMenu(
+          onMeetPage: (onMeet) {
+            setState(() {
+              meet = onMeet;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
 class MainBottomNavMenu extends StatefulWidget {
   static const String id = 'main_bottom_nav_menu';
+
+  final Function(bool) onMeetPage;
+
+  MainBottomNavMenu({this.onMeetPage});
 
   @override
   _MainBottomNavMenuState createState() => _MainBottomNavMenuState();
 }
 
-class _MainBottomNavMenuState extends State<MainBottomNavMenu>
-    with SingleTickerProviderStateMixin {
+class _MainBottomNavMenuState extends State<MainBottomNavMenu> with SingleTickerProviderStateMixin {
   //start the app at the Meet Up page which is index 2
   var _currentSelectedScreenIndex = 2;
 
@@ -80,8 +129,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
               //these two lines change the screen to the notifications screen
               //then sets messagefab to true which slides the screen to the messages screen
               _currentSelectedScreenIndex = 3;
-              Provider.of<ProviderNotifier>(context, listen: false)
-                  .messageFabChanged(true);
+              Provider.of<ProviderNotifier>(context, listen: false).messageFabChanged(true);
             });
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -128,6 +176,9 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
                       onPressed: () {
                         setState(() {
                           _currentSelectedScreenIndex = index;
+                          _currentSelectedScreenIndex == 2
+                              ? widget.onMeetPage(true)
+                              : widget.onMeetPage(false);
                           print(_currentSelectedScreenIndex);
                         });
                       },
@@ -139,9 +190,7 @@ class _MainBottomNavMenuState extends State<MainBottomNavMenu>
                             )
                           : Icon(
                               bottomNavIcons[index],
-                              color: Theme.of(context)
-                                  .primaryColorLight
-                                  .withOpacity(0.4),
+                              color: Theme.of(context).primaryColorLight.withOpacity(0.4),
                               size: 24,
                             ),
                     ),

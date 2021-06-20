@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:dog_meet_app/src/global_components/models/nearby_meets_model.dart';
@@ -92,11 +93,14 @@ class _MapPageAndroidState extends State<MapPageAndroid> with SingleTickerProvid
   void dispose() {
     super.dispose();
     if (pageController != null) {
-    pageController.dispose();}
-    if (nearbyMeetMapController != null){
-    nearbyMeetMapController.dispose();}
-    if (animationController != null){
-    animationController.dispose();}
+      pageController.dispose();
+    }
+    if (nearbyMeetMapController != null) {
+      nearbyMeetMapController.dispose();
+    }
+    if (animationController != null) {
+      animationController.dispose();
+    }
   }
 
   void _onScroll() {
@@ -524,7 +528,8 @@ class _MapPageAndroidState extends State<MapPageAndroid> with SingleTickerProvid
                 IconButton(
                     icon: Icon(Icons.arrow_forward),
                     onPressed: () {
-                      Navigator.pop(context);
+                      mainPageViewController.animateToPage(1,
+                          duration: Duration(milliseconds: 200), curve: Curves.linear);
                     }),
               ],
             ),

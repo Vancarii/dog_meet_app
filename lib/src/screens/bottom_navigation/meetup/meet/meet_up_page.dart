@@ -2,12 +2,13 @@ import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/global_components/widgets/text_styles.dart';
 import 'package:dog_meet_app/src/global_components/route_transitions/route_transitions.dart';
 import 'package:dog_meet_app/src/provider/provider_notifier.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/bnb/main_bottom_nav_menu.dart';
+import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_android.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/meetup/map/map_page_ios.dart';
 import 'package:dog_meet_app/src/screens/sub_screens/search/search_screen.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'components/details/meet_up_details_page.dart';
 import 'components/tabs/home/meet_up_home_feed.dart';
 import 'components/tabs/nearby/meet_up_nearby_feed.dart';
 import 'components/tabs/nearby/nearby_drawer_content.dart';
@@ -28,8 +29,6 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
     Tab(child: CustomText(text: 'Explore', size: 15, color: null, bold: true)),
   ];
 
-  bool sheetIsExpanded = false;
-
   @override
   void initState() {
     super.initState();
@@ -44,16 +43,37 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // Local dragStartDetail.
+    DragStartDetails dragStartDetails;
+    // Current drag instance - should be instantiated on overscroll and updated alongside.
+    Drag drag;
     return Scaffold(
       endDrawer: NearbyDrawerContent(),
-      //THIS APPBAR IS CRUCIAL FOR THE STATUS BAR COLOR
       appBar: meetUpAppBar(),
-      body: TabBarView(
-        controller: meetTabController,
-        children: [
-          MeetUpHomeFeed(),
-          MeetUpNearbyFeed(),
-        ],
+      body: NotificationListener(
+        onNotification: (notification) {
+          if (notification is ScrollStartNotification) {
+            print('scroll start');
+            dragStartDetails = notification.dragDetails;
+          }
+          if (notification is OverscrollNotification) {
+            print('Overscroll');
+            drag = mainPageViewController.position.drag(dragStartDetails, () {});
+            drag.update(notification.dragDetails);
+          }
+          if (notification is ScrollEndNotification) {
+            print('scroll end');
+            drag?.cancel();
+          }
+          return true;
+        },
+        child: TabBarView(
+          controller: meetTabController,
+          children: [
+            MeetUpHomeFeed(),
+            MeetUpNearbyFeed(),
+          ],
+        ),
       ),
     );
   }
@@ -63,21 +83,15 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
       automaticallyImplyLeading: false,
       elevation: 0,
       centerTitle: true,
-      title: CustomText(
-        text: 'Meet',
-        size: 18,
-        bold: true,
+      title: Text(
+        'DOGGOD',
+        style: TextStyle(fontFamily: 'Ceviche One', fontSize: 28),
       ),
       leading: IconButton(
           icon: Icon(Icons.location_on_outlined),
           onPressed: () {
-            Navigator.push(
-              context,
-              RouteTransitions().slideLeftToRightJoinedTransitionType(
-                MeetUpPage(),
-                MapPageIos(),
-              ),
-            );
+            mainPageViewController.animateToPage(0,
+                duration: Duration(milliseconds: 200), curve: Curves.linear);
           }),
       actions: <Widget>[
         IconButton(
@@ -85,8 +99,7 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
             Icons.search,
           ),
           onPressed: () {
-            Navigator.of(context).push(
-                RouteTransitions().slideUpTransitionType(SearchBarScreen()));
+            Navigator.of(context).push(RouteTransitions().slideUpTransitionType(SearchBarScreen()));
           },
         ),
       ],
@@ -97,10 +110,9 @@ class _MeetUpPageState extends State<MeetUpPage> with TickerProviderStateMixin {
   Widget meetUpTabBar() {
     return TabBar(
       controller: meetTabController,
-      unselectedLabelColor:
-          Provider.of<ProviderNotifier>(context).isDarkMode == true
-              ? AppColors.colorWhite.withOpacity(0.3)
-              : AppColors.colorOffBlack.withOpacity(0.3),
+      unselectedLabelColor: Provider.of<ProviderNotifier>(context).isDarkMode == true
+          ? AppColors.colorWhite.withOpacity(0.3)
+          : AppColors.colorOffBlack.withOpacity(0.3),
       labelColor: AppColors.colorPrimaryOrange,
       indicatorSize: TabBarIndicatorSize.tab,
       indicatorColor: AppColors.colorPrimaryOrange,
