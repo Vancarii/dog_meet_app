@@ -1,3 +1,4 @@
+import 'package:dog_meet_app/main.dart';
 import 'package:dog_meet_app/src/global_components/themes/app_colors.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/forum/forums_app_bar.dart';
 import 'package:dog_meet_app/src/screens/bottom_navigation/market/market_app_bar.dart';
@@ -38,6 +39,12 @@ final PageController mainPageViewController = PageController(initialPage: 1);
 
 class _MainPageViewState extends State<MainPageView> {
   bool meet = true;
+
+  @override
+  void dispose() {
+    mainPageViewController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

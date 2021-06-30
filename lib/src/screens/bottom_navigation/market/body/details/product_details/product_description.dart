@@ -6,6 +6,7 @@ class ProductDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: Axis.vertical,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10),
